@@ -24,4 +24,18 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
+/* POST to trips */
+router.post("/", async function (req, res, next) {
+  const { startDate, endDate, destination } = req.body;
+  const sql = `INSERT INTO trips (FK_tripGroups_id, startDate, endDate, destination) VALUES (1,'${startDate}','${endDate}','${destination}' )`;
+
+  try {
+    await db(sql);
+    let results = await db("SELECT * FROM trips");
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;

@@ -24,4 +24,18 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
+/* POST to tripGroups */
+router.post("/", async function (req, res, next) {
+  const { name } = req.body;
+  const sql = `INSERT INTO tripGroups (name) VALUES ('${name}')`;
+
+  try {
+    await db(sql);
+    let results = await db("SELECT * FROM tripGroups");
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
