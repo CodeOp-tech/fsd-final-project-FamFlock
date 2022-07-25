@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import NavBar from "./components/NavBar";
@@ -15,6 +15,7 @@ function App() {
   let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
+  const navigate = useNavigate();
 
   // log in
   async function doLogin(username, password) {
@@ -23,6 +24,7 @@ function App() {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);
       setLoginErrorMessage("");
+      navigate("/my-trips");
     } else {
       setLoginErrorMessage("Login failed");
     }
@@ -36,10 +38,9 @@ function App() {
 
   // register
 
-
   return (
     <div className="App">
-      <NavBar logoutCb={doLogout} />
+      <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/my-trips" element={<TripsView trips={trips} />} />
