@@ -12,7 +12,7 @@ CREATE TABLE users (
 	id INT NOT NULL AUTO_INCREMENT,
 	email VARCHAR(20) NOT NULL UNIQUE,
 	username VARCHAR(20) NOT NULL UNIQUE,
-	password VARCHAR(20) NOT NULL,
+	password VARCHAR(200) NOT NULL,
 	fullname VARCHAR(30) NOT NULL,
 	picture VARCHAR(200) NOT NULL,
 	PRIMARY KEY (id)
@@ -58,11 +58,11 @@ ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
-	email, username, password, fullname, picture
+    email, username, password, fullname, picture
 ) VALUES
-	('example1@email.com', 'person1', '', 'Person One', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'),
-	('example2@email.com', 'person2', '', 'Person Two', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'),
-	('example3@email.com', 'person3', '', 'Person Three', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png');
+    ('example1@email.com', 'person1', '$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a', 'Person One', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'),
+    ('example2@email.com', 'person2', '$2b$12$lDWcKS5v96t60Y1PvfE0SuGfhN67QoFHQT60ZdQyhPED38LVZdgQS', 'Person Two', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'),
+    ('example3@email.com', 'person3', '$2b$12$NDASPNSQuwalJol78l0Zn.7cIPXlpsaiSZyZbXPlRGWfmR2ctTpn6', 'Person Three', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png');
 
 INSERT INTO `tripGroups` (
 	name
