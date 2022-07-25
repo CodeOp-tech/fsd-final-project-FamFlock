@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 function TripsView(props) {
-  const trips = props.trips;
+  const [trips, setTrips] = useState([]);
 
-  const [featTrip, setFeatTrip] = useState(null);
+  //   const [featTrip, setFeatTrip] = useState(null);
 
   useEffect(() => {
-    setFeatTrip(trips[0]);
-  }, [props.trips]);
+    getTrips();
+  }, []);
+
+  const getTrips = () => {
+    fetch("/trips")
+      .then((response) => response.json())
+      .then((trips) => {
+        setTrips(trips);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -15,13 +26,10 @@ function TripsView(props) {
       {/* trips grid */}
       <div className="row">
         {trips.map((trip) => (
-          <div className="card col-md-3 p-4">
+          <div className="card col-md-3 p-4" key={trip.trip_id}>
             <h4 className="card-title">title{trip.destination}</h4>
-            {/*{trips.destination}*/}
             <h6 className="card-subtitle">subtitle{trip.startDate}</h6>
-            {/*{trips.startDate}*/}
             <p className="card-text">text{trip.endDate}</p>
-            {/*{trips.endDate}*/}
           </div>
         ))}
       </div>

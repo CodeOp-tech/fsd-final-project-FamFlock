@@ -5,9 +5,10 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import LoginView from "./views/LoginView";
+import TripsView from "./views/TripsView";
 
 function App() {
-  let [trips, setTrips] = useState([]); // don't forget num of state
+  let [trips, setTrips] = useState([]); // STATE 1
 
   return (
     <div className="App">
