@@ -6,6 +6,8 @@ import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import LoginView from "./views/LoginView";
 import TripsView from "./views/TripsView";
+import RegisterView from "./views/RegisterView";
+import MyProfileView from "./views/MyProfileView";
 
 function App() {
   let [trips, setTrips] = useState([]); // STATE 1
@@ -17,6 +19,8 @@ function App() {
         <Route path="/" element={<HomeView />} />
         <Route path="/my-trips" element={<TripsView trips={trips} />} />
         <Route path="/login" element={<LoginView />} />
+        <Route path="/register" element={<RegisterView />} />
+        <Route path="/profile/:id" element={<MyProfileView />} />
       </Routes>
     </div>
   );

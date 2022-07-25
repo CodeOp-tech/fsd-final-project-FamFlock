@@ -15,7 +15,7 @@ function NavBar() {
         </li>
         <li>
           {/* placeholder for ${id} once its actually defined */}
-          <NavLink to={`/profile/id`}>My Profile</NavLink>
+          <NavLink to={`/profile/1`}>My Profile</NavLink>
         </li>
         <li>
           <NavLink to="/search">Search</NavLink>
