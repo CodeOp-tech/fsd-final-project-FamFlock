@@ -1,8 +1,8 @@
 SET foreign_key_checks = 0;
  
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS `groups`;
-DROP TABLE IF EXISTS users_groups;
+DROP TABLE IF EXISTS tripGroups;
+DROP TABLE IF EXISTS users_tripGroups;
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS itinerary;
 
@@ -18,7 +18,7 @@ CREATE TABLE users (
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE `groups` (
+CREATE TABLE tripGroups (
 	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(30) NOT NULL,
 	PRIMARY KEY (id)
@@ -26,14 +26,14 @@ CREATE TABLE `groups` (
 
 
 
-CREATE TABLE users_groups (
+CREATE TABLE users_tripGroups (
 	FK_users_id INT NOT NULL,
-	FK_groups_id INT NOT NULL
+	FK_tripGroups_id INT NOT NULL
 );
 
 CREATE TABLE trips (
 	id INT NOT NULL AUTO_INCREMENT,
-	FK_groups_id INT NOT NULL,
+	FK_tripGroups_id INT NOT NULL,
 	startDate DATE NOT NULL,
 	endDate DATE NOT NULL,
 	destination VARCHAR(255) NOT NULL,
@@ -49,11 +49,11 @@ CREATE TABLE itinerary (
 	FK_trips_id INT NOT NULL
 );
 
-ALTER TABLE users_groups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
+ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 
-ALTER TABLE users_groups ADD FOREIGN KEY (FK_groups_id) REFERENCES `groups`(id);
+ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
-ALTER TABLE trips ADD FOREIGN KEY (FK_groups_id) REFERENCES `groups`(id);
+ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
@@ -64,15 +64,15 @@ INSERT INTO users (
 	('example2@email.com', 'person2', '', 'Person Two', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'),
 	('example3@email.com', 'person3', '', 'Person Three', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png');
 
-INSERT INTO `groups` (
+INSERT INTO `tripGroups` (
 	name
 ) VALUES 
 	('Group 1'),
 	('Group 2'),
 	('Group 3');
 
-INSERT INTO users_groups (
-	FK_users_id, FK_groups_id
+INSERT INTO users_tripGroups (
+	FK_users_id, FK_tripGroups_id
 ) VALUES
 	(1,1),
 	(2,1),
@@ -83,7 +83,7 @@ INSERT INTO users_groups (
 	(3,3);
 
 INSERT INTO trips (
-	FK_groups_id, startDate, endDate, destination
+	FK_tripGroups_id, startDate, endDate, destination
 ) VALUES
 	(1, 20220725, 20220801, 'Barcelona'),
 	(2, 20220806, 20220809, 'London'),
