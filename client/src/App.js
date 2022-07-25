@@ -4,6 +4,7 @@ import "./App.css";
 
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
+import LoginView from "./views/LoginView";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/login" element={<LoginView />} />
       </Routes>
     </div>
   );
