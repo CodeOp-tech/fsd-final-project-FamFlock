@@ -21,28 +21,32 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    props.login(username, password);
+    props.loginCb(username, password);
   }
 
   return (
     <div>
       <h2>login</h2>
       <form onSubmit={handleSubmit}>
-        <label>Username:</label>
-        <input
-          name="username"
-          value={username}
-          type="text"
-          onChange={handleChange}
-        />
-        <label>Password:</label>
-        <input
-          name="password"
-          value={password}
-          type="text"
-          onChange={handleChange}
-        />
-        <button>LOGIN</button>
+        <label>
+          Username:
+          <input
+            type="text"
+            name="usernameInput"
+            value={username}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name="passwordInput"
+            value={password}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">LOGIN</button>
       </form>
       <nav>
         <Link to="/register">Don't have an account yet? Register here</Link>
