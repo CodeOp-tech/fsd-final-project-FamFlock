@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function TripsView(props) {
   const [trips, setTrips] = useState([]);
@@ -22,14 +23,21 @@ function TripsView(props) {
 
   return (
     <div>
-      <h4>This is the Trips view</h4>
       {/* trips grid */}
-      <div className="row">
+      <div className="container">
         {trips.map((trip) => (
-          <div className="card col-md-3 p-4" key={trip.trip_id}>
-            <h4 className="card-title">title{trip.destination}</h4>
-            <h6 className="card-subtitle">subtitle{trip.startDate}</h6>
-            <p className="card-text">text{trip.endDate}</p>
+          <div className="row" key={trips.id} style={{ width: "25rem" }}>
+            <div className="card-body">
+              <h4 className="card-title">{trip.destination}</h4>
+              <h6 className="card-text">
+                {trip.startDate} - {trip.endDate}
+              </h6>
+            </div>
+            <div className="card-footer">
+              <Link to={"/trips/" + trips.id}>
+                <button className="btn btn-outline-primary">Edit</button>
+              </Link>
+            </div>
           </div>
         ))}
       </div>
