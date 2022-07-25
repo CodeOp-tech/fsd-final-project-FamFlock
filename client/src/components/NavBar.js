@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 // function to show the navbar, will need the user prop at some point
-function NavBar() {
+function NavBar(props) {
   return (
     <nav className="NavBar">
       <ul>
@@ -19,6 +19,11 @@ function NavBar() {
         </li>
         <li>
           <NavLink to="/search">Search</NavLink>
+        </li>
+        <li>
+          <Link to="/" onClick={props.logoutCb}>
+            Logout
+          </Link>
         </li>
         {/* only if user exists */}
         <li>

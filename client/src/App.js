@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar logoutCb={doLogout} />
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/my-trips" element={<TripsView trips={trips} />} />
