@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 const tripGroupsRouter = require("./routes/tripGroups");
 const tripsRouter = require("./routes/trips");
 const itineraryRouter = require("./routes/itinerary");
+const authRouter = require("./routes/auth");
 
 var app = express();
 
@@ -24,5 +25,6 @@ app.use("/users", usersRouter);
 app.use("/tripGroups", tripGroupsRouter);
 app.use("/trips", tripsRouter);
 app.use("/itinerary", itineraryRouter);
+app.use("/", authRouter);
 
 module.exports = app;
