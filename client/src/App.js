@@ -13,7 +13,9 @@ import Api from "./helpers/Api";
 
 function App() {
   let [trips, setTrips] = useState([]); // STATE 1
-  const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
+  const [user, setUser] = useState(0); // useState 1: sets logged in user
+
+  // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
   const navigate = useNavigate();
 
@@ -36,7 +38,28 @@ function App() {
     setUser(null);
   }
 
-  // register
+  // register a new user
+  async function register(email, username, password, fullname, picture) {
+    let myresponse = await Api.newUser(
+      email,
+      username,
+      password,
+      fullname,
+      picture
+    );
+    if (myresponse.ok) {
+      // browser popup saying you've been registered
+      alert("You have been registered!");
+      // // save the token, aka log them in
+      // Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      // setUser(myresponse.data.user);
+      // setLoginErrorMessage("");
+      // navigate("/my-trips");
+    } else {
+      setLoginErrorMessage("Registration failed");
+    }
+    doLogin(username, password);
+  }
 
   return (
     <div className="App">
@@ -52,7 +75,10 @@ function App() {
             />
           }
         />
-        <Route path="/register" element={<RegisterView />} />
+        <Route
+          path="/register"
+          element={<RegisterView registerCb={register} />}
+        />
         <Route path="/profile/:id" element={<MyProfileView user={user} />} />
       </Routes>
     </div>
