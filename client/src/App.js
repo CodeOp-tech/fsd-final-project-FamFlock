@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import LoginView from "./views/LoginView";
+import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
 function App() {
+  let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
+  const navigate = useNavigate();
 
   // log in
   async function doLogin(username, password) {
@@ -21,6 +24,7 @@ function App() {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);
       setLoginErrorMessage("");
+      navigate("/my-trips");
     } else {
       setLoginErrorMessage("Login failed");
     }
@@ -36,9 +40,10 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar logoutCb={doLogout} />
+      <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/my-trips" element={<TripsView trips={trips} />} />
         <Route
           path="/login"
           element={
