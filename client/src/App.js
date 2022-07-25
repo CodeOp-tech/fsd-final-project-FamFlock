@@ -48,7 +48,7 @@ function App() {
           }
         />
         <Route path="/register" element={<RegisterView />} />
-        <Route path="/profile/:id" element={<MyProfileView />} />
+        <Route path="/profile/:id" element={<MyProfileView user={user} />} />
       </Routes>
     </div>
   );
