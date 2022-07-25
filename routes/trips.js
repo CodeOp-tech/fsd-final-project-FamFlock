@@ -2,9 +2,9 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-/* GET users */
+/* GET trips */
 router.get("/", async function (req, res, next) {
-  let results = await db("SELECT * FROM users");
+  let results = await db("SELECT * FROM trips");
   res.send(results.data);
 });
 
@@ -12,12 +12,12 @@ router.get("/", async function (req, res, next) {
 router.get("/:id", async function (req, res, next) {
   let { id } = req.params;
   try {
-    let results = await db(`SELECT * FROM users WHERE id = ${id}`);
-    let user = results.data;
-    if (user.length === 0) {
+    let results = await db(`SELECT * FROM trips WHERE id = ${id}`);
+    let trip = results.data;
+    if (trip.length === 0) {
       res.status(404).send({ error: "we cannot find what you requested" });
     } else {
-      res.send(user[0]);
+      res.send(trip[0]);
     }
   } catch (err) {
     res.status(500).send({ error: err.message });
