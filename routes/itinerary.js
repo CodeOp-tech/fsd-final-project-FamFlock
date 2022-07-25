@@ -24,4 +24,18 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
+/* POST to itinerary */
+router.post("/", async function (req, res, next) {
+  const { activity, date, location, time } = req.body;
+  const sql = `INSERT INTO itinerary (activity, date, location, time, FK_trips_id) VALUES ('${activity}','${date}','${location}',${time}, 1 )`;
+
+  try {
+    await db(sql);
+    let results = await db("SELECT * FROM itinerary");
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;

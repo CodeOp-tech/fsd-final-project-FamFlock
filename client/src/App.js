@@ -4,7 +4,7 @@ import "./App.css";
 
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
-import TripsView from "./views/TripsView";
+import LoginView from "./views/LoginView";
 
 function App() {
   let [trips, setTrips] = useState([]); // don't forget num of state
@@ -15,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/my-trips" element={<TripsView trips={trips} />} />
+        <Route path="/login" element={<LoginView />} />
       </Routes>
     </div>
   );
