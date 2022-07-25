@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
+import MyProfileView from "./views/MyProfileView";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<HomeView />} />
         <Route path="/login" element={<LoginView />} />
         <Route path="/register" element={<RegisterView />} />
+        <Route path="/profile/:id" element={<MyProfileView />} />
       </Routes>
     </div>
   );
