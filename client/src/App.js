@@ -5,12 +5,14 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
 import LoginView from "./views/LoginView";
+import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
 function App() {
+  let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
 
@@ -34,11 +36,13 @@ function App() {
 
   // register
 
+
   return (
     <div className="App">
       <NavBar />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/my-trips" element={<TripsView trips={trips} />} />
         <Route
           path="/login"
           element={
