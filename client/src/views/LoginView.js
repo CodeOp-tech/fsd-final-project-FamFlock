@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
 function LoginView(props) {
   const [username, setUsername] = useState(""); // useState 1
@@ -28,11 +29,24 @@ function LoginView(props) {
       <h2>login</h2>
       <form onSubmit={handleSubmit}>
         <label>Username:</label>
-        <input name="username" value={username} onChange={handleChange} />
+        <input
+          name="username"
+          value={username}
+          type="text"
+          onChange={handleChange}
+        />
         <label>Password:</label>
-        <input name="password" value={password} onChange={handleChange} />
+        <input
+          name="password"
+          value={password}
+          type="text"
+          onChange={handleChange}
+        />
         <button>LOGIN</button>
       </form>
+      <nav>
+        <Link to="/register">Don't have an account yet? Register here</Link>
+      </nav>
     </div>
   );
 }
