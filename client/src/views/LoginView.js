@@ -21,7 +21,7 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // props.login(username, password);
+    props.login(username, password);
   }
 
   return (
