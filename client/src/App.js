@@ -12,7 +12,6 @@ import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
 function App() {
-  let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(0); // useState 1: sets logged in user
 
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
@@ -66,7 +65,7 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/my-trips" element={<TripsView trips={trips} />} />
+        <Route path="/my-trips" element={<TripsView />} />
         <Route
           path="/login"
           element={

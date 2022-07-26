@@ -16,23 +16,27 @@ function TripsView(props) {
       .then((response) => response.json())
       .then((trips) => {
         setTrips(trips);
+        console.log("Í am", trips);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const addTrip = async (newTrip) => {
+  const addTrip = async (formData) => {
+    console.log("Í am post", formData);
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newTrip),
+      body: JSON.stringify(formData),
     };
+
     try {
       let response = await fetch("/trips", options);
       if (response.ok) {
         let data = await response.json();
         setTrips(data);
+        console.log(data);
       } else {
         console.log(`server error: ${response.statud} ${response.statusText}`);
       }
@@ -41,16 +45,17 @@ function TripsView(props) {
     }
   };
 
-  const handleSaveTrip = (e) => {
-    e.preventDefault();
-    addTrip(trip);
-  };
+  //   const handleSaveTrip = (e) => {
+  //     e.preventDefault();
+  //     addTrip(trip);
+  //     console.log(trip);
+  //   };
 
   return (
     <div>
       {/* button to add a new trip OPENS POP UP COMPONENT*/}
       <div>
-        <button classname="modalBtn" onClick={() => setOpenPopUp(true)}>
+        <button className="modalBtn" onClick={() => setOpenPopUp(true)}>
           Add New Trip
         </button>
       </div>
@@ -58,7 +63,7 @@ function TripsView(props) {
       <AddTripPopUp
         open={openPopUp}
         onClose={() => setOpenPopUp(false)}
-        onSave={handleSaveTrip}
+        addTrip={(formData) => addTrip(formData)}
       />
       <div className="container">
         {/* map through trip cards */}

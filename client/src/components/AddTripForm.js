@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Components.css";
 
-const AddTripForm = ({}) => {
+const AddTripForm = (props) => {
+  let emptyForm = {
+    destination: "",
+    startDate: 20220725,
+    endDate: 20220801,
+  };
+
+  const [formData, setFormData] = useState(emptyForm);
+  // const [newTrip, setNewTrip] = useState();
+
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setFormData({ ...formData, [name]: value });
+
+    console.log(formData);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.addTrip(formData);
+  };
+
   return (
     <div className="container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="destination" className="destination-label">
             Destination
           </label>
-          <input type="text" id="destination" />
+          <input
+            type="text"
+            id="destination"
+            name="destination"
+            value={formData.destination}
+            onChange={handleChange}
+          />
         </div>
 
         <div>
@@ -60,6 +89,9 @@ const AddTripForm = ({}) => {
             </div>
           </div>
         </div>
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );
