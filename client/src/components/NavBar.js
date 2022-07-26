@@ -17,7 +17,7 @@ function NavBar(props) {
               <NavLink to={`/profile/1`}>My Profile</NavLink>
             </li>
             <li>
-              <NavLink to="/search">Search</NavLink>
+              <NavLink to="/yelp-search">Yelp Search</NavLink>
             </li>
             <li>
               <Link to="/" onClick={props.logoutCb}>

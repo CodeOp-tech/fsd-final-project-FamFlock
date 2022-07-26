@@ -10,6 +10,7 @@ import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
+import YelpView from "./views/YelpView";
 
 function App() {
   let [trips, setTrips] = useState([]); // STATE 1
@@ -63,6 +64,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/my-trips" element={<TripsView trips={trips} />} />
+        <Route path="/yelp-search" element={<YelpView />} />
         <Route
           path="/login"
           element={
