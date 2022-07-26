@@ -56,6 +56,13 @@ class Api {
   //     return await this._doFetch("/trips", "POST", newTrip);
   //   }
 
+  //  register a user
+  static async newUser(email, username, password, fullname, picture) {
+    let body = { email, username, password, fullname, picture };
+
+    return await this._doFetch("/register", "POST", body);
+  }
+
   // login a user
   static async loginUser(username, password) {
     let body = { username, password };
