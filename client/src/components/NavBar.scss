@@ -1,0 +1,17 @@
+.NavBar {
+  border: 1px solid grey;
+  ul {
+    list-style-type: none;
+  }
+  li {
+    display: inline-block;
+    padding: 6px 12px;
+  }
+  a {
+    text-decoration: none;
+    color: purple;
+  }
+  a:hover {
+    color: blue;
+  }
+}
