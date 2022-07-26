@@ -50,15 +50,11 @@ function App() {
     if (myresponse.ok) {
       // browser popup saying you've been registered
       alert("You have been registered!");
-      // // save the token, aka log them in
-      // Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
-      // setUser(myresponse.data.user);
-      // setLoginErrorMessage("");
-      // navigate("/my-trips");
+      //  log them in automatically
+      doLogin(username, password);
     } else {
       setLoginErrorMessage("Registration failed");
     }
-    doLogin(username, password);
   }
 
   return (
