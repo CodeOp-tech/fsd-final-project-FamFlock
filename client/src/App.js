@@ -50,15 +50,31 @@ function App() {
     if (myresponse.ok) {
       // browser popup saying you've been registered
       alert("You have been registered!");
-      // // save the token, aka log them in
-      // Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
-      // setUser(myresponse.data.user);
-      // setLoginErrorMessage("");
-      // navigate("/my-trips");
+      //  log them in automatically
+      doLogin(username, password);
     } else {
       setLoginErrorMessage("Registration failed");
     }
-    doLogin(username, password);
+  }
+
+  async function editUser(
+    picture,
+    fullname,
+    email,
+    username,
+    currentpassword,
+    newpassword,
+    id
+  ) {
+    let myresponse = await Api.editUser(
+      picture,
+      fullname,
+      email,
+      username,
+      currentpassword,
+      newpassword,
+      id
+    );
   }
 
   return (
@@ -79,7 +95,10 @@ function App() {
           path="/register"
           element={<RegisterView registerCb={register} />}
         />
-        <Route path="/profile/:id" element={<MyProfileView user={user} />} />
+        <Route
+          path="/profile/:id"
+          element={<MyProfileView user={user} editUserCb={editUser} />}
+        />
       </Routes>
     </div>
   );

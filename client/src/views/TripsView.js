@@ -50,7 +50,7 @@ function TripsView(props) {
     <div>
       {/* button to add a new trip OPENS POP UP COMPONENT*/}
       <div>
-        <button classname="modalBtn" onClick={() => setOpenPopUp(true)}>
+        <button className="modalBtn" onClick={() => setOpenPopUp(true)}>
           Add New Trip
         </button>
       </div>
