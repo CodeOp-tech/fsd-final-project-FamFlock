@@ -11,6 +11,7 @@ import MyProfileView from "./views/MyProfileView";
 import TripByIdView from "./views/TripByIdView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
+import PrivateRoute from "./components/PrivateRoute";
 import YelpView from "./views/YelpView";
 
 function App() {
@@ -84,7 +85,14 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/my-trips" element={<TripsView trips={trips} />} />
+        <Route
+          path="/my-trips"
+          element={
+            <PrivateRoute>
+              <TripsView trips={trips} />
+            </PrivateRoute>
+          }
+        />
         <Route path="/yelp-search" element={<YelpView />} />
         <Route
           path="/login"
@@ -100,7 +108,11 @@ function App() {
         />
         <Route
           path="/profile/:id"
-          element={<MyProfileView user={user} editUserCb={editUser} />}
+          element={
+            <PrivateRoute>
+              <MyProfileView user={user} editUserCb={editUser} />
+            </PrivateRoute>
+          }
         />
         <Route path="/my-trips/:id" element={<TripByIdView />} />
       </Routes>

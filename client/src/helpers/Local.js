@@ -22,7 +22,7 @@ class Local {
     }
 
     let user = JSON.parse(userjson);
-    return user.id;
+    return user.userid;
   }
 
   // save user token info after they've been logged in
