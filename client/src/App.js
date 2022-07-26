@@ -61,6 +61,26 @@ function App() {
     doLogin(username, password);
   }
 
+  async function editUser(
+    picture,
+    fullname,
+    email,
+    username,
+    currentpassword,
+    newpassword,
+    id
+  ) {
+    let myresponse = await Api.editUser(
+      picture,
+      fullname,
+      email,
+      username,
+      currentpassword,
+      newpassword,
+      id
+    );
+  }
+
   return (
     <div className="App">
       <NavBar logoutCb={doLogout} user={user} />
@@ -79,7 +99,10 @@ function App() {
           path="/register"
           element={<RegisterView registerCb={register} />}
         />
-        <Route path="/profile/:id" element={<MyProfileView user={user} />} />
+        <Route
+          path="/profile/:id"
+          element={<MyProfileView user={user} editUserCb={editUser} />}
+        />
       </Routes>
     </div>
   );

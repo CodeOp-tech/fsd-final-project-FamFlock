@@ -15,7 +15,7 @@ const PopUp = ({ open, onClose }) => {
             <button className="btnPrimary">
               <span className="bold">SAVE</span>
             </button>
-            <button onCLick={onClose} className="btnDutLine">
+            <button onClick={onClose} className="btnDutLine">
               <span className="bold">CANCEL</span>
             </button>
           </div>
