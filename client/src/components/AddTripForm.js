@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Components.css";
 
-const AddTripForm = ({}) => {
+const AddTripForm = ({ props }) => {
+  const [trip, setTrip] = useState([]);
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setTrip((state) => ({
+      ...state,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="container">
-      <form>
+      <form trip={props.trip}>
         <div className="mb-3">
           <label htmlFor="destination" className="destination-label">
             Destination
           </label>
-          <input type="text" id="destination" />
+          <input
+            name="destination"
+            value={trip.destination}
+            onChange={handleInputChange}
+            type="text"
+            id="destination"
+          />
         </div>
 
         <div>
@@ -60,6 +78,9 @@ const AddTripForm = ({}) => {
             </div>
           </div>
         </div>
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );

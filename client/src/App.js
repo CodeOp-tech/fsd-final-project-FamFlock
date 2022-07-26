@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -12,12 +12,27 @@ import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
 function App() {
-  let [trips, setTrips] = useState([]); // STATE 1
+  const [trips, setTrips] = useState([]);
   const [user, setUser] = useState(0); // useState 1: sets logged in user
 
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getTrips();
+  }, []);
+
+  const getTrips = () => {
+    fetch("/trips")
+      .then((response) => response.json())
+      .then((trips) => {
+        setTrips(trips);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // log in
   async function doLogin(username, password) {
