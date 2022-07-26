@@ -3,26 +3,29 @@ import "./Components.css";
 
 const AddTripForm = (props) => {
   let emptyForm = {
+    startDate: 27022023,
+    endDate: 15032023,
     destination: "",
-    startDate: 20220725,
-    endDate: 20220801,
   };
 
-  const [formData, setFormData] = useState(emptyForm);
-  // const [newTrip, setNewTrip] = useState();
+  const [trip, setTrip] = useState(emptyForm);
 
-  const handleChange = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
 
-    setFormData({ ...formData, [name]: value });
+    setTrip((state) => ({
+      ...state,
+      [name]: value,
+    }));
 
-    console.log(formData);
+    console.log(trip);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addTrip(formData);
+    props.addTrip(trip);
+    console.log(trip);
   };
 
   return (
@@ -33,11 +36,11 @@ const AddTripForm = (props) => {
             Destination
           </label>
           <input
+            name="destination"
+            value={trip.destination}
+            onChange={handleInputChange}
             type="text"
             id="destination"
-            name="destination"
-            value={formData.destination}
-            onChange={handleChange}
           />
         </div>
 

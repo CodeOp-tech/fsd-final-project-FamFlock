@@ -18,21 +18,6 @@ function App() {
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getTrips();
-  }, []);
-
-  const getTrips = () => {
-    fetch("/trips")
-      .then((response) => response.json())
-      .then((trips) => {
-        setTrips(trips);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   // log in
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);

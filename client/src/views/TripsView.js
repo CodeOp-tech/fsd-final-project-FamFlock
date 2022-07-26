@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 
 function TripsView(props) {
-  const [openPopUp, setOpenPopUp] = useState(false);
   const [trips, setTrips] = useState([]);
-  const [trip, setTrip] = useState([]);
+  const [openPopUp, setOpenPopUp] = useState(false);
 
   useEffect(() => {
     getTrips();
@@ -16,27 +15,24 @@ function TripsView(props) {
       .then((response) => response.json())
       .then((trips) => {
         setTrips(trips);
-        console.log("Í am", trips);
+        console.log(trips);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const addTrip = async (formData) => {
-    console.log("Í am post", formData);
+  const addTrip = async (newTrip) => {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(newTrip),
     };
-
     try {
       let response = await fetch("/trips", options);
       if (response.ok) {
         let data = await response.json();
         setTrips(data);
-        console.log(data);
       } else {
         console.log(`server error: ${response.statud} ${response.statusText}`);
       }
@@ -44,12 +40,6 @@ function TripsView(props) {
       console.log(`network error: ${err.message}`);
     }
   };
-
-  //   const handleSaveTrip = (e) => {
-  //     e.preventDefault();
-  //     addTrip(trip);
-  //     console.log(trip);
-  //   };
 
   return (
     <div>
@@ -61,28 +51,29 @@ function TripsView(props) {
       </div>
       {/* used pop up component */}
       <AddTripPopUp
+        addTrip={(trip) => addTrip(trip)}
         open={openPopUp}
         onClose={() => setOpenPopUp(false)}
-        addTrip={(formData) => addTrip(formData)}
       />
       <div className="container">
         {/* map through trip cards */}
-        {props.trips.map((trip) => (
-          <div className="row" key={trip.id} style={{ width: "25rem" }}>
-            <div className="card-body">
-              <h4 className="card-title">{trip.destination}</h4>
-              <h6 className="card-text">
-                {trip.startDate} - {trip.endDate}
-              </h6>
+        {trips &&
+          trips.map((trip) => (
+            <div className="row" key={trip.id} style={{ width: "25rem" }}>
+              <div className="card-body">
+                <h4 className="card-title">{trip.destination}</h4>
+                <h6 className="card-text">
+                  {trip.startDate} - {trip.endDate}
+                </h6>
+              </div>
+              {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
+              <div className="card-footer">
+                <Link to={"/trips/" + trip.id}>
+                  <button className="btn btn-outline-primary">Edit</button>
+                </Link>
+              </div>
             </div>
-            {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
-            <div className="card-footer">
-              <Link to={"/trips/" + trip.id}>
-                <button className="btn btn-outline-primary">Edit</button>
-              </Link>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
