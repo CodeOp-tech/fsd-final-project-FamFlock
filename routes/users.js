@@ -27,19 +27,65 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
-//For now Im only letting the user update its email and password
-
+/* Update user information (PUT) */
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { picture, fullname, email, username, password } = req.body;
+    const { picture, fullname, email, username, currentpassword, newpassword } =
+      req.body;
 
-    let hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
-    console.log(hashedPassword);
-    let sql = `
-              UPDATE users SET picture = '${picture}', fullname = '${fullname}', email = '${email}', username = '${username}', password = '${hashedPassword}' WHERE id = ${id}`;
-    await db(sql);
-    res.status(200).send({ message: "Information updated successfully" });
+    if (picture) {
+      let sql = `
+      UPDATE users SET picture='${picture}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (fullname) {
+      let sql = `
+      UPDATE users SET fullname='${fullname}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (username) {
+      let sql = `
+      UPDATE users SET username='${username}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (email) {
+      let sql = `
+      UPDATE users SET email='${email}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (newpassword) {
+      let results = await db(`SELECT * FROM users WHERE id = '${id}'`);
+      if (results.data.length === 0) {
+        // if username not found
+        res.status(401).send({ error: "Login failed" });
+      } else {
+        let user = results.data[0]; // the user's row/record from the DB
+
+        let passwordsEqual = await bcrypt.compare(
+          currentpassword,
+          user.password
+        );
+
+        if (passwordsEqual) {
+          let hashedPassword = await bcrypt.hash(
+            newpassword,
+            BCRYPT_WORK_FACTOR
+          );
+
+          console.log(hashedPassword);
+
+          let sql = `
+              UPDATE users SET password ='${hashedPassword}' WHERE id = ${id}`;
+          await db(sql);
+        }
+      }
+    }
+    res.status(200).send({ message: "Information was successfully updated" });
   } catch (error) {
     res.send({ message: error });
   }

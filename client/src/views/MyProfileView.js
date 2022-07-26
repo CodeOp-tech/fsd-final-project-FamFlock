@@ -1,24 +1,39 @@
 import React, { useState } from "react";
+import { Routes, Route, useParams } from "react-router-dom";
 
 function MyProfileView(props) {
   const [buttonClick, setButtonClick] = useState(false); // useState 1
+
+  let { id } = useParams();
 
   const form = {
     picture: "",
     fullname: props.user.fullname,
     email: props.user.email,
     username: props.user.username,
-    password: "",
+    currentPassword: "",
+    newPassword: "",
   };
 
   const [formData, setFormData] = useState(form); // useState 2
 
-  function handleClick() {
+  function handleClick(event) {
+    event.preventDefault();
     setButtonClick(!buttonClick);
   }
 
   function handleSubmit(event) {
-    event.preventDefult();
+    event.preventDefault();
+    props.editUserCb(
+      formData.picture,
+      formData.fullname,
+      formData.email,
+      formData.username,
+      formData.currentPassword,
+      formData.newPassword,
+      id
+    );
+    setButtonClick(!buttonClick);
   }
 
   function handleChange(event) {
@@ -39,11 +54,12 @@ function MyProfileView(props) {
           <br />
           <form onSubmit={handleSubmit}>
             <label>Change Profile Picture</label>
-            <input
+            {/* <input
+              // type="file"
               value={formData.picture}
               name="picture"
               onChange={handleChange}
-            />
+            /> */}
             <br />
             <label>Edit name</label>
             <input
@@ -65,22 +81,22 @@ function MyProfileView(props) {
               name="username"
               onChange={handleChange}
             />
-            <br />
+            <h5>Change Password</h5>
             <label>Current password</label>
             <input
-              value={formData.password}
-              name="password"
+              value={formData.currentPassword}
+              name="currentPassword"
               onChange={handleChange}
             />
             <br />
             <label>New password</label>
             <input
-              value={formData.password}
-              name="password"
+              value={formData.newPassword}
+              name="newPassword"
               onChange={handleChange}
             />
             <br />
-            <button onClick={handleClick}>SAVE</button>
+            <button type="submit">SAVE</button>
           </form>
         </div>
       ) : (
