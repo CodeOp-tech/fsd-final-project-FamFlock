@@ -8,7 +8,7 @@ router.get("/", async function (req, res, next) {
   res.send(results.data);
 });
 
-/* GET user by id */
+/* GET trip by id */
 router.get("/:id", async function (req, res, next) {
   let { id } = req.params;
   try {

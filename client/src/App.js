@@ -8,9 +8,11 @@ import LoginView from "./views/LoginView";
 import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
+import TripByIdView from "./views/TripByIdView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 import PrivateRoute from "./components/PrivateRoute";
+import YelpView from "./views/YelpView";
 
 function App() {
   let [trips, setTrips] = useState([]); // STATE 1
@@ -58,6 +60,26 @@ function App() {
     }
   }
 
+  async function editUser(
+    picture,
+    fullname,
+    email,
+    username,
+    currentpassword,
+    newpassword,
+    id
+  ) {
+    let myresponse = await Api.editUser(
+      picture,
+      fullname,
+      email,
+      username,
+      currentpassword,
+      newpassword,
+      id
+    );
+  }
+
   return (
     <div className="App">
       <NavBar logoutCb={doLogout} user={user} />
@@ -71,6 +93,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/yelp-search" element={<YelpView />} />
         <Route
           path="/login"
           element={
@@ -87,10 +110,11 @@ function App() {
           path="/profile/:id"
           element={
             <PrivateRoute>
-              <MyProfileView user={user} />
+              <MyProfileView user={user} editUserCb={editUser} />
             </PrivateRoute>
           }
         />
+        <Route path="/my-trips/:id" element={<TripByIdView />} />
       </Routes>
     </div>
   );
