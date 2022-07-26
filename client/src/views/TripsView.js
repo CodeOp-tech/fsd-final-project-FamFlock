@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PopUp from "../components/PopUp.js";
 
 function TripsView(props) {
-  const [trips, setTrips] = useState([]);
+  const [openPopUp, setOpenPopUp] = useState(false);
 
-  //   const [featTrip, setFeatTrip] = useState(null);
+  const [trips, setTrips] = useState([]);
 
   useEffect(() => {
     getTrips();
@@ -24,6 +25,12 @@ function TripsView(props) {
   return (
     <div>
       {/* trips grid */}
+      <div>
+        <button classname="modalBtn" onClick={() => setOpenPopUp(true)}>
+          Add New Trip
+        </button>
+      </div>
+      <PopUp open={openPopUp} onClose={() => setOpenPopUp(false)} />
       <div className="container">
         {trips.map((trip) => (
           <div className="row" key={trips.id} style={{ width: "25rem" }}>
