@@ -26,7 +26,7 @@ function LoginView(props) {
 
   return (
     <div>
-      <h2>login</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Username:

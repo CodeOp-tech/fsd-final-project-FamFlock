@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 
@@ -67,7 +67,7 @@ function TripsView(props) {
       />
       <div className="container">
         {/* map through trip cards */}
-        {trips.map((trip) => (
+        {props.trips.map((trip) => (
           <div className="row" key={trip.id} style={{ width: "25rem" }}>
             <div className="card-body">
               <h4 className="card-title">{trip.destination}</h4>
@@ -77,7 +77,7 @@ function TripsView(props) {
             </div>
             {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
             <div className="card-footer">
-              <Link to={"/trips/" + trips.id}>
+              <Link to={"/trips/" + trip.id}>
                 <button className="btn btn-outline-primary">Edit</button>
               </Link>
             </div>

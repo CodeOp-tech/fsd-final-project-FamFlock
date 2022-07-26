@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -17,6 +17,21 @@ function App() {
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getTrips();
+  }, []);
+
+  const getTrips = () => {
+    fetch("/trips")
+      .then((response) => response.json())
+      .then((trips) => {
+        setTrips(trips);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // log in
   async function doLogin(username, password) {
@@ -49,15 +64,31 @@ function App() {
     if (myresponse.ok) {
       // browser popup saying you've been registered
       alert("You have been registered!");
-      // // save the token, aka log them in
-      // Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
-      // setUser(myresponse.data.user);
-      // setLoginErrorMessage("");
-      // navigate("/my-trips");
+      //  log them in automatically
+      doLogin(username, password);
     } else {
       setLoginErrorMessage("Registration failed");
     }
-    doLogin(username, password);
+  }
+
+  async function editUser(
+    picture,
+    fullname,
+    email,
+    username,
+    currentpassword,
+    newpassword,
+    id
+  ) {
+    let myresponse = await Api.editUser(
+      picture,
+      fullname,
+      email,
+      username,
+      currentpassword,
+      newpassword,
+      id
+    );
   }
 
   return (
@@ -78,7 +109,10 @@ function App() {
           path="/register"
           element={<RegisterView registerCb={register} />}
         />
-        <Route path="/profile/:id" element={<MyProfileView user={user} />} />
+        <Route
+          path="/profile/:id"
+          element={<MyProfileView user={user} editUserCb={editUser} />}
+        />
       </Routes>
     </div>
   );

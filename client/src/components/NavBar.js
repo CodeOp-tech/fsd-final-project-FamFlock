@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
+import "./NavBar.scss";
 
 // function to show the navbar, will need the user prop at some point
 function NavBar(props) {
