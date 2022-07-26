@@ -10,6 +10,7 @@ const tripGroupsRouter = require("./routes/tripGroups");
 const tripsRouter = require("./routes/trips");
 const itineraryRouter = require("./routes/itinerary");
 const authRouter = require("./routes/auth");
+const yelpRouter = require("./routes/yelp");
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use("/tripGroups", tripGroupsRouter);
 app.use("/trips", tripsRouter);
 app.use("/itinerary", itineraryRouter);
 app.use("/", authRouter);
+app.use("/yelp", yelpRouter);
 
 module.exports = app;
