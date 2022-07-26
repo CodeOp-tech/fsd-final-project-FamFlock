@@ -10,6 +10,7 @@ import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   let [trips, setTrips] = useState([]); // STATE 1
@@ -62,7 +63,14 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/my-trips" element={<TripsView trips={trips} />} />
+        <Route
+          path="/my-trips"
+          element={
+            <PrivateRoute>
+              <TripsView trips={trips} />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -75,7 +83,14 @@ function App() {
           path="/register"
           element={<RegisterView registerCb={register} />}
         />
-        <Route path="/profile/:id" element={<MyProfileView user={user} />} />
+        <Route
+          path="/profile/:id"
+          element={
+            <PrivateRoute>
+              <MyProfileView user={user} />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
