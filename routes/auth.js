@@ -14,11 +14,8 @@ router.post("/register", async (req, res) => {
     let sql = `INSERT INTO users (email, username, password, fullname, picture) VALUES 
     ('${email}', '${username}', '${hashedPassword}', '${fullname}', '${picture}')`;
     await db(sql);
-    // do a select by username
-    // save the result from the select statement
-    // select statement result.data[0] is user
-    // then move on to payload
-    // send the message, token, and user here instead
+
+    // send the message
     res.send({ message: "Registration succeeded" });
   } catch (err) {
     res.status(500).send({ error: err.message });
@@ -41,7 +38,7 @@ router.post("/login", async (req, res) => {
       let passwordsEqual = await bcrypt.compare(password, user.password);
       if (passwordsEqual) {
         // Passwords match
-        let payload = { userId: user.id };
+        let payload = { userid: user.id };
         // Create token containing user ID
         let token = jwt.sign(payload, SECRET_KEY);
         // Also return user (without password)
