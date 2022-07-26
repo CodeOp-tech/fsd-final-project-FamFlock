@@ -8,6 +8,7 @@ import LoginView from "./views/LoginView";
 import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
+import TripByIdView from "./views/TripByIdView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
 
@@ -99,6 +100,7 @@ function App() {
           path="/profile/:id"
           element={<MyProfileView user={user} editUserCb={editUser} />}
         />
+        <Route path="/my-trips/:id" element={<TripByIdView />} />
       </Routes>
     </div>
   );
