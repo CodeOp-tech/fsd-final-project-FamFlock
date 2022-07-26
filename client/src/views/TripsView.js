@@ -26,7 +26,7 @@ function TripsView(props) {
     <div>
       {/* trips grid */}
       <div>
-        <button classname="modalBtn" onClick={() => setOpenPopUp(true)}>
+        <button className="modalBtn" onClick={() => setOpenPopUp(true)}>
           Add New Trip
         </button>
       </div>
