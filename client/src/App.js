@@ -89,7 +89,7 @@ function App() {
           path="/my-trips"
           element={
             <PrivateRoute>
-              <TripsView trips={trips} />
+              <TripsView />
             </PrivateRoute>
           }
         />
