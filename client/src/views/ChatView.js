@@ -90,16 +90,23 @@ function ChatView(props) {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(text),
+      body: JSON.stringify({ text, socketId: socketIdRef.current }),
     };
 
     try {
       // Send text and socketId to our server
-      let body = { text, socketId: socketIdRef.current };
-      let response = await fetch(`/chat/${props.groupId}`, options);
+      let response = await fetch(
+        `/chat/${props.groupId}/${props.senderId}`,
+        options
+      );
+
       // Server responds with "complete" msg (including ID and date/time)
-      let completeMsg = response.data;
-      setMessages((messages) => [...messages, completeMsg]);
+      if (response.ok) {
+        let completeMsg = await response.json();
+        setMessages((messages) => [...messages, completeMsg]);
+      } else {
+        console.log(`server error: ${response.status} ${response.statusText}`);
+      }
     } catch (err) {
       if (err.response) {
         let r = err.response;
@@ -110,16 +117,15 @@ function ChatView(props) {
     }
   }
 
-  //   function handleChange(event) {
-  //     setText(event.target.value);
-  //     console.log("current user id:" + props.receiverId);
-  //   }
+  function handleChange(event) {
+    setText(event.target.value);
+  }
 
-  //   function handleSubmit(event) {
-  //     event.preventDefault();
-  //     sendMessage(text);
-  //     setText("");
-  //   }
+  function handleSubmit(event) {
+    event.preventDefault();
+    sendMessage(text);
+    setText("");
+  }
 
   // When new msg is added, scroll if necessary so it's visible
   useEffect(() => {
@@ -147,7 +153,7 @@ function ChatView(props) {
         ))}
       </div>
 
-      {/* <div>
+      <div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -169,7 +175,7 @@ function ChatView(props) {
             </svg>
           </button>
         </form>
-      </div> */}
+      </div>
     </div>
   );
 }

@@ -91,8 +91,14 @@ function App() {
         <Route path="/" element={<HomeView />} />
 
         <Route
-          path="my-trips/:id/chat"
-          element={<ChatView senderId={senderId} groupId={groupId} />}
+          path="chat/:groupId"
+          element={
+            <ChatView
+              senderId={senderId}
+              groupId={groupId}
+              receiverId={receiverId}
+            />
+          }
         />
 
         <Route path="/my-trips" element={<TripsView />} />
