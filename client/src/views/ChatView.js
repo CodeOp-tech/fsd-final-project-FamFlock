@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
-import ChatViewCss from "./ChatView.css";
+import ChatList from "../components/ChatList";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
-  const [groupAndUsers, setGroupAndUsers] = useState({});
+  const [groupAndUsers, setGroupAndUsers] = useState({}); // useState 3
 
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);
-  let listDiv = useRef(null);
 
   // Connect to Pusher; called once, when component mounts
   useEffect(() => {
@@ -155,33 +154,10 @@ function ChatView(props) {
     setText("");
   }
 
-  // When new msg is added, scroll if necessary so it's visible
-  useEffect(() => {
-    let lastPara = listDiv.current.lastElementChild;
-    if (lastPara) {
-      lastPara.scrollIntoView(false);
-    }
-  }, [props.messages]);
-
-  function formatDT(dt) {
-    return new Date(dt).toLocaleString();
-  }
-
   return (
     <div className="container">
       <h1>chat</h1>
-      <div className="chatList" ref={listDiv}>
-        {messages.map((m) => (
-          <p
-            key={m.id}
-            className={m.senderId === props.user.id ? "sender" : "receiver"}
-          >
-            {/* <p>{props.user.fullname}</p> */}
-            <span title={formatDT(m.dateTime)}>{m.text}</span>
-          </p>
-        ))}
-      </div>
-
+      <ChatList messages={messages} user={props.user} />
       <div>
         <form onSubmit={handleSubmit}>
           <input

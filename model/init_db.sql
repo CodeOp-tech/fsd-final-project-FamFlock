@@ -58,6 +58,11 @@ CREATE TABLE messages (
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE messagesReaction (
+	reaction TINYINT,
+	FK_message_id INT NOT NULL
+);
+
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
@@ -65,6 +70,8 @@ ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripG
 ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+
+ALTER TABLE messagesReaction ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id)
 
 INSERT INTO users (
     email, username, password, fullname, picture
