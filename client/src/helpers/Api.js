@@ -101,11 +101,6 @@ class Api {
   static async getContent(url) {
     return await this._doFetch(url);
   }
-
-  // get groups with left join on users
-  static async getGroupsAndUsers(id) {
-    return await this._doFetch(`/tripGroups/users/${id}`);
-  }
 }
 
 export default Api;
