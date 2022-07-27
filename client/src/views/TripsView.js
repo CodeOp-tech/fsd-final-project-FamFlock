@@ -15,7 +15,7 @@ function TripsView(props) {
       .then((response) => response.json())
       .then((trips) => {
         setTrips(trips);
-        console.log(trips);
+        // console.log(trips);
       })
       .catch((error) => {
         console.log(error);
@@ -56,7 +56,6 @@ function TripsView(props) {
         onClose={() => setOpenPopUp(false)}
       />
       <div className="container">
-
         {/* map through trip cards */}
         {trips &&
           trips.map((trip) => (
@@ -73,7 +72,6 @@ function TripsView(props) {
                   <button className="btn btn-outline-primary">Edit</button>
                 </Link>
               </div>
-
             </div>
           ))}
       </div>
