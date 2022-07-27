@@ -11,6 +11,7 @@ function TripByIdView() {
         <Link to={"/chat"}> View the chat here</Link>
       </nav>
       <h2>Itinerary</h2>
+      <Link to={"/itinerary"}>Take a look at your itinerary!</Link>
       <h2>Lists</h2>
       <h2>Map</h2>
     </div>
