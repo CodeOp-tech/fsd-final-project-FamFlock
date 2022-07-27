@@ -14,9 +14,10 @@ import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
 import PrivateRoute from "./components/PrivateRoute";
 import YelpView from "./views/YelpView";
+import ItineraryView from "./views/ItineraryView";
 
 function App() {
-  const [user, setUser] = useState(0); // useState 1: sets logged in user
+  const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
 
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 2
   const [groupId, setGroupId] = useState(1); // default group ID // useState 3
@@ -89,7 +90,6 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
-
         <Route
           path="chat/:groupId"
           element={
@@ -101,7 +101,6 @@ function App() {
           }
         />
 
-        <Route path="/my-trips" element={<TripsView />} />
         <Route
           path="/my-trips"
           element={
@@ -133,6 +132,7 @@ function App() {
           }
         />
         <Route path="/my-trips/:id" element={<TripByIdView />} />
+        <Route path="/itinerary" element={<ItineraryView />} />
       </Routes>
     </div>
   );

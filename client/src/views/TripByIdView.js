@@ -10,6 +10,8 @@ function TripByIdView() {
       <h2>Chat</h2>
       <nav>{/* <Link to={"/chat"}> View the chat here</Link> */}</nav>
       <h2>Itinerary</h2>
+      <Link to={"/itinerary"}>Take a look at your itinerary!</Link>
+      <h2>Lists</h2>
       <div className="container">
         <div className="mb-3 accordion accordion-flush accordion-item">
           <h2 className="accordion-header">
