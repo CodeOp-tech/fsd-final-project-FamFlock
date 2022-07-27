@@ -33,7 +33,7 @@ function TripsView(props) {
       <PopUp open={openPopUp} onClose={() => setOpenPopUp(false)} />
       <div className="container">
         {trips.map((trip) => (
-          <div className="row" key={trips.id} style={{ width: "25rem" }}>
+          <div className="row" key={trip.id} style={{ width: "25rem" }}>
             <div className="card-body">
               <h4 className="card-title">{trip.destination}</h4>
               <h6 className="card-text">

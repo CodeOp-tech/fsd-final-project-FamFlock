@@ -10,12 +10,16 @@ import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdView from "./views/TripByIdView";
 import Local from "./helpers/Local";
+import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
 import YelpView from "./views/YelpView";
 
 function App() {
   let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(0); // useState 1: sets logged in user
+
+  const [senderId, setSenderId] = useState(1); // default sender ID // useState 3
+  const [groupId, setGroupId] = useState(1); // default receiver ID // useState 4
 
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
@@ -84,6 +88,7 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="my-trips/:id/chat" element={<ChatView />} />
         <Route path="/my-trips" element={<TripsView trips={trips} />} />
         <Route path="/yelp-search" element={<YelpView />} />
         <Route
