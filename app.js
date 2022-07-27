@@ -11,6 +11,7 @@ const tripsRouter = require("./routes/trips");
 const itineraryRouter = require("./routes/itinerary");
 const authRouter = require("./routes/auth");
 const yelpRouter = require("./routes/yelp");
+const chatRouter = require("./routes/chat");
 
 var app = express();
 
@@ -28,5 +29,6 @@ app.use("/trips", tripsRouter);
 app.use("/itinerary", itineraryRouter);
 app.use("/", authRouter);
 app.use("/yelp", yelpRouter);
+app.use("/chat", chatRouter);
 
 module.exports = app;

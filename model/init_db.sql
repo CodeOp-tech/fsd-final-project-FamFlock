@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS tripGroups;
 DROP TABLE IF EXISTS users_tripGroups;
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS itinerary;
+DROP TABLE IF EXISTS messages;
 
 SET foreign_key_checks = 1;
  
@@ -47,6 +48,14 @@ CREATE TABLE itinerary (
 	location VARCHAR(255) NOT NULL,
 	time TIME NOT NULL,
 	FK_trips_id INT NOT NULL
+);
+
+CREATE TABLE messages (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    senderId INT NOT NULL,
+	groupId INT NOT NULL,
+    text VARCHAR(250) NOT NULL,
+    dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);

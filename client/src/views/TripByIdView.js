@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TripByIdList from "../components/TripByIdList";
+import { Route, Routes, useNavigate, Link } from "react-router-dom";
 
 function TripByIdView() {
   return (
@@ -7,6 +8,7 @@ function TripByIdView() {
       <h2>Basic info</h2>
       <h2>Members</h2>
       <h2>Chat</h2>
+      <nav>{/* <Link to={"/chat"}> View the chat here</Link> */}</nav>
       <h2>Itinerary</h2>
       <div className="container">
         <div className="mb-3 accordion accordion-flush accordion-item">
