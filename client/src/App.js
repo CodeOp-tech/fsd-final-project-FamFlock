@@ -19,11 +19,12 @@ import ItineraryView from "./views/ItineraryView";
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
 
-  const [senderId, setSenderId] = useState(1); // default sender ID // useState 3
-  const [groupId, setGroupId] = useState(1); // default receiver ID // useState 4
+  const [senderId, setSenderId] = useState(1); // default sender ID // useState 2
+  const [groupId, setGroupId] = useState(1); // default group ID // useState 3
+  const [receiverId, setReceiverId] = useState(1); // default receiver ID // useState 4
 
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
-  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 2
+  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 5
   const navigate = useNavigate();
 
   // log in
@@ -89,8 +90,16 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
-
-        <Route path="my-trips/:id/chat" element={<ChatView />} />
+        <Route
+          path="chat/:groupId"
+          element={
+            <ChatView
+              senderId={senderId}
+              groupId={groupId}
+              receiverId={receiverId}
+            />
+          }
+        />
 
         <Route
           path="/my-trips"
