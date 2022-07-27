@@ -8,8 +8,11 @@ import LoginView from "./views/LoginView";
 import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
+import TripByIdView from "./views/TripByIdView";
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
+import PrivateRoute from "./components/PrivateRoute";
+import YelpView from "./views/YelpView";
 
 function App() {
   const [user, setUser] = useState(0); // useState 1: sets logged in user
@@ -83,6 +86,15 @@ function App() {
         <Route path="/" element={<HomeView />} />
         <Route path="/my-trips" element={<TripsView />} />
         <Route
+          path="/my-trips"
+          element={
+            <PrivateRoute>
+              <TripsView trips={trips} />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/yelp-search" element={<YelpView />} />
+        <Route
           path="/login"
           element={
             <LoginView
@@ -96,8 +108,13 @@ function App() {
         />
         <Route
           path="/profile/:id"
-          element={<MyProfileView user={user} editUserCb={editUser} />}
+          element={
+            <PrivateRoute>
+              <MyProfileView user={user} editUserCb={editUser} />
+            </PrivateRoute>
+          }
         />
+        <Route path="/my-trips/:id" element={<TripByIdView />} />
       </Routes>
     </div>
   );
