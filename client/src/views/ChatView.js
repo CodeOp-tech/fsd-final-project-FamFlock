@@ -1,12 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
+import Api from "../helpers/Api";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
+
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);
   let listDiv = useRef(null);
+
+  useEffect(() => {
+    getGroupsAndUsers();
+  }, []);
+
+  // Get group with its users
+  async function getGroupsAndUsers() {
+    let myresponse = await Api.getGroupsAndUsers(props.receiverId);
+    console.log(props.receiverId);
+  }
 
   // Connect to Pusher; called once, when component mounts
   useEffect(() => {
@@ -36,9 +48,7 @@ function ChatView(props) {
       return;
     }
 
-    // Create channel name from sender/receiver IDs
-    // Something like: 'channel-1-2'
-
+    // Create channel name from groupId
     let channelName = "channel-" + props.groupId;
 
     // Subscribe to channel

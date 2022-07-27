@@ -106,3 +106,9 @@ INSERT INTO itinerary (
 	('Big Ben', 20220808, 'London', 123000, 2),
 	('Lunch', 20220901, 'Paris', 133000, 3),
 	('dinner', 20220903, 'Paris', 210000, 3);
+
+	INSERT INTO messages (
+		senderId, groupId, text, dateTime
+	) VALUES
+		(1, 1, "Hello there", 20220727123806),
+		(2, 1, "Hi!", 20220727123807);
