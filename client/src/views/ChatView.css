@@ -1,0 +1,33 @@
+.chatList {
+  background-color: #f6f6f6;
+  height: 200px;
+  padding: 5px;
+  overflow-y: auto;
+}
+
+.chatList p {
+  margin-bottom: 0.5rem;
+}
+
+.chatList span {
+  display: inline-block;
+  max-width: 90%;
+  border-radius: 5px;
+}
+
+.chatList .sender {
+  text-align: right;
+}
+.chatList .receiver {
+  text-align: left;
+}
+
+.chatList .sender span {
+  padding: 3px 5px;
+  background-color: lightblue;
+}
+
+.chatList .receiver span {
+  padding: 3px 5px;
+  background-color: lightgreen;
+}

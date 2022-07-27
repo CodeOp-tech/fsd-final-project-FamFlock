@@ -21,7 +21,6 @@ function App() {
 
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 2
   const [groupId, setGroupId] = useState(1); // default group ID // useState 3
-  const [receiverId, setReceiverId] = useState(user.id); // default receiver ID // useState 4
 
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 5
@@ -100,8 +99,7 @@ function App() {
               setSenderIdCb={setSenderId}
               groupId={groupId}
               setGroupIdCb={setGroupId}
-              receiverId={receiverId}
-              setReceiverIdCb={setReceiverId}
+              user={user}
             />
           }
         />

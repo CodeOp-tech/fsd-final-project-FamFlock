@@ -1,24 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
-import Api from "../helpers/Api";
+import ChatViewCss from "./ChatView.css";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
+  const [groupAndUsers, setGroupAndUsers] = useState({});
 
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);
   let listDiv = useRef(null);
-
-  useEffect(() => {
-    getGroupsAndUsers();
-  }, []);
-
-  // Get group with its users
-  async function getGroupsAndUsers() {
-    let myresponse = await Api.getGroupsAndUsers(props.receiverId);
-    console.log(props.receiverId);
-  }
 
   // Connect to Pusher; called once, when component mounts
   useEffect(() => {
@@ -68,6 +59,8 @@ function ChatView(props) {
   useEffect(() => {
     // Call whenever participants change
     getRecentMessages();
+    getGroupWithUsers();
+    props.setSenderIdCb(props.user.id);
   }, [props.senderId, props.groupId]);
 
   // Load previous messages from DB
@@ -82,6 +75,31 @@ function ChatView(props) {
       if (response.ok) {
         let data = await response.json();
         setMessages(data);
+      } else {
+        console.log(`server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      if (err.response) {
+        let r = err.response;
+        console.log(`Server error: ${r.status} ${r.statusText}`);
+      } else {
+        console.log(`Network error: ${err.message}`);
+      }
+    }
+  }
+
+  // get group with its users
+  async function getGroupWithUsers() {
+    let options = {
+      method: "GET",
+    };
+
+    try {
+      let response = await fetch(`/tripGroups/users/${props.groupId}`, options);
+
+      if (response.ok) {
+        let data = await response.json();
+        setGroupAndUsers(data);
       } else {
         console.log(`server error: ${response.status} ${response.statusText}`);
       }
@@ -150,14 +168,15 @@ function ChatView(props) {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>chat</h1>
-      <div className="ChatList rounded mb-1" ref={listDiv}>
+      <div className="chatList" ref={listDiv}>
         {messages.map((m) => (
           <p
             key={m.id}
-            className={m.senderId !== props.receiverId ? "sender" : "receiver"}
+            className={m.senderId === props.user.id ? "sender" : "receiver"}
           >
+            {/* <p>{props.user.fullname}</p> */}
             <span title={formatDT(m.dateTime)}>{m.text}</span>
           </p>
         ))}
