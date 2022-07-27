@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -12,10 +12,10 @@ import TripByIdView from "./views/TripByIdView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
+import PrivateRoute from "./components/PrivateRoute";
 import YelpView from "./views/YelpView";
 
 function App() {
-  let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(0); // useState 1: sets logged in user
 
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 3
@@ -88,8 +88,19 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        
         <Route path="my-trips/:id/chat" element={<ChatView />} />
-        <Route path="/my-trips" element={<TripsView trips={trips} />} />
+
+        <Route path="/my-trips" element={<TripsView />} />
+        <Route
+          path="/my-trips"
+          element={
+            <PrivateRoute>
+              <TripsView trips={trips} />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/yelp-search" element={<YelpView />} />
         <Route
           path="/login"
@@ -105,7 +116,11 @@ function App() {
         />
         <Route
           path="/profile/:id"
-          element={<MyProfileView user={user} editUserCb={editUser} />}
+          element={
+            <PrivateRoute>
+              <MyProfileView user={user} editUserCb={editUser} />
+            </PrivateRoute>
+          }
         />
         <Route path="/my-trips/:id" element={<TripByIdView />} />
       </Routes>

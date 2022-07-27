@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import AddTripForm from "./AddTripForm.js";
 
-const PopUp = ({ open, onClose }) => {
+const AddTripPopUp = ({ addTrip, open, onClose }) => {
   if (!open) return null;
   else {
     return (
-      <div onClick={onClose} className="overlay">
+      <div className="overlay">
         <div className="modalContainer">
           <div className="modalRight">
             <div className="content"></div>
-            <p>FORM</p>
-            <p>content</p>
+            {/* working on making this more efficient so you can customize */}
+            <AddTripForm addTrip={(trip) => addTrip(trip)} />
           </div>
-          <div className="btnContainer">
+          <div className="btnContainer d-block">
+            {/* Add and Save Trip */}
             <button className="btnPrimary">
               <span className="bold">SAVE</span>
             </button>
+            {/* Close PopUp */}
             <button onClick={onClose} className="btnDutLine">
               <span className="bold">CANCEL</span>
             </button>
@@ -25,4 +28,4 @@ const PopUp = ({ open, onClose }) => {
   }
 };
 
-export default PopUp;
+export default AddTripPopUp;
