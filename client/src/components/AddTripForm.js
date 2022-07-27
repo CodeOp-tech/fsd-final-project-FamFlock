@@ -3,8 +3,8 @@ import "./Components.css";
 
 const AddTripForm = (props) => {
   let emptyForm = {
-    startDate: 27022023,
-    endDate: 15032023,
+    startDate: 20220725,
+    endDate: 20220801,
     destination: "",
   };
 
@@ -24,8 +24,8 @@ const AddTripForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addTrip(trip);
     console.log(trip);
+    props.addTrip(trip);
   };
 
   return (

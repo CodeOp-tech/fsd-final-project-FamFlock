@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import AddTripForm from "./AddTripForm.js";
 
-const AddTripPopUp = ({ open, onClose, onSubmit }) => {
-  const [trip, setTrip] = useState([]);
-
-  // const handleSaveTrip = (e) => {
-  //   e.preventDefault();
-  //   addTrip(trip);
-  // };
-
+const AddTripPopUp = ({ addTrip, open, onClose }) => {
   if (!open) return null;
   else {
     return (
@@ -17,7 +10,7 @@ const AddTripPopUp = ({ open, onClose, onSubmit }) => {
           <div className="modalRight">
             <div className="content"></div>
             {/* working on making this more efficient so you can customize */}
-            <AddTripForm />
+            <AddTripForm addTrip={(trip) => addTrip(trip)} />
           </div>
           <div className="btnContainer d-block">
             {/* Add and Save Trip */}

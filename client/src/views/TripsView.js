@@ -22,11 +22,11 @@ function TripsView(props) {
       });
   };
 
-  const addTrip = async (newTrip) => {
+  const addTrip = async (trip) => {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newTrip),
+      body: JSON.stringify(trip),
     };
     try {
       let response = await fetch("/trips", options);
