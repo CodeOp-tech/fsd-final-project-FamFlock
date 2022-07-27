@@ -36,9 +36,7 @@ function ChatView(props) {
       return;
     }
 
-    // Create channel name from sender/receiver IDs
-    // Something like: 'channel-1-2'
-
+    // Create channel name from groupId
     let channelName = "channel-" + props.groupId;
 
     // Subscribe to channel
