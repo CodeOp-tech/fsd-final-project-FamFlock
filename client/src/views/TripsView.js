@@ -69,7 +69,7 @@ function TripsView(props) {
               </div>
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
               <div className="card-footer">
-                <Link to={"/trips/" + trip.id}>
+                <Link to={"/my-trips/" + trip.id}>
                   <button className="btn btn-outline-primary">Edit</button>
                 </Link>
               </div>
