@@ -12,6 +12,7 @@ const itineraryRouter = require("./routes/itinerary");
 const authRouter = require("./routes/auth");
 const yelpRouter = require("./routes/yelp");
 const chatRouter = require("./routes/chat");
+// const listsRouter = require("./routes/lists");
 
 var app = express();
 
@@ -30,5 +31,6 @@ app.use("/itinerary", itineraryRouter);
 app.use("/", authRouter);
 app.use("/yelp", yelpRouter);
 app.use("/chat", chatRouter);
+// app.use("/", listsRouter); // not sure whats the link for this route will be
 
 module.exports = app;
