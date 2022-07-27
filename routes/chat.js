@@ -35,7 +35,7 @@ router.get("/:groupId", async function (req, res) {
 });
 
 // Save new message in DB and publish to Pusher
-router.post("/:senderId/:groupId", async function (req, res) {
+router.post("/:groupId/:senderId", async function (req, res) {
   let { senderId, groupId } = req.params;
   let { text, socketId } = req.body;
 

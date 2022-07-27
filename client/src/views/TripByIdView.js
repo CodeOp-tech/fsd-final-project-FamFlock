@@ -7,9 +7,7 @@ function TripByIdView() {
       <h2>Basic info</h2>
       <h2>Members</h2>
       <h2>Chat</h2>
-      <nav>
-        <Link to={"/chat"}> View the chat here</Link>
-      </nav>
+      <nav>{/* <Link to={"/chat"}> View the chat here</Link> */}</nav>
       <h2>Itinerary</h2>
       <h2>Lists</h2>
       <h2>Map</h2>
