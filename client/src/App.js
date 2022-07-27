@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -15,7 +15,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import YelpView from "./views/YelpView";
 
 function App() {
-  let [trips, setTrips] = useState([]); // STATE 1
   const [user, setUser] = useState(0); // useState 1: sets logged in user
 
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
@@ -85,6 +84,7 @@ function App() {
       <NavBar logoutCb={doLogout} user={user} />
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/my-trips" element={<TripsView />} />
         <Route
           path="/my-trips"
           element={
