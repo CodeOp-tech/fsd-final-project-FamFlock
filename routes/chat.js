@@ -17,14 +17,13 @@ const channel = new Pusher({
 });
 
 // GET the most recent messages for channel
-router.get("/:senderId/:groupId", async function (req, res) {
-  let { senderId, groupId } = req.params;
+router.get("/:groupId", async function (req, res) {
+  let { groupId } = req.params;
 
   try {
     let sql = `
             SELECT * FROM messages
-            WHERE senderId IN (${senderId}, ${groupId}) AND
-                groupId IN (${senderId}, ${groupId})
+            WHERE groupId = ${groupId}
             ORDER BY dateTime DESC 
             LIMIT ${GET_MESSAGE_COUNT}
         `;
