@@ -75,7 +75,7 @@ CREATE TABLE  lists  (
 	 reservations  BOOLEAN NOT NULL
    );
 
-CREATE TABLE messagesReaction (
+CREATE TABLE messagesReactions (
 
 	reaction TINYINT,
 	FK_user_id INT NOT NULL,
@@ -140,8 +140,9 @@ INSERT INTO itinerary (
 INSERT INTO messages (
 	senderId, groupId, text, dateTime
 ) VALUES
-	(1, 1, "Hello there", 20220727123806),
-	(2, 1, "Hi!", 20220727123807);
+	(1, 1, "Hello there", 20220727123807),
+	(3, 1, "Hey", 20220727123806),
+	(2, 1, "Hi!", 20220727123808);
 
 INSERT INTO messagesReactions (
 	reaction, FK_user_id, FK_message_id
