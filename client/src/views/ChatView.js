@@ -5,7 +5,6 @@ import ChatList from "../components/ChatList";
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
-  // const [groupAndUsers, setGroupAndUsers] = useState({}); // useState 3
 
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);

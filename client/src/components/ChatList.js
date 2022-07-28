@@ -3,7 +3,6 @@ import ChatListCss from "./ChatList.css";
 
 function ChatList(props) {
   let listDiv = useRef(null);
-  const [senders, setSenders] = useState([]); // useState 1
 
   // When new msg is added, scroll if necessary so it's visible
   useEffect(() => {
