@@ -49,6 +49,10 @@ function App() {
     setUser(null);
   }
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   async function fetchUsers() {
     let myresponse = await Api.getUsers();
     if (myresponse.ok) {
