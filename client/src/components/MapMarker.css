@@ -1,0 +1,4 @@
+/* Without this, the map will have a height of 0!!!! */
+.MarkerMap.leaflet-container {
+  height: 500px;
+}

@@ -15,10 +15,12 @@ import Api from "./helpers/Api";
 import PrivateRoute from "./components/PrivateRoute";
 import YelpView from "./views/YelpView";
 import ItineraryView from "./views/ItineraryView";
+import MapsView from "./views/MapsView";
+import TripsContext from "./context/TripsContext";
 
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
-
+  const [trips, setTrips] = useState([]); // UseState 2
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 2
   const [groupId, setGroupId] = useState(1); // default group ID // useState 3
 
@@ -29,7 +31,6 @@ function App() {
   // log in
   async function doLogin(username, password) {
     // console.log(user);
-
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
@@ -86,57 +87,97 @@ function App() {
     );
   }
 
+  useEffect(() => {
+    getTrips();
+  }, []);
+
+  const getTrips = () => {
+    fetch("/trips")
+      .then((response) => response.json())
+      .then((trips) => {
+        setTrips(trips);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const addTrip = async (trip) => {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(trip),
+    };
+    try {
+      let response = await fetch("/trips", options);
+      if (response.ok) {
+        let data = await response.json();
+        setTrips(data);
+      } else {
+        console.log(`server error: ${response.statud} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`network error: ${err.message}`);
+    }
+  };
+
+  const contextObj = {
+    trips,
+    addTrip,
+  };
   return (
     <div className="App">
-      <NavBar logoutCb={doLogout} user={user} />
-      <Routes>
-        <Route path="/" element={<HomeView />} />
-        <Route
-          path="chat/:groupId"
-          element={
-            <ChatView
-              senderId={senderId}
-              setSenderIdCb={setSenderId}
-              groupId={groupId}
-              setGroupIdCb={setGroupId}
-              user={user}
-            />
-          }
-        />
+      <TripsContext.Provider value={contextObj} r>
+        <NavBar logoutCb={doLogout} user={user} />
+        <Routes>
+          <Route path="/" element={<HomeView />} />
+          <Route
+            path="chat/:groupId"
+            element={
+              <ChatView
+                senderId={senderId}
+                setSenderIdCb={setSenderId}
+                groupId={groupId}
+                setGroupIdCb={setGroupId}
+                receiverId={receiverId}
+                setReceiverIdCb={setReceiverId}
+              />
+            }
+          />
+          <Route
+            path="/my-trips"
+            element={
+              <PrivateRoute>
+                <TripsView />
+              </PrivateRoute>
+            }
+          />
 
-        <Route
-          path="/my-trips"
-          element={
-            <PrivateRoute>
-              <TripsView />
-            </PrivateRoute>
-          }
-        />
-
-        <Route path="/yelp-search" element={<YelpView />} />
-        <Route
-          path="/login"
-          element={
-            <LoginView
-              loginCb={(username, password) => doLogin(username, password)}
-            />
-          }
-        />
-        <Route
-          path="/register"
-          element={<RegisterView registerCb={register} />}
-        />
-        <Route
-          path="/profile/:id"
-          element={
-            <PrivateRoute>
-              <MyProfileView user={user} editUserCb={editUser} />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/my-trips/:id" element={<TripByIdView />} />
-        <Route path="/itinerary" element={<ItineraryView />} />
-      </Routes>
+          <Route path="/yelp-search" element={<YelpView />} />
+          <Route
+            path="/login"
+            element={
+              <LoginView
+                loginCb={(username, password) => doLogin(username, password)}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={<RegisterView registerCb={register} />}
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <PrivateRoute>
+                <MyProfileView user={user} editUserCb={editUser} />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/my-trips/:id" element={<TripByIdView />} />
+          <Route path="/maps" element={<MapsView />} />
+          <Route path="/itinerary" element={<ItineraryView />} />
+        </Routes>
+      </TripsContext.Provider>
     </div>
   );
 }
