@@ -66,8 +66,9 @@ function App() {
     let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
     if (myresponse.ok) {
       // setUsers(myresponse.data);
+      console.log("response ok");
     } else {
-      // console.log("response not ok");
+      console.log("response not ok");
     }
   }
 
@@ -153,13 +154,13 @@ function App() {
             path="chat/:groupId"
             element={
               <ChatView
-              senderId={senderId}
-              setSenderIdCb={setSenderId}
-              groupId={groupId}
-              setGroupIdCb={setGroupId}
-              user={user}
-              users={users}
-              newReactionCb={newReaction}
+                senderId={senderId}
+                setSenderIdCb={setSenderId}
+                groupId={groupId}
+                setGroupIdCb={setGroupId}
+                user={user}
+                users={users}
+                newReactionCb={newReaction}
               />
             }
           />

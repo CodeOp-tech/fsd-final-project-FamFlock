@@ -76,11 +76,10 @@ CREATE TABLE  lists  (
    );
 
 CREATE TABLE messagesReactions (
-
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	reaction TINYINT,
 	FK_user_id INT NOT NULL,
 	FK_message_id INT NOT NULL
-
 );
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);

@@ -86,6 +86,7 @@ router.get("/reactions/:messageId", async function (req, res, next) {
 
 // POST to message reactions
 router.post("/reactions", async function (req, res, next) {
+  console.log("arrived");
   const { reaction, FK_user_id, FK_message_id } = req.body;
   const sql = `INSERT INTO messagesReactions (reaction, FK_user_id, FK_message_id) VALUES ('${reaction}', '${FK_user_id}', '${FK_message_id}' )`;
 
