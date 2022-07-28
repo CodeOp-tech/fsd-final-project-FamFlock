@@ -13,12 +13,8 @@ const AddTripPopUp = ({ addTrip, open, onClose }) => {
             <AddTripForm addTrip={(trip) => addTrip(trip)} />
           </div>
           <div className="btnContainer d-block">
-            {/* Add and Save Trip */}
-            <button className="btnPrimary">
-              <span className="bold">SAVE</span>
-            </button>
             {/* Close PopUp */}
-            <button onClick={onClose} className="btnDutLine">
+            <button onClick={onClose} className="btn btn-outline-primary">
               <span className="bold">CANCEL</span>
             </button>
           </div>
