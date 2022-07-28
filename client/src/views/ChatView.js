@@ -12,7 +12,7 @@ function ChatView(props) {
 
   // Connect to Pusher; called once, when component mounts
   useEffect(() => {
-    Pusher.logToConsole = true; // very useful for debugging!
+    Pusher.logToConsole = false; // very useful for debugging!
 
     // Establish connection with Pusher
     // pusherKey is stored in client's .env file
@@ -87,31 +87,6 @@ function ChatView(props) {
     }
   }
 
-  // // get group with its users
-  // async function getGroupWithUsers() {
-  //   let options = {
-  //     method: "GET",
-  //   };
-
-  //   try {
-  //     let response = await fetch(`/tripGroups/users/${props.groupId}`, options);
-
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       setGroupAndUsers(data);
-  //     } else {
-  //       console.log(`server error: ${response.status} ${response.statusText}`);
-  //     }
-  //   } catch (err) {
-  //     if (err.response) {
-  //       let r = err.response;
-  //       console.log(`Server error: ${r.status} ${r.statusText}`);
-  //     } else {
-  //       console.log(`Network error: ${err.message}`);
-  //     }
-  //   }
-  // }
-
   // POST user-entered text to server as message
   async function sendMessage(text) {
     let options = {
@@ -162,6 +137,7 @@ function ChatView(props) {
         user={props.user}
         groupId={props.groupId}
         users={props.users}
+        newReactionCb={props.newReactionCb}
       />
       <div>
         <form onSubmit={handleSubmit}>

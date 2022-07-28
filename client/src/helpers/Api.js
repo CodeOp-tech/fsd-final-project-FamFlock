@@ -68,6 +68,13 @@ class Api {
     return await this._doFetch("/register", "POST", body);
   }
 
+  //  Reaction to message
+  static async newReaction(reaction, FK_user_id, FK_message_id) {
+    let body = { reaction, FK_user_id, FK_message_id };
+
+    return await this._doFetch("/chat/reactions", "GET", body);
+  }
+
   // edit user information
   static async editUser(
     picture,

@@ -16,27 +16,27 @@ const channel = new Pusher({
   useTLS: true,
 });
 
-/* Join to Json */
-function joinToJson(results) {
-  // Create array of applicants objs
-  let user = results.data.map((row) => ({
-    id: row.id,
-    email: row.email,
-    username: row.username,
-    password: row.password,
-    fullname: row.fullname,
-    picture: row.picture,
-  }));
-  // Create posts obj from first row
-  let row0 = results.data[0];
-  let messages = {
-    senderId: row0.senderId,
-    groupId: row0.groupId,
-    text: row0.text,
-    user,
-  };
-  return messages;
-}
+// /* Join to Json */
+// function joinToJson(results) {
+//   // Create array of applicants objs
+//   let user = results.data.map((row) => ({
+//     id: row.id,
+//     email: row.email,
+//     username: row.username,
+//     password: row.password,
+//     fullname: row.fullname,
+//     picture: row.picture,
+//   }));
+//   // Create posts obj from first row
+//   let row0 = results.data[0];
+//   let messages = {
+//     senderId: row0.senderId,
+//     groupId: row0.groupId,
+//     text: row0.text,
+//     user,
+//   };
+//   return messages;
+// }
 
 // GET the most recent messages for channel
 router.get("/:groupId", async function (req, res) {
@@ -119,22 +119,5 @@ router.post("/reactions", async function (req, res, next) {
     res.status(500).send(err);
   }
 });
-
-// // left join senderId onto users table
-// router.get("/users/:id", async function (req, res, next) {
-//   let { id } = req.params;
-
-//   let sql = `SELECT messages.*, users.*
-//   FROM messages LEFT JOIN users ON messages.senderId = users.id WHERE messages.id = ${id}
-//   `;
-
-//   try {
-//     let results = await db(sql);
-//     let user = joinToJson(results);
-//     res.send(user);
-//   } catch (err) {
-//     res.status(500).send(err);
-//   }
-// });
 
 module.exports = router;

@@ -24,8 +24,7 @@ function App() {
 
   const [users, setUsers] = useState([]); // useState 4
 
-  // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
-  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 5
+  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 6
   const navigate = useNavigate();
 
   // log in
@@ -59,6 +58,15 @@ function App() {
       setUsers(myresponse.data);
     } else {
       console.log("response not ok");
+    }
+  }
+
+  async function newReaction(reaction, FK_user_id, FK_message_id) {
+    let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
+    if (myresponse.ok) {
+      // setUsers(myresponse.data);
+    } else {
+      // console.log("response not ok");
     }
   }
 
@@ -116,6 +124,7 @@ function App() {
               setGroupIdCb={setGroupId}
               user={user}
               users={users}
+              newReactionCb={newReaction}
             />
           }
         />
