@@ -26,6 +26,7 @@ function App() {
   const [groupId, setGroupId] = useState(1); // default group ID // useState 4
   const [users, setUsers] = useState([]); // useState 5
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 6
+  const [error, setError] = useState(""); // useState 7: for error mssg
 
   const navigate = useNavigate();
 
@@ -91,6 +92,7 @@ function App() {
     }
   }
 
+  // edit user profile
   async function editUser(
     picture,
     fullname,
