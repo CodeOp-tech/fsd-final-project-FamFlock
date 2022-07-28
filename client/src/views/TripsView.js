@@ -34,7 +34,7 @@ function TripsView(props) {
         let data = await response.json();
         setTrips(data);
       } else {
-        console.log(`server error: ${response.statud} ${response.statusText}`);
+        console.log(`server error: ${response.status} ${response.statusText}`);
       }
     } catch (err) {
       console.log(`network error: ${err.message}`);

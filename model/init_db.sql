@@ -64,7 +64,7 @@ ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripG
 
 ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
-ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+ALTER TABLE itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
     email, username, password, fullname, picture
@@ -101,11 +101,9 @@ INSERT INTO trips (
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('dinner', 20220725, 'Barcelona', 200000, 1),
-	('Tibidabo', 20220728, ' Barcelona', 110000, 1),
-	('Big Ben', 20220808, 'London', 123000, 2),
-	('Lunch', 20220901, 'Paris', 133000, 3),
-	('dinner', 20220903, 'Paris', 210000, 3);
+	('Tibidabo', 20220728, 'Barcelona', 110000, 2),
+	('Big Ben', 20220808, 'London', 123000, 3),
+	('Lunch', 20220901, 'Paris', 133000, 1);
 
 	INSERT INTO messages (
 		senderId, groupId, text, dateTime

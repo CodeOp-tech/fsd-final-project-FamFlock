@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import TripByIdList from "../components/TripByIdList";
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, useNavigate, Link, useParams } from "react-router-dom";
 
-function TripByIdView() {
+function TripByIdView(props) {
+  let trip = props.trip;
+
   return (
     <div>
       <h2>Basic info</h2>

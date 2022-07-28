@@ -48,6 +48,7 @@ class Api {
 
   // get a trip by id
   static async getTrip(id) {
+    console.log(`I am Api ${id}`);
     return await this._doFetch(`/trips/${id}`);
   }
 
