@@ -22,11 +22,14 @@ import TripsContext from "./context/TripsContext";
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
-  const [senderId, setSenderId] = useState(1); // default sender ID // useState 3
-  const [groupId, setGroupId] = useState(1); // default group ID // useState 4
-  const [users, setUsers] = useState([]); // useState 5
-  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 6
-  const [error, setError] = useState(""); // useState 7: for error mssg
+  const [trip, setTrip] = useState(); // useState 3
+  const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
+  const [groupId, setGroupId] = useState(1); // default group ID // useState 5
+  const [users, setUsers] = useState([]); // useState 6
+  const [itineraries, setItineraries] = useState([]); // useState 7
+  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
+  const [error, setError] = useState(""); // useState9
+
 
   const navigate = useNavigate();
 
@@ -52,6 +55,8 @@ function App() {
 
   useEffect(() => {
     fetchUsers();
+    fetchTrips();
+    fetchItineraries();
   }, []);
 
   async function fetchUsers() {
@@ -112,17 +117,28 @@ function App() {
       id
     );
   }
+  // get trip by id
+  async function getTrip(id) {
+    let myresponse = await Api.getTrip(id);
+    if (myresponse.ok) {
+      setTrip(myresponse.data);
+      //optional: navigate to trip/id page after
+      //   Navigate(`/trips/${id}`);
+    } else {
+      setError(myresponse.error);
+    }
+  }
 
-  const getTrips = () => {
-    fetch("/trips")
-      .then((response) => response.json())
-      .then((trips) => {
-        setTrips(trips);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //gets all the trips
+  async function fetchTrips() {
+    let myresponse = await Api.getTrips();
+    if (myresponse.ok) {
+      setTrips(myresponse.data);
+    } else {
+      console.log("response not ok");
+    }
+  }
+
   const addTrip = async (trip) => {
     let options = {
       method: "POST",
@@ -141,10 +157,20 @@ function App() {
       console.log(`network error: ${err.message}`);
     }
   };
+  // get all form itineraries
+  async function fetchItineraries() {
+    let myresponse = await Api.getItineraries();
+    if (myresponse.ok) {
+      setItineraries(myresponse.data);
+    } else {
+      console.log("response not ok");
+    }
+  }
 
   const contextObj = {
     trips,
     addTrip,
+    itineraries,
   };
   return (
     <div className="App">

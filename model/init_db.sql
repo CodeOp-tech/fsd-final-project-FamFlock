@@ -130,9 +130,12 @@ INSERT INTO trips (
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('Tibidabo', 20220728, 'Barcelona', 110000, 2),
-	('Big Ben', 20220808, 'London', 123000, 3),
-	('Lunch', 20220901, 'Paris', 133000, 1);
+	('visit to La Pedrera', 20220725, 'La Pedrera, Barcelona,Spain', 200000, 1),
+	('Tibidabo', 20220728, 'Parque de Atracciones del Tibidabo, Plaça del Tibidabo, 3-4, 08035 Barcelona, España', 110000, 1),
+	('Big Ben', 20220808, 'London', 123000, 2),
+	('Lunch', 20220901, 'Paris', 133000, 3),
+	('dinner', 20220903, 'Paris', 210000, 3);
+
 
 INSERT INTO messages (
 	senderId, groupId, text, dateTime
