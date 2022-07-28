@@ -1,5 +1,6 @@
 import opencage from "opencage-api-client";
 // source: Jim's MapsAndGeo Demo
+
 const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY;
 /*
 This helper file contains all "knowledge" of OpenCage: How to send requests,
@@ -19,11 +20,11 @@ async function geocode(address) {
     key: OCD_API_KEY,
     no_annotations: 1,
   };
-  console.log(OCD_API_KEY);
+  // console.log(process.env);
   let myresponse = { ok: false, data: null, status: 0, error: "" };
   try {
     let response = await opencage.geocode(geoParams);
-    console.log("OC response", response);
+    //console.log("OC response", response);
     if (response.status.code === 200) {
       if (response.results.length > 0) {
         myresponse.ok = true;

@@ -78,14 +78,13 @@ function MapsView(props) {
   return (
     <div>
       <h1>Your map for your trip to XYZ</h1>
-      <div>{home && <MapMarker home={home} zoom={13} />}</div>
+      <div>{home && <MapMarker places={places} home={home} zoom={13} />}</div>
       <h3 className="mt-4">Add important addressess to your itinerary</h3>
       <p>Enter an address to add a blue marker on the map</p>
       <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
       <div>
         <MapMarkerTable places={places} />
       </div>
-      ;
     </div>
   );
 }

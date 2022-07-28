@@ -44,8 +44,6 @@ function TripsView(props) {
             </div>
           ))}
       </div>
-      {/*Components that are not rendered in the view here but need context*/}
-      <TripByIdView />
 
       {/* <MapsView trips={trips} /> */}
     </div>
