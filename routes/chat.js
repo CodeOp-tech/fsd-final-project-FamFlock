@@ -16,28 +16,6 @@ const channel = new Pusher({
   useTLS: true,
 });
 
-// /* Join to Json */
-// function joinToJson(results) {
-//   // Create array of applicants objs
-//   let user = results.data.map((row) => ({
-//     id: row.id,
-//     email: row.email,
-//     username: row.username,
-//     password: row.password,
-//     fullname: row.fullname,
-//     picture: row.picture,
-//   }));
-//   // Create posts obj from first row
-//   let row0 = results.data[0];
-//   let messages = {
-//     senderId: row0.senderId,
-//     groupId: row0.groupId,
-//     text: row0.text,
-//     user,
-//   };
-//   return messages;
-// }
-
 // GET the most recent messages for channel
 router.get("/:groupId", async function (req, res) {
   let { groupId } = req.params;
@@ -108,6 +86,7 @@ router.get("/reactions/:messageId", async function (req, res, next) {
 
 // POST to message reactions
 router.post("/reactions", async function (req, res, next) {
+  console.log("arrived");
   const { reaction, FK_user_id, FK_message_id } = req.body;
   const sql = `INSERT INTO messagesReactions (reaction, FK_user_id, FK_message_id) VALUES ('${reaction}', '${FK_user_id}', '${FK_message_id}' )`;
 

@@ -53,6 +53,7 @@ class Api {
 
   // get a trip by id
   static async getTrip(id) {
+    console.log(`I am Api ${id}`);
     return await this._doFetch(`/trips/${id}`);
   }
 
@@ -75,7 +76,7 @@ class Api {
   static async newReaction(reaction, FK_user_id, FK_message_id) {
     let body = { reaction, FK_user_id, FK_message_id };
 
-    return await this._doFetch("/chat/reactions", "GET", body);
+    return await this._doFetch("/chat/reactions", "POST", body);
   }
 
   // edit user information

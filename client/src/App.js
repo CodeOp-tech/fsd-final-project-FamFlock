@@ -28,7 +28,8 @@ function App() {
   const [users, setUsers] = useState([]); // useState 6
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
-  const [error, setError] = useState();
+  const [error, setError] = useState(""); // useState9
+
 
   const navigate = useNavigate();
 
@@ -71,8 +72,9 @@ function App() {
     let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
     if (myresponse.ok) {
       // setUsers(myresponse.data);
+      console.log("response ok");
     } else {
-      // console.log("response not ok");
+      console.log("response not ok");
     }
   }
 
@@ -95,6 +97,7 @@ function App() {
     }
   }
 
+  // edit user profile
   async function editUser(
     picture,
     fullname,

@@ -76,11 +76,10 @@ CREATE TABLE  lists  (
    );
 
 CREATE TABLE messagesReactions (
-
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	reaction TINYINT,
 	FK_user_id INT NOT NULL,
 	FK_message_id INT NOT NULL
-
 );
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
@@ -88,7 +87,7 @@ ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripG
 
 ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
-ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+ALTER TABLE itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id);
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
@@ -137,11 +136,13 @@ INSERT INTO itinerary (
 	('Lunch', 20220901, 'Paris', 133000, 3),
 	('dinner', 20220903, 'Paris', 210000, 3);
 
+
 INSERT INTO messages (
 	senderId, groupId, text, dateTime
 ) VALUES
-	(1, 1, "Hello there", 20220727123806),
-	(2, 1, "Hi!", 20220727123807);
+	(1, 1, "Hello there", 20220727123807),
+	(3, 1, "Hey", 20220727123806),
+	(2, 1, "Hi!", 20220727123808);
 
 INSERT INTO messagesReactions (
 	reaction, FK_user_id, FK_message_id
