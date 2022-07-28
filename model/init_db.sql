@@ -6,7 +6,9 @@ DROP TABLE IF EXISTS users_tripGroups;
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS lists;
+
 
 SET foreign_key_checks = 1;
  
@@ -59,7 +61,6 @@ CREATE TABLE messages (
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE  lists  (
 	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	 FK_trips_id  INT NOT NULL,
@@ -75,24 +76,24 @@ CREATE TABLE  lists  (
    );
 
 CREATE TABLE messagesReaction (
+
 	reaction TINYINT,
+	FK_user_id INT NOT NULL,
 	FK_message_id INT NOT NULL
 
 );
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
-
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
+ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id);
+ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
 
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
-
-
-ALTER TABLE messagesReaction ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id)
 
 
 INSERT INTO users (
@@ -136,11 +137,18 @@ INSERT INTO itinerary (
 	('Lunch', 20220901, 'Paris', 133000, 3),
 	('dinner', 20220903, 'Paris', 210000, 3);
 
-	INSERT INTO messages (
-		senderId, groupId, text, dateTime
-	) VALUES
-		(1, 1, "Hello there", 20220727123806),
-		(2, 1, "Hi!", 20220727123807);
+INSERT INTO messages (
+	senderId, groupId, text, dateTime
+) VALUES
+	(1, 1, "Hello there", 20220727123806),
+	(2, 1, "Hi!", 20220727123807);
+
+INSERT INTO messagesReactions (
+	reaction, FK_user_id, FK_message_id
+) VALUES 
+	(1, 3, 1),
+	(0, 1, 1), 
+	(1, 2, 1);
 
 INSERT INTO lists (
 	FK_trips_id, destin, decideDates, bookFlight, bookAccom, essent, planAct, decideTrans, splitPlan, reservations
@@ -148,3 +156,4 @@ INSERT INTO lists (
 	(1, true, false, false, false, false, false, false, false, false),
 	(2, true, true, true, true, false, false, true, false, true),
 	(3, true, true, false, true, true, true, false, true, false);
+

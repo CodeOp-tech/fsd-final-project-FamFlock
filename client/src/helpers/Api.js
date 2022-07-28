@@ -46,6 +46,11 @@ class Api {
     return await this._doFetch("/trips");
   }
 
+  //  get users
+  static async getUsers() {
+    return await this._doFetch("/users");
+  }
+
   // get a trip by id
   static async getTrip(id) {
     return await this._doFetch(`/trips/${id}`);
@@ -61,6 +66,13 @@ class Api {
     let body = { email, username, password, fullname, picture };
 
     return await this._doFetch("/register", "POST", body);
+  }
+
+  //  Reaction to message
+  static async newReaction(reaction, FK_user_id, FK_message_id) {
+    let body = { reaction, FK_user_id, FK_message_id };
+
+    return await this._doFetch("/chat/reactions", "GET", body);
   }
 
   // edit user information

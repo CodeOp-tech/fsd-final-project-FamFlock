@@ -16,6 +16,28 @@ const channel = new Pusher({
   useTLS: true,
 });
 
+// /* Join to Json */
+// function joinToJson(results) {
+//   // Create array of applicants objs
+//   let user = results.data.map((row) => ({
+//     id: row.id,
+//     email: row.email,
+//     username: row.username,
+//     password: row.password,
+//     fullname: row.fullname,
+//     picture: row.picture,
+//   }));
+//   // Create posts obj from first row
+//   let row0 = results.data[0];
+//   let messages = {
+//     senderId: row0.senderId,
+//     groupId: row0.groupId,
+//     text: row0.text,
+//     user,
+//   };
+//   return messages;
+// }
+
 // GET the most recent messages for channel
 router.get("/:groupId", async function (req, res) {
   let { groupId } = req.params;
@@ -69,6 +91,33 @@ router.post("/:groupId/:senderId", async function (req, res) {
 
   // Return message to sender in response instead; it's faster
   res.send(completeMsg);
+});
+
+/* 
+ Message Reactions table
+*/
+
+// GET message reactions
+router.get("/reactions/:messageId", async function (req, res, next) {
+  let { messageId } = req.params;
+  let results = await db(
+    `SELECT * FROM messagesReactions WHERE FK_message_id = ${messageId}`
+  );
+  res.send(results.data);
+});
+
+// POST to message reactions
+router.post("/reactions", async function (req, res, next) {
+  const { reaction, FK_user_id, FK_message_id } = req.body;
+  const sql = `INSERT INTO messagesReactions (reaction, FK_user_id, FK_message_id) VALUES ('${reaction}', '${FK_user_id}', '${FK_message_id}' )`;
+
+  try {
+    await db(sql);
+    let results = await db("SELECT * FROM messagesReactions");
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 module.exports = router;
