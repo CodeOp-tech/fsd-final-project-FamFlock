@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import TripByIdList from "../components/TripByIdList";
+import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import MapsView from "./MapsView";
 
 function TripByIdView() {
   return (

@@ -59,6 +59,7 @@ CREATE TABLE messages (
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE  lists  (
 	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	 FK_trips_id  INT NOT NULL,
@@ -71,6 +72,12 @@ CREATE TABLE  lists  (
 	 decideTrans  BOOLEAN NOT NULL,
 	 splitPlan  BOOLEAN NOT NULL,
 	 reservations  BOOLEAN NOT NULL
+   );
+
+CREATE TABLE messagesReaction (
+	reaction TINYINT,
+	FK_message_id INT NOT NULL
+
 );
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
@@ -81,7 +88,11 @@ ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
+
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
+
+
+ALTER TABLE messagesReaction ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id)
 
 
 INSERT INTO users (
