@@ -5,7 +5,7 @@ import ChatList from "../components/ChatList";
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
-  const [groupAndUsers, setGroupAndUsers] = useState({}); // useState 3
+  // const [groupAndUsers, setGroupAndUsers] = useState({}); // useState 3
 
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);
@@ -58,7 +58,7 @@ function ChatView(props) {
   useEffect(() => {
     // Call whenever participants change
     getRecentMessages();
-    getGroupWithUsers();
+    // getGroupWithUsers();
     props.setSenderIdCb(props.user.id);
   }, [props.senderId, props.groupId]);
 
@@ -87,30 +87,30 @@ function ChatView(props) {
     }
   }
 
-  // get group with its users
-  async function getGroupWithUsers() {
-    let options = {
-      method: "GET",
-    };
+  // // get group with its users
+  // async function getGroupWithUsers() {
+  //   let options = {
+  //     method: "GET",
+  //   };
 
-    try {
-      let response = await fetch(`/tripGroups/users/${props.groupId}`, options);
+  //   try {
+  //     let response = await fetch(`/tripGroups/users/${props.groupId}`, options);
 
-      if (response.ok) {
-        let data = await response.json();
-        setGroupAndUsers(data);
-      } else {
-        console.log(`server error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      if (err.response) {
-        let r = err.response;
-        console.log(`Server error: ${r.status} ${r.statusText}`);
-      } else {
-        console.log(`Network error: ${err.message}`);
-      }
-    }
-  }
+  //     if (response.ok) {
+  //       let data = await response.json();
+  //       setGroupAndUsers(data);
+  //     } else {
+  //       console.log(`server error: ${response.status} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     if (err.response) {
+  //       let r = err.response;
+  //       console.log(`Server error: ${r.status} ${r.statusText}`);
+  //     } else {
+  //       console.log(`Network error: ${err.message}`);
+  //     }
+  //   }
+  // }
 
   // POST user-entered text to server as message
   async function sendMessage(text) {
@@ -157,7 +157,12 @@ function ChatView(props) {
   return (
     <div className="container">
       <h1>chat</h1>
-      <ChatList messages={messages} user={props.user} />
+      <ChatList
+        messages={messages}
+        user={props.user}
+        groupId={props.groupId}
+        users={props.users}
+      />
       <div>
         <form onSubmit={handleSubmit}>
           <input

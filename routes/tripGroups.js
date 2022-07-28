@@ -2,26 +2,26 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-/* Join to Json */
-function joinToJson(results) {
-  // Create array of applicants objs
-  let users = results.data.map((row) => ({
-    id: row.id,
-    email: row.email,
-    username: row.username,
-    password: row.password,
-    fullname: row.fullname,
-    picture: row.picture,
-  }));
-  // Create posts obj from first row
-  let row0 = results.data[0];
-  let posts = {
-    id: row0.id,
-    name: row0.name,
-    users,
-  };
-  return posts;
-}
+// /* Join to Json */
+// function joinToJson(results) {
+//   // Create array of applicants objs
+//   let users = results.data.map((row) => ({
+//     id: row.id,
+//     email: row.email,
+//     username: row.username,
+//     password: row.password,
+//     fullname: row.fullname,
+//     picture: row.picture,
+//   }));
+//   // Create posts obj from first row
+//   let row0 = results.data[0];
+//   let group = {
+//     id: row0.id,
+//     name: row0.name,
+//     users,
+//   };
+//   return group;
+// }
 
 /* GET trip groups */
 router.get("/", async function (req, res, next) {
@@ -59,27 +59,27 @@ router.post("/", async function (req, res, next) {
   }
 });
 
-/* GET groups with left join onto users */
-router.get("/users/:id", async function (req, res, next) {
-  let { id } = req.params;
-  // let sql = `SELECT * FROM users WHERE userID = ${id}`;
+// /* GET groups with left join onto users */
+// router.get("/users/:id", async function (req, res, next) {
+//   let { id } = req.params;
+//   // let sql = `SELECT * FROM users WHERE userID = ${id}`;
 
-  let sql = `SELECT tripGroups.*, users_tripGroups.* , users.*
-  FROM tripGroups LEFT JOIN users_tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id 
-  LEFT JOIN users ON users_tripGroups.FK_users_id = users.id  WHERE tripGroups.id = ${id}
-  `;
+//   let sql = `SELECT tripGroups.*, users_tripGroups.* , users.*
+//   FROM tripGroups LEFT JOIN users_tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
+//   LEFT JOIN users ON users_tripGroups.FK_users_id = users.id  WHERE tripGroups.id = ${id}
+//   `;
 
-  try {
-    let results = await db(sql);
-    let user = joinToJson(results);
-    // res.send(results.data);
+//   try {
+//     let results = await db(sql);
+//     let user = joinToJson(results);
+//     // res.send(results.data);
 
-    // let user = results.data[0];
-    // delete user.password;
-    res.send(user);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+//     // let user = results.data[0];
+//     // delete user.password;
+//     res.send(user);
+//   } catch (err) {
+//     res.status(500).send(err);
+//   }
+// });
 
 module.exports = router;

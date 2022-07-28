@@ -22,6 +22,8 @@ function App() {
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 2
   const [groupId, setGroupId] = useState(1); // default group ID // useState 3
 
+  const [users, setUsers] = useState([]); // useState 4
+
   // const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 5
   const navigate = useNavigate();
@@ -45,6 +47,15 @@ function App() {
   function doLogout() {
     Local.removeUserInfo();
     setUser(null);
+  }
+
+  async function fetchUsers() {
+    let myresponse = await Api.getUsers();
+    if (myresponse.ok) {
+      setUsers(myresponse.data);
+    } else {
+      console.log("response not ok");
+    }
   }
 
   // register a new user
@@ -100,6 +111,7 @@ function App() {
               groupId={groupId}
               setGroupIdCb={setGroupId}
               user={user}
+              users={users}
             />
           }
         />

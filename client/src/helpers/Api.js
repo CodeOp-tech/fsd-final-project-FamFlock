@@ -46,6 +46,11 @@ class Api {
     return await this._doFetch("/trips");
   }
 
+  //  get users
+  static async getUsers() {
+    return await this._doFetch("/users");
+  }
+
   // get a trip by id
   static async getTrip(id) {
     return await this._doFetch(`/trips/${id}`);
