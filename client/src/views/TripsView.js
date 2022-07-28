@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
-
 import MapsView from "./MapsView.js";
 import TripByIdView from "./TripByIdView.js";
 
@@ -44,7 +43,6 @@ function TripsView(props) {
             </div>
           ))}
       </div>
-
       {/* <MapsView trips={trips} /> */}
     </div>
   );

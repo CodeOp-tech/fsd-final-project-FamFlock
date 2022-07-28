@@ -17,7 +17,7 @@ class Local {
   // getUserId, to redirect to their page and also check if same user
   static getUserId() {
     let userjson = localStorage.getItem("user");
-    console.log(userjson);
+    // console.log(userjson);
     if (!userjson) {
       return "";
     }
