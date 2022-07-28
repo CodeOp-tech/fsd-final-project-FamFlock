@@ -9,6 +9,7 @@ import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdView from "./views/TripByIdView";
+import TripByIdListsView from "./views/TripByIdListsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
@@ -138,6 +139,7 @@ function App() {
         />
         <Route path="/my-trips/:id" element={<TripByIdView />} />
         <Route path="/itinerary" element={<ItineraryView />} />
+        <Route path="/lists" element={<TripByIdListsView />} />
       </Routes>
     </div>
   );
