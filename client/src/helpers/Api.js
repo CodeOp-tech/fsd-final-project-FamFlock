@@ -98,6 +98,35 @@ class Api {
     return await this._doFetch(`/users/${id}`, "PUT", body);
   }
 
+  // user can edit lists info
+  static async editList(
+    destin,
+    decideDates,
+    bookFlight,
+    bookAccom,
+    essent,
+    planAct,
+    decideTrans,
+    splitPlan,
+    reservations,
+    id
+  ) {
+    let body = {
+      destin,
+      decideDates,
+      bookFlight,
+      bookAccom,
+      essent,
+      planAct,
+      decideTrans,
+      splitPlan,
+      reservations,
+      id,
+    };
+
+    return await this._doFetch(`/lists/${id}`, "PUT", body);
+  }
+
   // login a user
   static async loginUser(username, password) {
     let body = { username, password };
@@ -112,6 +141,13 @@ class Api {
   // go to whatever url
   static async getContent(url) {
     return await this._doFetch(url);
+  }
+
+  //  save a new list
+  static async newList(list) {
+    // let body = { list };
+
+    return await this._doFetch("/lists", "POST", list);
   }
 }
 
