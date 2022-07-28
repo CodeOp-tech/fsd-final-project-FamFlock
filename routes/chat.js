@@ -71,4 +71,32 @@ router.post("/:groupId/:senderId", async function (req, res) {
   res.send(completeMsg);
 });
 
+/* 
+ Message Reactions table
+*/
+
+// GET message reactions
+router.get("/reactions/:messageId", async function (req, res, next) {
+  let { messageId } = req.params;
+  let results = await db(
+    `SELECT * FROM messagesReactions WHERE FK_message_id = ${messageId}`
+  );
+  res.send(results.data);
+});
+
+// POST to message reactions
+router.post("/reactions", async function (req, res, next) {
+  console.log("arrived");
+  const { reaction, FK_user_id, FK_message_id } = req.body;
+  const sql = `INSERT INTO messagesReactions (reaction, FK_user_id, FK_message_id) VALUES ('${reaction}', '${FK_user_id}', '${FK_message_id}' )`;
+
+  try {
+    await db(sql);
+    let results = await db("SELECT * FROM messagesReactions");
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;

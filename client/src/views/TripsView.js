@@ -1,45 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
+import TripsContext from "../context/TripsContext.js";
+
+import MapsView from "./MapsView.js";
+import TripByIdView from "./TripByIdView.js";
 
 function TripsView(props) {
-  const [trips, setTrips] = useState([]);
   const [openPopUp, setOpenPopUp] = useState(false);
-
-  useEffect(() => {
-    getTrips();
-  }, []);
-
-  const getTrips = () => {
-    fetch("/trips")
-      .then((response) => response.json())
-      .then((trips) => {
-        setTrips(trips);
-        // console.log(trips);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const addTrip = async (trip) => {
-    let options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(trip),
-    };
-    try {
-      let response = await fetch("/trips", options);
-      if (response.ok) {
-        let data = await response.json();
-        setTrips(data);
-      } else {
-        console.log(`server error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`network error: ${err.message}`);
-    }
-  };
+  const { trips, addTrip } = useContext(TripsContext);
 
   return (
     <div>
@@ -67,14 +36,18 @@ function TripsView(props) {
                 </h6>
               </div>
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
-              <div className="card-footer">
+              {/* <div className="card-footer">
                 <Link to={"/my-trips/" + trip.id}>
                   <button className="btn btn-outline-primary">Edit</button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           ))}
       </div>
+      {/*Components that are not rendered in the view here but need context*/}
+      <TripByIdView />
+
+      {/* <MapsView trips={trips} /> */}
     </div>
   );
 }

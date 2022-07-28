@@ -6,6 +6,9 @@ DROP TABLE IF EXISTS users_tripGroups;
 DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS messagesReactions;
+DROP TABLE IF EXISTS lists;
+
 
 SET foreign_key_checks = 1;
  
@@ -58,13 +61,39 @@ CREATE TABLE messages (
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
+CREATE TABLE  lists  (
+	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 FK_trips_id  INT NOT NULL,
+	 destin  BOOLEAN NOT NULL,
+	 decideDates  BOOLEAN NOT NULL,
+	 bookFlight  BOOLEAN NOT NULL,
+	 bookAccom  BOOLEAN NOT NULL,
+	 essent  BOOLEAN NOT NULL,
+	 planAct  BOOLEAN NOT NULL,
+	 decideTrans  BOOLEAN NOT NULL,
+	 splitPlan  BOOLEAN NOT NULL,
+	 reservations  BOOLEAN NOT NULL
+   );
 
+CREATE TABLE messagesReactions (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	reaction TINYINT,
+	FK_user_id INT NOT NULL,
+	FK_message_id INT NOT NULL
+);
+
+ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
 ALTER TABLE itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+
+ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id);
+ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
+
+ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
+
 
 INSERT INTO users (
     email, username, password, fullname, picture
@@ -73,7 +102,7 @@ INSERT INTO users (
     ('example2@email.com', 'person2', '$2b$12$lDWcKS5v96t60Y1PvfE0SuGfhN67QoFHQT60ZdQyhPED38LVZdgQS', 'Person Two', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'),
     ('example3@email.com', 'person3', '$2b$12$NDASPNSQuwalJol78l0Zn.7cIPXlpsaiSZyZbXPlRGWfmR2ctTpn6', 'Person Three', 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png');
 
-INSERT INTO `tripGroups` (
+INSERT INTO  tripGroups  (
 	name
 ) VALUES 
 	('Group 1'),
@@ -105,8 +134,24 @@ INSERT INTO itinerary (
 	('Big Ben', 20220808, 'London', 123000, 3),
 	('Lunch', 20220901, 'Paris', 133000, 1);
 
-	INSERT INTO messages (
-		senderId, groupId, text, dateTime
-	) VALUES
-		(1, 1, "Hello there", 20220727123806),
-		(2, 1, "Hi!", 20220727123807);
+INSERT INTO messages (
+	senderId, groupId, text, dateTime
+) VALUES
+	(1, 1, "Hello there", 20220727123807),
+	(3, 1, "Hey", 20220727123806),
+	(2, 1, "Hi!", 20220727123808);
+
+INSERT INTO messagesReactions (
+	reaction, FK_user_id, FK_message_id
+) VALUES 
+	(1, 3, 1),
+	(0, 1, 1), 
+	(1, 2, 1);
+
+INSERT INTO lists (
+	FK_trips_id, destin, decideDates, bookFlight, bookAccom, essent, planAct, decideTrans, splitPlan, reservations
+) VALUES
+	(1, true, false, false, false, false, false, false, false, false),
+	(2, true, true, true, true, false, false, true, false, true),
+	(3, true, true, false, true, true, true, false, true, false);
+

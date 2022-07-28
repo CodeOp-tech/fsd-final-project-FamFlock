@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
-import Api from "../helpers/Api";
+import ChatList from "../components/ChatList";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
@@ -8,21 +8,10 @@ function ChatView(props) {
 
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);
-  let listDiv = useRef(null);
-
-  useEffect(() => {
-    getGroupsAndUsers();
-  }, []);
-
-  // Get group with its users
-  async function getGroupsAndUsers() {
-    let myresponse = await Api.getGroupsAndUsers(props.receiverId);
-    console.log(props.receiverId);
-  }
 
   // Connect to Pusher; called once, when component mounts
   useEffect(() => {
-    Pusher.logToConsole = true; // very useful for debugging!
+    Pusher.logToConsole = false; // very useful for debugging!
 
     // Establish connection with Pusher
     // pusherKey is stored in client's .env file
@@ -68,6 +57,8 @@ function ChatView(props) {
   useEffect(() => {
     // Call whenever participants change
     getRecentMessages();
+    // getGroupWithUsers();
+    props.setSenderIdCb(props.user.id);
   }, [props.senderId, props.groupId]);
 
   // Load previous messages from DB
@@ -137,32 +128,16 @@ function ChatView(props) {
     setText("");
   }
 
-  // When new msg is added, scroll if necessary so it's visible
-  useEffect(() => {
-    let lastPara = listDiv.current.lastElementChild;
-    if (lastPara) {
-      lastPara.scrollIntoView(false);
-    }
-  }, [props.messages]);
-
-  function formatDT(dt) {
-    return new Date(dt).toLocaleString();
-  }
-
   return (
-    <div>
+    <div className="container">
       <h1>chat</h1>
-      <div className="ChatList rounded mb-1" ref={listDiv}>
-        {messages.map((m) => (
-          <p
-            key={m.id}
-            className={m.senderId !== props.receiverId ? "sender" : "receiver"}
-          >
-            <span title={formatDT(m.dateTime)}>{m.text}</span>
-          </p>
-        ))}
-      </div>
-
+      <ChatList
+        messages={messages}
+        user={props.user}
+        groupId={props.groupId}
+        users={props.users}
+        newReactionCb={props.newReactionCb}
+      />
       <div>
         <form onSubmit={handleSubmit}>
           <input
