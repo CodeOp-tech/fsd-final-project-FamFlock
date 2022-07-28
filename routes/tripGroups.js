@@ -15,7 +15,6 @@ function joinToJson(results) {
   }));
   // Create posts obj from first row
   let row0 = results.data[0];
-  console.log(results.data);
   let posts = {
     id: row0.id,
     name: row0.name,
