@@ -56,7 +56,6 @@ router.get("/:id", async function (req, res, next) {
     // let trip = results.data;
     let trip = await results;
     trip = joinToJson(trip);
-    console.log(trip);
     if (trip.length === 0) {
       res.status(404).send({ error: "we cannot find what you requested" });
     } else {
