@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
 import ChatList from "../components/ChatList";
+import Api from "../helpers/Api";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
@@ -128,6 +129,22 @@ function ChatView(props) {
     setText("");
   }
 
+  async function newReaction(reaction, FK_user_id, FK_message_id, up, down) {
+    let myresponse = await Api.newReaction(
+      reaction,
+      FK_user_id,
+      FK_message_id,
+      up,
+      down
+    );
+    if (myresponse.ok) {
+      console.log(myresponse.data[0]);
+      return myresponse.data[0];
+    } else {
+      console.log("response not ok");
+    }
+  }
+
   return (
     <div className="container">
       <h1>chat</h1>
@@ -136,7 +153,7 @@ function ChatView(props) {
         user={props.user}
         groupId={props.groupId}
         users={props.users}
-        newReactionCb={props.newReactionCb}
+        newReactionCb={newReaction}
       />
       <div>
         <form onSubmit={handleSubmit}>

@@ -48,4 +48,80 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+/* Update list information (PUT) */
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      destin,
+      decideDates,
+      bookFlight,
+      bookAccom,
+      essent,
+      planAct,
+      decideTrans,
+      splitPlan,
+      reservations,
+    } = req.body;
+
+    if (destin) {
+      let sql = `
+      UPDATE lists SET destin='${destin}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (decideDates) {
+      let sql = `
+      UPDATE lists SET decideDates='${decideDates}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (bookFlight) {
+      let sql = `
+      UPDATE lists SET bookFlight='${bookFlight}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (bookAccom) {
+      let sql = `
+      UPDATE lists SET bookAccom='${bookAccom}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (essent) {
+      let sql = `
+      UPDATE lists SET essent='${essent}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (planAct) {
+      let sql = `
+      UPDATE lists SET planAct='${planAct}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (decideTrans) {
+      let sql = `
+      UPDATE lists SET decideTrans='${decideTrans}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (splitPlan) {
+      let sql = `
+      UPDATE lists SET splitPlan='${splitPlan}' WHERE ID=${id}`;
+      await db(sql);
+    }
+
+    if (reservations) {
+      let sql = `
+              UPDATE lists SET reservations='${reservations}' WHERE id = ${id}`;
+      await db(sql);
+    }
+
+    res.status(200).send({ message: "Information was successfully updated" });
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
 module.exports = router;

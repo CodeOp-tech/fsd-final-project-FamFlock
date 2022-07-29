@@ -7,7 +7,8 @@ import TripByIdView from "./TripByIdView.js";
 
 function TripsView(props) {
   const [openPopUp, setOpenPopUp] = useState(false);
-  const { trip, trips, addTrip, getTrip } = useContext(TripsContext);
+  const { trips, addTrip, getTrip, trip } = useContext(TripsContext);
+
 
   return (
     <div>
@@ -36,14 +37,13 @@ function TripsView(props) {
               </div>
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
               <div className="card-footer">
-                {/* <Link to={"/my-trips/" + trip.id}> */}
                 <button
                   className="btn btn-outline-primary"
                   onClick={(e) => getTrip(trip.id)}
                 >
                   Edit
                 </button>
-                {/* </Link> */}
+
               </div>
             </div>
           ))}
