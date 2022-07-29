@@ -36,11 +36,11 @@ function TripsView(props) {
                 </h6>
               </div>
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
-              {/* <div className="card-footer">
+              <div className="card-footer">
                 <Link to={"/my-trips/" + trip.id}>
                   <button className="btn btn-outline-primary">Edit</button>
                 </Link>
-              </div> */}
+              </div>
             </div>
           ))}
       </div>
