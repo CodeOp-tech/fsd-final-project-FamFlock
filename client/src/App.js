@@ -124,7 +124,7 @@ function App() {
     if (myresponse.ok) {
       setTrip(myresponse.data);
       //optional: navigate to trip/id page after
-      //   Navigate(`/trips/${id}`);
+      navigate(`/my-trips/${id}`);
     } else {
       setError(myresponse.error);
     }
@@ -179,6 +179,7 @@ function App() {
     }
   }
 
+
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps`);
   }
@@ -191,12 +192,14 @@ function App() {
     setTrip,
     itineraries,
     goToMapsView,
+    fetchItineraries,
   };
 
   const contextObjUser = {
     user,
     doLogout,
     editUser,
+
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useParams } from "react";
 import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
@@ -8,6 +8,7 @@ import TripByIdView from "./TripByIdView.js";
 function TripsView(props) {
   const [openPopUp, setOpenPopUp] = useState(false);
   const { trips, addTrip, getTrip, trip } = useContext(TripsContext);
+
 
   return (
     <div>
@@ -42,6 +43,7 @@ function TripsView(props) {
                 >
                   Edit
                 </button>
+
               </div>
             </div>
           ))}
