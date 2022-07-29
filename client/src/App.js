@@ -21,7 +21,7 @@ import TripsContext from "./context/TripsContext";
 // import res from "express/lib/response";
 
 function App() {
-  const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
+  const [user, setUser] = useState(); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
@@ -31,7 +31,6 @@ function App() {
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
 
-
   const navigate = useNavigate();
 
   // log in
@@ -40,7 +39,8 @@ function App() {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
-      setUser(myresponse.data.user);
+      let user = await Api.getUser(myresponse.data.user.id);
+      setUser(user.data);
       setLoginErrorMessage("");
       navigate("/my-trips");
     } else {
