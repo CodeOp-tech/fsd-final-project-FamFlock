@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
 function MyProfileView(props) {
