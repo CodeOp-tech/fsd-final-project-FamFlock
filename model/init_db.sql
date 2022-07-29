@@ -113,6 +113,7 @@ INSERT INTO users_tripGroups (
 	FK_users_id, FK_tripGroups_id
 ) VALUES
 	(1,1),
+	(1,2),
 	(2,1),
 	(3,1),
 	(1,2),
