@@ -73,8 +73,14 @@ class Api {
   }
 
   //  Reaction to message
-  static async newReaction(reaction, FK_user_id, FK_message_id) {
-    let body = { reaction, FK_user_id, FK_message_id };
+  static async newReaction(reaction, FK_user_id, FK_message_id, up, down) {
+    let body = {
+      reaction,
+      FK_user_id,
+      FK_message_id,
+      up,
+      down,
+    };
 
     return await this._doFetch("/chat/reactions", "POST", body);
   }

@@ -58,6 +58,8 @@ CREATE TABLE messages (
     senderId INT NOT NULL,
 	groupId INT NOT NULL,
     text VARCHAR(250) NOT NULL,
+	thumbsUpCount INT,
+	thumbsDownCount INT,
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -138,11 +140,12 @@ INSERT INTO itinerary (
 
 
 INSERT INTO messages (
-	senderId, groupId, text, dateTime
+	senderId, groupId, text, thumbsUpCount, thumbsDownCount, dateTime
 ) VALUES
-	(1, 1, "Hello there", 20220727123807),
-	(3, 1, "Hey", 20220727123806),
-	(2, 1, "Hi!", 20220727123808);
+	
+	(3, 1, "Hey", 0, 0, 20220727123806),
+	(1, 1, "Hello there", 0, 0, 20220727123807),
+	(2, 1, "Hi!", 0, 0, 20220727123808);
 
 INSERT INTO messagesReactions (
 	reaction, FK_user_id, FK_message_id
