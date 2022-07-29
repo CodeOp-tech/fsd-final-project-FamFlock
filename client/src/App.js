@@ -158,6 +158,17 @@ function App() {
       console.log(`network error: ${err.message}`);
     }
   };
+
+  async function getTrip(id) {
+    let myresponse = await Api.getTrip(id);
+    if (myresponse.ok) {
+      setTrip(myresponse.data);
+      //optional: navigate to trip/id page after
+      navigate(`/my-trips/${id}`);
+    } else {
+      setError(myresponse.error);
+    }
+  }
   // get all form itineraries
   async function fetchItineraries() {
     let myresponse = await Api.getItineraries();
@@ -168,10 +179,18 @@ function App() {
     }
   }
 
+  function goToMapsView(id) {
+    navigate(`/my-trips/${id}/maps`);
+  }
+
   const contextObjTrips = {
+    trip,
     trips,
     addTrip,
+    getTrip,
+    setTrip,
     itineraries,
+    goToMapsView,
   };
 
   const contextObjUser = {
@@ -234,8 +253,16 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route
+              path="/my-trips/:id/maps"
+              element={
+                <PrivateRoute>
+                  <MapsView />
+                </PrivateRoute>
+              }
+            />
+
             <Route path="/my-trips/:id" element={<TripByIdView />} />
-            <Route path="/maps" element={<MapsView />} />
             <Route path="/itinerary" element={<ItineraryView />} />
             <Route path="/lists" element={<TripByIdListsView />} />
           </Routes>
