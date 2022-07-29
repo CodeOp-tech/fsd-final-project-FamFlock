@@ -18,6 +18,7 @@ import YelpView from "./views/YelpView";
 import ItineraryView from "./views/ItineraryView";
 import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
+import UserContext from "./context/UserContext";
 // import res from "express/lib/response";
 
 function App() {
@@ -158,65 +159,74 @@ function App() {
     }
   }
 
-  const contextObj = {
+  const contextObjTrips = {
     trips,
     addTrip,
     itineraries,
   };
+
+  const contextObjUser = {
+    user,
+    doLogout,
+  };
   return (
     <div className="App">
-      <TripsContext.Provider value={contextObj} r>
+      <UserContext.Provider value={contextObjUser} r>
         <NavBar logoutCb={doLogout} user={user} />
-        <Routes>
-          <Route path="/" element={<HomeView />} />
-          <Route
-            path="chat/:groupId"
-            element={
-              <ChatView
-                senderId={senderId}
-                setSenderIdCb={setSenderId}
-                groupId={groupId}
-                setGroupIdCb={setGroupId}
-                user={user}
-                users={users}
-              />
-            }
-          />
-          <Route
-            path="/my-trips"
-            element={
-              <PrivateRoute>
-                <TripsView />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/yelp-search" element={<YelpView />} />
-          <Route
-            path="/login"
-            element={
-              <LoginView
-                loginCb={(username, password) => doLogin(username, password)}
-              />
-            }
-          />
-          <Route
-            path="/register"
-            element={<RegisterView registerCb={register} />}
-          />
-          <Route
-            path="/profile/:id"
-            element={
-              <PrivateRoute>
-                <MyProfileView user={user} editUserCb={editUser} />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/my-trips/:id" element={<TripByIdView />} />
-          <Route path="/maps" element={<MapsView />} />
-          <Route path="/itinerary" element={<ItineraryView />} />
-          <Route path="/lists" element={<TripByIdListsView />} />
-        </Routes>
-      </TripsContext.Provider>
+
+        <TripsContext.Provider value={contextObjTrips} r>
+          <Routes>
+            <Route path="/" element={<HomeView />} />
+            <Route
+              path="/login"
+              element={
+                <LoginView
+                  loginCb={(username, password) => doLogin(username, password)}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={<RegisterView registerCb={register} />}
+            />
+            <Route
+              path="chat/:groupId"
+              element={
+                <ChatView
+                  senderId={senderId}
+                  setSenderIdCb={setSenderId}
+                  groupId={groupId}
+                  setGroupIdCb={setGroupId}
+                  user={user}
+                  users={users}
+                />
+              }
+            />
+            <Route
+              path="/my-trips"
+              element={
+                <PrivateRoute>
+                  <TripsView />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/yelp-search" element={<YelpView />} />
+
+            <Route
+              path="/profile/:id"
+              element={
+                <PrivateRoute>
+                  <MyProfileView user={user} editUserCb={editUser} />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/my-trips/:id" element={<TripByIdView />} />
+            <Route path="/maps" element={<MapsView />} />
+            <Route path="/itinerary" element={<ItineraryView />} />
+            <Route path="/lists" element={<TripByIdListsView />} />
+          </Routes>
+        </TripsContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
