@@ -18,6 +18,7 @@ import YelpView from "./views/YelpView";
 import ItineraryView from "./views/ItineraryView";
 import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
+// import res from "express/lib/response";
 
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
@@ -57,16 +58,6 @@ function App() {
     let myresponse = await Api.getUsers();
     if (myresponse.ok) {
       setUsers(myresponse.data);
-    } else {
-      console.log("response not ok");
-    }
-  }
-
-  async function newReaction(reaction, FK_user_id, FK_message_id) {
-    let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
-    if (myresponse.ok) {
-      // setUsers(myresponse.data);
-      console.log("response ok");
     } else {
       console.log("response not ok");
     }
@@ -160,7 +151,6 @@ function App() {
                 setGroupIdCb={setGroupId}
                 user={user}
                 users={users}
-                newReactionCb={newReaction}
               />
             }
           />
