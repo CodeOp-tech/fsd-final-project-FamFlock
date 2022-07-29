@@ -18,8 +18,6 @@ function joinToJson(results) {
 
   cleanGroups = [];
 
-  cleanGroups;
-
   const groups = allGroups.filter((e) => {
     let isDuplicate = cleanGroups.includes(e.group_id);
     if (!isDuplicate) {
@@ -41,13 +39,13 @@ function joinToJson(results) {
     group_id: row.group_id,
   }));
 
-  console.log(allTrips);
+  //console.log(allTrips);
 
-  let trips = groups.map(
-    (e) => (e.trips = allTrips.filter((t) => e.group_id === t.group_id))
+  let trips = groups.map((e) =>
+    allTrips.filter((t) => e.group_id === t.group_id)
   );
 
-  console.log(cleanGroups);
+  //console.log(cleanGroups);
   let user = {
     id: row0.user_id,
     email: row0.email,
@@ -56,6 +54,7 @@ function joinToJson(results) {
     fullname: row0.fullname,
     picture: row0.picture,
     groups,
+    trips,
   };
 
   return user;
