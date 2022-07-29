@@ -19,21 +19,17 @@ function ItineraryView(props) {
     //   col3: [{ id: "box3", text: "Lunch at 2" }],
   };
 
-  console.log("I am initcolumns" + InitColumns);
-  console.log("I am trip" + trip);
-  console.log("I am trip itinerary id" + trip.itinerary);
+  for (let i = 0; i < trip["itinerary"].length; i++) {
+    InitColumns[`col${i}`] = [
+      {
+        //   change this to date
+        id: trip["itinerary"][i].activityid,
+        text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`,
+      },
+    ];
+  }
 
-  console.log(trip.id);
-
-  //   for (let i = 0; i < trip[itinerary].length; i++) {
-  //     InitColumns[`col${i}`] = [
-  //       {
-  //         id: trip["itinerary"][i].itineraryid,
-  //         text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`,
-  //       },
-  //     ];
-  //   }
-
+  console.log(InitColumns);
   const [columns, setColumns] = useState(InitColumns);
 
   //   useEffect(() => {
@@ -49,7 +45,7 @@ function ItineraryView(props) {
 
     let newColumns = { ...columns };
     //   find index of the box to be moved
-    console.log("Hello", newColumns, "hEY", fromColId);
+    // console.log("Hello", newColumns, "hEY", fromColId);
     // let index = newColumns[fromColId].findIndex((b) => b.id === boxId);
     // remove from old column by splicing
     // let boxes = newColumns[fromColId].splice(index, 1);
@@ -62,13 +58,19 @@ function ItineraryView(props) {
   return (
     <div>
       <h1>Itinerary for Your Trip 📅 </h1>
-      <div className="itinerary-list-wrapper">
+      <div className="itinerary-container">
         {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
 
         <DndProvider backend={HTML5Backend}>
           {trip.itinerary.map((i) => (
-            <ItineraryList id={i.itineraryid} date={i.date} dropCb={moveBox} />
+            <ItineraryList
+              key={""}
+              id={i.date}
+              date={i.date}
+              itinerary={trip["itinerary"]}
+              dropCb={moveBox}
+            />
           ))}
         </DndProvider>
 

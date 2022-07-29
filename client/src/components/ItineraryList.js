@@ -1,8 +1,31 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import ItineraryCard from "./ItineraryCard";
+import "./ItineraryList.css";
 
 function ItineraryList(props) {
+  let itinerary = props.itinerary;
+  console.log(itinerary);
+
+  function handleChange(event) {
+    let { name, value } = event.target;
+    // this needs more stuff
+  }
+  // Courtesy of Jim!
+  //    converts sql date to human
+  function convertDbDateToHuman(dbDateTime) {
+    // Create a date obj
+    let dateObj = new Date(dbDateTime);
+
+    // Convert it to a (long) human readable format
+    let humanReadable = dateObj.toString(); // 'Fri Jul 08 2022 00:00:00 GMT+0200'
+
+    // I only want to keep the date part of it
+    let humanDate = humanReadable.substring(4, 15); // 'Jul 08 2022'
+
+    return humanDate;
+  }
+
   const [collected, dropRef] = useDrop(() => ({
     accept: "box",
 
@@ -27,6 +50,11 @@ function ItineraryList(props) {
     },
   }));
 
+  //   sort activities by date
+  let sortedByDate = itinerary.filter(
+    (itinerary) => (itinerary.date = props.date)
+  );
+
   // set background color if box is being dragged over a different column
   let canDropClass = collected.isOver && collected.canDrop ? "can-drop" : "";
   return (
@@ -38,12 +66,22 @@ function ItineraryList(props) {
     >
       {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
-      <h2>Date</h2>
-      {/* {props.boxes.map((c) => (
-        <ItineraryCard id={c.id} key={c.id}>
-          {c.text}
+      <h2>{convertDbDateToHuman(props.date)}</h2>
+      {sortedByDate.map((itinerary) => (
+        <ItineraryCard
+          id={itinerary.date}
+          key={itinerary.activityid}
+          itinerary={itinerary}
+        >
+          {itinerary.activity} at {itinerary.location}
         </ItineraryCard>
-      ))} */}
+      ))}
+      <input
+        className="itinerary-card-input"
+        type="text"
+        onChange={handleChange}
+        placeholder="Add something..."
+      />
     </div>
   );
 }

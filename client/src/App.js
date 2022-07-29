@@ -22,7 +22,7 @@ import TripsContext from "./context/TripsContext";
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
-  const [trip, setTrip] = useState({}); // useState 3
+  const [trip, setTrip] = useState(); // useState 3
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
   const [groupId, setGroupId] = useState(1); // default group ID // useState 5
   const [users, setUsers] = useState([]); // useState 6

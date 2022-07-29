@@ -11,7 +11,7 @@ function joinToJson(results) {
   let itinerary = [];
   if (row0.id) {
     itinerary = results.data.map((i) => ({
-      itineraryid: i.id,
+      activityid: i.id,
       activity: i.activity,
       date: i.date,
       location: i.location,
@@ -44,7 +44,7 @@ router.get("/:id", async function (req, res, next) {
   let { id } = req.params;
   try {
     let results =
-      await db(`SELECT trips.id AS tripid, itinerary.id AS itineraryid, trips.*, itinerary.* FROM trips
+      await db(`SELECT trips.id AS tripid, itinerary.id AS activityid, trips.*, itinerary.* FROM trips
       LEFT JOIN itinerary ON itinerary.FK_trips_id = trips.id
      WHERE trips.id = ${id}`);
     // let trip = results.data;

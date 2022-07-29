@@ -7,7 +7,7 @@ import TripByIdView from "./TripByIdView.js";
 
 function TripsView(props) {
   const [openPopUp, setOpenPopUp] = useState(false);
-  const { trips, addTrip, getTrip } = useContext(TripsContext);
+  const { trip, trips, addTrip, getTrip } = useContext(TripsContext);
 
   return (
     <div>
