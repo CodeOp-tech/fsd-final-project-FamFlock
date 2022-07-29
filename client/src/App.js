@@ -22,7 +22,7 @@ import UserContext from "./context/UserContext";
 // import res from "express/lib/response";
 
 function App() {
-  const [user, setUser] = useState(); // useState 1: sets logged in user
+  const [user, setUser] = useState(null); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
@@ -31,8 +31,23 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
-
+  // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchUsers();
+    fetchTrips();
+    fetchItineraries();
+    //setLoading(false);
+  }, []);
+
+  //  if there is userid in local storage,
+  useEffect(() => {
+    let x = Local.getUserId();
+    if (x) {
+      let y = Api.getUser(x).then((y) => setUser(y.data));
+    }
+  }, []);
 
   // log in
   async function doLogin(username, password) {
@@ -54,12 +69,6 @@ function App() {
     Local.removeUserInfo();
     setUser(null);
   }
-
-  useEffect(() => {
-    fetchUsers();
-    fetchTrips();
-    fetchItineraries();
-  }, []);
 
   async function fetchUsers() {
     let myresponse = await Api.getUsers();
@@ -168,13 +177,18 @@ function App() {
   const contextObjUser = {
     user,
     doLogout,
+    editUser,
   };
+
+  if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
+    return <h2>"...Loading"</h2>;
+  }
   return (
     <div className="App">
-      <UserContext.Provider value={contextObjUser} r>
-        <NavBar logoutCb={doLogout} user={user} />
+      <UserContext.Provider value={contextObjUser}>
+        <NavBar />
 
-        <TripsContext.Provider value={contextObjTrips} r>
+        <TripsContext.Provider value={contextObjTrips}>
           <Routes>
             <Route path="/" element={<HomeView />} />
             <Route
@@ -216,7 +230,7 @@ function App() {
               path="/profile/:id"
               element={
                 <PrivateRoute>
-                  <MyProfileView user={user} editUserCb={editUser} />
+                  <MyProfileView />
                 </PrivateRoute>
               }
             />
