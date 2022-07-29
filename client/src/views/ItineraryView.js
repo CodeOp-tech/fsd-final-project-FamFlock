@@ -1,52 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import ItineraryList from "../components/ItineraryList";
 import Api from "../helpers/Api";
+import TripsContext from "../context/TripsContext.js";
 
-// const [itineraryLists, setItineraryLists] = useState([{}]);
-// const [itineraryList, setItineraryList] = useState([]);
-// const [itineraryCards, setItineraryCards] = useState([
-//   { Time: "7:00", Activity: "Dinner at Cal Pep" },
-//   { Time: "3:00", Activity: "Walk around Parc Verd" },
-// ]);
+// import the trip, getTrip, and getItineraries from context
+// set initcolumns as the date field in trip (filter?)
 
 function ItineraryView(props) {
-  const [trip, setTrip] = useState({});
-  const [columns, setColumns] = useState(trip.itinerary);
-  const [error, setError] = useState("");
+  const { trip, getTrip, itineraries, fetchItineraries } =
+    useContext(TripsContext);
+
+  let InitColumns = {
+    //   col1: [{ id: "box1", text: "La Pedrera at 6" }],
+    //   col2: [{ id: "box2", text: "Dinner at 7" }],
+    //   col3: [{ id: "box3", text: "Lunch at 2" }],
+  };
+
+  console.log("I am initcolumns" + InitColumns);
+  console.log("I am trip" + trip);
+  console.log("I am trip itinerary id" + trip.itinerary);
+
+  console.log(trip.id);
+
+  //   for (let i = 0; i < trip[itinerary].length; i++) {
+  //     InitColumns[`col${i}`] = [
+  //       {
+  //         id: trip["itinerary"][i].itineraryid,
+  //         text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`,
+  //       },
+  //     ];
+  //   }
+
+  const [columns, setColumns] = useState(InitColumns);
 
   //   useEffect(() => {
   //     getTrip(id);
   //   }, []);
 
   //   defining cards for pass on to children
-  let card = [`${trip.activity} ${trip.time}`];
-
-  // get trip by id
-  //   async function getTrip(id) {
-  //     let myresponse = await Api.getTrip(id);
-  //     console.log(id);
-  //     if (myresponse.ok) {
-  //       setTrip(myresponse.data);
-  //       //   Navigate(`/trips/${id}`);
-  //     } else {
-  //       setError(myresponse.error);
-  //     }
-  //   }
+  //   let card = [`${trip.activity} ${trip.time}`];
 
   function moveBox(item, toColId) {
-    let boxId = item.itineraryid;
+    let boxId = item.id;
     let fromColId = item.fromColId;
 
     let newColumns = { ...columns };
     //   find index of the box to be moved
-    let index = newColumns[fromColId].findIndex((b) => b.id === boxId);
+    console.log("Hello", newColumns, "hEY", fromColId);
+    // let index = newColumns[fromColId].findIndex((b) => b.id === boxId);
     // remove from old column by splicing
-    let boxes = newColumns[fromColId].splice(index, 1);
+    // let boxes = newColumns[fromColId].splice(index, 1);
     // add it to the new column
-    newColumns[toColId].push(boxes[0]);
+    // newColumns[toColId].push(boxes[0]);
     // update state
     setColumns((columns) => newColumns);
   }
@@ -59,7 +67,9 @@ function ItineraryView(props) {
       except onclick would apply to the whole element instead of a button */}
 
         <DndProvider backend={HTML5Backend}>
-          <ItineraryList id={trip.itineraryid} cards={card} dropCb={moveBox} />
+          {trip.itinerary.map((i) => (
+            <ItineraryList id={i.itineraryid} date={i.date} dropCb={moveBox} />
+          ))}
         </DndProvider>
 
         {/* javascript insert time, activity, and location */}

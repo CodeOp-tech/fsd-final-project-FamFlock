@@ -22,14 +22,13 @@ import TripsContext from "./context/TripsContext";
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
-  const [trip, setTrip] = useState(); // useState 3
+  const [trip, setTrip] = useState({}); // useState 3
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
   const [groupId, setGroupId] = useState(1); // default group ID // useState 5
   const [users, setUsers] = useState([]); // useState 6
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
-
 
   const navigate = useNavigate();
 
@@ -123,7 +122,7 @@ function App() {
     if (myresponse.ok) {
       setTrip(myresponse.data);
       //optional: navigate to trip/id page after
-      //   Navigate(`/trips/${id}`);
+      navigate(`/my-trips/${id}`);
     } else {
       setError(myresponse.error);
     }
@@ -167,10 +166,16 @@ function App() {
     }
   }
 
+  // get itinerary
+
   const contextObj = {
+    trip,
+    setTrip,
     trips,
     addTrip,
+    getTrip,
     itineraries,
+    fetchItineraries,
   };
   return (
     <div className="App">

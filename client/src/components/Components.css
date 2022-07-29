@@ -35,7 +35,8 @@
   grid-template-rows: 300px;
   column-gap: 20px;
   background-color: gainsboro;
-  margin: 30px;
+  justify-content: auto;
+  /* margin: 30px; */
 }
 
 .itinerary-list-card {
@@ -57,5 +58,5 @@
 }
 
 .can-drop {
-  background-color: white;
+  background-color: pink;
 }

@@ -8,32 +8,26 @@ function joinToJson(results) {
   let row0 = results.data[0];
 
   // // Create array of itinerary objs
-  // let itinerary = {};
-  // if (row0.id) {
-  //   itinerary = results.data.map((i) => ({
-  //     itineraryid: i.id,
-  //     activity: i.activity,
-  //     date: i.date,
-  //     location: i.location,
-  //     time: i.time,
-  //   }));
-  // }
+  let itinerary = [];
+  if (row0.id) {
+    itinerary = results.data.map((i) => ({
+      itineraryid: i.id,
+      activity: i.activity,
+      date: i.date,
+      location: i.location,
+      time: i.time,
+      FK_trips_id: i.FK_trips_id,
+    }));
+  }
 
   // Create trip obj
   let trip = {
-    // it is currently showing me a different id than its actual one and that one matches the user id
     id: row0.tripid,
     FK_tripGroups_id: row0.FK_tripGroups_id,
     startDate: row0.startDate,
     endDate: row0.endDate,
     destination: row0.destination,
-    itinerary: {
-      id: row0.itineraryid,
-      activity: row0.activity,
-      date: row0.date,
-      location: row0.location,
-      time: row0.time,
-    },
+    itinerary,
   };
 
   return trip;
@@ -56,7 +50,6 @@ router.get("/:id", async function (req, res, next) {
     // let trip = results.data;
     let trip = await results;
     trip = joinToJson(trip);
-    console.log(trip);
     if (trip.length === 0) {
       res.status(404).send({ error: "we cannot find what you requested" });
     } else {

@@ -18,6 +18,13 @@ function ItineraryList(props) {
     }),
 
     // possibly include: a box cant be dropped on the column where the drag started?
+    // A box can't be dropped on the column where the drag started!
+    canDrop(item, monitor) {
+      let box = document.getElementById(item.id);
+      let col = document.getElementById(props.id);
+
+      return box.parentElement !== col;
+    },
   }));
 
   // set background color if box is being dragged over a different column
@@ -32,12 +39,11 @@ function ItineraryList(props) {
       {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
       <h2>Date</h2>
-      {props.cards.map((c) => (
+      {/* {props.boxes.map((c) => (
         <ItineraryCard id={c.id} key={c.id}>
-          {c.Time}
-          {c.Activity}
+          {c.text}
         </ItineraryCard>
-      ))}
+      ))} */}
     </div>
   );
 }
