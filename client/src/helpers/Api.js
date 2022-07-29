@@ -53,9 +53,13 @@ class Api {
 
   // get a trip by id
   static async getTrip(id) {
+    console.log(`I am Api ${id}`);
     return await this._doFetch(`/trips/${id}`);
   }
 
+  static async getItineraries() {
+    return await this._doFetch("/itinerary");
+  }
   //   add a new trip (might need refactoring)
   //   static async addTrip(newTrip) {
   //     return await this._doFetch("/trips", "POST", newTrip);
@@ -69,10 +73,16 @@ class Api {
   }
 
   //  Reaction to message
-  static async newReaction(reaction, FK_user_id, FK_message_id) {
-    let body = { reaction, FK_user_id, FK_message_id };
+  static async newReaction(reaction, FK_user_id, FK_message_id, up, down) {
+    let body = {
+      reaction,
+      FK_user_id,
+      FK_message_id,
+      up,
+      down,
+    };
 
-    return await this._doFetch("/chat/reactions", "GET", body);
+    return await this._doFetch("/chat/reactions", "POST", body);
   }
 
   // edit user information

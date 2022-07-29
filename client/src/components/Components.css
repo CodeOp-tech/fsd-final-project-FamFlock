@@ -30,6 +30,10 @@
 .itinerary-list-wrapper {
   width: 300px;
   height: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 20px;
   background-color: gainsboro;
   margin: 30px;
 }
@@ -38,9 +42,11 @@
   width: 260px;
   height: 40px;
   background-color: white;
-  margin-left: 20px;
+  /* margin-left: 20px;
   margin-right: 20px;
+  margin-bottom: 10px; */
   justify-content: auto;
+  cursor: move;
 }
 
 .itinerary-card-input {
@@ -48,4 +54,8 @@
   margin-right: 20px;
   margin-top: 15px;
   justify-content: auto;
+}
+
+.can-drop {
+  background-color: white;
 }

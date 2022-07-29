@@ -12,7 +12,10 @@ router.get("/", async function (req, res, next) {
 router.get("/:id", async function (req, res, next) {
   let { id } = req.params;
   try {
-    let results = await db(`SELECT * FROM itinerary WHERE id = ${id}`);
+    let results =
+      await db(`SELECT itinerary.id AS itineraryid, trips.id AS tripid, itinerary.*, trips.* FROM itinerary 
+    LEFT JOIN trips ON trips.id = itinerary.FK_trips_id 
+    WHERE itinerary.id = ${id}`);
     let itinerary = results.data;
     if (itinerary.length === 0) {
       res.status(404).send({ error: "we cannot find what you requested" });

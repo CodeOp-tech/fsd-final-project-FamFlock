@@ -18,14 +18,19 @@ import YelpView from "./views/YelpView";
 import ItineraryView from "./views/ItineraryView";
 import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
+// import res from "express/lib/response";
 
 function App() {
   const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
-  const [senderId, setSenderId] = useState(1); // default sender ID // useState 3
-  const [groupId, setGroupId] = useState(1); // default group ID // useState 4
-  const [users, setUsers] = useState([]); // useState 5
-  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 6
+  const [trip, setTrip] = useState(); // useState 3
+  const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
+  const [groupId, setGroupId] = useState(1); // default group ID // useState 5
+  const [users, setUsers] = useState([]); // useState 6
+  const [itineraries, setItineraries] = useState([]); // useState 7
+  const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
+  const [error, setError] = useState(""); // useState9
+
 
   const navigate = useNavigate();
 
@@ -51,6 +56,8 @@ function App() {
 
   useEffect(() => {
     fetchUsers();
+    fetchTrips();
+    fetchItineraries();
   }, []);
 
   async function fetchUsers() {
@@ -59,15 +66,6 @@ function App() {
       setUsers(myresponse.data);
     } else {
       console.log("response not ok");
-    }
-  }
-
-  async function newReaction(reaction, FK_user_id, FK_message_id) {
-    let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
-    if (myresponse.ok) {
-      // setUsers(myresponse.data);
-    } else {
-      // console.log("response not ok");
     }
   }
 
@@ -90,6 +88,7 @@ function App() {
     }
   }
 
+  // edit user profile
   async function editUser(
     picture,
     fullname,
@@ -109,17 +108,28 @@ function App() {
       id
     );
   }
+  // get trip by id
+  async function getTrip(id) {
+    let myresponse = await Api.getTrip(id);
+    if (myresponse.ok) {
+      setTrip(myresponse.data);
+      //optional: navigate to trip/id page after
+      //   Navigate(`/trips/${id}`);
+    } else {
+      setError(myresponse.error);
+    }
+  }
 
-  const getTrips = () => {
-    fetch("/trips")
-      .then((response) => response.json())
-      .then((trips) => {
-        setTrips(trips);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //gets all the trips
+  async function fetchTrips() {
+    let myresponse = await Api.getTrips();
+    if (myresponse.ok) {
+      setTrips(myresponse.data);
+    } else {
+      console.log("response not ok");
+    }
+  }
+
   const addTrip = async (trip) => {
     let options = {
       method: "POST",
@@ -138,10 +148,20 @@ function App() {
       console.log(`network error: ${err.message}`);
     }
   };
+  // get all form itineraries
+  async function fetchItineraries() {
+    let myresponse = await Api.getItineraries();
+    if (myresponse.ok) {
+      setItineraries(myresponse.data);
+    } else {
+      console.log("response not ok");
+    }
+  }
 
   const contextObj = {
     trips,
     addTrip,
+    itineraries,
   };
   return (
     <div className="App">
@@ -153,13 +173,12 @@ function App() {
             path="chat/:groupId"
             element={
               <ChatView
-              senderId={senderId}
-              setSenderIdCb={setSenderId}
-              groupId={groupId}
-              setGroupIdCb={setGroupId}
-              user={user}
-              users={users}
-              newReactionCb={newReaction}
+                senderId={senderId}
+                setSenderIdCb={setSenderId}
+                groupId={groupId}
+                setGroupIdCb={setGroupId}
+                user={user}
+                users={users}
               />
             }
           />

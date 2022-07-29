@@ -1,5 +1,4 @@
 import { geocode } from "./geo-opencage";
-//import TripsContext from "../Context/TripsContext";
 
 // source: Jim's MapsAndGeo Demo with some tweaks for project
 

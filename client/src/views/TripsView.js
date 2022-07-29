@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
-
 import MapsView from "./MapsView.js";
 import TripByIdView from "./TripByIdView.js";
 
@@ -44,9 +43,6 @@ function TripsView(props) {
             </div>
           ))}
       </div>
-      {/*Components that are not rendered in the view here but need context*/}
-      <TripByIdView />
-
       {/* <MapsView trips={trips} /> */}
     </div>
   );

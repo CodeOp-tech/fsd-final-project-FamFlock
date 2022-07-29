@@ -58,6 +58,8 @@ CREATE TABLE messages (
     senderId INT NOT NULL,
 	groupId INT NOT NULL,
     text VARCHAR(250) NOT NULL,
+	thumbsUpCount INT,
+	thumbsDownCount INT,
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -75,12 +77,11 @@ CREATE TABLE  lists  (
 	 reservations  BOOLEAN NOT NULL
    );
 
-CREATE TABLE messagesReaction (
-
+CREATE TABLE messagesReactions (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	reaction TINYINT,
 	FK_user_id INT NOT NULL,
 	FK_message_id INT NOT NULL
-
 );
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
@@ -88,7 +89,7 @@ ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripG
 
 ALTER TABLE trips ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
-ALTER TABLE Itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+ALTER TABLE itinerary ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES messages(id);
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
@@ -131,17 +132,20 @@ INSERT INTO trips (
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('dinner', 20220725, 'Barcelona', 200000, 1),
-	('Tibidabo', 20220728, ' Barcelona', 110000, 1),
+	('visit to La Pedrera', 20220725, 'La Pedrera, Barcelona,Spain', 200000, 1),
+	('Tibidabo', 20220728, 'Parque de Atracciones del Tibidabo, Plaça del Tibidabo, 3-4, 08035 Barcelona, España', 110000, 1),
 	('Big Ben', 20220808, 'London', 123000, 2),
 	('Lunch', 20220901, 'Paris', 133000, 3),
 	('dinner', 20220903, 'Paris', 210000, 3);
 
+
 INSERT INTO messages (
-	senderId, groupId, text, dateTime
+	senderId, groupId, text, thumbsUpCount, thumbsDownCount, dateTime
 ) VALUES
-	(1, 1, "Hello there", 20220727123806),
-	(2, 1, "Hi!", 20220727123807);
+	
+	(3, 1, "Hey", 0, 0, 20220727123806),
+	(1, 1, "Hello there", 0, 0, 20220727123807),
+	(2, 1, "Hi!", 0, 0, 20220727123808);
 
 INSERT INTO messagesReactions (
 	reaction, FK_user_id, FK_message_id
