@@ -53,9 +53,13 @@ class Api {
 
   // get a trip by id
   static async getTrip(id) {
+    console.log(`I am Api ${id}`);
     return await this._doFetch(`/trips/${id}`);
   }
 
+  static async getItineraries() {
+    return await this._doFetch("/itinerary");
+  }
   //   add a new trip (might need refactoring)
   //   static async addTrip(newTrip) {
   //     return await this._doFetch("/trips", "POST", newTrip);
