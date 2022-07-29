@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TripByIdList from "../components/TripByIdList";
+import TripByIdList from "../components/TripList";
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import MapsView from "./MapsView";
 

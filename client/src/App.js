@@ -9,7 +9,7 @@ import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdView from "./views/TripByIdView";
-import TripByIdListsView from "./views/TripByIdListsView";
+import ListsView from "./views/ListsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
@@ -30,7 +30,6 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
-
 
   const navigate = useNavigate();
 
@@ -214,7 +213,7 @@ function App() {
           <Route path="/my-trips/:id" element={<TripByIdView />} />
           <Route path="/maps" element={<MapsView />} />
           <Route path="/itinerary" element={<ItineraryView />} />
-          <Route path="/lists" element={<TripByIdListsView />} />
+          <Route path="/lists" element={<ListsView />} />
         </Routes>
       </TripsContext.Provider>
     </div>
