@@ -21,52 +21,56 @@ function ChatList(props) {
 
   function reactionClick(reaction, messageId) {
     const result = props.newReactionCb(reaction, props.user.id, messageId);
-    console.log(reaction, messageId);
+    console.log("on click: reaction:", reaction, "message id:", messageId);
   }
 
   function showReaction(message) {
     for (let j = 0; j < props.reactions.length; j++) {
-      // console.log(props.reactions[j]);
+      let userReaction = props.reactions.find(
+        (r) =>
+          (r.FK_user_id === props.user.id) & (r.FK_message_id === message.id)
+      );
+
       if (message.id === props.reactions[j].FK_message_id) {
-        console.log(props.reactions[j].reaction);
-        if (props.user.id === props.reactions[j].FK_user_id) {
-          console.log("passed", message.id);
-          if (props.reactions[j].reaction === 0) {
+        if (userReaction) {
+          if (userReaction.reaction === 0) {
             return (
               <ThumbDownFilled
                 message={message.id}
                 thumbsDownCount={message.thumbsDownCount}
                 thumbsUpCount={message.thumbsUpCount}
-                reactionClickCb={() =>
-                  reactionClick(props.reactions[j].reaction, message.id)
-                }
+                reactionClickCb={reactionClick}
               />
             );
-          } else if (props.reactions[j].reaction === 1) {
+          } else if (userReaction.reaction === 1) {
             return (
               <ThumbUpFilled
                 messageId={message.id}
                 thumbsDownCount={message.thumbsDownCount}
                 thumbsUpCount={message.thumbsUpCount}
-                reactionClickCb={() =>
-                  reactionClick(props.reactions[j].reaction, message.id)
-                }
+                reactionClickCb={reactionClick}
               />
             );
           }
         } else {
-          console.log("else");
           return (
             <BothUnfilled
               messageId={message.id}
               thumbsDownCount={message.thumbsDownCount}
               thumbsUpCount={message.thumbsUpCount}
-              reactionClickCb={() =>
-                reactionClick(props.reactions[j].reaction, message.id)
-              }
+              reactionClickCb={reactionClick}
             />
           );
         }
+      } else {
+        return (
+          <BothUnfilled
+            messageId={message.id}
+            thumbsDownCount={message.thumbsDownCount}
+            thumbsUpCount={message.thumbsUpCount}
+            reactionClickCb={reactionClick}
+          />
+        );
       }
     }
   }
