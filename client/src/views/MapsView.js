@@ -71,6 +71,7 @@ function MapsView(props) {
     }
   }
 
+  //gets places for itinerary and creates places array to then send to markers
   async function setPlacesOfItinerary() {
     let newArray = [];
     for (let activity of trip.itinerary) {

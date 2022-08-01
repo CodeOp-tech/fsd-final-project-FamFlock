@@ -36,7 +36,12 @@ router.post("/login", async (req, res) => {
     } else {
       let user = results.data[0]; // the user's row/record from the DB
       let passwordsEqual = await bcrypt.compare(password, user.password);
+
       if (passwordsEqual) {
+        console.log(
+          "this if passwords are equal in routes auth line 40",
+          passwordsEqual
+        );
         // Passwords match
         let payload = { userid: user.id };
         // Create token containing user ID

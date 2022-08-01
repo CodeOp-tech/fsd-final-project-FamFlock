@@ -31,7 +31,7 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
-  
+
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -52,10 +52,15 @@ function App() {
 
   // log in
   async function doLogin(username, password) {
-    // console.log(user);
+    console.log(
+      "this is username and password from login App line 55",
+      username,
+      password
+    );
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      console.log(myresponse);
       let user = await Api.getUser(myresponse.data.user.id);
       setUser(user.data);
       setLoginErrorMessage("");
@@ -93,7 +98,7 @@ function App() {
       // browser popup saying you've been registered
       alert("You have been registered!");
       //  log them in automatically
-      doLogin(username, password);
+      await doLogin(username, password);
     } else {
       setLoginErrorMessage("Registration failed");
     }
@@ -273,7 +278,6 @@ function App() {
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
             <Route path="/lists" element={<ListsView />} />
-
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>
