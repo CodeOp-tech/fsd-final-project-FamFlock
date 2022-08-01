@@ -133,14 +133,8 @@ function ChatView(props) {
     setText("");
   }
 
-  async function newReaction(reaction, FK_user_id, FK_message_id, up, down) {
-    let myresponse = await Api.newReaction(
-      reaction,
-      FK_user_id,
-      FK_message_id,
-      up,
-      down
-    );
+  async function newReaction(reaction, FK_user_id, FK_message_id) {
+    let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
     if (myresponse.ok) {
       // console.log(myresponse.data[0]);
       return myresponse.data[0];

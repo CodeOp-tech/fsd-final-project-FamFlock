@@ -11,20 +11,63 @@ router.get("/", async function (req, res, next) {
 
 // POST to message reactions
 router.post("/post", async function (req, res, next) {
-  console.log("arrived");
-  const { reaction, FK_user_id, FK_message_id, up, down } = req.body;
-  const sql = `INSERT INTO messagesReactions (reaction, FK_user_id, FK_message_id) VALUES ('${reaction}', '${FK_user_id}', '${FK_message_id}' );
-    UPDATE messages SET thumbsUpCount=thumbsUpCount+${up}, thumbsDownCount=thumbsDownCount+${down} WHERE ID=${FK_message_id}
+  const { reaction, FK_user_id, FK_message_id } = req.body;
+
+  let response = await db(
+    `SELECT * FROM messagesReactions WHERE FK_user_id = ${FK_user_id} AND FK_message_id = ${FK_message_id}`
+  );
+  console.log(response);
+
+  // check to see if current user has already reacted to this message
+  if (response.data.length > 0) {
+    if (reaction === response.data[0].reaction) {
+      const sql = `DELETE FROM messagesReactions WHERE id=${response.data[0].id}`;
+
+      if (response.data[0].reaction === 0) {
+        await db(
+          `UPDATE messages SET thumbsDownCount=thumbsDownCount-1 WHERE id=${FK_message_id}`
+        );
+      } else if (response.data[0].reaction === 1) {
+        await db(
+          `UPDATE messages SET thumbsUpCount=thumbsUpCount-1 WHERE id=${FK_message_id}`
+        );
+      }
+
+      try {
+        await db(sql);
+
+        let results = await db(
+          `SELECT * FROM messages WHERE id=${FK_message_id}`
+        );
+        res.send("reaction updated");
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    }
+  } else {
+    const sql = `INSERT INTO messagesReactions (reaction, FK_user_id, FK_message_id) VALUES (${reaction}, ${FK_user_id}, ${FK_message_id});
     `;
 
-  // const messageSql = ` UPDATE messages SET thumbsUpCount='${thumbsUpCount}' AND thumbsDownCount='${thumbsDownCount}' WHERE ID=${FK_message_id}`;
-  try {
-    await db(sql);
-    // await db(messageSql);
-    let results = await db(`SELECT * FROM messages WHERE id=${FK_message_id}`);
-    res.send(results.data);
-  } catch (err) {
-    res.status(500).send(err);
+    if (reaction === 0) {
+      await db(
+        `UPDATE messages SET thumbsDownCount=thumbsDownCount+1 WHERE ID=${FK_message_id}`
+      );
+    } else if (reaction === 1) {
+      await db(
+        `UPDATE messages SET thumbsUpCount=thumbsUpCount+1 WHERE ID=${FK_message_id}`
+      );
+    }
+
+    try {
+      await db(sql);
+      // await db(messageSql);
+      let results = await db(
+        `SELECT * FROM messages WHERE id=${FK_message_id}`
+      );
+      res.send("reaction added");
+    } catch (err) {
+      res.status(500).send(err);
+    }
   }
 });
 

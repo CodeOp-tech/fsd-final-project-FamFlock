@@ -20,20 +20,7 @@ function ChatList(props) {
   }
 
   function reactionClick(reaction, messageId) {
-    let up = 0;
-    let down = 0;
-    if (reaction === 1) {
-      up = 1;
-    } else {
-      down = 1;
-    }
-    const result = props.newReactionCb(
-      reaction,
-      props.user.id,
-      messageId,
-      up,
-      down
-    );
+    const result = props.newReactionCb(reaction, props.user.id, messageId);
     console.log(reaction, messageId);
   }
 
