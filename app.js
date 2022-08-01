@@ -14,6 +14,7 @@ const yelpRouter = require("./routes/yelp");
 const chatRouter = require("./routes/chat");
 const listsRouter = require("./routes/lists");
 const reactionsRouter = require("./routes/reactions");
+const addressessRouter = require("./routes/addressess");
 
 var app = express();
 
@@ -34,5 +35,6 @@ app.use("/yelp", yelpRouter);
 app.use("/chat", chatRouter);
 app.use("/lists", listsRouter);
 app.use("/reactions", reactionsRouter);
+app.use("/addresses", addressessRouter);
 
 module.exports = app;
