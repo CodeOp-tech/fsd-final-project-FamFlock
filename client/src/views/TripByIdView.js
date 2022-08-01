@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
-import TripByIdList from "../components/TripByIdList";
+
+import TripList from "../components/TripList";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 import MapsView from "./MapsView";
 import UserContext from "../context/UserContext";
 import TripsContext from "../context/TripsContext";
 
 function TripByIdView(props) {
+
   const { trip, goToMapsView, getTrip, fetchItineraries  } = useContext(TripsContext);
   
   // function handleItineraryClick(e) {

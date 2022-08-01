@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS lists;
+DROP TABLE IF EXISTS listItems;
 
 
 SET foreign_key_checks = 1;
@@ -66,15 +67,15 @@ CREATE TABLE messages (
 CREATE TABLE  lists  (
 	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	 FK_trips_id  INT NOT NULL,
-	 destin  BOOLEAN NOT NULL,
-	 decideDates  BOOLEAN NOT NULL,
-	 bookFlight  BOOLEAN NOT NULL,
-	 bookAccom  BOOLEAN NOT NULL,
-	 essent  BOOLEAN NOT NULL,
-	 planAct  BOOLEAN NOT NULL,
-	 decideTrans  BOOLEAN NOT NULL,
-	 splitPlan  BOOLEAN NOT NULL,
-	 reservations  BOOLEAN NOT NULL
+	 name  VARCHAR(100) NOT NULL,
+	 isComplete  BOOLEAN NOT NULL
+   );
+
+CREATE TABLE  listItems  (
+	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 FK_lists_id  INT NOT NULL,
+	 name  VARCHAR(200) NOT NULL,
+	 isComplete  BOOLEAN NOT NULL
    );
 
 CREATE TABLE messagesReactions (
@@ -104,6 +105,7 @@ ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES message
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
 
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
+ALTER TABLE  listItems  ADD FOREIGN KEY (FK_lists_id) REFERENCES  lists (id);
 
 ALTER TABLE tripAddressess ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
@@ -167,9 +169,12 @@ INSERT INTO messagesReactions (
 
 
 INSERT INTO lists (
-	FK_trips_id, destin, decideDates, bookFlight, bookAccom, essent, planAct, decideTrans, splitPlan, reservations
+	FK_trips_id, name, isComplete
 ) VALUES
-	(1, true, false, false, false, false, false, false, false, false),
-	(2, true, true, true, true, false, false, true, false, true),
-	(3, true, true, false, true, true, true, false, true, false);
+	(1, "Packing List", false);
 
+INSERT INTO listItems (
+	FK_lists_id, name, isComplete
+) VALUES
+	(1, "Documents", false),
+	(1, "Electronics", true);
