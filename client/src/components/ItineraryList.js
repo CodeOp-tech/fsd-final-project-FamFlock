@@ -3,14 +3,33 @@ import { useDrop } from "react-dnd";
 import ItineraryCard from "./ItineraryCard";
 import "./ItineraryList.css";
 
+// define empty form
+const EMPTY_FORM = {
+  activity: "",
+  date: "",
+  location: "",
+  //   somehow make it so that both activity and location are accepted in the same input?
+  time: "",
+  //   date is column date
+};
+
 function ItineraryList(props) {
+  const [formData, setFormData] = useState(EMPTY_FORM);
+
   let itinerary = props.itinerary;
-  console.log(itinerary);
 
   function handleChange(event) {
     let { name, value } = event.target;
-    // this needs more stuff
+    setFormData((data) => ({ ...data, [name]: value }));
   }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.addToItineraryCb(formData);
+    alert("woohooo! new activity added!");
+    setFormData(EMPTY_FORM);
+  }
+
   // Courtesy of Jim!
   //    converts sql date to human
   function convertDbDateToHuman(dbDateTime) {
@@ -50,10 +69,12 @@ function ItineraryList(props) {
     },
   }));
 
-  //   sort activities by date
+  // sort activities by date
   let sortedByDate = itinerary.filter(
     (itinerary) => (itinerary.date = props.date)
   );
+
+  //   sort by time
 
   // set background color if box is being dragged over a different column
   let canDropClass = collected.isOver && collected.canDrop ? "can-drop" : "";
@@ -67,20 +88,26 @@ function ItineraryList(props) {
       {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
       <h2>{convertDbDateToHuman(props.date)}</h2>
-      {sortedByDate.map((itinerary) => (
-        <ItineraryCard
-          id={itinerary.date}
-          key={itinerary.activityid}
-          itinerary={itinerary}
-        >
-          {itinerary.activity} at {itinerary.location}
-        </ItineraryCard>
-      ))}
+      {itinerary
+        .filter((itinerary) => itinerary.date === props.date)
+        .map((itinerary) => (
+          <ItineraryCard
+            id={itinerary.date}
+            key={itinerary.activityid}
+            itinerary={itinerary}
+          >
+            <strong>{itinerary.time}</strong> <br /> {itinerary.activity} at{" "}
+            {itinerary.location}
+          </ItineraryCard>
+        ))}
       <input
         className="itinerary-card-input"
+        id=""
+        // value:
         type="text"
         onChange={handleChange}
         placeholder="Add something..."
+        onSubmit={handleSubmit}
       />
     </div>
   );
