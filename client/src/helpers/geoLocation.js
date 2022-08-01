@@ -12,30 +12,31 @@ import { geocode } from "./geo-opencage";
  **/
 
 // Enable (or not) console logging
-const DEBUG = true;
+const DEBUG = false;
 
 /**
- * Return [latitude, longitude] to use as the user's location ("home")
+ * Return [latitude, longitude] to use as the user's location ("home") to center map
  **/
 
-async function getHome(destination) {
-  // Check for 'home' query param  ---> Figure out later how to use. THese would be params sent in the url.
-  // let params = new URLSearchParams(window.location.search); // parse query params
-  // if (params.has("home")) {
-  //   let response = await geocode(params.get("home"));
-  //   if (response.ok && response.data.latLng) {
-  //     if (DEBUG) {
-  //       console.log(
-  //         "geoloc: query parameter:",
-  //         params.get("home"),
-  //         response.data
-  //       );
-  //     }
-  //     return response.data.latLng;
-  //   }
-  // }
+// Check for 'destintnation' query param. in the URL is set to the trip destination.
+async function getHome() {
+  // this part of the function will set home to the destination of the trip passed via the url params.
+  let params = new URLSearchParams(window.location.search); // parse query params
+  if (params.has("destination")) {
+    let response = await geocode(params.get("destination"));
+    if (response.ok && response.data.latLng) {
+      if (DEBUG) {
+        console.log(
+          "geoloc: query parameter:",
+          params.get("destination"),
+          response.data
+        );
+      }
+      return response.data.latLng;
+    }
+  }
 
-  // Browser geolocation --> This will be useful when we can get the live routes going.
+  // Browser geolocation --> This will be useful when we can get the live routes going if we have time.
   try {
     let opts = { timeout: 2000 };
     let geoPos = await _asyncGetCurrentPosition(opts);
@@ -51,7 +52,6 @@ async function getHome(destination) {
   if (DEBUG) {
     console.log('geoloc: "last resort": trip destination');
   }
-  return destination;
 }
 
 // Use a promise-based wrapper for (callback-based) browser geolocation function

@@ -82,7 +82,12 @@ class Api {
       down,
     };
 
-    return await this._doFetch("/chat/reactions", "POST", body);
+    return await this._doFetch("/reactions/post", "POST", body);
+  }
+
+  // Get reactions
+  static async getReactions() {
+    return await this._doFetch(`/reactions`, "GET");
   }
 
   // edit user information
@@ -109,28 +114,10 @@ class Api {
   }
 
   // user can edit lists info
-  static async editList(
-    destin,
-    decideDates,
-    bookFlight,
-    bookAccom,
-    essent,
-    planAct,
-    decideTrans,
-    splitPlan,
-    reservations,
-    id
-  ) {
+  static async editList(name, isComplete, id) {
     let body = {
-      destin,
-      decideDates,
-      bookFlight,
-      bookAccom,
-      essent,
-      planAct,
-      decideTrans,
-      splitPlan,
-      reservations,
+      name,
+      isComplete,
       id,
     };
 

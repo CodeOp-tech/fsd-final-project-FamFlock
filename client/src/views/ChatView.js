@@ -6,6 +6,7 @@ import Api from "../helpers/Api";
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
+  const [reactions, setReactions] = useState([]); // useState 3
 
   const pusherRef = useRef(null);
   const socketIdRef = useRef(null);
@@ -58,9 +59,12 @@ function ChatView(props) {
   useEffect(() => {
     // Call whenever participants change
     getRecentMessages();
-    // getGroupWithUsers();
     props.setSenderIdCb(props.user.id);
   }, [props.senderId, props.groupId]);
+
+  useEffect(() => {
+    fetchReactions();
+  }, []);
 
   // Load previous messages from DB
   async function getRecentMessages() {
@@ -138,11 +142,28 @@ function ChatView(props) {
       down
     );
     if (myresponse.ok) {
-      console.log(myresponse.data[0]);
+      // console.log(myresponse.data[0]);
       return myresponse.data[0];
     } else {
       console.log("response not ok");
     }
+  }
+
+  async function fetchReactions() {
+    let myresponse = await Api.getReactions();
+    if (myresponse.ok) {
+      setReactions(myresponse.data);
+    } else {
+      console.log("response not ok");
+    }
+  }
+
+  if (
+    reactions.length === 0 ||
+    messages.length === 0 ||
+    props.users.length === 0
+  ) {
+    return "loading";
   }
 
   return (
@@ -154,6 +175,7 @@ function ChatView(props) {
         groupId={props.groupId}
         users={props.users}
         newReactionCb={newReaction}
+        reactions={reactions}
       />
       <div>
         <form onSubmit={handleSubmit}>

@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS lists;
+DROP TABLE IF EXISTS listItems;
 
 
 SET foreign_key_checks = 1;
@@ -66,15 +67,15 @@ CREATE TABLE messages (
 CREATE TABLE  lists  (
 	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	 FK_trips_id  INT NOT NULL,
-	 destin  BOOLEAN NOT NULL,
-	 decideDates  BOOLEAN NOT NULL,
-	 bookFlight  BOOLEAN NOT NULL,
-	 bookAccom  BOOLEAN NOT NULL,
-	 essent  BOOLEAN NOT NULL,
-	 planAct  BOOLEAN NOT NULL,
-	 decideTrans  BOOLEAN NOT NULL,
-	 splitPlan  BOOLEAN NOT NULL,
-	 reservations  BOOLEAN NOT NULL
+	 name  VARCHAR(100) NOT NULL,
+	 isComplete  BOOLEAN NOT NULL
+   );
+
+CREATE TABLE  listItems  (
+	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 FK_lists_id  INT NOT NULL,
+	 name  VARCHAR(200) NOT NULL,
+	 isComplete  BOOLEAN NOT NULL
    );
 
 CREATE TABLE messagesReactions (
@@ -83,6 +84,15 @@ CREATE TABLE messagesReactions (
 	FK_user_id INT NOT NULL,
 	FK_message_id INT NOT NULL
 );
+
+CREATE TABLE tripAddressess (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(250) NOT NULL,
+	latLng VARCHAR(250) NOT NULL,
+	formatted_address VARCHAR(250) NOT NULL,
+	FK_trips_id INT NOT NULL
+);
+
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
@@ -95,7 +105,9 @@ ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES message
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
 
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
+ALTER TABLE  listItems  ADD FOREIGN KEY (FK_lists_id) REFERENCES  lists (id);
 
+ALTER TABLE tripAddressess ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
     email, username, password, fullname, picture
@@ -148,7 +160,7 @@ INSERT INTO messages (
 	senderId, groupId, text, thumbsUpCount, thumbsDownCount, dateTime
 ) VALUES
 	
-	(3, 1, "Hey", 0, 0, 20220727123806),
+	(3, 1, "Hey", 2, 1, 20220727123806),
 	(1, 1, "Hello there", 0, 0, 20220727123807),
 	(2, 1, "Hi!", 0, 0, 20220727123808);
 
@@ -159,10 +171,14 @@ INSERT INTO messagesReactions (
 	(0, 1, 1), 
 	(1, 2, 1);
 
-INSERT INTO lists (
-	FK_trips_id, destin, decideDates, bookFlight, bookAccom, essent, planAct, decideTrans, splitPlan, reservations
-) VALUES
-	(1, true, false, false, false, false, false, false, false, false),
-	(2, true, true, true, true, false, false, true, false, true),
-	(3, true, true, false, true, true, true, false, true, false);
 
+INSERT INTO lists (
+	FK_trips_id, name, isComplete
+) VALUES
+	(1, "Packing List", false);
+
+INSERT INTO listItems (
+	FK_lists_id, name, isComplete
+) VALUES
+	(1, "Documents", false),
+	(1, "Electronics", true);

@@ -47,12 +47,11 @@ router.get("/:id", async function (req, res, next) {
       await db(`SELECT trips.id AS tripid, itinerary.id AS activityid, trips.*, itinerary.* FROM trips
       LEFT JOIN itinerary ON itinerary.FK_trips_id = trips.id
      WHERE trips.id = ${id}`);
-    // let trip = results.data;
-    let trip = await results;
-    trip = joinToJson(trip);
-    if (trip.length === 0) {
+
+    if (results.data.length === 0) {
       res.status(404).send({ error: "we cannot find what you requested" });
     } else {
+      let trip = joinToJson(results);
       res.send(trip);
     }
   } catch (err) {

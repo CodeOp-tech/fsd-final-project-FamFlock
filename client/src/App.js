@@ -9,7 +9,7 @@ import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdView from "./views/TripByIdView";
-import TripByIdListsView from "./views/TripByIdListsView";
+import ListsView from "./views/ListsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
@@ -31,6 +31,7 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
+  
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -180,8 +181,10 @@ function App() {
     }
   }
 
+
+  // navitates to the map of selected trip. Function is called from trip by id view.
   function goToMapsView(id) {
-    navigate(`/my-trips/${id}/maps`);
+    navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
   }
 
   const contextObjTrips = {
@@ -265,11 +268,13 @@ function App() {
             />
 
             <Route path="/my-trips/:id" element={<TripByIdView />} />
+
             <Route
               path="/itinerary"
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
-            <Route path="/lists" element={<TripByIdListsView />} />
+            <Route path="/lists" element={<ListsView />} />
+
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>
