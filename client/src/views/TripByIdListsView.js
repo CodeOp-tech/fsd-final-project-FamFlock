@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TripByIdList from "../components/TripByIdList";
+import Api from "../helpers/Api";
 
 function TripByIdListsView() {
   const [lists, setLists] = useState([]);
@@ -21,16 +22,10 @@ function TripByIdListsView() {
   };
 
   const addList = async (list) => {
-    let options = {
-      method: "POST",
-      headers: { "Content=Type": "application/json" },
-      body: JSON.stringify(list),
-    };
     try {
-      let response = await fetch("/list", options);
+      let response = await Api.newList(list);
       if (response.ok) {
-        let data = await response.json();
-        setLists(data);
+        setLists(response.data);
       } else {
         console.log(`server error: ${response.status} ${response.statusText}`);
       }

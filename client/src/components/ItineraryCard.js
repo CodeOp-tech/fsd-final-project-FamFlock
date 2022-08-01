@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 
 // props here is gonna be itinerary time and activity
 function ItineraryCard(props) {
+  let itinerary = props.itinerary;
   const [collected, dragRef] = useDrag(() => ({
     type: "box",
 
@@ -13,24 +14,14 @@ function ItineraryCard(props) {
       return { id: props.id, fromColId: col.id };
     },
   }));
-  function handleChange(event) {
-    let { name, value } = event.target;
-    // this needs more stuff
-  }
+
   return (
     <div>
       {/* javascript insert time, activity, and location */}
-      <div className="itinerary-list-card" id={props.id} ref={dragRef}>
+      <div className="itinerary-list-card" id={props.activityid} ref={dragRef}>
         {" "}
         {props.children}
       </div>
-
-      <input
-        className="itinerary-card-input"
-        type="text"
-        onChange={handleChange}
-        placeholder="Add something..."
-      />
     </div>
   );
 }

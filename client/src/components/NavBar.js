@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./NavBar.scss";
-
+import UserContext from "../context/UserContext";
 // function to show the navbar, will need the user prop at some point
 function NavBar(props) {
+  const { user, doLogout } = useContext(UserContext);
   return (
     <nav className="NavBar">
       <ul>
-        {props.user ? (
+        {user ? (
           <>
             {/* only if user exists */}
             <li>
@@ -21,7 +22,7 @@ function NavBar(props) {
               <NavLink to="/yelp-search">Yelp Search</NavLink>
             </li>
             <li>
-              <Link to="/" onClick={props.logoutCb}>
+              <Link to="/" onClick={doLogout}>
                 Logout
               </Link>
             </li>

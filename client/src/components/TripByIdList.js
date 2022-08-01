@@ -51,7 +51,7 @@ const TripByIdList = (props) => {
               aria-expanded="false"
               aria-controls="flush-collapseUnique"
             >
-              Trip {list.destin} List
+              Click to start!
             </button>
           </h2>
           <div
