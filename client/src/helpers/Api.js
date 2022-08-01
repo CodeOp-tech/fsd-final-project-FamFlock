@@ -82,7 +82,12 @@ class Api {
       down,
     };
 
-    return await this._doFetch("/chat/reactions", "POST", body);
+    return await this._doFetch("/reactions/post", "POST", body);
+  }
+
+  // Get reactions
+  static async getReactions() {
+    return await this._doFetch(`/reactions`, "GET");
   }
 
   // edit user information

@@ -22,15 +22,6 @@ function MyProfileView(props) {
     setButtonClick(!buttonClick);
   }
 
-  function handleChangeImage(event) {
-    const file = event.target.files[0];
-    console.log(file);
-    if (file.size > 100000) {
-      console.log("image is too large");
-    } else {
-    }
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     props.editUserCb(
@@ -64,11 +55,10 @@ function MyProfileView(props) {
           <form onSubmit={handleSubmit}>
             <label>Change Profile Picture</label>
             <input
-              type="file"
               accept="image/*"
               value={formData.picture}
               name="picture"
-              onChange={handleChangeImage}
+              onChange={handleChange}
             />
             <br />
             <label>Edit name</label>
