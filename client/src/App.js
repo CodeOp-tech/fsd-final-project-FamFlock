@@ -25,7 +25,7 @@ function App() {
   const [user, setUser] = useState(null); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
-  const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
+  const [senderId, setSenderId] = useState(0); // default sender ID // useState 4
   const [groupId, setGroupId] = useState(1); // default group ID // useState 5
   const [users, setUsers] = useState([]); // useState 6
   const [itineraries, setItineraries] = useState([]); // useState 7
@@ -181,8 +181,8 @@ function App() {
     }
   }
 
-
   // navitates to the map of selected trip. Function is called from trip by id view.
+
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
   }
@@ -234,7 +234,6 @@ function App() {
                   senderId={senderId}
                   setSenderIdCb={setSenderId}
                   groupId={groupId}
-                  setGroupIdCb={setGroupId}
                   user={user}
                   users={users}
                 />
