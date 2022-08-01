@@ -179,9 +179,9 @@ function App() {
     }
   }
 
-
+  // navitates to the map of selected trip. Function is called from trip by id view.
   function goToMapsView(id) {
-    navigate(`/my-trips/${id}/maps`);
+    navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
   }
 
   const contextObjTrips = {
@@ -199,7 +199,6 @@ function App() {
     user,
     doLogout,
     editUser,
-
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {

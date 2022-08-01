@@ -3,8 +3,9 @@ import MapMarkerTable from "../components/MapMarkerTable";
 import MapMarker from "../components/MapMarker";
 import MapAddressForm from "../components/MapAddressForm";
 import { getHome } from "../helpers/geoLocation";
-//import TripsContext from "../Context/TripsContext";
-import { geocode } from "../helpers/geo-opencage";
+import { geocode, revgeocode } from "../helpers/geo-opencage";
+import TripsContext from "../context/TripsContext.js";
+import UserContext from "../context/UserContext";
 
 const samplePlaces = [
   {
@@ -24,49 +25,44 @@ const samplePlaces = [
   },
 ];
 function MapsView(props) {
-  const [home, setHome] = useState([41.3828939, 2.1774322]); //useState 1 -  center of map  (destination of trips table)
-  const [places, setPlaces] = useState(samplePlaces); // useState 2 - should be passed by props from itinerary
+  const [home, setHome] = useState(); //useState 1 -  center of map  (destination of trips table)
+  const [places, setPlaces] = useState(); // useState 2 - should be passed by props from itinerary and addresses transformed with geocode
+  const [newPlaces, setNewPlaces] = useState([]);
   const [address, setAddress] = useState("");
+  const { user } = useContext(UserContext);
+  const { trip } = useContext(TripsContext);
 
-  // let { trips } = useContext(TripsContext);
-  // const destination = trips[0].destination;
+  useEffect(() => {
+    getAndSetHome();
+  }, []);
 
-  //   useEffect(() => {
-  //     callSetHome();
-  //   }, []);
+  useEffect(() => {
+    if (home && trip) {
+      setPlacesOfItinerary();
+    }
+  }, [home, trip]);
 
-  // ******These functions will be useful when we want to change the "home" to the live user location****
-  //   useEffect(() => {
-  //     getAndSetHome();
-  //   }, []);
+  //This function centers the map ( "home") to the trips destination or to the  live user location of browser****
+  async function getAndSetHome() {
+    let latLng = await getHome(); // returns [lat, lng]
+    trip && setHome(latLng);
+  }
 
-  //   async function getAndSetHome(destination) {
-  //     console.log(destination);
-  //     let latLng = await getHome(); // returns [lat, lng]
-  //     setHome(latLng);
-  //   }
-  //**************************** */
-
-  //   function callSetHome() {
-  //     //props.trips && setHome(props.trips[0].destination);
-  //     setHome("Barcelona");
-  //   }
-
+  // Send a request to OpenCage to geocode 'addr'
   async function addMarkerForAddress(addr) {
-    // Send a request to OpenCage to geocode 'addr'
-    let myresponse = await geocode(addr);
-    console.log(myresponse);
+    let myresponse = await geocode(addr.address);
+
     if (myresponse.ok) {
       if (myresponse.data.latLng) {
         // Create new 'place' obj
         let d = myresponse.data;
         let newPlace = {
           latLng: d.latLng,
-          input_address: addr,
+          name: addr.addressName,
           formatted_address: d.formatted_address,
         };
-        // Add it to 'places' state
-        setPlaces((places) => [...places, newPlace]);
+        // Add it to 'new Places' state
+        setNewPlaces((x) => [...newPlaces, newPlace]);
       } else {
         console.log("addMarkerForAddress(): no results found");
       }
@@ -75,15 +71,41 @@ function MapsView(props) {
     }
   }
 
+  async function setPlacesOfItinerary() {
+    let newArray = [];
+    for (let activity of trip.itinerary) {
+      let response = await geocode(activity.location);
+      let newObj = {
+        activityid: activity.activityid,
+        latLng: response.data.latLng,
+        location: response.data.formatted_address,
+        activity: activity.activity,
+        date: activity.date,
+      };
+      newArray.push(newObj);
+    }
+    setPlaces(newArray);
+  }
+
   return (
     <div>
       <h1>Your map for your trip to XYZ</h1>
-      <div>{home && <MapMarker places={places} home={home} zoom={13} />}</div>
+      <div>
+        {home && (
+          <MapMarker
+            places={places}
+            home={home}
+            zoom={13}
+            newPlaces={newPlaces}
+          />
+        )}
+      </div>
       <h3 className="mt-4">Add important addressess to your itinerary</h3>
       <p>Enter an address to add a blue marker on the map</p>
       <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
+
       <div>
-        <MapMarkerTable places={places} />
+        <MapMarkerTable places={places} newPlaces={newPlaces} />
       </div>
     </div>
   );

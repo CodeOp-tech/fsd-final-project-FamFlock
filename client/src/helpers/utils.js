@@ -8,7 +8,10 @@
 
 function breakAddr(addr) {
   let addrWithBrs = addr.replace(/, /g, "<br />");
+  //let addrWithBrs = addr;
+  // console.log(addrWithBrs);
   return <span dangerouslySetInnerHTML={{ __html: addrWithBrs }}></span>;
+  //return <span dangerouslySetInnerHTML={{ __html: addr }}></span>;
 }
 
 export { breakAddr };
