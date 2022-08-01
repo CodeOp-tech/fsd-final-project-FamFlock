@@ -53,12 +53,11 @@ class Api {
 
   // get a trip by id
   static async getTrip(id) {
-    console.log(`I am Api ${id}`);
     return await this._doFetch(`/trips/${id}`);
   }
 
   static async getItineraries() {
-    return await this._doFetch("/itinerary");
+    return await this._doFetch(`/itinerary/`);
   }
   //   add a new trip (might need refactoring)
   //   static async addTrip(newTrip) {
@@ -82,7 +81,12 @@ class Api {
       down,
     };
 
-    return await this._doFetch("/chat/reactions", "POST", body);
+    return await this._doFetch("/reactions/post", "POST", body);
+  }
+
+  // Get reactions
+  static async getReactions() {
+    return await this._doFetch(`/reactions`, "GET");
   }
 
   // edit user information

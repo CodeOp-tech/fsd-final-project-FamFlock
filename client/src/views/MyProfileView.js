@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 function MyProfileView(props) {
   const [buttonClick, setButtonClick] = useState(false); // useState 1
+  const { user, editUser } = useContext(UserContext);
 
   let { id } = useParams();
 
   const form = {
     picture: "",
-    fullname: props.user.fullname,
-    email: props.user.email,
-    username: props.user.username,
+    fullname: user.fullname,
+    email: user.email,
+    username: user.username,
     currentPassword: "",
     newPassword: "",
   };
@@ -22,18 +24,9 @@ function MyProfileView(props) {
     setButtonClick(!buttonClick);
   }
 
-  function handleChangeImage(event) {
-    const file = event.target.files[0];
-    console.log(file);
-    if (file.size > 100000) {
-      console.log("image is too large");
-    } else {
-    }
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
-    props.editUserCb(
+    editUser(
       formData.picture,
       formData.fullname,
       formData.email,
@@ -59,16 +52,15 @@ function MyProfileView(props) {
       <h2>My Profile</h2>
       {buttonClick ? (
         <div>
-          <img src={props.user.picture} />
+          <img src={user.picture} />
           <br />
           <form onSubmit={handleSubmit}>
             <label>Change Profile Picture</label>
             <input
-              type="file"
               accept="image/*"
               value={formData.picture}
               name="picture"
-              onChange={handleChangeImage}
+              onChange={handleChange}
             />
             <br />
             <label>Edit name</label>
@@ -111,13 +103,13 @@ function MyProfileView(props) {
         </div>
       ) : (
         <div>
-          <img src={props.user.picture} />
+          <img src={user.picture} />
           <br />
-          {props.user.fullname}
+          {user.fullname}
           <br />
-          {props.user.email}
+          {user.email}
           <br />
-          {props.user.username}
+          {user.username}
           <br />
           <button onClick={handleClick}>EDIT</button>
         </div>

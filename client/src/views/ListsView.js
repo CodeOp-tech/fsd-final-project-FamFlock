@@ -1,14 +1,13 @@
-// import { ListItemSecondaryAction } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import "../components/ListsView";
 import TripList from "../components/TripList";
 import NewListForm from "../components/NewListForm";
 // import Api from "../helpers/Api";
+import TripsContext from "../context/TripsContext";
 
 function ListsView() {
   const [allLists, setAllLists] = useState([]);
-  // const [inputValue, setInputValue] = useState("");
-  // const [list, setList] = useState(/*what is it suppossed to be?*/); // have not used this yet
+  const { trip } = useContext(TripsContext);
 
   useEffect(() => {
     getLists();
@@ -27,55 +26,9 @@ function ListsView() {
       });
   };
 
-  // const AddListButton = () => {
-  //   const newList = { name: inputValue, isComplete: false };
-
-  //   const newLists = [...lists, newList];
-
-  //   setLists(newLists);
-  //   setInputValue("");
-  // };
-
-  // const toggleComplete = (index) => {
-  //   const newLists = [...lists];
-  //   newLists[index].isComplete = !newLists[index].isComplete;
-  //   setLists(newLists);
-  // };
-
-  // add a new list to lists
-  // const addList = async (list) => {
-  //   try {
-  //     let response = await Api.newList(list);
-  //     if (response.ok) {
-  //       setLists(response.data);
-  //     } else {
-  //       console.log(`server error: ${response.status} ${response.statusText}`);
-  //     }
-  //   } catch (err) {
-  //     console.log(`network error: ${err.message}`);
-  //   }
-  // };
-
-  // function handleChange(event) {
-  //   let { name, value } = event.target;
-  //   // not complete
-
-  // Set list to the check value
-  //   setList((state) => ({
-  //     ...state,
-  //     [name]: value,
-  //   }));
-  //   // console.log(list);
-  // }
-
-  // onSubmit function saves form checkboxes info to the TripLists,
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // console.log(list);
-  //   addList(list);
-  // };
-
   async function addList(newList) {
+    console.log(trip);
+    newList.FK_trips_id = trip.id;
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -103,15 +56,6 @@ function ListsView() {
 
       <h2>Add a List</h2>
       <NewListForm addListCb={addList} />
-      {/* <TripList
-        lists={lists}
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        OnClick={AddListButton}
-        OnChange={toggleComplete}
-        OnSubmit={handleSubmit}
-        handleChange={handleChange}
-      /> */}
     </div>
   );
 }

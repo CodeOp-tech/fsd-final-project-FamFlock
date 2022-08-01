@@ -13,6 +13,7 @@ const authRouter = require("./routes/auth");
 const yelpRouter = require("./routes/yelp");
 const chatRouter = require("./routes/chat");
 const listsRouter = require("./routes/lists");
+const reactionsRouter = require("./routes/reactions");
 
 var app = express();
 
@@ -32,5 +33,6 @@ app.use("/", authRouter);
 app.use("/yelp", yelpRouter);
 app.use("/chat", chatRouter);
 app.use("/lists", listsRouter);
+app.use("/reactions", reactionsRouter);
 
 module.exports = app;

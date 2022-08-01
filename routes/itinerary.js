@@ -13,7 +13,7 @@ router.get("/:id", async function (req, res, next) {
   let { id } = req.params;
   try {
     let results =
-      await db(`SELECT itinerary.id AS itineraryid, trips.id AS tripid, itinerary.*, trips.* FROM itinerary 
+      await db(`SELECT itinerary.id AS activityid, trips.id AS tripid, itinerary.*, trips.* FROM itinerary 
     LEFT JOIN trips ON trips.id = itinerary.FK_trips_id 
     WHERE itinerary.id = ${id}`);
     let itinerary = results.data;

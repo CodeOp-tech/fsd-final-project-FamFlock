@@ -18,10 +18,11 @@ import YelpView from "./views/YelpView";
 import ItineraryView from "./views/ItineraryView";
 import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
+import UserContext from "./context/UserContext";
 // import res from "express/lib/response";
 
 function App() {
-  const [user, setUser] = useState(Local.getUser()); // useState 1: sets logged in user
+  const [user, setUser] = useState(null); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
   const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
@@ -30,8 +31,22 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchUsers();
+    fetchTrips();
+    fetchItineraries();
+    //setLoading(false);
+  }, []);
+
+  //  if there is userid in local storage,
+  useEffect(() => {
+    let x = Local.getUserId();
+    if (x) {
+      let y = Api.getUser(x).then((y) => setUser(y.data));
+    }
+  }, []);
 
   // log in
   async function doLogin(username, password) {
@@ -39,7 +54,8 @@ function App() {
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
-      setUser(myresponse.data.user);
+      let user = await Api.getUser(myresponse.data.user.id);
+      setUser(user.data);
       setLoginErrorMessage("");
       navigate("/my-trips");
     } else {
@@ -52,12 +68,6 @@ function App() {
     Local.removeUserInfo();
     setUser(null);
   }
-
-  useEffect(() => {
-    fetchUsers();
-    fetchTrips();
-    fetchItineraries();
-  }, []);
 
   async function fetchUsers() {
     let myresponse = await Api.getUsers();
@@ -113,7 +123,7 @@ function App() {
     if (myresponse.ok) {
       setTrip(myresponse.data);
       //optional: navigate to trip/id page after
-      //   Navigate(`/trips/${id}`);
+      navigate(`/my-trips/${id}`);
     } else {
       setError(myresponse.error);
     }
@@ -147,6 +157,17 @@ function App() {
       console.log(`network error: ${err.message}`);
     }
   };
+
+  async function getTrip(id) {
+    let myresponse = await Api.getTrip(id);
+    if (myresponse.ok) {
+      setTrip(myresponse.data);
+      //optional: navigate to trip/id page after
+      navigate(`/my-trips/${id}`);
+    } else {
+      setError(myresponse.error);
+    }
+  }
   // get all form itineraries
   async function fetchItineraries() {
     let myresponse = await Api.getItineraries();
@@ -157,65 +178,96 @@ function App() {
     }
   }
 
-  const contextObj = {
+  function goToMapsView(id) {
+    navigate(`/my-trips/${id}/maps`);
+  }
+
+  const contextObjTrips = {
+    trip,
     trips,
     addTrip,
+    getTrip,
+    setTrip,
     itineraries,
+    goToMapsView,
+    fetchItineraries,
   };
+
+  const contextObjUser = {
+    user,
+    doLogout,
+    editUser,
+  };
+
+  if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
+    return <h2>"...Loading"</h2>;
+  }
   return (
     <div className="App">
-      <TripsContext.Provider value={contextObj} r>
-        <NavBar logoutCb={doLogout} user={user} />
-        <Routes>
-          <Route path="/" element={<HomeView />} />
-          <Route
-            path="chat/:groupId"
-            element={
-              <ChatView
-                senderId={senderId}
-                setSenderIdCb={setSenderId}
-                groupId={groupId}
-                setGroupIdCb={setGroupId}
-                user={user}
-                users={users}
-              />
-            }
-          />
-          <Route
-            path="/my-trips"
-            element={
-              <PrivateRoute>
-                <TripsView />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/yelp-search" element={<YelpView />} />
-          <Route
-            path="/login"
-            element={
-              <LoginView
-                loginCb={(username, password) => doLogin(username, password)}
-              />
-            }
-          />
-          <Route
-            path="/register"
-            element={<RegisterView registerCb={register} />}
-          />
-          <Route
-            path="/profile/:id"
-            element={
-              <PrivateRoute>
-                <MyProfileView user={user} editUserCb={editUser} />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/my-trips/:id" element={<TripByIdView />} />
-          <Route path="/maps" element={<MapsView />} />
-          <Route path="/itinerary" element={<ItineraryView />} />
-          <Route path="/lists" element={<ListsView />} />
-        </Routes>
-      </TripsContext.Provider>
+      <UserContext.Provider value={contextObjUser}>
+        <NavBar />
+
+        <TripsContext.Provider value={contextObjTrips}>
+          <Routes>
+            <Route path="/" element={<HomeView />} />
+            <Route
+              path="/login"
+              element={
+                <LoginView
+                  loginCb={(username, password) => doLogin(username, password)}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={<RegisterView registerCb={register} />}
+            />
+            <Route
+              path="chat/:groupId"
+              element={
+                <ChatView
+                  senderId={senderId}
+                  setSenderIdCb={setSenderId}
+                  groupId={groupId}
+                  setGroupIdCb={setGroupId}
+                  user={user}
+                  users={users}
+                />
+              }
+            />
+            <Route
+              path="/my-trips"
+              element={
+                <PrivateRoute>
+                  <TripsView />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/yelp-search" element={<YelpView />} />
+
+            <Route
+              path="/profile/:id"
+              element={
+                <PrivateRoute>
+                  <MyProfileView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/my-trips/:id/maps"
+              element={
+                <PrivateRoute>
+                  <MapsView />
+                </PrivateRoute>
+              }
+            />
+
+            <Route path="/my-trips/:id" element={<TripByIdView />} />
+            <Route path="/itinerary" element={<ItineraryView />} />
+            <Route path="/lists" element={<ListsView />} />
+          </Routes>
+        </TripsContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

@@ -29,8 +29,8 @@ router.get("/:id", async function (req, res, next) {
 
 /* POST to lists */
 router.post("/", async function (req, res, next) {
-  let { name, isComplete } = req.body;
-  let sql = `INSERT INTO lists (name, isComplete) VALUES ('${name}','${isComplete}')`;
+  let { FK_trips_id, name, isComplete } = req.body;
+  let sql = `INSERT INTO lists (FK_trips_id, name, isComplete) VALUES ('${FK_trips_id}','${name}','${isComplete}')`;
 
   try {
     await db(sql);
@@ -45,7 +45,13 @@ router.post("/", async function (req, res, next) {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, isComplete } = req.body;
+    const { FK_trips_id, name, isComplete } = req.body;
+
+    if (FK_trips_id) {
+      let sql = `
+      UPDATE lists SET FK_trips_id='${FK_trips_id}' WHERE ID=${id}`;
+      await db(sql);
+    }
 
     if (name) {
       let sql = `
