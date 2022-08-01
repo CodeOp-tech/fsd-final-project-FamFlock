@@ -27,8 +27,7 @@ function ChatList(props) {
   function showReaction(message) {
     for (let j = 0; j < props.reactions.length; j++) {
       let userReaction = props.reactions.find(
-        (r) =>
-          (r.FK_user_id === props.user.id) & (r.FK_message_id === message.id)
+        (r) => r.FK_user_id === props.user.id && r.FK_message_id === message.id
       );
 
       if (message.id === props.reactions[j].FK_message_id) {
