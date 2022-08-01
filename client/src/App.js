@@ -25,7 +25,7 @@ function App() {
   const [user, setUser] = useState(null); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
-  const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
+  const [senderId, setSenderId] = useState(0); // default sender ID // useState 4
   const [groupId, setGroupId] = useState(1); // default group ID // useState 5
   const [users, setUsers] = useState([]); // useState 6
   const [itineraries, setItineraries] = useState([]); // useState 7
@@ -179,7 +179,6 @@ function App() {
     }
   }
 
-
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps`);
   }
@@ -199,7 +198,6 @@ function App() {
     user,
     doLogout,
     editUser,
-
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
@@ -232,7 +230,6 @@ function App() {
                   senderId={senderId}
                   setSenderIdCb={setSenderId}
                   groupId={groupId}
-                  setGroupIdCb={setGroupId}
                   user={user}
                   users={users}
                 />
