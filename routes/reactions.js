@@ -37,9 +37,33 @@ router.post("/post", async function (req, res, next) {
         await db(sql);
 
         let results = await db(
-          `SELECT * FROM messages WHERE id=${FK_message_id}`
+          `SELECT * FROM messages WHERE id=${FK_message_id};`
         );
-        res.send("reaction updated");
+        res.send(results);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    } else {
+      const sql = `UPDATE messagesReactions SET reaction = ${!response.data[0]
+        .reaction} WHERE id=${response.data[0].id}`;
+
+      if (reaction === 0) {
+        await db(
+          `UPDATE messages SET thumbsDownCount=thumbsDownCount+1, thumbsUpCount=thumbsUpCount-1 WHERE id=${FK_message_id}`
+        );
+      } else if (reaction === 1) {
+        await db(
+          `UPDATE messages SET thumbsDownCount=thumbsDownCount-1, thumbsUpCount=thumbsUpCount+1 WHERE id=${FK_message_id}`
+        );
+      }
+
+      try {
+        await db(sql);
+
+        let results = await db(
+          `SELECT * FROM messages WHERE id=${FK_message_id};`
+        );
+        res.send(results);
       } catch (err) {
         res.status(500).send(err);
       }
@@ -64,7 +88,7 @@ router.post("/post", async function (req, res, next) {
       let results = await db(
         `SELECT * FROM messages WHERE id=${FK_message_id}`
       );
-      res.send("reaction added");
+      res.send(results);
     } catch (err) {
       res.status(500).send(err);
     }
