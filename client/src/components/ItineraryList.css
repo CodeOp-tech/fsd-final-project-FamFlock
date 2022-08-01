@@ -1,10 +1,7 @@
 .itinerary-list-wrapper {
   width: 300px;
   height: 600px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 300px;
-  column-gap: 20px;
+
   background-color: gainsboro;
   justify-content: auto;
   margin: 30px;

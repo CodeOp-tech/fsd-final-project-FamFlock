@@ -123,6 +123,7 @@ function App() {
     let myresponse = await Api.getTrip(id);
     if (myresponse.ok) {
       setTrip(myresponse.data);
+      console.log(myresponse.data);
       //optional: navigate to trip/id page after
       navigate(`/my-trips/${id}`);
     } else {
@@ -159,17 +160,7 @@ function App() {
     }
   };
 
-  async function getTrip(id) {
-    let myresponse = await Api.getTrip(id);
-    if (myresponse.ok) {
-      setTrip(myresponse.data);
-      //optional: navigate to trip/id page after
-      navigate(`/my-trips/${id}`);
-    } else {
-      setError(myresponse.error);
-    }
-  }
-  // get all form itineraries
+  // get all from itineraries
   async function fetchItineraries() {
     let myresponse = await Api.getItineraries();
     if (myresponse.ok) {
@@ -179,6 +170,15 @@ function App() {
     }
   }
 
+  // add new item to itinerary
+  async function addToItinerary(newActivity) {
+    let myresponse = await Api.addToItinerary(newActivity);
+    if (myresponse.ok) {
+      setItineraries(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
 
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps`);
@@ -199,7 +199,6 @@ function App() {
     user,
     doLogout,
     editUser,
-
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
@@ -266,7 +265,10 @@ function App() {
             />
 
             <Route path="/my-trips/:id" element={<TripByIdView />} />
-            <Route path="/itinerary" element={<ItineraryView />} />
+            <Route
+              path="/itinerary"
+              element={<ItineraryView addToItinerary={addToItinerary} />}
+            />
             <Route path="/lists" element={<TripByIdListsView />} />
           </Routes>
         </TripsContext.Provider>

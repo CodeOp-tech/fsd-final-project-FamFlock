@@ -59,10 +59,11 @@ class Api {
   static async getItineraries() {
     return await this._doFetch(`/itinerary/`);
   }
-  //   add a new trip (might need refactoring)
-  //   static async addTrip(newTrip) {
-  //     return await this._doFetch("/trips", "POST", newTrip);
-  //   }
+
+  //   add a new itinerary item
+  static async addToItinerary(newActivity) {
+    return await this._doFetch("/itinerary", "POST", newActivity);
+  }
 
   //  register a user
   static async newUser(email, username, password, fullname, picture) {
