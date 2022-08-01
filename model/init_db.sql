@@ -144,7 +144,7 @@ INSERT INTO messages (
 	senderId, groupId, text, thumbsUpCount, thumbsDownCount, dateTime
 ) VALUES
 	
-	(3, 1, "Hey", 0, 0, 20220727123806),
+	(3, 1, "Hey", 2, 1, 20220727123806),
 	(1, 1, "Hello there", 0, 0, 20220727123807),
 	(2, 1, "Hi!", 0, 0, 20220727123808);
 
@@ -154,6 +154,7 @@ INSERT INTO messagesReactions (
 	(1, 3, 1),
 	(0, 1, 1), 
 	(1, 2, 1);
+
 
 INSERT INTO lists (
 	FK_trips_id, destin, decideDates, bookFlight, bookAccom, essent, planAct, decideTrans, splitPlan, reservations
