@@ -101,44 +101,6 @@ function ChatList(props) {
               <div key={m.id} className="sender">
                 <span title={formatDT(m.dateTime)}>{m.text}</span>
                 {showReaction(m)}
-                {/* {props.reactions.map((r) =>
-                  r.FK_user_id === props.user.id && r.FK_message_id === m.id ? (
-                    <div key={r.id}>
-                      {r.reaction === 0 ? (
-                        <div key={r.id}>
-                          <div className="sender">
-                            <ThumbDownFilled
-                              messageId={m.id}
-                              thumbsDownCount={m.thumbsDownCount}
-                              thumbsUpCount={m.thumbsUpCount}
-                              reactionClickCb={reactionClick}
-                            />
-                          </div>
-                        </div>
-                      ) : (
-                        <div key={r.id}>
-                          <div className="sender">
-                            <ThumbUpFilled
-                              messageId={m.id}
-                              thumbsDownCount={m.thumbsDownCount}
-                              thumbsUpCount={m.thumbsUpCount}
-                              reactionClickCb={reactionClick}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div>
-                      <BothUnfilled
-                        messageId={m.id}
-                        thumbsDownCount={m.thumbsDownCount}
-                        thumbsUpCount={m.thumbsUpCount}
-                        reactionClickCb={reactionClick}
-                      />
-                    </div>
-                  )
-                )} */}
               </div>
             </div>
           ) : (
@@ -154,44 +116,6 @@ function ChatList(props) {
 
                 <span title={formatDT(m.dateTime)}>{m.text}</span>
                 {showReaction(m)}
-                {/* {props.reactions.map((r) =>
-                  r.FK_user_id === props.user.id && r.FK_message_id === m.id ? (
-                    <div>
-                      {r.reaction === 0 ? (
-                        <div key={r.id}>
-                          <div className="receiver">
-                            <ThumbDownFilled
-                              messageId={m.id}
-                              thumbsDownCount={m.thumbsDownCount}
-                              thumbsUpCount={m.thumbsUpCount}
-                              reactionClickCb={reactionClick}
-                            />
-                          </div>
-                        </div>
-                      ) : (
-                        <div key={r.id}>
-                          <div className="receiver">
-                            <ThumbUpFilled
-                              messageId={m.id}
-                              thumbsDownCount={m.thumbsDownCount}
-                              thumbsUpCount={m.thumbsUpCount}
-                              reactionClickCb={reactionClick}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div>
-                      <BothUnfilled
-                        messageId={m.id}
-                        thumbsDownCount={m.thumbsDownCount}
-                        thumbsUpCount={m.thumbsUpCount}
-                        reactionClickCb={reactionClick}
-                      />
-                    </div>
-                  )
-                )} */}
               </div>
             </div>
           )}
