@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS lists;
 DROP TABLE IF EXISTS listItems;
-
+DROP TABLE IF EXISTS tripAddressess;
 
 SET foreign_key_checks = 1;
  
