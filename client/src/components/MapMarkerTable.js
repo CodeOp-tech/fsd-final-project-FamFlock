@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
 function MarkerTable(props) {
@@ -9,25 +9,43 @@ function MarkerTable(props) {
         <table className="MarkerTable table">
           <thead>
             <tr>
-              <th>Input Address</th>
-              <th>Formatted Address (from OpenCage)</th>
-              <th>Latitude/Longitude</th>
+              <th>Date</th>
+              <th>Activity</th>
+              <th>Activity Address</th>
             </tr>
           </thead>
           <tbody>
-            {props.places.map((p) => (
-              <tr key={p.input_address}>
-                <td>{p.input_address}</td>
-                <td>{p.formatted_address}</td>
-                <td>{p.latLng.join("/")}</td>
-              </tr>
-            ))}
+            {props.places &&
+              props.places.map((p) => (
+                <tr key={p.activityid}>
+                  <td>{p.date}</td>
+                  <td>{p.activity}</td>
+                  <td>{p.location}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
 
       <div>
-        <h3> Other saved addressess added</h3>
+        <h3> Other important addressess of your trip</h3>
+        <table className="MarkerTable table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.newPlaces &&
+              props.newPlaces.map((p) => (
+                <tr key={p.latLng}>
+                  <td>{p.name}</td>
+                  <td>{p.formatted_address}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

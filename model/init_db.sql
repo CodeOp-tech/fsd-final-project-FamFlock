@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS lists;
+DROP TABLE IF EXISTS listItems;
 
 
 SET foreign_key_checks = 1;
@@ -66,15 +67,15 @@ CREATE TABLE messages (
 CREATE TABLE  lists  (
 	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	 FK_trips_id  INT NOT NULL,
-	 destin  BOOLEAN NOT NULL,
-	 decideDates  BOOLEAN NOT NULL,
-	 bookFlight  BOOLEAN NOT NULL,
-	 bookAccom  BOOLEAN NOT NULL,
-	 essent  BOOLEAN NOT NULL,
-	 planAct  BOOLEAN NOT NULL,
-	 decideTrans  BOOLEAN NOT NULL,
-	 splitPlan  BOOLEAN NOT NULL,
-	 reservations  BOOLEAN NOT NULL
+	 name  VARCHAR(100) NOT NULL,
+	 isComplete  BOOLEAN NOT NULL
+   );
+
+CREATE TABLE  listItems  (
+	 id  INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	 FK_lists_id  INT NOT NULL,
+	 name  VARCHAR(200) NOT NULL,
+	 isComplete  BOOLEAN NOT NULL
    );
 
 CREATE TABLE messagesReactions (
@@ -83,6 +84,15 @@ CREATE TABLE messagesReactions (
 	FK_user_id INT NOT NULL,
 	FK_message_id INT NOT NULL
 );
+
+CREATE TABLE tripAddressess (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(250) NOT NULL,
+	latLng VARCHAR(250) NOT NULL,
+	formatted_address VARCHAR(250) NOT NULL,
+	FK_trips_id INT NOT NULL
+);
+
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
@@ -95,7 +105,9 @@ ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_message_id) REFERENCES message
 ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
 
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
+ALTER TABLE  listItems  ADD FOREIGN KEY (FK_lists_id) REFERENCES  lists (id);
 
+ALTER TABLE tripAddressess ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
     email, username, password, fullname, picture
@@ -128,16 +140,20 @@ INSERT INTO trips (
 ) VALUES
 	(1, 20220725, 20220801, 'Barcelona'),
 	(2, 20220806, 20220809, 'London'),
-	(2, 20220901, 20220904, 'Venice');
+	(2, 20220901, 20220904, 'Paris'),
+	(3, 20220714, 20220724, 'Venice');
 
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('visit to La Pedrera', 20220725, 'La Pedrera, Barcelona,Spain', 200000, 1),
-	('Tibidabo', 20220728, 'Parque de Atracciones del Tibidabo, Plaça del Tibidabo, 3-4, 08035 Barcelona, España', 110000, 1),
-	('Big Ben', 20220808, 'London', 123000, 2),
-	('Lunch', 20220901, 'Paris', 133000, 3),
-	('dinner', 20220903, 'Paris', 210000, 3);
+	('Visit to La Pedrera', 20220725, 'La Pedrera', 200000, 1),
+	('Afternoon stroll', 20220728, 'Tibidabo', 110000, 1),
+	('Sightseeing', 20220808, 'Big Ben', 123000, 2),
+	('Football match', 20220807, 'Emirates Stadium', 140000, 2),
+	('Lunch', 20220901, 'Chez du Fromage', 133000, 3),
+	('Dinner', 20220903, 'Lumiere', 210000, 3),
+	('Boat Tour', 20220717, 'Canale di Venezia', 120000, 4),
+	('Pizza-making class', 20220720, 'Il Formaggi', 160000, 4);
 
 
 INSERT INTO messages (
@@ -157,9 +173,12 @@ INSERT INTO messagesReactions (
 
 
 INSERT INTO lists (
-	FK_trips_id, destin, decideDates, bookFlight, bookAccom, essent, planAct, decideTrans, splitPlan, reservations
+	FK_trips_id, name, isComplete
 ) VALUES
-	(1, true, false, false, false, false, false, false, false, false),
-	(2, true, true, true, true, false, false, true, false, true),
-	(3, true, true, false, true, true, true, false, true, false);
+	(1, "Packing List", false);
 
+INSERT INTO listItems (
+	FK_lists_id, name, isComplete
+) VALUES
+	(1, "Documents", false),
+	(1, "Electronics", true);

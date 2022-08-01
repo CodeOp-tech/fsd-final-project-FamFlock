@@ -9,7 +9,7 @@ import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdView from "./views/TripByIdView";
-import TripByIdListsView from "./views/TripByIdListsView";
+import ListsView from "./views/ListsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
@@ -31,6 +31,7 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
+  
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -123,6 +124,7 @@ function App() {
     let myresponse = await Api.getTrip(id);
     if (myresponse.ok) {
       setTrip(myresponse.data);
+      console.log(myresponse.data);
       //optional: navigate to trip/id page after
       navigate(`/my-trips/${id}`);
     } else {
@@ -159,17 +161,7 @@ function App() {
     }
   };
 
-  async function getTrip(id) {
-    let myresponse = await Api.getTrip(id);
-    if (myresponse.ok) {
-      setTrip(myresponse.data);
-      //optional: navigate to trip/id page after
-      navigate(`/my-trips/${id}`);
-    } else {
-      setError(myresponse.error);
-    }
-  }
-  // get all form itineraries
+  // get all from itineraries
   async function fetchItineraries() {
     let myresponse = await Api.getItineraries();
     if (myresponse.ok) {
@@ -179,8 +171,20 @@ function App() {
     }
   }
 
+  // add new item to itinerary
+  async function addToItinerary(newActivity) {
+    let myresponse = await Api.addToItinerary(newActivity);
+    if (myresponse.ok) {
+      setItineraries(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  // navitates to the map of selected trip. Function is called from trip by id view.
+
   function goToMapsView(id) {
-    navigate(`/my-trips/${id}/maps`);
+    navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
   }
 
   const contextObjTrips = {
@@ -263,8 +267,13 @@ function App() {
             />
 
             <Route path="/my-trips/:id" element={<TripByIdView />} />
-            <Route path="/itinerary" element={<ItineraryView />} />
-            <Route path="/lists" element={<TripByIdListsView />} />
+
+            <Route
+              path="/itinerary"
+              element={<ItineraryView addToItinerary={addToItinerary} />}
+            />
+            <Route path="/lists" element={<ListsView />} />
+
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>
