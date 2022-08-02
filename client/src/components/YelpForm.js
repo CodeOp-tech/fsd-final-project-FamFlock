@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import TripsContext from "../context/TripsContext.js";
 
 const EMPTY_FORM = {};
 
 function YelpForm(props) {
   const [search, setSearch] = useState(EMPTY_FORM); // Usestate 1
-  const location = "Barcelona"; // For now, for testing purposes. Should be received by props of trips page or address of accommodation
+  const { trip } = useContext(TripsContext);
+  const location = trip.destination;
 
   function handleChange(event) {
     let { name, value } = event.target;

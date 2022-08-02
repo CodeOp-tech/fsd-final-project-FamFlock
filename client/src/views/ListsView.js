@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 // import TripList from "../components/TripList";
 import NewListForm from "../components/NewListForm";
 import TripsContext from "../context/TripsContext";
+import TripByIdNav from "../components/TripByIdNav";
+import TripByIdNavCss from "../components/TripByIdNav.css";
 
 function ListsView() {
   const [allLists, setAllLists] = useState([]);
@@ -82,30 +84,33 @@ function ListsView() {
 
   return (
     <div className="ListsView">
-      <h1>Lists for Your Trip!</h1>
+      <TripByIdNav />
+      <div className="tripById">
+        <h1>Lists for Your Trip!</h1>
 
-      <h2>List for Trip</h2>
-      {/* make them links to item.id */}
+        <h2>List for Trip</h2>
+        {/* make them links to item.id */}
 
-      {/* <TripList lists={allLists} /> */}
-      <div>
-        <ul>
-          {allLists.map((l /*index*/) => (
-            <li key={l.id}>
-              <Link to={`/list/${l.id}`}>{l.name}</Link>
-              <input
-                type="checkbox"
-                checked={l.isComplete}
-                onChange={() => markComplete(l.id)}
-              />
-              {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
-            </li>
-          ))}
-        </ul>
+        {/* <TripList lists={allLists} /> */}
+        <div>
+          <ul>
+            {allLists.map((l /*index*/) => (
+              <li key={l.id}>
+                <Link to={`/list/${l.id}`}>{l.name}</Link>
+                <input
+                  type="checkbox"
+                  checked={l.isComplete}
+                  onChange={() => markComplete(l.id)}
+                />
+                {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <h2>Add a List</h2>
+        <NewListForm addListCb={addList} />
       </div>
-
-      <h2>Add a List</h2>
-      <NewListForm addListCb={addList} />
     </div>
   );
 }

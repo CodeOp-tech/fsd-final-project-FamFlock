@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
 import MapsView from "./MapsView.js";
-import TripByIdView from "./TripByIdView.js";
+import TripByIdNav from "../components/TripByIdNav.js";
+import UserContext from "../context/UserContext";
 
 function TripsView(props) {
   const [openPopUp, setOpenPopUp] = useState(false);
-  const { trips, addTrip, getTrip, trip } = useContext(TripsContext);
-
+  const { user } = useContext(UserContext);
+  const { addTrip, getTrip } = useContext(TripsContext);
 
   return (
     <div>
@@ -26,9 +27,9 @@ function TripsView(props) {
       />
       <div className="container">
         {/* map through trip cards */}
-        {trips &&
-          trips.map((trip) => (
-            <div className="row" key={trip.id} style={{ width: "25rem" }}>
+        {user &&
+          user.trips.map((trip) => (
+            <div className="row" key={trip.trip_id} style={{ width: "25rem" }}>
               <div className="card-body">
                 <h4 className="card-title">{trip.destination}</h4>
                 <h6 className="card-text">
@@ -39,16 +40,14 @@ function TripsView(props) {
               <div className="card-footer">
                 <button
                   className="btn btn-outline-primary"
-                  onClick={(e) => getTrip(trip.id)}
+                  onClick={(e) => getTrip(trip.trip_id)}
                 >
-                  Edit
+                  Trip Details
                 </button>
-
               </div>
             </div>
           ))}
       </div>
-      {/* <MapsView trips={trips} /> */}
     </div>
   );
 }

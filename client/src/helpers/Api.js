@@ -59,10 +59,16 @@ class Api {
   static async getItineraries() {
     return await this._doFetch(`/itinerary/`);
   }
-  //   add a new trip (might need refactoring)
-  //   static async addTrip(newTrip) {
-  //     return await this._doFetch("/trips", "POST", newTrip);
-  //   }
+
+  //   add a new itinerary item
+  static async addToItinerary(newActivity) {
+    return await this._doFetch("/itinerary", "POST", newActivity);
+  }
+
+  // add a new trip
+  static async addTrip(trip) {
+    return await this._doFetch("/trips", "POST", trip);
+  }
 
   //  register a user
   static async newUser(email, username, password, fullname, picture) {
@@ -72,13 +78,11 @@ class Api {
   }
 
   //  Reaction to message
-  static async newReaction(reaction, FK_user_id, FK_message_id, up, down) {
+  static async newReaction(reaction, FK_user_id, FK_message_id) {
     let body = {
       reaction,
       FK_user_id,
       FK_message_id,
-      up,
-      down,
     };
 
     return await this._doFetch("/reactions/post", "POST", body);
@@ -144,6 +148,20 @@ class Api {
     // let body = { list };
 
     return await this._doFetch("/lists", "POST", list);
+  }
+
+  // get all the trips added addresses
+  static async getTripAddress(id) {
+    return await this._doFetch(`/addresses/${id}`, "GET");
+  }
+
+  // adds a new address to the trip
+  static async newTripAddress(address) {
+    return await this._doFetch("/addresses", "POST", address);
+  }
+  //deletes trip address from trip
+  static async deleteTripAddress(id) {
+    return await this._doFetch(`/addresses/${id}`, "DELETE");
   }
 }
 

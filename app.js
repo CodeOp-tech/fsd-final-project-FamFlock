@@ -15,6 +15,7 @@ const chatRouter = require("./routes/chat");
 const listsRouter = require("./routes/lists");
 const itemsRouter = require("./routes/items");
 const reactionsRouter = require("./routes/reactions");
+const addressesRouter = require("./routes/addresses");
 
 var app = express();
 
@@ -36,5 +37,6 @@ app.use("/chat", chatRouter);
 app.use("/lists", listsRouter);
 app.use("/items", itemsRouter);
 app.use("/reactions", reactionsRouter);
+app.use("/addresses", addressesRouter);
 
 module.exports = app;

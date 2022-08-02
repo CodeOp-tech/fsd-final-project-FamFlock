@@ -51,6 +51,7 @@ function RegisterView(props) {
             name="username"
             value={formData.username}
             type="text"
+            required
             onChange={handleChange}
           />
         </label>
@@ -61,6 +62,7 @@ function RegisterView(props) {
             name="password"
             value={formData.password}
             type="password"
+            required
             onChange={handleChange}
           />
         </label>
@@ -71,6 +73,7 @@ function RegisterView(props) {
             name="fullname"
             value={formData.fullname}
             type="text"
+            required
             onChange={handleChange}
           />
         </label>

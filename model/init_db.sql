@@ -7,15 +7,16 @@ DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
+DROP TABLE IF EXISTS tripAddressess;
 DROP TABLE IF EXISTS lists;
 DROP TABLE IF EXISTS listItems;
-
+DROP TABLE IF EXISTS tripAddresses;
 
 SET foreign_key_checks = 1;
  
 CREATE TABLE users (
 	id INT NOT NULL AUTO_INCREMENT,
-	email VARCHAR(20) NOT NULL UNIQUE,
+	email VARCHAR(100) NOT NULL UNIQUE,
 	username VARCHAR(20) NOT NULL UNIQUE,
 	password VARCHAR(200) NOT NULL,
 	fullname VARCHAR(30) NOT NULL,
@@ -28,8 +29,6 @@ CREATE TABLE tripGroups (
 	name VARCHAR(30) NOT NULL,
 	PRIMARY KEY (id)
 );
-
-
 
 CREATE TABLE users_tripGroups (
 	FK_users_id INT NOT NULL,
@@ -85,6 +84,15 @@ CREATE TABLE messagesReactions (
 	FK_message_id INT NOT NULL
 );
 
+CREATE TABLE tripAddresses (
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(250) NOT NULL,
+	latLng VARCHAR(250) NOT NULL,
+	formatted_address VARCHAR(250) NOT NULL,
+	FK_trips_id INT NOT NULL
+);
+
+
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
 
@@ -98,6 +106,7 @@ ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
 ALTER TABLE  listItems  ADD FOREIGN KEY (FK_lists_id) REFERENCES  lists (id);
 
+ALTER TABLE tripAddresses ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
     email, username, password, fullname, picture
@@ -130,16 +139,20 @@ INSERT INTO trips (
 ) VALUES
 	(1, 20220725, 20220801, 'Barcelona'),
 	(2, 20220806, 20220809, 'London'),
-	(2, 20220901, 20220904, 'Venice');
+	(2, 20220901, 20220904, 'Paris'),
+	(3, 20220715, 20220724, 'Venice');
 
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('visit to La Pedrera', 20220725, 'La Pedrera, Barcelona,Spain', 200000, 1),
-	('Tibidabo', 20220728, 'Parque de Atracciones del Tibidabo, Plaça del Tibidabo, 3-4, 08035 Barcelona, España', 110000, 1),
-	('Big Ben', 20220808, 'London', 123000, 2),
-	('Lunch', 20220901, 'Paris', 133000, 3),
-	('dinner', 20220903, 'Paris', 210000, 3);
+	('Visit to La Pedrera', 20220725, 'La Pedrera', 200000, 1),
+	('Afternoon stroll', 20220728, 'Tibidabo', 110000, 1),
+	('Sightseeing', 20220808, 'Big Ben', 123000, 2),
+	('Football match', 20220807, 'Emirates Stadium', 140000, 2),
+	('Lunch', 20220901, 'Chez du Fromage', 133000, 3),
+	('Dinner', 20220903, 'Lumiere', 210000, 3),
+	('Boat Tour', 20220717, 'Canale di Venezia', 120000, 4),
+	('Pizza-making class', 20220720, 'Il Formaggi', 160000, 4);
 
 
 INSERT INTO messages (

@@ -8,7 +8,7 @@ import LoginView from "./views/LoginView";
 import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
-import TripByIdView from "./views/TripByIdView";
+import TripByIdNav from "./components/TripByIdNav";
 import ListsView from "./views/ListsView";
 import ListItemsView from "./views/ListItemsView";
 import Local from "./helpers/Local";
@@ -20,18 +20,23 @@ import ItineraryView from "./views/ItineraryView";
 import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
 import UserContext from "./context/UserContext";
+import AddTripPopUp from "./components/AddTripPopUp";
+import MembersView from "./views/MembersView";
 // import res from "express/lib/response";
 
 function App() {
   const [user, setUser] = useState(null); // useState 1: sets logged in user
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
-  const [senderId, setSenderId] = useState(1); // default sender ID // useState 4
-  const [groupId, setGroupId] = useState(1); // default group ID // useState 5
+  const [senderId, setSenderId] = useState(0); // default sender ID // useState 4
+  const [groupId, setGroupId] = useState(0); // default group ID // useState 5
   const [users, setUsers] = useState([]); // useState 6
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
+  const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
+
+  // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,7 +56,6 @@ function App() {
 
   // log in
   async function doLogin(username, password) {
-    // console.log(user);
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
@@ -92,7 +96,7 @@ function App() {
       // browser popup saying you've been registered
       alert("You have been registered!");
       //  log them in automatically
-      doLogin(username, password);
+      await doLogin(username, password);
     } else {
       setLoginErrorMessage("Registration failed");
     }
@@ -123,6 +127,8 @@ function App() {
     let myresponse = await Api.getTrip(id);
     if (myresponse.ok) {
       setTrip(myresponse.data);
+      setGroupId(myresponse.data.id);
+      console.log(myresponse.data.id);
       //optional: navigate to trip/id page after
       navigate(`/my-trips/${id}`);
     } else {
@@ -137,39 +143,40 @@ function App() {
       setTrips(myresponse.data);
     } else {
       console.log("response not ok");
-    }
-  }
-
-  const addTrip = async (trip) => {
-    let options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(trip),
-    };
-    try {
-      let response = await fetch("/trips", options);
-      if (response.ok) {
-        let data = await response.json();
-        setTrips(data);
-      } else {
-        console.log(`server error: ${response.statud} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`network error: ${err.message}`);
-    }
-  };
-
-  async function getTrip(id) {
-    let myresponse = await Api.getTrip(id);
-    if (myresponse.ok) {
-      setTrip(myresponse.data);
-      //optional: navigate to trip/id page after
-      navigate(`/my-trips/${id}`);
-    } else {
       setError(myresponse.error);
     }
   }
-  // get all form itineraries
+
+  // const addTrip = async (trip) => {
+  //   let options = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(trip),
+  //   };
+  //   try {
+  //     let response = await fetch("/trips", options);
+  //     if (response.ok) {
+  //       let data = await response.json();
+  //       setTrips(data);
+  //     } else {
+  //       console.log(`server error: ${response.statud} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     console.log(`network error: ${err.message}`);
+  //   }
+  // };
+
+  // add a trip
+  const addTrip = async (trip) => {
+    let myresponse = await Api.addTrip();
+    if (myresponse.ok) {
+      setTrips(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  };
+
+  // get all from itineraries
   async function fetchItineraries() {
     let myresponse = await Api.getItineraries();
     if (myresponse.ok) {
@@ -179,19 +186,99 @@ function App() {
     }
   }
 
-  function goToMapsView(id) {
-    navigate(`/my-trips/${id}/maps`);
+  // add new item to itinerary
+  async function addToItinerary(newActivity) {
+    let myresponse = await Api.addToItinerary(newActivity);
+    if (myresponse.ok) {
+      setItineraries(myresponse.data);
+      setTrip((state) => ({
+        ...state,
+        itinerary: myresponse.data,
+      }));
+    } else {
+      setError(myresponse.error);
+    }
   }
+
+  // navitates to the map of selected trip. Function is called from trip by id view.
+  function goToMapsView(id) {
+    navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
+  }
+
+  // navigates to itinerary for selected trip
+  function goToItineraryView(id) {
+    navigate(`/my-trips/${id}/itinerary`);
+  }
+
+  // navigates to chat for selected tri
+  function goToChatView(id) {
+    navigate(`/my-trips/${id}/chat`);
+  }
+
+  function goToListView(id) {
+    navigate(`/lists`);
+  }
+
+  function goToMembersView(id) {
+    navigate(`/my-trip/${id}/members`);
+  }
+
+  function goToYelpView(id) {
+    navigate(`/my-trips/${id}/yelp-search`);
+  }
+
+  //it gets the additional addresses the user has saved to the trip
+  async function loadTripAddresses(id) {
+    let myresponse = await Api.getTripAddress(id);
+    if (myresponse.ok) {
+      setTripAddresses(myresponse.data);
+    } else {
+      console.log("function load trip on App", myresponse);
+      setError(myresponse.error);
+    }
+  }
+
+  // it adds a new address to the trip that is not part of the itinerary
+  async function addNewTripAddress(address) {
+    let myresponse = await Api.newTripAddress(address);
+    if (myresponse.ok) {
+      setTripAddresses(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+  //deletes an added address to the trip
+  async function deleteTripAddress(id) {
+    console.log(id);
+    let myresponse = await Api.deleteTripAddress(id);
+    if (myresponse.ok) {
+      // setTripAddresses(myresponse.data);
+      loadTripAddresses(trip.id);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  /*******Context Objects****** */
 
   const contextObjTrips = {
     trip,
-    trips,
     addTrip,
     getTrip,
     setTrip,
     itineraries,
     goToMapsView,
+    goToItineraryView,
     fetchItineraries,
+    addNewTripAddress,
+    tripAddresses,
+    deleteTripAddress,
+    loadTripAddresses,
+    goToChatView,
+    goToListView,
+    goToMembersView,
+    goToYelpView,
+    addToItinerary,
   };
 
   const contextObjUser = {
@@ -224,13 +311,12 @@ function App() {
               element={<RegisterView registerCb={register} />}
             />
             <Route
-              path="chat/:groupId"
+              path="/my-trips/:id/chat"
               element={
                 <ChatView
                   senderId={senderId}
                   setSenderIdCb={setSenderId}
                   groupId={groupId}
-                  setGroupIdCb={setGroupId}
                   user={user}
                   users={users}
                 />
@@ -244,7 +330,6 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/yelp-search" element={<YelpView />} />
 
             <Route
               path="/profile/:id"
@@ -263,10 +348,33 @@ function App() {
               }
             />
 
-            <Route path="/my-trips/:id" element={<TripByIdView />} />
-            <Route path="/itinerary" element={<ItineraryView />} />
+            <Route
+              path="my-trips/:id/yelp-search"
+              element={
+                <PrivateRoute>
+                  <YelpView />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/my-trips/:id"
+              element={
+                <TripByIdNav
+                  setGroupIdCb={setGroupId}
+                  user={user}
+                  groupId={groupId}
+                />
+              }
+            />
+
+            <Route
+              path="/my-trips/:id/itinerary"
+              element={<ItineraryView addToItinerary={addToItinerary} />}
+            />
             <Route path="/lists" element={<ListsView />} />
             <Route path="/list/:id" element={<ListItemsView />} />
+            <Route path="/my-trip/:id/members" element={<MembersView />} />
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>

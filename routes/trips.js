@@ -47,7 +47,7 @@ router.get("/:id", async function (req, res, next) {
       await db(`SELECT trips.id AS tripid, itinerary.id AS activityid, trips.*, itinerary.* FROM trips
       LEFT JOIN itinerary ON itinerary.FK_trips_id = trips.id
      WHERE trips.id = ${id}`);
-    // let trip = results.data;
+
     if (results.data.length === 0) {
       res.status(404).send({ error: "we cannot find what you requested" });
     } else {
@@ -61,12 +61,18 @@ router.get("/:id", async function (req, res, next) {
 
 /* POST to trips */
 router.post("/", async function (req, res, next) {
-  const { startDate, endDate, destination } = req.body;
-  const sql = `INSERT INTO trips (FK_tripGroups_id, startDate, endDate, destination) VALUES (1,'${startDate}','${endDate}','${destination}' )`;
+  const { startDate, endDate, destination, name } = req.body;
+  const sql1 = `INSERT INTO tripGroups (name) VALUES ('${name}'); SELECT LAST_INSERT_ID();`;
 
   try {
-    await db(sql);
-    let results = await db("SELECT * FROM trips");
+    let result1 = await db(sql1);
+    let FK_tripGroups_id = result1.data[0].insertId;
+    console.log(FK_tripGroups_id);
+
+    const sql2 = `INSERT INTO trips (FK_tripGroups_id, startDate, endDate, destination) VALUES (${FK_tripGroups_id},'${startDate}','${endDate}','${destination}');`;
+    let result2 = await db(sql2);
+
+    let results = await db("SELECT * FROM trips;");
     res.send(results.data);
   } catch (err) {
     res.status(500).send(err);
