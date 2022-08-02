@@ -8,7 +8,7 @@ import LoginView from "./views/LoginView";
 import TripsView from "./views/TripsView";
 import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
-import TripByIdView from "./views/TripByIdView";
+import TripByIdNav from "./components/TripByIdNav";
 import ListsView from "./views/ListsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
@@ -20,6 +20,7 @@ import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
 import UserContext from "./context/UserContext";
 import AddTripPopUp from "./components/AddTripPopUp";
+import MembersView from "./views/MembersView";
 // import res from "express/lib/response";
 
 function App() {
@@ -208,6 +209,14 @@ function App() {
     navigate(`/my-trips/${id}/chat`);
   }
 
+  function goToListView(id) {
+    navigate(`/lists`);
+  }
+
+  function goToMembersView(id) {
+    navigate(`/my-trip/${id}/members`);
+  }
+
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
     if (myresponse.ok) {
@@ -254,6 +263,8 @@ function App() {
     deleteTripAddress,
     loadTripAddresses,
     goToChatView,
+    goToListView,
+    goToMembersView,
   };
 
   const contextObjUser = {
@@ -327,7 +338,7 @@ function App() {
             <Route
               path="/my-trips/:id"
               element={
-                <TripByIdView
+                <TripByIdNav
                   setGroupIdCb={setGroupId}
                   user={user}
                   groupId={groupId}
@@ -340,6 +351,8 @@ function App() {
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
             <Route path="/lists" element={<ListsView />} />
+
+            <Route path="/my-trip/:id/members" element={<MembersView />} />
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>

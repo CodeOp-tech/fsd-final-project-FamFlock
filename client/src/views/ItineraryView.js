@@ -5,8 +5,8 @@ import { DndProvider } from "react-dnd";
 import ItineraryList from "../components/ItineraryList";
 import Api from "../helpers/Api";
 import TripsContext from "../context/TripsContext.js";
-import TripByIdCss from "./TripByIdView.css";
-import TripByIdView from "./TripByIdView";
+import TripByIdNavCss from "../components/TripByIdNav.css";
+import TripByIdNav from "../components/TripByIdNav";
 
 // import the trip, getTrip, and getItineraries from context
 // set initcolumns as the date field in trip (filter?)
@@ -88,7 +88,7 @@ function ItineraryView(props) {
 
   return (
     <div>
-      <TripByIdView />
+      <TripByIdNav />
       <div className="tripById">
         <h1>Your Itinerary for {trip.destination} 📅 </h1>
         <Link to={"/yelp-search"}>

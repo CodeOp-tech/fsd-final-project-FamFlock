@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
 import ChatList from "../components/ChatList";
 import Api from "../helpers/Api";
-import TripByIdView from "./TripByIdView";
-import TripByIdCss from "./TripByIdView.css";
+import TripByIdNav from "../components/TripByIdNav";
+import TripByIdNavCss from "../components/TripByIdNav.css";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
@@ -156,7 +156,7 @@ function ChatView(props) {
 
   return (
     <div>
-      <TripByIdView />
+      <TripByIdNav />
 
       <div className="tripById">
         <h1>chat</h1>

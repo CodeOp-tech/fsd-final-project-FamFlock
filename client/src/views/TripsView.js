@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
 import MapsView from "./MapsView.js";
-import TripByIdView from "./TripByIdView.js";
+import TripByIdNav from "../components/TripByIdNav.js";
 import UserContext from "../context/UserContext";
 
 function TripsView(props) {

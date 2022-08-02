@@ -6,8 +6,8 @@ import { getHome } from "../helpers/geoLocation";
 import { geocode, revgeocode } from "../helpers/geo-opencage";
 import TripsContext from "../context/TripsContext.js";
 import UserContext from "../context/UserContext";
-import TripByIdCss from "./TripByIdView.css";
-import TripByIdView from "./TripByIdView";
+import TripByIdNavCss from "../components/TripByIdNav.css";
+import TripByIdNav from "../components/TripByIdNav";
 
 function MapsView(props) {
   const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
@@ -85,7 +85,7 @@ function MapsView(props) {
 
   return (
     <div>
-      <TripByIdView />
+      <TripByIdNav />
       <div className="tripById">
         <h1>Your map for your trip to XYZ</h1>
         <div>
