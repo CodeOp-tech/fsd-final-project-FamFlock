@@ -227,7 +227,8 @@ function App() {
     console.log(id);
     let myresponse = await Api.deleteTripAddress(id);
     if (myresponse.ok) {
-      setTripAddresses(myresponse.data);
+      // setTripAddresses(myresponse.data);
+      loadTripAddresses(trip.id);
     } else {
       setError(myresponse.error);
     }
