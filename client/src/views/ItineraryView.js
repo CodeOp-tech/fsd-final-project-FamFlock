@@ -5,6 +5,8 @@ import { DndProvider } from "react-dnd";
 import ItineraryList from "../components/ItineraryList";
 import Api from "../helpers/Api";
 import TripsContext from "../context/TripsContext.js";
+import TripByIdCss from "./TripByIdView.css";
+import TripByIdView from "./TripByIdView";
 
 // import the trip, getTrip, and getItineraries from context
 // set initcolumns as the date field in trip (filter?)
@@ -86,33 +88,36 @@ function ItineraryView(props) {
 
   return (
     <div>
-      <h1>Your Itinerary for {trip.destination} 📅 </h1>
-      <Link to={"/yelp-search"}>
-        Looking for ideas? Search the city!
-      </Link> || <p onClick={(e) => getTrip(trip.id)}>Back to trip page</p>
-      <div className="itinerary-container">
-        {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
+      <TripByIdView />
+      <div className="tripById">
+        <h1>Your Itinerary for {trip.destination} 📅 </h1>
+        <Link to={"/yelp-search"}>
+          Looking for ideas? Search the city!
+        </Link> || <p onClick={(e) => getTrip(trip.id)}>Back to trip page</p>
+        <div className="itinerary-container">
+          {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
 
-        <DndProvider backend={HTML5Backend}>
-          {dateColumns.map((i) => (
-            <ItineraryList
-              key={""}
-              id={i}
-              date={i}
-              itinerary={trip["itinerary"]}
-              dropCb={moveBox}
-              addToItineraryCb={addToItinerary}
-            />
-          ))}
-        </DndProvider>
-        {/* javascript insert time, activity, and location */}
-        {/* {itineraryCards.map((card, index) => (
+          <DndProvider backend={HTML5Backend}>
+            {dateColumns.map((i) => (
+              <ItineraryList
+                key={""}
+                id={i}
+                date={i}
+                itinerary={trip["itinerary"]}
+                dropCb={moveBox}
+                addToItineraryCb={addToItinerary}
+              />
+            ))}
+          </DndProvider>
+          {/* javascript insert time, activity, and location */}
+          {/* {itineraryCards.map((card, index) => (
           <div key={index} className="itinerary-list-card" draggable>
             {card.Time}: {card.Activity}
           </div>
         ))} */}
-        {/* <p>Time: Activity at Location</p> */}
+          {/* <p>Time: Activity at Location</p> */}
+        </div>
       </div>
     </div>
   );

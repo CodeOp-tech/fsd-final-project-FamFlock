@@ -6,6 +6,8 @@ import { getHome } from "../helpers/geoLocation";
 import { geocode, revgeocode } from "../helpers/geo-opencage";
 import TripsContext from "../context/TripsContext.js";
 import UserContext from "../context/UserContext";
+import TripByIdCss from "./TripByIdView.css";
+import TripByIdView from "./TripByIdView";
 
 function MapsView(props) {
   const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
@@ -83,23 +85,26 @@ function MapsView(props) {
 
   return (
     <div>
-      <h1>Your map for your trip to XYZ</h1>
-      <div>
-        {home && (
-          <MapMarker
-            places={places}
-            home={home}
-            zoom={13}
-            newPlaces={newPlaces}
-          />
-        )}
-      </div>
-      <h3 className="mt-4">Add important addressess to your itinerary</h3>
-      <p>Enter an address to add a blue marker on the map</p>
-      <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
+      <TripByIdView />
+      <div className="tripById">
+        <h1>Your map for your trip to XYZ</h1>
+        <div>
+          {home && (
+            <MapMarker
+              places={places}
+              home={home}
+              zoom={13}
+              newPlaces={newPlaces}
+            />
+          )}
+        </div>
+        <h3 className="mt-4">Add important addressess to your itinerary</h3>
+        <p>Enter an address to add a blue marker on the map</p>
+        <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
 
-      <div>
-        <MapMarkerTable places={places} newPlaces={newPlaces} />
+        <div>
+          <MapMarkerTable places={places} newPlaces={newPlaces} />
+        </div>
       </div>
     </div>
   );

@@ -204,6 +204,10 @@ function App() {
     navigate(`/my-trips/${id}/itinerary`);
   }
 
+  function goToChatView(id) {
+    navigate(`/my-trips/${id}/chat`);
+  }
+
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
     if (myresponse.ok) {
@@ -248,6 +252,7 @@ function App() {
     tripAddresses,
     deleteTripAddress,
     loadTripAddresses,
+    goToChatView,
   };
 
   const contextObjUser = {
@@ -280,7 +285,7 @@ function App() {
               element={<RegisterView registerCb={register} />}
             />
             <Route
-              path="chat/:groupId"
+              path="/my-trips/:id/chat"
               element={
                 <ChatView
                   senderId={senderId}
