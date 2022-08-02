@@ -30,8 +30,6 @@ CREATE TABLE tripGroups (
 	PRIMARY KEY (id)
 );
 
-
-
 CREATE TABLE users_tripGroups (
 	FK_users_id INT NOT NULL,
 	FK_tripGroups_id INT NOT NULL
