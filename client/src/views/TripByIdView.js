@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import TripList from "../components/TripList";
+// import TripList from "../components/TripList";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 import MapsView from "./MapsView";
 import UserContext from "../context/UserContext";

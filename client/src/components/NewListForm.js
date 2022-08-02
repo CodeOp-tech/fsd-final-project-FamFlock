@@ -33,7 +33,7 @@ function NewListForm(props) {
           isComplete
           <input
             name="isComplete"
-            type="text"
+            type="checkbox"
             value={formData.isComplete}
             onChange={handleChange}
           />
