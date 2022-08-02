@@ -34,7 +34,6 @@ function App() {
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
 
-
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -204,7 +203,6 @@ function App() {
     navigate(`/my-trips/${id}/itinerary`);
   }
 
-
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
     if (myresponse.ok) {
@@ -228,7 +226,8 @@ function App() {
     console.log(id);
     let myresponse = await Api.deleteTripAddress(id);
     if (myresponse.ok) {
-      setTripAddresses(myresponse.data);
+      // setTripAddresses(myresponse.data);
+      loadTripAddresses(trip.id);
     } else {
       setError(myresponse.error);
     }
