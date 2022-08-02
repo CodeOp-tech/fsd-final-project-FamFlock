@@ -18,9 +18,7 @@ function NavBar(props) {
               {/* placeholder for ${id} once its actually defined */}
               <NavLink to={`/profile/1`}>My Profile</NavLink>
             </li>
-            <li>
-              <NavLink to="/yelp-search">Yelp Search</NavLink>
-            </li>
+
             <li>
               <Link to="/" onClick={doLogout}>
                 Logout
