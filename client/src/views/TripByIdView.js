@@ -12,12 +12,6 @@ function TripByIdView(props) {
   const { trip, goToMapsView, goToItineraryView, getTrip, fetchItineraries } =
     useContext(TripsContext);
 
-  useEffect(() => {
-    if (trip) {
-      props.setGroupIdCb(trip.id);
-    }
-  }, [trip]);
-
   return (
     <div>
       <ul className="verticalNav">

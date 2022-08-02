@@ -4,6 +4,7 @@ import TripList from "../components/TripList";
 import NewListForm from "../components/NewListForm";
 // import Api from "../helpers/Api";
 import TripsContext from "../context/TripsContext";
+import TripByIdView from "./TripByIdView";
 
 function ListsView() {
   const [allLists, setAllLists] = useState([]);
@@ -49,13 +50,16 @@ function ListsView() {
 
   return (
     <div className="ListsView">
-      <h1>Lists for Your Trip!</h1>
+      <TripByIdView />
+      <div className="tripById">
+        <h1>Lists for Your Trip!</h1>
 
-      <h2>List for Trip</h2>
-      <TripList lists={allLists} />
+        <h2>List for Trip</h2>
+        <TripList lists={allLists} />
 
-      <h2>Add a List</h2>
-      <NewListForm addListCb={addList} />
+        <h2>Add a List</h2>
+        <NewListForm addListCb={addList} />
+      </div>
     </div>
   );
 }

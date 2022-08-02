@@ -4,9 +4,9 @@
   padding: 10px;
   width: 20%;
   background-color: #f1f1f1;
-  height: 100%; /* Full height */
-  position: fixed; /* Make it stick, even on scroll */
-  overflow: auto; /* Enable scrolling if the sidenav has too much content */
+  height: 100%;
+  position: fixed;
+  overflow: auto;
   text-align: left;
 }
 
@@ -16,11 +16,6 @@
   padding: 8px 16px;
   text-decoration: none;
 }
-
-/* {
-  background-color: #638beb;
-  color: white;
-} */
 
 .vertNavLi:hover:not(.active) {
   background-color: rgb(164, 164, 164);
