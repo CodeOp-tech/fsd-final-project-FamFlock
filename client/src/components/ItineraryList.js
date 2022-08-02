@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useDrop } from "react-dnd";
 import ItineraryCard from "./ItineraryCard";
 import "./ItineraryList.css";
+import TripsContext from "../context/TripsContext.js";
 
 // define empty form
 const EMPTY_FORM = {
   activity: "",
   date: "",
   location: "",
-  //   somehow make it so that both activity and location are accepted in the same input?
   time: "",
   //   date is column date
 };
 
 function ItineraryList(props) {
+  const { trip, getTrip, itineraries, fetchItineraries } =
+    useContext(TripsContext);
   const [formData, setFormData] = useState(EMPTY_FORM);
 
   let itinerary = props.itinerary;
@@ -24,9 +26,11 @@ function ItineraryList(props) {
   }
 
   function handleSubmit(event) {
+    console.log(formData);
     event.preventDefault();
+    // set the trip to the trip saved in state
+    formData.FK_trips_id = trip.id;
     props.addToItineraryCb(formData);
-    alert("woohooo! new activity added!");
     setFormData(EMPTY_FORM);
   }
 
@@ -89,26 +93,59 @@ function ItineraryList(props) {
       except onclick would apply to the whole element instead of a button */}
       <h2>{convertDbDateToHuman(props.date)}</h2>
       {itinerary
+        //   filter to only show certain dates in certain columns
         .filter((itinerary) => itinerary.date === props.date)
+        // sort by time, ascending
+        .sort((a, b) => a.time.localeCompare(b.time))
+        // create a card for each item
         .map((itinerary) => (
           <ItineraryCard
             id={itinerary.date}
             key={itinerary.activityid}
             itinerary={itinerary}
           >
-            <strong>{itinerary.time}</strong> <br /> {itinerary.activity} at{" "}
-            {itinerary.location}
+            <strong>{itinerary.time.slice(0, 5)}</strong> <br />{" "}
+            {itinerary.activity} at {itinerary.location}
           </ItineraryCard>
         ))}
-      <input
-        className="itinerary-card-input"
-        id=""
-        // value:
-        type="text"
-        onChange={handleChange}
-        placeholder="Add something..."
-        onSubmit={handleSubmit}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          className="itinerary-card-activity"
+          id="activity"
+          name="activity"
+          value={formData.activity}
+          type="text"
+          onChange={handleChange}
+          placeholder="Your activity"
+        />
+        <input
+          className="itinerary-card-location"
+          id="location"
+          name="location"
+          value={formData.location}
+          type="text"
+          onChange={handleChange}
+          placeholder="Location"
+        />
+        <input
+          className="itinerary-card-date"
+          id="date"
+          name="date"
+          //   it would be trip.date but for the specific column
+          value={formData.date}
+          type="date"
+          onChange={handleChange}
+        />
+        <input
+          className="itinerary-card-time"
+          id="time"
+          name="time"
+          value={formData.time}
+          type="time"
+          onChange={handleChange}
+        />
+        <button type="submit">Add new activity!</button>
+      </form>
     </div>
   );
 }
