@@ -209,6 +209,7 @@ function App() {
     navigate(`/my-trips/${id}/itinerary`);
   }
 
+  // navigates to chat for selected tri
   function goToChatView(id) {
     navigate(`/my-trips/${id}/chat`);
   }
@@ -221,6 +222,11 @@ function App() {
     navigate(`/my-trip/${id}/members`);
   }
 
+  function goToYelpView(id) {
+    navigate(`/my-trips/${id}/yelp-search`);
+  }
+
+  //it gets the additional addresses the user has saved to the trip
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
     if (myresponse.ok) {
@@ -231,6 +237,7 @@ function App() {
     }
   }
 
+  // it adds a new address to the trip that is not part of the itinerary
   async function addNewTripAddress(address) {
     let myresponse = await Api.newTripAddress(address);
     if (myresponse.ok) {
@@ -239,7 +246,7 @@ function App() {
       setError(myresponse.error);
     }
   }
-
+  //deletes an added address to the trip
   async function deleteTripAddress(id) {
     console.log(id);
     let myresponse = await Api.deleteTripAddress(id);
@@ -269,6 +276,8 @@ function App() {
     goToChatView,
     goToListView,
     goToMembersView,
+    goToYelpView,
+    addToItinerary,
   };
 
   const contextObjUser = {
@@ -320,7 +329,6 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/yelp-search" element={<YelpView />} />
 
             <Route
               path="/profile/:id"
@@ -335,6 +343,15 @@ function App() {
               element={
                 <PrivateRoute>
                   <MapsView />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="my-trips/:id/yelp-search"
+              element={
+                <PrivateRoute>
+                  <YelpView />
                 </PrivateRoute>
               }
             />

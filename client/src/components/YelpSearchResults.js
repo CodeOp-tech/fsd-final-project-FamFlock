@@ -1,15 +1,33 @@
 import React, { useState } from "react";
+import YelpPopUpAddItinerary from "./YelpPopUpAddItinerary";
+
+// define empty form
+const EMPTY_FORM = {
+  activity: "",
+  date: "",
+  location: "",
+  time: "",
+  //   date is column date
+};
 
 function YelpSearchResults(props) {
-  const [selected, setSelected] = useState({}); // UseState 2
+  const [selected, setSelected] = useState({}); // useState 1
+  const [formData, setFormData] = useState(EMPTY_FORM); //useState 2
+  const [openPopUp, setOpenPopUp] = useState(false);
 
   function handleClick(id) {
     let selected = null;
     selected = props.searchResults?.filter((e) => e.id === id);
     setSelected(selected[0]);
+    setOpenPopUp(true);
   }
   return (
     <div>
+      <YelpPopUpAddItinerary
+        selected={selected}
+        open={openPopUp}
+        onClose={() => setOpenPopUp(false)}
+      />
       <h3>Search Results</h3>
       <div>
         <table>
