@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import ItineraryList from "../components/ItineraryList";
@@ -10,7 +10,7 @@ import TripsContext from "../context/TripsContext.js";
 // set initcolumns as the date field in trip (filter?)
 
 function ItineraryView(props) {
-  let addToItinerary = props.addToItinerary();
+  let addToItinerary = props.addToItinerary;
   const { trip, getTrip, itineraries, fetchItineraries } =
     useContext(TripsContext);
 
@@ -26,7 +26,7 @@ function ItineraryView(props) {
     // col1.push({id: trip["itinerary"][i].activityid,
     // text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`})
   };
-  console.log(trip["itinerary"]);
+  //   console.log(trip["itinerary"]);
 
   for (let i = 0; i < trip["itinerary"].length; i++) {
     InitColumns[`col${i}`] = [
@@ -44,7 +44,13 @@ function ItineraryView(props) {
     uniqueDates[trip["itinerary"][i].date] = true;
   }
 
+  //   let uniqueDates = [];
+  //   while (trip.startDate <= trip.endDate) {
+  //     uniqueDates.push(new Date(trip.startDate));
+  //   }
+
   let dateColumns = Object.keys(uniqueDates).sort();
+  //   let dateColumns = uniqueDates.sort();
 
   //   for (let itinerary in itineraries) {
   //       if (itineraryByDate[itinerary[date]] === undefined) {
@@ -81,6 +87,9 @@ function ItineraryView(props) {
   return (
     <div>
       <h1>Your Itinerary for {trip.destination} 📅 </h1>
+      <Link to={"/yelp-search"}>
+        Looking for ideas? Search the city!
+      </Link> || <p onClick={(e) => getTrip(trip.id)}>Back to trip page</p>
       <div className="itinerary-container">
         {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
@@ -97,7 +106,6 @@ function ItineraryView(props) {
             />
           ))}
         </DndProvider>
-
         {/* javascript insert time, activity, and location */}
         {/* {itineraryCards.map((card, index) => (
           <div key={index} className="itinerary-list-card" draggable>
