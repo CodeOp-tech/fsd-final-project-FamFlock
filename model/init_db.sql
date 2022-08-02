@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS trips;
 DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
+DROP TABLE IF EXISTS tripAddressess;
 DROP TABLE IF EXISTS lists;
 DROP TABLE IF EXISTS listItems;
 
@@ -141,7 +142,7 @@ INSERT INTO trips (
 	(1, 20220725, 20220801, 'Barcelona'),
 	(2, 20220806, 20220809, 'London'),
 	(2, 20220901, 20220904, 'Paris'),
-	(3, 20220714, 20220724, 'Venice');
+	(3, 20220715, 20220724, 'Venice');
 
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id

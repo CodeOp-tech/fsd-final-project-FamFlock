@@ -46,11 +46,20 @@
   cursor: move;
 }
 
-.itinerary-card-input {
-  width: 260px;
+.itinerary-card-activity {
+  width: 130px;
   height: 40px;
-  margin-left: 20px;
+  /* margin-left: 20px;
   margin-right: 20px;
-  margin-top: 15px;
+  margin-top: 15px; */
+  justify-content: auto;
+}
+
+.itinerary-card-location {
+  width: 130px;
+  height: 40px;
+  /* margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 15px; */
   justify-content: auto;
 }
