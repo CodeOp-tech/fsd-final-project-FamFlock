@@ -1,12 +1,13 @@
 .verticalNav {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   width: 20%;
   background-color: #f1f1f1;
   height: 100%; /* Full height */
   position: fixed; /* Make it stick, even on scroll */
   overflow: auto; /* Enable scrolling if the sidenav has too much content */
+  text-align: left;
 }
 
 .vertNavLi {
@@ -31,4 +32,11 @@
   padding-left: 40px;
   padding-right: 40px;
   width: 80%;
+}
+
+.tripById {
+  width: 80%;
+  margin-left: 20%;
+  padding-left: 30px;
+  padding-right: 30px;
 }
