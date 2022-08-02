@@ -29,13 +29,24 @@ router.get("/:id", async function (req, res, next) {
 
 /* POST to itinerary */
 router.post("/", async function (req, res, next) {
-  const { activity, date, location, time } = req.body;
-  const sql = `INSERT INTO itinerary (activity, date, location, time, FK_trips_id) VALUES ('${activity}','${date}','${location}',${time}, 1 )`;
+  const { activity, date, location, time, FK_trips_id } = req.body;
+  const sql = `INSERT INTO itinerary (activity, date, location, time, FK_trips_id) 
+  VALUES ('${activity}','${date}','${location}','${time}', ${FK_trips_id});`;
+  // select last insert id?
+
+  // then reinsert fk_trips_id as last insert somehow but in relation to trips
 
   try {
     await db(sql);
-    let results = await db("SELECT * FROM itinerary");
+
+    // possible join down here to only show the itinerary items from this specific trip
+    let results =
+      await db(`SELECT itinerary.id AS activityid, trips.id AS tripid, itinerary.*, trips.* FROM itinerary 
+    LEFT JOIN trips ON trips.id = itinerary.FK_trips_id 
+    WHERE trips.id = ${FK_trips_id}`);
     res.send(results.data);
+    let activityid = results.data[0].insertId;
+    console.log(activityid);
   } catch (err) {
     res.status(500).send(err);
   }

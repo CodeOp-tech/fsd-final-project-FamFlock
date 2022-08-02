@@ -8,18 +8,16 @@ import TripsContext from "../context/TripsContext";
 import { useEffect } from "react";
 
 function TripByIdView(props) {
-  const { trip, goToMapsView, getTrip, fetchItineraries } =
+
+  const { trip, goToMapsView, goToItineraryView, getTrip, fetchItineraries } =
     useContext(TripsContext);
 
-  // function handleItineraryClick(e) {
-  //   getTrip(trip.id);
-  //   Navigate(`/itineraries/`);
-  // }
   useEffect(() => {
     if (trip) {
       props.setGroupIdCb(trip.id);
     }
   }, [trip]);
+
 
   return (
     <div>
@@ -30,7 +28,9 @@ function TripByIdView(props) {
         <Link to={`/chat/${props.groupId}`}> View the chat here</Link>
       </nav>
       <h2>Itinerary</h2>
-      <Link to={"/itinerary"}>Take a look at your itinerary!</Link>
+      <p onClick={() => goToItineraryView(trip.id)}>
+        Take a look at your itinerary!
+      </p>
       <h2>Lists</h2>
       <Link to={"/lists"}>Use your lists to get ready</Link>
       <h2>Map</h2>

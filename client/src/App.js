@@ -32,7 +32,7 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
-  const [tripAddresses, setTripAddresses] = useState([]); // useState 9;
+  const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
 
 
   // const [loading, setLoading] = useState(true);
@@ -184,6 +184,10 @@ function App() {
     let myresponse = await Api.addToItinerary(newActivity);
     if (myresponse.ok) {
       setItineraries(myresponse.data);
+      setTrip((state) => ({
+        ...state,
+        itinerary: myresponse.data,
+      }));
     } else {
       setError(myresponse.error);
     }
@@ -193,6 +197,12 @@ function App() {
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
   }
+
+  // navigates to itinerary for selected trip
+  function goToItineraryView(id) {
+    navigate(`/my-trips/${id}/itinerary`);
+  }
+
 
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
@@ -224,6 +234,7 @@ function App() {
   }
 
   /*******Context Objects****** */
+
   const contextObjTrips = {
     trip,
     trips,
@@ -232,6 +243,7 @@ function App() {
     setTrip,
     itineraries,
     goToMapsView,
+    goToItineraryView,
     fetchItineraries,
     addNewTripAddress,
     tripAddresses,
@@ -319,7 +331,7 @@ function App() {
             />
 
             <Route
-              path="/itinerary"
+              path="/my-trips/:id/itinerary"
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
             <Route path="/lists" element={<ListsView />} />
