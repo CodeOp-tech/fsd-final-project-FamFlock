@@ -9,19 +9,11 @@ import { useEffect } from "react";
 import TripByIdCss from "./TripByIdView.css";
 
 function TripByIdView(props) {
- 
   const { trip, goToMapsView, goToItineraryView, getTrip, fetchItineraries } =
     useContext(TripsContext);
 
-  useEffect(() => {
-    if (trip) {
-      props.setGroupIdCb(trip.id);
-    }
-  }, [trip]);
-
   return (
     <div>
-
       <ul className="verticalNav">
         <li className="vertNavLi">Basic info</li>
         <li className="vertNavLi">Members</li>
@@ -39,7 +31,6 @@ function TripByIdView(props) {
           <button onClick={() => goToMapsView(trip.id)}>Go to Maps</button>
         </li>
       </ul>
-
     </div>
   );
 }

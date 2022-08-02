@@ -34,7 +34,6 @@ function App() {
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
 
-
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -132,7 +131,8 @@ function App() {
     let myresponse = await Api.getTrip(id);
     if (myresponse.ok) {
       setTrip(myresponse.data);
-
+      setGroupId(myresponse.data.id);
+      console.log(myresponse.data.id);
       //optional: navigate to trip/id page after
       navigate(`/my-trips/${id}`);
     } else {
@@ -203,7 +203,6 @@ function App() {
   function goToItineraryView(id) {
     navigate(`/my-trips/${id}/itinerary`);
   }
-
 
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
