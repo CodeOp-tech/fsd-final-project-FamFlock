@@ -21,65 +21,48 @@ function ChatList(props) {
 
   function reactionClick(reaction, messageId) {
     const result = props.newReactionCb(reaction, props.user.id, messageId);
-    console.log("on click: reaction:", reaction, "message id:", messageId);
   }
 
   function showReaction(message) {
-    for (let j = 0; j < props.reactions.length; j++) {
-      let userReaction = props.reactions.find(
-        (r) => r.FK_user_id === props.user.id && r.FK_message_id === message.id
-      );
+    // Reactions for this message; can be []
+    let msgReactions = props.reactions.filter(
+      (r) => r.FK_message_id === message.id
+    );
+    // Reaction for the logged-in user; can be undefined
+    let userReaction = msgReactions.find((r) => r.FK_user_id === props.user.id);
 
-      if (message.id === props.reactions[j].FK_message_id) {
-        if (userReaction) {
-          if (userReaction.reaction === 0) {
-            return (
-              <ThumbDownFilled
-                message={message.id}
-                thumbsDownCount={message.thumbsDownCount}
-                thumbsUpCount={message.thumbsUpCount}
-                reactionClickCb={reactionClick}
-              />
-            );
-          } else if (userReaction.reaction === 1) {
-            return (
-              <ThumbUpFilled
-                messageId={message.id}
-                thumbsDownCount={message.thumbsDownCount}
-                thumbsUpCount={message.thumbsUpCount}
-                reactionClickCb={reactionClick}
-              />
-            );
-          }
-        } else {
-          return (
-            <BothUnfilled
-              messageId={message.id}
-              thumbsDownCount={message.thumbsDownCount}
-              thumbsUpCount={message.thumbsUpCount}
-              reactionClickCb={reactionClick}
-            />
-          );
-        }
-      } else {
-        return (
-          <BothUnfilled
-            messageId={message.id}
-            thumbsDownCount={message.thumbsDownCount}
-            thumbsUpCount={message.thumbsUpCount}
-            reactionClickCb={reactionClick}
-          />
-        );
-      }
+    if (!userReaction) {
+      return (
+        <BothUnfilled
+          messageId={message.id}
+          thumbsDownCount={message.thumbsDownCount}
+          thumbsUpCount={message.thumbsUpCount}
+          reactionClickCb={(reaction) => reactionClick(reaction, message.id)}
+        />
+      );
+    } else if (userReaction.reaction === 1) {
+      return (
+        <ThumbUpFilled
+          messageId={message.id}
+          thumbsDownCount={message.thumbsDownCount}
+          thumbsUpCount={message.thumbsUpCount}
+          reactionClickCb={(reaction) => reactionClick(reaction, message.id)}
+        />
+      );
+    } else {
+      return (
+        <ThumbDownFilled
+          message={message.id}
+          thumbsDownCount={message.thumbsDownCount}
+          thumbsUpCount={message.thumbsUpCount}
+          reactionClickCb={(reaction) => reactionClick(reaction, message.id)}
+        />
+      );
     }
   }
 
-  if (
-    props.messages.length === 0 ||
-    props.reactions.length === 0 ||
-    props.users.length === 0
-  ) {
-    return "loading ";
+  if (!props.messages || !props.reactions) {
+    return <h1>loading</h1>;
   }
 
   return (

@@ -5,17 +5,28 @@ import { Route, Routes, Link, Navigate } from "react-router-dom";
 import MapsView from "./MapsView";
 import UserContext from "../context/UserContext";
 import TripsContext from "../context/TripsContext";
+import { useEffect } from "react";
 
 function TripByIdView(props) {
+
   const { trip, goToMapsView, goToItineraryView, getTrip, fetchItineraries } =
     useContext(TripsContext);
+
+  useEffect(() => {
+    if (trip) {
+      props.setGroupIdCb(trip.id);
+    }
+  }, [trip]);
+
 
   return (
     <div>
       <h2>Basic info</h2>
       <h2>Members</h2>
       <h2>Chat</h2>
-      <nav>{/* <Link to={"/chat"}> View the chat here</Link> */}</nav>
+      <nav>
+        <Link to={`/chat/${props.groupId}`}> View the chat here</Link>
+      </nav>
       <h2>Itinerary</h2>
       <p onClick={() => goToItineraryView(trip.id)}>
         Take a look at your itinerary!

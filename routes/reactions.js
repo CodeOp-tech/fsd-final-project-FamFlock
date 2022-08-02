@@ -4,7 +4,6 @@ const db = require("../model/helper");
 
 // GET message reactions
 router.get("/", async function (req, res, next) {
-  let { messageId } = req.params;
   let results = await db(`SELECT * FROM messagesReactions`);
   res.send(results.data);
 });
@@ -16,7 +15,7 @@ router.post("/post", async function (req, res, next) {
   let response = await db(
     `SELECT * FROM messagesReactions WHERE FK_user_id = ${FK_user_id} AND FK_message_id = ${FK_message_id}`
   );
-  console.log(response);
+  //   console.log(response);
 
   // check to see if current user has already reacted to this message
   if (response.data.length > 0) {
@@ -36,9 +35,8 @@ router.post("/post", async function (req, res, next) {
       try {
         await db(sql);
 
-        let results = await db(
-          `SELECT * FROM messages WHERE id=${FK_message_id};`
-        );
+        let results = await db(`SELECT * FROM messagesReactions`);
+
         res.send(results);
       } catch (err) {
         res.status(500).send(err);
@@ -60,9 +58,8 @@ router.post("/post", async function (req, res, next) {
       try {
         await db(sql);
 
-        let results = await db(
-          `SELECT * FROM messages WHERE id=${FK_message_id};`
-        );
+        let results = await db(`SELECT * FROM messagesReactions`);
+
         res.send(results);
       } catch (err) {
         res.status(500).send(err);
@@ -84,10 +81,9 @@ router.post("/post", async function (req, res, next) {
 
     try {
       await db(sql);
-      // await db(messageSql);
-      let results = await db(
-        `SELECT * FROM messages WHERE id=${FK_message_id}`
-      );
+
+      let results = await db(`SELECT * FROM messagesReactions`);
+
       res.send(results);
     } catch (err) {
       res.status(500).send(err);

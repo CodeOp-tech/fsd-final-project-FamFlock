@@ -1,7 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
+import TripsContext from "../context/TripsContext.js";
 
 function MarkerTable(props) {
+  const {
+    trip,
+    addNewTripAddress,
+    tripAddresses,
+    deleteTripAddress,
+    loadTripAddresses,
+  } = useContext(TripsContext);
+
+  useEffect(() => {
+    if (trip) {
+      loadTripAddresses(trip.id);
+    }
+  }, [trip]);
+
   return (
     <div>
       <h3> Addressess from your itinerary</h3>
@@ -37,11 +52,14 @@ function MarkerTable(props) {
             </tr>
           </thead>
           <tbody>
-            {props.newPlaces &&
-              props.newPlaces.map((p) => (
-                <tr key={p.latLng}>
-                  <td>{p.name}</td>
-                  <td>{p.formatted_address}</td>
+            {tripAddresses &&
+              tripAddresses.map((a) => (
+                <tr key={a.id}>
+                  <td>{a.name}</td>
+                  <td>{a.formatted_address}</td>
+                  <td>
+                    <button onClick={() => deleteTripAddress(a.id)}>x</button>
+                  </td>
                 </tr>
               ))}
           </tbody>

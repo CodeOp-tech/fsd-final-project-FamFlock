@@ -7,30 +7,14 @@ import { geocode, revgeocode } from "../helpers/geo-opencage";
 import TripsContext from "../context/TripsContext.js";
 import UserContext from "../context/UserContext";
 
-const samplePlaces = [
-  {
-    latLng: [41.3953996, 2.1617621],
-    input_address: "La Pedrera, Barcelona,Spain",
-    formatted_address: "La Pedrera, Barcelona,Spain",
-  },
-  {
-    latLng: [41.380899, 2.1229225],
-    input_address: "Camp Nou, Barcelona Spain",
-    formatted_address: "Camp Nou, Barcelona Spain",
-  },
-  {
-    latLng: [41.3916202, 2.15248],
-    input_address: "Paco Meralgo, Barcelona Spain",
-    formatted_address: "Paco Meralgo, Barcelona Spain",
-  },
-];
 function MapsView(props) {
   const [home, setHome] = useState(); //useState 1 -  center of map  (destination of trips table)
   const [places, setPlaces] = useState(); // useState 2 - should be passed by props from itinerary and addresses transformed with geocode
-  const [newPlaces, setNewPlaces] = useState([]);
-  const [address, setAddress] = useState("");
+  const [newPlaces, setNewPlaces] = useState([]); // useState 3
+
   const { user } = useContext(UserContext);
-  const { trip } = useContext(TripsContext);
+  const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
+    useContext(TripsContext);
 
   useEffect(() => {
     getAndSetHome();
@@ -60,9 +44,11 @@ function MapsView(props) {
           latLng: d.latLng,
           name: addr.addressName,
           formatted_address: d.formatted_address,
+          FK_trips_id: trip.id,
         };
         // Add it to 'new Places' state
         setNewPlaces((x) => [...newPlaces, newPlace]);
+        await addNewTripAddress(newPlace);
       } else {
         console.log("addMarkerForAddress(): no results found");
       }
@@ -71,6 +57,7 @@ function MapsView(props) {
     }
   }
 
+  //gets places for itinerary and creates places array to then send to markers
   async function setPlacesOfItinerary() {
     let newArray = [];
     for (let activity of trip.itinerary) {
