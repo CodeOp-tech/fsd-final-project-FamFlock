@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import TripByIdCss from "./TripByIdView.css";
 
 function TripByIdView(props) {
- 
   const { trip, goToMapsView, goToItineraryView, getTrip, fetchItineraries } =
     useContext(TripsContext);
 
@@ -21,15 +20,14 @@ function TripByIdView(props) {
 
   return (
     <div>
-
       <ul className="verticalNav">
         <li className="vertNavLi">Basic info</li>
         <li className="vertNavLi">Members</li>
         <li className="vertNavLi">
           <Link to={`/chat/${props.groupId}`}>Chat</Link>
         </li>
-        <li className="vertNavLi">
-          <Link to={"/itinerary"}>Itinerary</Link>
+        <li className="vertNavLi" onClick={(e) => goToItineraryView(trip.id)}>
+          Itinerary
         </li>
         <li className="vertNavLi">
           <Link to={"/lists"}>Lists</Link>
@@ -39,7 +37,6 @@ function TripByIdView(props) {
           <button onClick={() => goToMapsView(trip.id)}>Go to Maps</button>
         </li>
       </ul>
-
     </div>
   );
 }
