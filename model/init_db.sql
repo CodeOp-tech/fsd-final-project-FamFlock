@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS lists;
 DROP TABLE IF EXISTS listItems;
-DROP TABLE IF EXISTS tripAddressess;
+DROP TABLE IF EXISTS tripAddresses;
 
 SET foreign_key_checks = 1;
  
@@ -85,7 +85,7 @@ CREATE TABLE messagesReactions (
 	FK_message_id INT NOT NULL
 );
 
-CREATE TABLE tripAddressess (
+CREATE TABLE tripAddresses (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(250) NOT NULL,
 	latLng VARCHAR(250) NOT NULL,
@@ -107,7 +107,7 @@ ALTER TABLE messagesReactions ADD FOREIGN KEY (FK_user_id) REFERENCES users(id);
 ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
 ALTER TABLE  listItems  ADD FOREIGN KEY (FK_lists_id) REFERENCES  lists (id);
 
-ALTER TABLE tripAddressess ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+ALTER TABLE tripAddresses ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
     email, username, password, fullname, picture

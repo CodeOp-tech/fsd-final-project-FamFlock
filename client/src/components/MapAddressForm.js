@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
 const emptyForm = { address: "", addressName: "" };
 function AddressForm(props) {
   const [newAddress, setNewAddress] = useState(emptyForm);
@@ -11,6 +12,8 @@ function AddressForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
     props.addMarkerCb(newAddress);
+
+    // addNewTripAddress(newAddress, FK_trips_id);
     setNewAddress(emptyForm);
   }
 

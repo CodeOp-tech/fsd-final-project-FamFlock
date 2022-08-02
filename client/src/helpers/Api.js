@@ -144,6 +144,20 @@ class Api {
 
     return await this._doFetch("/lists", "POST", list);
   }
+
+  // get all the trips added addresses
+  static async getTripAddress(id) {
+    return await this._doFetch(`/addresses/${id}`, "GET");
+  }
+
+  // adds a new address to the trip
+  static async newTripAddress(address) {
+    return await this._doFetch("/addresses", "POST", address);
+  }
+  //deletes trip address from trip
+  static async deleteTripAddress(id) {
+    return await this._doFetch(`/addresses/${id}`, "DELETE");
+  }
 }
 
 export default Api;
