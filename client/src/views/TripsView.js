@@ -4,11 +4,11 @@ import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
 import MapsView from "./MapsView.js";
 import TripByIdView from "./TripByIdView.js";
+import UserContext from "../context/UserContext";
 
 function TripsView(props) {
   const [openPopUp, setOpenPopUp] = useState(false);
   const { trips, addTrip, getTrip, trip } = useContext(TripsContext);
-
 
   return (
     <div>
@@ -43,7 +43,6 @@ function TripsView(props) {
                 >
                   Edit
                 </button>
-
               </div>
             </div>
           ))}

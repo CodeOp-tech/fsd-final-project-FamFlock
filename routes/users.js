@@ -22,7 +22,6 @@ function joinToJson(results) {
     let isDuplicate = cleanGroups.includes(e.group_id);
     if (!isDuplicate) {
       cleanGroups.push(e.group_id);
-      console.log(isDuplicate, e.group_id, cleanGroups);
       return true;
     }
     return false;
