@@ -185,6 +185,7 @@ function App() {
     let myresponse = await Api.addToItinerary(newActivity);
     if (myresponse.ok) {
       setItineraries(myresponse.data);
+      // setting the itinerary, but doing his through the itinerary array in the trip object
       setTrip((state) => ({
         ...state,
         itinerary: myresponse.data,
