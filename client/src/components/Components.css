@@ -35,7 +35,7 @@
 }
 
 .itinerary-list-card {
-  width: 260px;
+  width: 232px;
   height: 50px auto;
   background-color: white;
   margin-left: 20px;
@@ -47,7 +47,7 @@
 }
 
 .itinerary-card-activity {
-  width: 130px;
+  width: 116px;
   height: 40px;
   /* margin-left: 20px;
   margin-right: 20px;
@@ -56,7 +56,7 @@
 }
 
 .itinerary-card-location {
-  width: 130px;
+  width: 116px;
   height: 40px;
   /* margin-left: 20px;
   margin-right: 20px;
