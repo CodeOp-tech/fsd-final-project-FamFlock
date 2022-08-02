@@ -17,10 +17,9 @@ function TripByIdView(props) {
   // }
   useEffect(() => {
     if (trip) {
-      console.log(trip.FK_tripGroups_id);
-      props.setGroupIdCb(trip.FK_tripGroups_id);
+      props.setGroupIdCb(trip.id);
     }
-  }, []);
+  }, [trip]);
 
   return (
     <div>

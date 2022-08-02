@@ -268,7 +268,13 @@ function App() {
 
             <Route
               path="/my-trips/:id"
-              element={<TripByIdView setGroupIdCb={setGroupId} user={user} />}
+              element={
+                <TripByIdView
+                  setGroupIdCb={setGroupId}
+                  user={user}
+                  groupId={groupId}
+                />
+              }
             />
 
             <Route

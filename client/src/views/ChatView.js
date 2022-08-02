@@ -136,7 +136,6 @@ function ChatView(props) {
   async function newReaction(reaction, FK_user_id, FK_message_id) {
     let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
     if (myresponse.ok) {
-      // console.log(myresponse.data[0]);
       return myresponse.data[0];
     } else {
       console.log("response not ok");
@@ -150,14 +149,6 @@ function ChatView(props) {
     } else {
       console.log("response not ok");
     }
-  }
-
-  if (
-    reactions.length === 0 ||
-    messages.length === 0 ||
-    props.users.length === 0
-  ) {
-    return "loading";
   }
 
   return (
