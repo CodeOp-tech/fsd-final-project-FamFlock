@@ -7,9 +7,9 @@ import UserContext from "../context/UserContext";
 import TripsContext from "../context/TripsContext";
 
 function TripByIdView(props) {
+  const { trip, goToMapsView, getTrip, fetchItineraries } =
+    useContext(TripsContext);
 
-  const { trip, goToMapsView, getTrip, fetchItineraries  } = useContext(TripsContext);
-  
   // function handleItineraryClick(e) {
   //   getTrip(trip.id);
   //   Navigate(`/itineraries/`);

@@ -34,7 +34,9 @@ router.post("/", async function (req, res, next) {
 
   try {
     await db(sql);
-    let results = await db("SELECT * FROM tripAddresses");
+    let results = await db(
+      `SELECT * FROM tripAddresses WHERE FK_trips_id=${FK_trips_id}`
+    );
     res.send(results.data);
   } catch (err) {
     res.status(500).send(err);

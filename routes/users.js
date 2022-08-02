@@ -17,7 +17,8 @@ function joinToJson(results) {
   }));
 
   cleanGroups = [];
-
+  //map over clean groups
+  // for each id in clean groups
   const groups = allGroups.filter((e) => {
     let isDuplicate = cleanGroups.includes(e.group_id);
     if (!isDuplicate) {
@@ -26,25 +27,21 @@ function joinToJson(results) {
     }
     return false;
   });
-  //map over clean groups
-  // for each id in clean groups
-  // create an group object with a nested array of trip objects that belong to this group id.
 
-  let allTrips = results.data.map((row) => ({
+  //all that users trips
+
+  let trips = results.data.map((row) => ({
     trip_id: row.trip_id,
     startDate: row.startDate,
     endDate: row.endDate,
-    desination: row.destination,
+    destination: row.destination,
     group_id: row.group_id,
   }));
 
-  //console.log(allTrips);
-
-  let trips = groups.map((e) =>
-    allTrips.filter((t) => e.group_id === t.group_id)
-  );
-
-  //console.log(cleanGroups);
+  // create an group object with a nested array of trip objects that belong to this group id.
+  // let trips = groups.map((e) =>
+  //   allTrips.filter((t) => e.group_id === t.group_id)
+  // );
   let user = {
     id: row0.user_id,
     email: row0.email,
