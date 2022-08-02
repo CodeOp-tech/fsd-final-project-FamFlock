@@ -54,15 +54,9 @@ function App() {
 
   // log in
   async function doLogin(username, password) {
-    console.log(
-      "this is username and password from login App line 55",
-      username,
-      password
-    );
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
-      console.log(myresponse);
       let user = await Api.getUser(myresponse.data.user.id);
       setUser(user.data);
       setLoginErrorMessage("");
@@ -151,22 +145,32 @@ function App() {
     }
   }
 
+  // const addTrip = async (trip) => {
+  //   let options = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(trip),
+  //   };
+  //   try {
+  //     let response = await fetch("/trips", options);
+  //     if (response.ok) {
+  //       let data = await response.json();
+  //       setTrips(data);
+  //     } else {
+  //       console.log(`server error: ${response.statud} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     console.log(`network error: ${err.message}`);
+  //   }
+  // };
+
+  // add a trip
   const addTrip = async (trip) => {
-    let options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(trip),
-    };
-    try {
-      let response = await fetch("/trips", options);
-      if (response.ok) {
-        let data = await response.json();
-        setTrips(data);
-      } else {
-        console.log(`server error: ${response.statud} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`network error: ${err.message}`);
+    let myresponse = await Api.addTrip();
+    if (myresponse.ok) {
+      setTrips(myresponse.data);
+    } else {
+      setError(myresponse.error);
     }
   };
 
