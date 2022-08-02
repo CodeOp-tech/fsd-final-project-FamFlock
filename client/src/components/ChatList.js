@@ -21,7 +21,6 @@ function ChatList(props) {
 
   function reactionClick(reaction, messageId) {
     const result = props.newReactionCb(reaction, props.user.id, messageId);
-    console.log("on click: reaction:", reaction, "message id:", messageId);
   }
 
   function showReaction(message) {
@@ -60,6 +59,10 @@ function ChatList(props) {
         />
       );
     }
+  }
+
+  if (!props.messages || !props.reactions) {
+    return <h1>loading</h1>;
   }
 
   return (

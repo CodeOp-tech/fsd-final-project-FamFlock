@@ -136,7 +136,8 @@ function ChatView(props) {
   async function newReaction(reaction, FK_user_id, FK_message_id) {
     let myresponse = await Api.newReaction(reaction, FK_user_id, FK_message_id);
     if (myresponse.ok) {
-      return myresponse.data[0];
+      setReactions(myresponse.data.data);
+      getRecentMessages();
     } else {
       console.log("response not ok");
     }
