@@ -19,6 +19,7 @@ import ItineraryView from "./views/ItineraryView";
 import MapsView from "./views/MapsView";
 import TripsContext from "./context/TripsContext";
 import UserContext from "./context/UserContext";
+import AddTripPopUp from "./components/AddTripPopUp";
 // import res from "express/lib/response";
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
+  const [tripAddresses, setTripAddresses] = useState([]); // useState 9;
+
 
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -52,10 +55,15 @@ function App() {
 
   // log in
   async function doLogin(username, password) {
-    // console.log(user);
+    console.log(
+      "this is username and password from login App line 55",
+      username,
+      password
+    );
     let myresponse = await Api.loginUser(username, password);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      console.log(myresponse);
       let user = await Api.getUser(myresponse.data.user.id);
       setUser(user.data);
       setLoginErrorMessage("");
@@ -93,7 +101,7 @@ function App() {
       // browser popup saying you've been registered
       alert("You have been registered!");
       //  log them in automatically
-      doLogin(username, password);
+      await doLogin(username, password);
     } else {
       setLoginErrorMessage("Registration failed");
     }
@@ -182,11 +190,40 @@ function App() {
   }
 
   // navitates to the map of selected trip. Function is called from trip by id view.
-
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);
   }
 
+  async function loadTripAddresses(id) {
+    let myresponse = await Api.getTripAddress(id);
+    if (myresponse.ok) {
+      setTripAddresses(myresponse.data);
+    } else {
+      console.log("function load trip on App", myresponse);
+      setError(myresponse.error);
+    }
+  }
+
+  async function addNewTripAddress(address) {
+    let myresponse = await Api.newTripAddress(address);
+    if (myresponse.ok) {
+      setTripAddresses(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  async function deleteTripAddress(id) {
+    console.log(id);
+    let myresponse = await Api.deleteTripAddress(id);
+    if (myresponse.ok) {
+      setTripAddresses(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  /*******Context Objects****** */
   const contextObjTrips = {
     trip,
     trips,
@@ -196,6 +233,10 @@ function App() {
     itineraries,
     goToMapsView,
     fetchItineraries,
+    addNewTripAddress,
+    tripAddresses,
+    deleteTripAddress,
+    loadTripAddresses,
   };
 
   const contextObjUser = {

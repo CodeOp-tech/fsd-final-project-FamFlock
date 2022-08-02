@@ -22,7 +22,6 @@ function joinToJson(results) {
     let isDuplicate = cleanGroups.includes(e.group_id);
     if (!isDuplicate) {
       cleanGroups.push(e.group_id);
-      console.log(isDuplicate, e.group_id, cleanGroups);
       return true;
     }
     return false;
@@ -70,11 +69,17 @@ router.get("/", async function (req, res, next) {
 router.get("/:id", async function (req, res, next) {
   let { id } = req.params;
   try {
-    let sql = `SELECT DISTINCT users.*, users.id AS user_id, trips.id AS trip_id, tripGroups.id AS group_id, tripGroups.name, trips.startDate, trips.endDate, trips.destination
+    let sql = `SELECT DISTINCT users.*, users.id AS user_id, tripGroups.id AS group_id, trips.id AS trip_id, tripGroups.name, trips.startDate, trips.endDate, trips.destination
+    FROM users LEFT JOIN users_tripGroups ON users.id = users_tripGroups.FK_users_id
+    LEFT JOIN tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
+    LEFT JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  
+    WHERE users.id= ${id}`;
+    //let results = await db(`SELECT * FROM users WHERE id = ${id}`);
+    /* full sql statement with joins - question for Jim: why it wasnt working with inner joins and it works with left joins??: SELECT DISTINCT users.*, users.id AS user_id, trips.id AS trip_id, tripGroups.id AS group_id, tripGroups.name, trips.startDate, trips.endDate, trips.destination
     FROM users LEFT JOIN users_tripGroups ON users.id = users_tripGroups.FK_users_id
     INNER JOIN tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
-    INNER JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  WHERE users.id = ${id}`;
-    //let results = await db(`SELECT * FROM users WHERE id = ${id}`);
+    INNER JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  
+    WHERE users.id= ${id}*/
     let results = await db(sql);
     // let user = results.data;
     if (results.data.length === 0) {
