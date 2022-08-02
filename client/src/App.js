@@ -27,12 +27,13 @@ function App() {
   const [trips, setTrips] = useState([]); // UseState 2
   const [trip, setTrip] = useState(); // useState 3
   const [senderId, setSenderId] = useState(0); // default sender ID // useState 4
-  const [groupId, setGroupId] = useState(1); // default group ID // useState 5
+  const [groupId, setGroupId] = useState(0); // default group ID // useState 5
   const [users, setUsers] = useState([]); // useState 6
   const [itineraries, setItineraries] = useState([]); // useState 7
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 9;
+
 
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -306,7 +307,16 @@ function App() {
               }
             />
 
-            <Route path="/my-trips/:id" element={<TripByIdView />} />
+            <Route
+              path="/my-trips/:id"
+              element={
+                <TripByIdView
+                  setGroupIdCb={setGroupId}
+                  user={user}
+                  groupId={groupId}
+                />
+              }
+            />
 
             <Route
               path="/itinerary"
