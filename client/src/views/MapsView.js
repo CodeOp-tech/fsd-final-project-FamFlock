@@ -8,21 +8,26 @@ import TripsContext from "../context/TripsContext.js";
 import UserContext from "../context/UserContext";
 
 function MapsView(props) {
+  const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
+    useContext(TripsContext);
   const [home, setHome] = useState(); //useState 1 -  center of map  (destination of trips table)
-  const [places, setPlaces] = useState(); // useState 2 - should be passed by props from itinerary and addresses transformed with geocode
+  const [places, setPlaces] = useState([]); // useState 2 - should be passed by props from itinerary and addresses transformed with geocode
   const [newPlaces, setNewPlaces] = useState([]); // useState 3
 
   const { user } = useContext(UserContext);
-  const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
-    useContext(TripsContext);
 
   useEffect(() => {
     getAndSetHome();
+    return () => {
+      setPlaces(null);
+      setNewPlaces([]);
+    };
   }, []);
 
   useEffect(() => {
     if (home && trip) {
       setPlacesOfItinerary();
+      loadTripAddresses(trip.id);
     }
   }, [home, trip]);
 
@@ -70,7 +75,9 @@ function MapsView(props) {
         date: activity.date,
       };
       newArray.push(newObj);
+      console.log("this is new obj of itineraries APp line 73", newObj);
     }
+
     setPlaces(newArray);
   }
 

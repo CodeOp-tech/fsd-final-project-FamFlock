@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import TripByIdCss from "./TripByIdView.css";
 
 function TripByIdView(props) {
-
+ 
   const { trip, goToMapsView, goToItineraryView, getTrip, fetchItineraries } =
     useContext(TripsContext);
 
@@ -18,7 +18,6 @@ function TripByIdView(props) {
       props.setGroupIdCb(trip.id);
     }
   }, [trip]);
-
 
   return (
     <div>

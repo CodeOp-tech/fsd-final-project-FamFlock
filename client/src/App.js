@@ -132,7 +132,7 @@ function App() {
     let myresponse = await Api.getTrip(id);
     if (myresponse.ok) {
       setTrip(myresponse.data);
-      console.log(myresponse.data);
+
       //optional: navigate to trip/id page after
       navigate(`/my-trips/${id}`);
     } else {
@@ -147,6 +147,7 @@ function App() {
       setTrips(myresponse.data);
     } else {
       console.log("response not ok");
+      setError(myresponse.error);
     }
   }
 
@@ -237,7 +238,6 @@ function App() {
 
   const contextObjTrips = {
     trip,
-    trips,
     addTrip,
     getTrip,
     setTrip,
