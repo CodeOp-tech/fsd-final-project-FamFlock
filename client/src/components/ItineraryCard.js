@@ -8,7 +8,7 @@ function ItineraryCard(props) {
   const { trip, deleteItineraryActivity } = useContext(TripsContext);
 
   // function to delete a card
-  function deleteItem(item) {
+  function deleteItem(e) {
     deleteItineraryActivity(props.itinerary.activityid);
   }
 
@@ -35,9 +35,10 @@ function ItineraryCard(props) {
     <div>
       {/* javascript insert time, activity, and location */}
       <div className="itinerary-list-card" id={props.activityid} ref={dragRef}>
-        {" "}
+        <button onClick={(e) => deleteItem(props.itinerary.activityid)}>
+          x
+        </button>{" "}
         {props.children}
-        {/* <button onClick={deleteItem(props.itinerary.activityid)}>x</button> */}
       </div>
     </div>
   );
