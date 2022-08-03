@@ -2,7 +2,16 @@
   text-align: center;
 }
 
-/* .btn-primary {
+:root {
+  --text-color: #36393b;
+  --blue-color: #a5d8ff;
+  --green-color: #afd0d6;
+  /* button color */
+  --grey-color: #bfacba;
+}
+
+
+.btn-primary {
   background-color: $grey-color !important;
   border: $grey-color;
-} */
+}
