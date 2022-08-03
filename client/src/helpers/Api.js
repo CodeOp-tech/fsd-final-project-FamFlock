@@ -179,7 +179,11 @@ class Api {
   }
 
   static async addMember(email, id) {
-    return await this._doFetch(`/users/addMember/${id}`, "POST", email);
+    return await this._doFetch(`/users/member/${id}`, "POST", email);
+  }
+
+  static async removeMember(userId, tripId) {
+    return await this._doFetch(`/users/member/${tripId}`, "DELETE", userId);
   }
 }
 

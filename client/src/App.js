@@ -163,10 +163,22 @@ function App() {
 
   // add new trip member
   async function addMember(email, id) {
-    let myresponse = await Api.addMember(email, id);
-
+    let myresponse = await Api.addMember({ email }, id);
     if (myresponse.ok) {
-      setUsersInTrip(myresponse.data);
+      fetchUsersInTrip(id);
+      console.log(myresponse);
+    } else {
+      console.log("response not ok");
+      setError(myresponse.error);
+    }
+  }
+
+  // remove a trip member
+  async function removeMember(userId, tripId) {
+    let myresponse = await Api.removeMember({ userId }, tripId);
+    if (myresponse.ok) {
+      fetchUsersInTrip(tripId);
+      console.log(myresponse);
     } else {
       console.log("response not ok");
       setError(myresponse.error);
@@ -388,7 +400,14 @@ function App() {
 
             <Route
               path="/my-trip/:id/members"
-              element={<MembersView usersInTrip={usersInTrip} />}
+              element={
+                <MembersView
+                  usersInTrip={usersInTrip}
+                  addMemberCb={addMember}
+                  removeMemberCb={removeMember}
+                  user={user}
+                />
+              }
             />
 
             <Route path="/list/:id" element={<ListItemsView />} />

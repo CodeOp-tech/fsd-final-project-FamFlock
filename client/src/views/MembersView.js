@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
+import TripsContext from "../context/TripsContext";
+import MembersVIewCSS from "./MembersView.css";
 
 function MembersView(props) {
+  const { trip } = useContext(TripsContext);
   const [email, setEmail] = useState("");
 
-  function handleSubmit() {}
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.addMemberCb(email, trip.id);
+  }
 
   function handleChange(event) {
     let { name, value } = event.target;
     setEmail(value);
-    console.log(email);
+  }
+
+  function handleClick() {
+    props.removeMemberCb(props.user, trip.id);
   }
 
   return (
@@ -20,10 +29,24 @@ function MembersView(props) {
       <div className="tripById">
         <h2>Trip Members</h2>
         {props.usersInTrip.map((u) => (
-          <div>
-            <div>
-              Name: {u.fullname} Email: {u.email} Username: {u.username}
-            </div>
+          <div className="members">
+            {u.fullname ? (
+              <div className="row">
+                <div className="col">Email: {u.email}</div>
+                <div className="col">Name: {u.fullname}</div>
+                <div className="col">Username: {u.username}</div>
+                <button className="col col-md-1" onClick={handleClick}>
+                  Remove
+                </button>
+              </div>
+            ) : (
+              <div className="row">
+                <div className="col">Email: {u.email}</div>
+                <button className="col col-md-1" onClick={handleClick}>
+                  Remove
+                </button>
+              </div>
+            )}
             <hr />
           </div>
         ))}
