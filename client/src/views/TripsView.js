@@ -29,12 +29,16 @@ function TripsView(props) {
         onClose={() => setOpenPopUp(false)}
         setOpenPopUpCb={setOpenPopUp}
       />
-      <div className="container row">
+      <div className="container ">
         {/* map through trip cards */}
         {user &&
           // user.trips.destination &&
           user.trips.map((trip) => (
-            <div className="row" key={trip.trip_id} style={{ width: "25rem" }}>
+            <div
+              className="container"
+              key={trip.trip_id}
+              style={{ width: "25rem" }}
+            >
               <div>
                 <h4 className="title">{trip.destination}</h4>
                 <h6 className="">
