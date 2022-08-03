@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS tripAddressess;
 DROP TABLE IF EXISTS lists;
 DROP TABLE IF EXISTS listItems;
 DROP TABLE IF EXISTS tripAddresses;
+-- DROP TABLE IF EXISTS budgetPlan:
 
 SET foreign_key_checks = 1;
  
@@ -92,6 +93,15 @@ CREATE TABLE tripAddresses (
 	FK_trips_id INT NOT NULL
 );
 
+-- CREATE TABLE budgetPlan (
+-- 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+-- 	budget DECIMAL NOT NULL,
+-- 	expenses DECIMAL NOT NULL,
+-- 	remain DECIMAL NOT NULL,
+-- 	spent DECIMAL NOT NULL,
+-- 	FK_trips_id INT NOT NULL,
+-- );
+
 
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_users_id) REFERENCES users(id);
 ALTER TABLE users_tripGroups ADD FOREIGN KEY (FK_tripGroups_id) REFERENCES tripGroups(id);
@@ -107,6 +117,7 @@ ALTER TABLE  lists  ADD FOREIGN KEY (FK_trips_id) REFERENCES  trips (id);
 ALTER TABLE  listItems  ADD FOREIGN KEY (FK_lists_id) REFERENCES  lists (id);
 
 ALTER TABLE tripAddresses ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
+-- ALTER TABLE budgetPlan ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 
 INSERT INTO users (
     email, username, password, fullname, picture
