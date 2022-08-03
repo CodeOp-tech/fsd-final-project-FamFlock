@@ -1,8 +1,9 @@
 .chatList {
-  background-color: #f6f6f6;
-  height: 200px;
+  background-color: #f1f1f1;
+  height: 500px;
   padding: 5px;
   overflow-y: auto;
+  padding-top: 20px;
 }
 
 .chatList p {
@@ -30,4 +31,9 @@
 .chatList .receiver span {
   padding: 3px 5px;
   background-color: var(--green-color);
+}
+
+.bi {
+  color: var(--text-color);
+  cursor: pointer;
 }

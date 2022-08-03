@@ -48,7 +48,7 @@ function MembersView(props) {
               <div className="row">
                 <div className="col">Email: {u.email}</div>
                 <button
-                  className="col col-md-1"
+                  className="col col-md-1 btn btn-primary"
                   onClick={() => handleClick(u.id)}
                 >
                   Remove

@@ -18,8 +18,8 @@
 }
 
 .vertNavLi:hover:not(.active) {
-  background-color: rgb(164, 164, 164);
-  color: white;
+  background-color: var(--blue-color);
+  color: var(--text-color);
   cursor: pointer;
 }
 
