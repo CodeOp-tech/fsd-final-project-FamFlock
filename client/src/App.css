@@ -13,4 +13,21 @@
 .btn-primary {
   background-color: var(--grey-color) !important;
   border: var(--grey-color);
+  margin: 10px;
+}
+
+.form-control {
+  margin: 10px;
+}
+
+h1 {
+  color: #36393b;
+}
+
+h2 {
+  color: #36393b;
+}
+
+h3 {
+  color: #36393b;
 }

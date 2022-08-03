@@ -15,10 +15,10 @@ const AddTripPopUp = ({ addTrip, open, onClose, setOpenPopUpCb }) => {
               setOpenPopUpCb={setOpenPopUpCb}
             />
           </div>
-          <div className="btnContainer d-block">
+          <div>
             {/* Close PopUp */}
             <button onClick={onClose} className="btn btn-primary">
-              <span className="bold">CANCEL</span>
+              Cancel
             </button>
           </div>
         </div>

@@ -55,7 +55,9 @@ function LoginView(props) {
           </label>
         </div>
         <div>
-          <button className="btn btn-primary" type="submit">LOGIN</button>
+          <button className="btn btn-primary" type="submit">
+            LOGIN
+          </button>
         </div>
       </form>
       <nav>

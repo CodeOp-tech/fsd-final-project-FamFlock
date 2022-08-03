@@ -35,97 +35,65 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="destination" className="destination-label">
-            Destination
-          </label>
-          <input
-            name="destination"
-            value={trip.destination}
-            onChange={handleInputChange}
-            type="text"
-            id="destination"
-          />
-        </div>
-
-        <div className="tripGroup">
-          <label htmlFor="groupName" className="groupName-label">
-            Give your Group Name
-          </label>
-          <input
-            name="name"
-            value={trip.name}
-            onChange={handleInputChange}
-            type="text"
-            id="name"
-          />
-        </div>
-
-        <div>
-          <div className="accordion accordion-flush" id="accordionFlushExample">
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="flush-headingOne">
-                <button
-                  className="accordion-button collapsed btn btn-primary btn btn-primary"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseOne"
-                  aria-expanded="false"
-                  aria-controls="flush-collapseOne"
-                >
-                  Start-date
-                </button>
-              </h2>
-              <div
-                id="flush-collapseOne"
-                className="accordion-collapse collapse"
-                aria-labelledby="flush-headingOne"
-                data-bs-parent="#accordionFlushExample"
-              >
-                <div className="accordion-body">Select the date</div>
-                <input
-                  type="date"
-                  value={trip.startDate}
-                  onChange={handleInputChange}
-                  name="startDate"
-                />
-              </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="flush-headingTwo">
-                <button
-                  className="accordion-button collapsed btn btn-primary"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="flush-collapseTwo"
-                >
-                  End-date
-                </button>
-              </h2>
-              <div
-                id="flush-collapseTwo"
-                className="accordion-collapse collapse"
-                aria-labelledby="flush-headingTwo"
-                data-bs-parent="#accordionFlushExample"
-              >
-                <div className="accordion-body">Select the date</div>
-                <input
-                  type="date"
-                  value={trip.endDate}
-                  onChange={handleInputChange}
-                  name="endDate"
-                />
-              </div>
-            </div>
+      <div className="form-group">
+        <form onSubmit={handleSubmit}>
+          <div className="container">
+            <label className="col-sm-2 col-form-label">Destination</label>
+            <input
+              className="form-control"
+              name="destination"
+              value={trip.destination}
+              onChange={handleInputChange}
+              type="text"
+              id="destination"
+              placeholder="Your trip destination"
+            />
           </div>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+
+          <div className="container">
+            <label className="col-sm-2 col-form-label">Name</label>
+            <input
+              className="form-control"
+              name="name"
+              value={trip.name}
+              onChange={handleInputChange}
+              type="text"
+              id="name"
+              placeholder="Give your trip group a name"
+            />
+          </div>
+
+          <div>
+            <label className="col-mb-2 col-form-label">
+              Start date
+              <input
+                className="form-control"
+                type="date"
+                value={trip.startDate}
+                onChange={handleInputChange}
+                name="startDate"
+              />
+            </label>
+          </div>
+          <div className="container">
+            <label className="col-mb-2 col-form-label">
+              End date
+              <input
+                className="form-control"
+                type="date"
+                value={trip.endDate}
+                onChange={handleInputChange}
+                name="endDate"
+              />
+            </label>
+          </div>
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
