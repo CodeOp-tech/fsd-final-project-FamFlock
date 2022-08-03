@@ -31,7 +31,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 300px;
-  column-gap: 20px;
+  column-gap: 3px;
+  row-gap: 15px;
 }
 
 .itinerary-list-card {

@@ -132,6 +132,15 @@ class Api {
     return await this._doFetch(`/lists/${id}`, "PUT", body);
   }
 
+  // edit itinerary activity (just date for now)
+  static async editItineraryActivity(date, activityid) {
+    let body = {
+      date,
+    };
+
+    return await this._doFetch(`/itinerary/${activityid}`, "PUT", body);
+  }
+
   // login a user
   static async loginUser(username, password) {
     let body = { username, password };

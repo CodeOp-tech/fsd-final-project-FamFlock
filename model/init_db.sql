@@ -145,7 +145,7 @@ INSERT INTO trips (
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('Visit to La Pedrera', 20220725, 'La Pedrera', 200000, 1),
+	('Visit to La Pedrera', 20220727, 'La Pedrera', 200000, 1),
 	('Afternoon stroll', 20220728, 'Tibidabo', 110000, 1),
 	('Sightseeing', 20220808, 'Big Ben', 123000, 2),
 	('Football match', 20220807, 'Emirates Stadium', 140000, 2),

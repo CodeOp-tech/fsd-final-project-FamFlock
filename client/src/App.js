@@ -205,6 +205,7 @@ function App() {
     let myresponse = await Api.addToItinerary(newActivity);
     if (myresponse.ok) {
       setItineraries(myresponse.data);
+      // setting the itinerary, but doing his through the itinerary array in the trip object
       setTrip((state) => ({
         ...state,
         itinerary: myresponse.data,
@@ -212,6 +213,11 @@ function App() {
     } else {
       setError(myresponse.error);
     }
+  }
+
+  // edits itinerary item, currently only works on date - enables drag n drop
+  async function editItineraryActivity(date, activityid) {
+    let myresponse = await Api.editItineraryActivity(date, activityid);
   }
 
   // navitates to the map of selected trip. Function is called from trip by id view.

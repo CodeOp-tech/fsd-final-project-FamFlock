@@ -52,4 +52,43 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+// this / or this /:id
+router.put("/:activityid", async (req, res) => {
+  try {
+    const { activity, date, location, time, FK_trips_id } = req.body;
+    const { activityid } = req.params;
+
+    if (activity) {
+      // use id here or fk trips id?
+      await db(
+        `UPDATE itinerary SET activity='${activity}' WHERE id=${activityid}`
+      );
+    }
+
+    if (date) {
+      await db(`UPDATE itinerary SET date='${date}' WHERE id=${activityid}`);
+    }
+
+    if (location) {
+      await db(
+        `UPDATE itinerary SET location='${location}' WHERE id=${activityid}`
+      );
+    }
+
+    if (time) {
+      await db(`UPDATE itinerary SET time='${time}' WHERE id=${activityid}`);
+    }
+
+    const results = await db(
+      `SELECT itinerary.id AS activityid, trips.id AS tripid, itinerary.*, trips.* FROM itinerary 
+    LEFT JOIN trips ON trips.id = itinerary.FK_trips_id 
+    WHERE trips.id = ${FK_trips_id}`
+    );
+
+    res.status(200).send(results.data);
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
 module.exports = router;
