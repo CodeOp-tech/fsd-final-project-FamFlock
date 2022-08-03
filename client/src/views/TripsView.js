@@ -15,7 +15,10 @@ function TripsView(props) {
     <div>
       {/* button to add a new trip OPENS POP UP COMPONENT*/}
       <div>
-        <button className="modalBtn" onClick={() => setOpenPopUp(true)}>
+        <button
+          className="modalBtn btn btn-primary"
+          onClick={() => setOpenPopUp(true)}
+        >
           Add New Trip
         </button>
       </div>
@@ -42,7 +45,7 @@ function TripsView(props) {
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
               <div className="">
                 <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-primary"
                   onClick={(e) => getTrip(trip.trip_id)}
                 >
                   Trip Details

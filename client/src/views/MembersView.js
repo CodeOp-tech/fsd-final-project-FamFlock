@@ -38,7 +38,7 @@ function MembersView(props) {
                 <div className="col">Name: {u.fullname}</div>
                 <div className="col">Username: {u.username}</div>
                 <button
-                  className="col col-md-1"
+                  className="col col-md-1 btn btn-primary"
                   onClick={() => handleClick(u.id)}
                 >
                   Remove
@@ -63,7 +63,7 @@ function MembersView(props) {
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="text" name="email" required onChange={handleChange} />
-          <button>ADD</button>
+          <button className="btn btn-primary">ADD</button>
         </form>
       </div>
       <div>

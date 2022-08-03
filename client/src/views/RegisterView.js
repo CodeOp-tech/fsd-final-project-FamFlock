@@ -88,7 +88,7 @@ function RegisterView(props) {
           />
         </label>
         <br />
-        <button>REGISTER</button>
+        <button className="btn btn-primary">REGISTER</button>
       </form>
     </div>
   );

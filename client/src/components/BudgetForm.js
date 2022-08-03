@@ -34,7 +34,7 @@ function BudgetForm(props) {
           </label>
           <br></br>
           <label>
-            <button>Add expense</button>
+            <button className="btn btn-primary">Add expense</button>
           </label>
         </form>
       </div>

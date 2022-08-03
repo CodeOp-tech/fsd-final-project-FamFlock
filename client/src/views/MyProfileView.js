@@ -98,7 +98,9 @@ function MyProfileView(props) {
               onChange={handleChange}
             />
             <br />
-            <button type="submit">SAVE</button>
+            <button className="btn btn-primary" type="submit">
+              SAVE
+            </button>
           </form>
         </div>
       ) : (
@@ -111,7 +113,9 @@ function MyProfileView(props) {
           <br />
           {user.username}
           <br />
-          <button onClick={handleClick}>EDIT</button>
+          <button className="btn btn-primary" onClick={handleClick}>
+            EDIT
+          </button>
         </div>
       )}
     </div>
