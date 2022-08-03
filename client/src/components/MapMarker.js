@@ -64,9 +64,14 @@ function MarkerMap(props) {
               {/* the breakAddr function is just setting the address in a nice way for the popup, instead of a long string. */}
             </Marker>
           ))}
-        {props.newPlaces &&
-          props.newPlaces.map((p) => (
-            <Marker key={p.latLng} position={p.latLng} icon={redMarker}>
+        {tripAddresses &&
+          tripAddresses.map((p) => (
+            <Marker
+              key={p.latLng}
+              position={p.latLng.split(",")}
+              // im splitting the position because the database is saving it as a string and the component git its expecting an array.
+              icon={redMarker}
+            >
               <Popup>{p.name}</Popup>
               {/* the breakAddr function is just setting the address in a nice way for the popup, instead of a long string. */}
             </Marker>

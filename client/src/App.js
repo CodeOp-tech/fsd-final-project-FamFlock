@@ -173,25 +173,6 @@ function App() {
     }
   }
 
-  // const addTrip = async (trip) => {
-  //   let options = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(trip),
-  //   };
-  //   try {
-  //     let response = await fetch("/trips", options);
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       setTrips(data);
-  //     } else {
-  //       console.log(`server error: ${response.statud} ${response.statusText}`);
-  //     }
-  //   } catch (err) {
-  //     console.log(`network error: ${err.message}`);
-  //   }
-  // };
-
   // add a trip
   const addTrip = async (trip) => {
     let myresponse = await Api.addTrip();
@@ -259,6 +240,9 @@ function App() {
     navigate(`/my-trips/${id}/yelp-search`);
   }
 
+  function goToRegister() {
+    navigate(`/register`);
+  }
   //it gets the additional addresses the user has saved to the trip
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
@@ -317,6 +301,7 @@ function App() {
     user,
     doLogout,
     editUser,
+    goToRegister,
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
