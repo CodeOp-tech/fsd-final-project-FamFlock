@@ -13,4 +13,5 @@
 .btn-primary {
   background-color: var(--grey-color) !important;
   border: var(--grey-color);
+  color: var(--text-color);
 }
