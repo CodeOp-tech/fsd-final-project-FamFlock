@@ -92,8 +92,7 @@ router.put("/:activityid", async (req, res) => {
 });
 
 // delete an activity from the itinerary
-router.delete(":/activityid", async function (req, res, next) {
-  console.log(activityid);
+router.delete("/:activityid", async function (req, res, next) {
   try {
     const { activityid } = req.params;
 
@@ -105,7 +104,7 @@ router.delete(":/activityid", async function (req, res, next) {
     );
     res.status(200).send(results.data);
   } catch (err) {
-    res.send({ message: error });
+    res.send({ message: err.message });
   }
 });
 
