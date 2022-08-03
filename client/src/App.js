@@ -161,30 +161,26 @@ function App() {
     }
   }
 
-  // const addTrip = async (trip) => {
-  //   let options = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(trip),
-  //   };
-  //   try {
-  //     let response = await fetch("/trips", options);
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       setTrips(data);
-  //     } else {
-  //       console.log(`server error: ${response.statud} ${response.statusText}`);
-  //     }
-  //   } catch (err) {
-  //     console.log(`network error: ${err.message}`);
-  //   }
-  // };
+  // add new trip member
+  async function addMember(email, id) {
+    let myresponse = await Api.addMember(email, id);
+
+    if (myresponse.ok) {
+      setUsersInTrip(myresponse.data);
+    } else {
+      console.log("response not ok");
+      setError(myresponse.error);
+    }
+  }
 
   // add a trip
   const addTrip = async (trip) => {
-    let myresponse = await Api.addTrip();
+    let myresponse = await Api.addTrip(trip);
     if (myresponse.ok) {
-      setTrips(myresponse.data);
+      setUser((state) => ({
+        ...state, // gets replaced by all key-value pairs from obj
+        trips: myresponse.data, // sets updated trips from this user
+      }));
     } else {
       setError(myresponse.error);
     }
@@ -250,6 +246,9 @@ function App() {
     navigate(`/my-trips/${id}/yelp-search`);
   }
 
+  function goToRegister() {
+    navigate(`/register`);
+  }
   //it gets the additional addresses the user has saved to the trip
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
@@ -309,6 +308,8 @@ function App() {
     user,
     doLogout,
     editUser,
+    addTrip,
+    goToRegister,
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
@@ -393,11 +394,12 @@ function App() {
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
 
+            <Route path="/lists" element={<ListsView />} />
+
             <Route
               path="/my-trip/:id/members"
               element={<MembersView usersInTrip={usersInTrip} />}
             />
-
             <Route path="/list/:id" element={<ListItemsView />} />
           </Routes>
         </TripsContext.Provider>

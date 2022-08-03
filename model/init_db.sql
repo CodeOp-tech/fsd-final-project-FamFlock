@@ -17,10 +17,10 @@ SET foreign_key_checks = 1;
 CREATE TABLE users (
 	id INT NOT NULL AUTO_INCREMENT,
 	email VARCHAR(100) NOT NULL UNIQUE,
-	username VARCHAR(20) NOT NULL UNIQUE,
-	password VARCHAR(200) NOT NULL,
-	fullname VARCHAR(30) NOT NULL,
-	picture VARCHAR(200) NOT NULL,
+	username VARCHAR(20) UNIQUE,
+	password VARCHAR(200),
+	fullname VARCHAR(30),
+	picture VARCHAR(200),
 	PRIMARY KEY (id)
 );
 

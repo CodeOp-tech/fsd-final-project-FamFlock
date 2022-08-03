@@ -53,7 +53,7 @@ class Api {
 
   //  get users in trip
   static async getUsersInTrip(id) {
-    return await this._doFetch(`/users/trips/${id}`);
+    return await this._doFetch(`/users/trip/${id}`);
   }
 
   // get a trip by id
@@ -173,6 +173,10 @@ class Api {
   //deletes trip address from trip
   static async deleteTripAddress(id) {
     return await this._doFetch(`/addresses/${id}`, "DELETE");
+  }
+
+  static async addMember(email, id) {
+    return await this._doFetch(`/users/addMember/${id}`, "POST", email);
   }
 }
 

@@ -20,6 +20,7 @@
 .vertNavLi:hover:not(.active) {
   background-color: rgb(164, 164, 164);
   color: white;
+  cursor: pointer;
 }
 
 .tripById {

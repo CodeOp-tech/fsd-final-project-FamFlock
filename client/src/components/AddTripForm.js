@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Components.css";
+import UserContext from "../context/UserContext";
 
-const AddTripForm = (props) => {
-  let emptyForm = {
-    startDate: 20220725,
-    endDate: 20220801,
-    destination: "",
-  };
+const EMPTY_FORM = { startDate: "", endDate: "", destination: "", name: "" };
+const AddTripForm = ({ setOpenPopUpCb }) => {
+  const [trip, setTrip] = useState(EMPTY_FORM);
 
-  const [trip, setTrip] = useState(emptyForm);
+  const { addTrip } = useContext(UserContext);
 
   const handleInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
+    let { name, value } = event.target;
 
     setTrip((state) => ({
       ...state,
@@ -25,7 +22,9 @@ const AddTripForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(trip);
-    props.addTrip(trip);
+    addTrip(trip);
+    setTrip(EMPTY_FORM);
+    setOpenPopUpCb(false);
   };
 
   return (
@@ -41,6 +40,19 @@ const AddTripForm = (props) => {
             onChange={handleInputChange}
             type="text"
             id="destination"
+          />
+        </div>
+
+        <div className="tripGroup">
+          <label htmlFor="groupName" className="groupName-label">
+            Give your Group Name
+          </label>
+          <input
+            name="name"
+            value={trip.name}
+            onChange={handleInputChange}
+            type="text"
+            id="name"
           />
         </div>
 
@@ -65,7 +77,13 @@ const AddTripForm = (props) => {
                 aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample"
               >
-                <div className="accordion-body">User will choose date here</div>
+                <div className="accordion-body">Select the date</div>
+                <input
+                  type="date"
+                  value={trip.startDate}
+                  onChange={handleInputChange}
+                  name="startDate"
+                />
               </div>
             </div>
             <div className="accordion-item">
@@ -87,7 +105,13 @@ const AddTripForm = (props) => {
                 aria-labelledby="flush-headingTwo"
                 data-bs-parent="#accordionFlushExample"
               >
-                <div className="accordion-body">User will choose date here</div>
+                <div className="accordion-body">Select the date</div>
+                <input
+                  type="date"
+                  value={trip.endDate}
+                  onChange={handleInputChange}
+                  name="endDate"
+                />
               </div>
             </div>
           </div>
