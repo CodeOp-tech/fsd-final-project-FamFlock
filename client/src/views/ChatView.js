@@ -177,7 +177,7 @@ function ChatView(props) {
               value={text}
               onChange={handleChange}
             />
-            <button>
+            <button className="btn btn-primary">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
