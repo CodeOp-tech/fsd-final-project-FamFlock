@@ -175,6 +175,7 @@ function App() {
 
   // add a trip
   const addTrip = async (trip) => {
+    trip.user_id = user.id;
     let myresponse = await Api.addTrip(trip);
     if (myresponse.ok) {
       setUser((state) => ({

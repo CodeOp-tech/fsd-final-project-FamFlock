@@ -29,7 +29,7 @@ function TripsView(props) {
       <div className="container">
         {/* map through trip cards */}
         {user &&
-          user.trips.destination &&
+          user.trips[0].destination &&
           user.trips.map((trip) => (
             <div className="row" key={trip.trip_id} style={{ width: "25rem" }}>
               <div className="card-body">
