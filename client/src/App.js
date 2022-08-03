@@ -22,6 +22,7 @@ import TripsContext from "./context/TripsContext";
 import UserContext from "./context/UserContext";
 import AddTripPopUp from "./components/AddTripPopUp";
 import MembersView from "./views/MembersView";
+import YelpAnonyMousView from "./views/YelpAnonymousView";
 // import res from "express/lib/response";
 
 function App() {
@@ -319,6 +320,8 @@ function App() {
                 />
               }
             />
+            <Route path="/search" element={<YelpAnonyMousView />} />
+
             <Route
               path="/register"
               element={<RegisterView registerCb={register} />}
