@@ -26,21 +26,21 @@ function TripsView(props) {
         onClose={() => setOpenPopUp(false)}
         setOpenPopUpCb={setOpenPopUp}
       />
-      <div className="container">
+      <div className="container row">
         {/* map through trip cards */}
         {user &&
           // user.trips.destination &&
           user.trips.map((trip) => (
             <div className="row" key={trip.trip_id} style={{ width: "25rem" }}>
-              <div className="card-body">
-                <h4 className="card-title">{trip.destination}</h4>
-                <h6 className="card-text">
+              <div>
+                <h4 className="title">{trip.destination}</h4>
+                <h6 className="">
                   {trip.startDate.substring(0, 10)} -{" "}
                   {trip.endDate.substring(0, 10)}
                 </h6>
               </div>
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
-              <div className="card-footer">
+              <div className="">
                 <button
                   className="btn btn-outline-primary"
                   onClick={(e) => getTrip(trip.trip_id)}
