@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 
-function MembersView() {
+function MembersView(props) {
+  useEffect(() => {
+    console.log(props.usersInTrip);
+  });
   return (
     <div>
       <TripByIdNav />
