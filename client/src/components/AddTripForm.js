@@ -2,11 +2,17 @@ import React, { useState, useContext } from "react";
 import "./Components.css";
 import UserContext from "../context/UserContext";
 
-const EMPTY_FORM = { startDate: "", endDate: "", destination: "", name: "" };
+const EMPTY_FORM = {
+  startDate: "",
+  endDate: "",
+  destination: "",
+  name: "",
+  user_id: null,
+};
 const AddTripForm = ({ setOpenPopUpCb }) => {
   const [trip, setTrip] = useState(EMPTY_FORM);
 
-  const { addTrip } = useContext(UserContext);
+  const { user, addTrip } = useContext(UserContext);
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;

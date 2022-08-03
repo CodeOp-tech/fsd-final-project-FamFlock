@@ -40,11 +40,11 @@ function joinToJson2(results) {
   let row0 = results.data[0];
 
   let trips = results.data.map((row) => ({
-    trip_id: row.id,
+    trip_id: row.trip_id,
     startDate: row.startDate,
     endDate: row.endDate,
     destination: row.destination,
-    group_id: row.FK_tripGroups_id,
+    group_id: row.group_id,
   }));
 
   return trips;
@@ -78,7 +78,7 @@ router.get("/:id", async function (req, res, next) {
 
 /* POST to trips */
 router.post("/", async function (req, res, next) {
-  const { startDate, endDate, destination, name } = req.body;
+  const { startDate, endDate, destination, name, user_id } = req.body;
   const sql1 = `INSERT INTO tripGroups (name) VALUES ('${name}'); SELECT LAST_INSERT_ID();`;
 
   try {
@@ -89,7 +89,17 @@ router.post("/", async function (req, res, next) {
     const sql2 = `INSERT INTO trips (FK_tripGroups_id, startDate, endDate, destination) VALUES (${FK_tripGroups_id},'${startDate}','${endDate}','${destination}');`;
     let result2 = await db(sql2);
 
-    let results = await db("SELECT * FROM trips;");
+    const sql3 = `INSERT INTO users_tripGroups(FK_users_id,FK_tripGroups_id) VALUES (${user_id},${FK_tripGroups_id})`;
+    let result3 = await db(sql3);
+
+    let sql4 = `SELECT DISTINCT trips.*, trips.id AS trip_id, tripGroups.id as group_id
+    FROM users_tripGroups 
+    INNER JOIN tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
+    INNER JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  
+    WHERE users_tripGroups.FK_users_id = ${user_id}`;
+
+    let results = await db(sql4);
+
     let trips = await joinToJson2(results);
 
     res.send(trips);
