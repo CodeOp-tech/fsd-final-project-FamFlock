@@ -140,7 +140,9 @@ function ListItemsView() {
           New Task:
           <input value={input} onChange={(e) => handleChange(e)} />
         </label>
-        <button type="submit">Add New</button>
+        <button className="btn btn-primary" type="submit">
+          Add New
+        </button>
       </form>
       {error}
 
@@ -153,7 +155,12 @@ function ListItemsView() {
               checked={item.isComplete}
               onChange={() => markComplete(item.id)}
             />
-            <button onClick={() => deleteItem(item.id)}>Delete</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => deleteItem(item.id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
     </div>

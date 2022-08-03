@@ -58,7 +58,12 @@ function MarkerTable(props) {
                   <td>{a.name}</td>
                   <td>{a.formatted_address}</td>
                   <td>
-                    <button onClick={() => deleteTripAddress(a.id)}>x</button>
+                    <button
+                      onClick={() => deleteTripAddress(a.id)}
+                      className="btn btn-primary"
+                    >
+                      x
+                    </button>
                   </td>
                 </tr>
               ))}
