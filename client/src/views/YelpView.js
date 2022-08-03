@@ -48,7 +48,7 @@ function YelpView() {
     <div>
       <TripByIdNav />
 
-      <div className="container">
+      <div className="container tripById">
         <YelpForm searchYelpCb={searchYelp}>Yelp form component</YelpForm>
       </div>
 

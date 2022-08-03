@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import YelpForm from "../components/YelpForm.js";
-import YelpSearchResults from "../components/YelpSearchResults";
+import YelpFormAnonymousSearch from "../components/YelpFormAnonymousSearch.js";
+import YelpAnonymousSearchResults from "../components/YelpAnonymousSearchResults.js";
 
 function YelpAnonyMousView() {
   const [searchResults, setSearchResults] = useState(); // Usestate 1
@@ -45,15 +45,19 @@ function YelpAnonyMousView() {
 
   return (
     <div>
-      {/* <div className="container">
-        <YelpForm searchYelpCb={searchYelp}>Yelp form component</YelpForm>
-      </div> */}
+      <div className="container">
+        <YelpFormAnonymousSearch searchYelpCb={searchYelp}>
+          Yelp form component
+        </YelpFormAnonymousSearch>
+      </div>
 
-      {/* {searchResults && searchResults.length > 0 ? (
+      {searchResults && searchResults.length > 0 ? (
         <div className="container">
-          <YelpSearchResults searchResults={searchResults}></YelpSearchResults>
+          <YelpAnonymousSearchResults
+            searchResults={searchResults}
+          ></YelpAnonymousSearchResults>
         </div>
-      ) : null} */}
+      ) : null}
     </div>
   );
 }
