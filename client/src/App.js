@@ -181,7 +181,7 @@ function App() {
 
   // add a trip
   const addTrip = async (trip) => {
-    let myresponse = await Api.addTrip();
+    let myresponse = await Api.addTrip(trip);
     if (myresponse.ok) {
       setTrips(myresponse.data);
     } else {
@@ -298,6 +298,7 @@ function App() {
     user,
     doLogout,
     editUser,
+    addTrip,
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {

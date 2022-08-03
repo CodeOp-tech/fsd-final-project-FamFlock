@@ -88,9 +88,9 @@ function ListsView() {
     <div className="ListsView">
       <TripByIdNav />
       <div className="tripById">
-        <h1>Lists for Your Trip!</h1>
+        <h1>All your Lists for {trip.destination}</h1>
 
-        <h5>All your lists here | Click to see your tasks</h5>
+        <h5>Click the List to see your tasks</h5>
         {/* make them links to item.id */}
         {/* <TripList lists={allLists} /> */}
         <div>
