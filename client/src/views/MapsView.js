@@ -54,8 +54,8 @@ function MapsView(props) {
           FK_trips_id: trip.id,
         };
         // Add it to 'new Places' state
-        setNewPlaces((x) => [...newPlaces, newPlace]);
-        await addNewTripAddress(newPlace);
+        //setNewPlaces((x) => [...newPlaces, newPlace]);
+        addNewTripAddress(newPlace);
       } else {
         console.log("addMarkerForAddress(): no results found");
       }

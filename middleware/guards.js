@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config");
+const db = require("../model/helper");
 
 /* Ensure user logged in */
 function ensureUserLoggedIn(req, res, next) {
@@ -41,7 +42,41 @@ function _getToken(req) {
   return str === "Bearer" ? token : "";
 }
 
+/*List must exists*/
+function listMustExist (req, res, next) {
+  try {
+    const {id} = req.params;
+    // check into DB if list exist
+    const results = await db(`SELECT * FROM lists WHERE id= ${id}`)
+    if(results.data.length) {
+    next();
+    }
+    // send 404 if not
+    else res.status(404).send({message: "List not found"});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+} 
+
+/*Item must exists*/
+function itemMustExist (req, res, next) {
+  try {
+    const {id} = req.params;
+    // check into DB if list exist
+    const results = await db(`SELECT * FROM listItems WHERE id= ${id}`)
+    if(results.data.length) {
+    next();
+    }
+    // send 404 if not
+    else res.status(404).send({message: "Item not found"});
+  } catch (err) {
+    res.status(500).send(err);
+  }
+} 
+
 module.exports = {
   ensureUserLoggedIn,
   ensureSameUser,
+  listMustExist,
+  itemMustExist
 };

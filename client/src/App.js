@@ -10,6 +10,7 @@ import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdNav from "./components/TripByIdNav";
 import ListsView from "./views/ListsView";
+import ListItemsView from "./views/ListItemsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
@@ -21,6 +22,7 @@ import TripsContext from "./context/TripsContext";
 import UserContext from "./context/UserContext";
 import AddTripPopUp from "./components/AddTripPopUp";
 import MembersView from "./views/MembersView";
+import YelpAnonyMousView from "./views/YelpAnonymousView";
 // import res from "express/lib/response";
 
 function App() {
@@ -318,6 +320,8 @@ function App() {
                 />
               }
             />
+            <Route path="/search" element={<YelpAnonyMousView />} />
+
             <Route
               path="/register"
               element={<RegisterView registerCb={register} />}
@@ -378,12 +382,16 @@ function App() {
               path="/my-trips/:id/itinerary"
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
-            <Route path="/lists" element={<ListsView />} />
+           
 
             <Route
               path="/my-trip/:id/members"
               element={<MembersView usersInTrip={usersInTrip} />}
             />
+
+            <Route path="/list/:id" element={<ListItemsView />} />
+            
+
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>
