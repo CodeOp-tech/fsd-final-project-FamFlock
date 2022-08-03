@@ -17,10 +17,10 @@ SET foreign_key_checks = 1;
 CREATE TABLE users (
 	id INT NOT NULL AUTO_INCREMENT,
 	email VARCHAR(100) NOT NULL UNIQUE,
-	username VARCHAR(20) NOT NULL UNIQUE,
-	password VARCHAR(200) NOT NULL,
-	fullname VARCHAR(30) NOT NULL,
-	picture VARCHAR(200) NOT NULL,
+	username VARCHAR(20) UNIQUE,
+	password VARCHAR(200),
+	fullname VARCHAR(30),
+	picture VARCHAR(200),
 	PRIMARY KEY (id)
 );
 
@@ -145,7 +145,7 @@ INSERT INTO trips (
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('Visit to La Pedrera', 20220725, 'La Pedrera', 200000, 1),
+	('Visit to La Pedrera', 20220727, 'La Pedrera', 200000, 1),
 	('Afternoon stroll', 20220728, 'Tibidabo', 110000, 1),
 	('Sightseeing', 20220808, 'Big Ben', 123000, 2),
 	('Football match', 20220807, 'Emirates Stadium', 140000, 2),

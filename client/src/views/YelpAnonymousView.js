@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import YelpForm from "../components/YelpForm.js";
-import YelpSearchResults from "../components/YelpSearchResults";
-import TripByIdNav from "../components/TripByIdNav";
+import YelpFormAnonymousSearch from "../components/YelpFormAnonymousSearch.js";
+import YelpAnonymousSearchResults from "../components/YelpAnonymousSearchResults.js";
 
-function YelpView() {
+function YelpAnonyMousView() {
   const [searchResults, setSearchResults] = useState(); // Usestate 1
 
   //returns search results and sets state
@@ -46,19 +45,21 @@ function YelpView() {
 
   return (
     <div>
-      <TripByIdNav />
-
-      <div className="container tripById">
-        <YelpForm searchYelpCb={searchYelp}>Yelp form component</YelpForm>
+      <div className="container">
+        <YelpFormAnonymousSearch searchYelpCb={searchYelp}>
+          Yelp form component
+        </YelpFormAnonymousSearch>
       </div>
 
       {searchResults && searchResults.length > 0 ? (
         <div className="container">
-          <YelpSearchResults searchResults={searchResults}></YelpSearchResults>
+          <YelpAnonymousSearchResults
+            searchResults={searchResults}
+          ></YelpAnonymousSearchResults>
         </div>
       ) : null}
     </div>
   );
 }
 
-export default YelpView;
+export default YelpAnonyMousView;

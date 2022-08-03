@@ -1,23 +1,37 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 
-function MembersView() {
+function MembersView(props) {
+  const [email, setEmail] = useState("");
+
+  function handleSubmit() {}
+
+  function handleChange(event) {
+    let { name, value } = event.target;
+    setEmail(value);
+    console.log(email);
+  }
+
   return (
     <div>
       <TripByIdNav />
       <div className="tripById">
         <h2>Trip Members</h2>
-        <div>
-          <div>Name:</div>
-          <div>Email:</div>
-          <div>Username:</div>
-        </div>
+        {props.usersInTrip.map((u) => (
+          <div>
+            <div>
+              Name: {u.fullname} Email: {u.email} Username: {u.username}
+            </div>
+            <hr />
+          </div>
+        ))}
 
         <h4>Add new members</h4>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>Email</label>
-          <input />
+          <input type="text" name="email" required onChange={handleChange} />
           <button>ADD</button>
         </form>
       </div>

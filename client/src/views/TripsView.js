@@ -35,7 +35,8 @@ function TripsView(props) {
               <div className="card-body">
                 <h4 className="card-title">{trip.destination}</h4>
                 <h6 className="card-text">
-                  {trip.startDate} - {trip.endDate}
+                  {trip.startDate.substring(0, 10)} -{" "}
+                  {trip.endDate.substring(0, 10)}
                 </h6>
               </div>
               {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}

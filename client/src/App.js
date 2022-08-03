@@ -22,6 +22,7 @@ import TripsContext from "./context/TripsContext";
 import UserContext from "./context/UserContext";
 import AddTripPopUp from "./components/AddTripPopUp";
 import MembersView from "./views/MembersView";
+import YelpAnonyMousView from "./views/YelpAnonymousView";
 // import res from "express/lib/response";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
-  const [usersInTrips, setUsersInTrips] = useState([]); // useState 11
+  const [usersInTrip, setUsersInTrip] = useState([]); // useState 11
 
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -142,7 +143,7 @@ function App() {
   async function fetchUsersInTrip(id) {
     let myresponse = await Api.getUsersInTrip(id);
     if (myresponse.ok) {
-      setUsersInTrips(myresponse.data);
+      setUsersInTrip(myresponse.data);
     } else {
       console.log("response not ok");
       setError(myresponse.error);
@@ -160,24 +161,17 @@ function App() {
     }
   }
 
-  // const addTrip = async (trip) => {
-  //   let options = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(trip),
-  //   };
-  //   try {
-  //     let response = await fetch("/trips", options);
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       setTrips(data);
-  //     } else {
-  //       console.log(`server error: ${response.statud} ${response.statusText}`);
-  //     }
-  //   } catch (err) {
-  //     console.log(`network error: ${err.message}`);
-  //   }
-  // };
+  // add new trip member
+  async function addMember(email, id) {
+    let myresponse = await Api.addMember(email, id);
+
+    if (myresponse.ok) {
+      setUsersInTrip(myresponse.data);
+    } else {
+      console.log("response not ok");
+      setError(myresponse.error);
+    }
+  }
 
   // add a trip
   const addTrip = async (trip) => {
@@ -204,6 +198,7 @@ function App() {
     let myresponse = await Api.addToItinerary(newActivity);
     if (myresponse.ok) {
       setItineraries(myresponse.data);
+      // setting the itinerary, but doing his through the itinerary array in the trip object
       setTrip((state) => ({
         ...state,
         itinerary: myresponse.data,
@@ -211,6 +206,11 @@ function App() {
     } else {
       setError(myresponse.error);
     }
+  }
+
+  // edits itinerary item, currently only works on date - enables drag n drop
+  async function editItineraryActivity(date, activityid) {
+    let myresponse = await Api.editItineraryActivity(date, activityid);
   }
 
   // navitates to the map of selected trip. Function is called from trip by id view.
@@ -240,6 +240,9 @@ function App() {
     navigate(`/my-trips/${id}/yelp-search`);
   }
 
+  function goToRegister() {
+    navigate(`/register`);
+  }
   //it gets the additional addresses the user has saved to the trip
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
@@ -299,6 +302,7 @@ function App() {
     doLogout,
     editUser,
     addTrip,
+    goToRegister,
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {
@@ -320,6 +324,8 @@ function App() {
                 />
               }
             />
+            <Route path="/search" element={<YelpAnonyMousView />} />
+
             <Route
               path="/register"
               element={<RegisterView registerCb={register} />}
@@ -381,8 +387,11 @@ function App() {
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
             <Route path="/lists" element={<ListsView />} />
+            <Route
+              path="/my-trip/:id/members"
+              element={<MembersView usersInTrip={usersInTrip} />}
+            />
             <Route path="/list/:id" element={<ListItemsView />} />
-            <Route path="/my-trip/:id/members" element={<MembersView />} />
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>

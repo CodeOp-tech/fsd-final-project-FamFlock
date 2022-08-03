@@ -53,7 +53,7 @@ class Api {
 
   //  get users in trip
   static async getUsersInTrip(id) {
-    return await this._doFetch(`/users/trips/${id}`);
+    return await this._doFetch(`/users/trip/${id}`);
   }
 
   // get a trip by id
@@ -132,6 +132,15 @@ class Api {
     return await this._doFetch(`/lists/${id}`, "PUT", body);
   }
 
+  // edit itinerary activity (just date for now)
+  static async editItineraryActivity(date, activityid) {
+    let body = {
+      date,
+    };
+
+    return await this._doFetch(`/itinerary/${activityid}`, "PUT", body);
+  }
+
   // login a user
   static async loginUser(username, password) {
     let body = { username, password };
@@ -167,6 +176,10 @@ class Api {
   //deletes trip address from trip
   static async deleteTripAddress(id) {
     return await this._doFetch(`/addresses/${id}`, "DELETE");
+  }
+
+  static async addMember(email, id) {
+    return await this._doFetch(`/users/addMember/${id}`, "POST", email);
   }
 }
 
