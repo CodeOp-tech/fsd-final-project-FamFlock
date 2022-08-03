@@ -10,8 +10,7 @@
   --grey-color: #bfacba;
 }
 
-
 .btn-primary {
-  background-color: $grey-color !important;
-  border: $grey-color;
+  background-color: var(--grey-color) !important;
+  border: var(--grey-color);
 }

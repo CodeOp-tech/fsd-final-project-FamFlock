@@ -206,29 +206,29 @@ router.post("/member/:id", async function (req, res, next) {
   } catch (err) {
     res.status(500).send(err);
   }
+});
 
-  /* DELETE memeber from a trip */
-  router.delete("/member/:id", async function (req, res, next) {
-    let { tripId } = req.body;
-    console.log(tripId, req.params.id);
-    let results = await db(
-      `SELECT * FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
-    );
+/* DELETE memeber from a trip */
+router.delete("/member/:id", async function (req, res, next) {
+  let { tripId } = req.body;
+  console.log(tripId, req.params.id);
+  let results = await db(
+    `SELECT * FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
+  );
 
-    try {
-      if (results.data.length === 0) {
-        res.status(404).send({ error: "member not found" });
-      } else {
-        await db(
-          `DELETE FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
-        );
-        let results = await db(`SELECT * FROM users_tripGroups`);
-        res.send(results.data);
-      }
-    } catch (err) {
-      res.status(500).send({ error: err.message });
+  try {
+    if (results.data.length === 0) {
+      res.status(404).send({ error: "member not found" });
+    } else {
+      await db(
+        `DELETE FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
+      );
+      let results = await db(`SELECT * FROM users_tripGroups`);
+      res.send(results.data);
     }
-  });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
 });
 
 module.exports = router;
