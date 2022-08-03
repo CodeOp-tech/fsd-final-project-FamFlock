@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripsContext from "../context/TripsContext";
-import MembersVIewCSS from "./MembersView.css";
+import "./MembersView.css";
 import BudgetForm from "../components/BudgetForm";
 import BudgetTable from "../components/BudgetTable";
 
