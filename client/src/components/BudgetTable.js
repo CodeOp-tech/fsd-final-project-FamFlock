@@ -42,7 +42,12 @@ function BudgetTable(props) {
                   <td>{p.name}</td>
                   <td>{p.amount}</td>
                   <td>
-                    <button onClick={() => deleteExpense(p.id)}>x</button>
+                    <button
+                      onClick={() => deleteExpense(p.id)}
+                      className="btn btn-primary"
+                    >
+                      x
+                    </button>
                   </td>
                 </tr>
               ))}

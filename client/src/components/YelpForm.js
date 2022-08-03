@@ -83,7 +83,7 @@ function YelpForm(props) {
           </label>
           <br></br>
           <label>
-            <button>Search</button>
+            <button className="btn btn-primary">Search</button>
           </label>
         </form>
       </div>

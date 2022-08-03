@@ -86,7 +86,10 @@ function YelpSearchResults(props) {
                   </td>
 
                   <td>
-                    <button onClick={() => handleClick(r.id)}>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => handleClick(r.id)}
+                    >
                       Add to itinerary
                     </button>
                   </td>

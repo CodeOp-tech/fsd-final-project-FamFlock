@@ -38,7 +38,9 @@ function NewListForm(props) {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Add List</button>
+        <button className="btn btn-primary" type="submit">
+          Add List
+        </button>
       </form>
     </div>
   );

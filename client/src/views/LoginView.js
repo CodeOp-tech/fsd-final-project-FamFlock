@@ -46,7 +46,9 @@ function LoginView(props) {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">LOGIN</button>
+        <button className="btn btn-primary" type="submit">
+          LOGIN
+        </button>
       </form>
       <nav>
         <Link to="/register">Don't have an account yet? Register here</Link>
