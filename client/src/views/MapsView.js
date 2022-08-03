@@ -14,7 +14,6 @@ function MapsView(props) {
     useContext(TripsContext);
   const [home, setHome] = useState(); //useState 1 -  center of map  (destination of trips table)
   const [places, setPlaces] = useState([]); // useState 2 - these are the addresses saved in the itinerary and addresses transformed with geocode
-  // const [newPlaces, setNewPlaces] = useState([]); // useState 3
 
   const { user } = useContext(UserContext);
 
@@ -52,8 +51,7 @@ function MapsView(props) {
           formatted_address: d.formatted_address,
           FK_trips_id: trip.id,
         };
-        // Add it to 'new Places' state
-        //setNewPlaces((x) => [...newPlaces, newPlace]);
+
         addNewTripAddress(newPlace);
       } else {
         console.log("addMarkerForAddress(): no results found");
