@@ -4,16 +4,15 @@ import ItineraryCard from "./ItineraryCard";
 import "./ItineraryList.css";
 import TripsContext from "../context/TripsContext.js";
 
-// define empty form
-const EMPTY_FORM = {
-  activity: "",
-  date: "",
-  location: "",
-  time: "",
-  //   date is column date
-};
-
 function ItineraryList(props) {
+  // define empty form
+  const EMPTY_FORM = {
+    activity: "",
+    //   date is column date
+    date: props.date,
+    location: "",
+    time: "",
+  };
   const { trip, getTrip, itineraries, fetchItineraries } =
     useContext(TripsContext);
   const [formData, setFormData] = useState(EMPTY_FORM);
@@ -56,6 +55,8 @@ function ItineraryList(props) {
     drop(item, monitor) {
       // pass up the box prop and column id
       props.dropCb(item, props.id);
+      //   call the put function to change the date here?
+      // set item date to props.date
     },
 
     collect: (monitor) => ({
@@ -63,7 +64,6 @@ function ItineraryList(props) {
       canDrop: monitor.canDrop(),
     }),
 
-    // possibly include: a box cant be dropped on the column where the drag started?
     // A box can't be dropped on the column where the drag started!
     canDrop(item, monitor) {
       let box = document.getElementById(item.id);
@@ -72,13 +72,6 @@ function ItineraryList(props) {
       return box.parentElement !== col;
     },
   }));
-
-  // sort activities by date
-  let sortedByDate = itinerary.filter(
-    (itinerary) => (itinerary.date = props.date)
-  );
-
-  //   sort by time
 
   // set background color if box is being dragged over a different column
   let canDropClass = collected.isOver && collected.canDrop ? "can-drop" : "";
@@ -93,10 +86,10 @@ function ItineraryList(props) {
       except onclick would apply to the whole element instead of a button */}
       <h2>{convertDbDateToHuman(props.date)}</h2>
       {itinerary
-        //   filter to only show certain dates in certain columns
-        .filter((itinerary) => itinerary.date === props.date)
-        // sort by time, ascending
-        .sort((a, b) => a.time.localeCompare(b.time))
+        // //   filter to only show certain dates in certain columns
+        // .filter((itinerary) => itinerary.date === props.date)
+        // // sort by time, ascending
+        // .sort((a, b) => a.time.localeCompare(b.time))
         // create a card for each item
         .map((itinerary) => (
           <ItineraryCard

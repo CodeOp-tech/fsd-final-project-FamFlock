@@ -195,6 +195,11 @@ function App() {
     }
   }
 
+  // edits itinerary item, currently only works on date - enables drag n drop
+  async function editItineraryActivity(date, activityid) {
+    let myresponse = await Api.editItineraryActivity(date, activityid);
+  }
+
   // navitates to the map of selected trip. Function is called from trip by id view.
   function goToMapsView(id) {
     navigate(`/my-trips/${id}/maps?destination=${trip.destination}`);

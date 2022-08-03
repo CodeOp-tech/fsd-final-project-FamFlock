@@ -15,76 +15,117 @@ function ItineraryView(props) {
   let addToItinerary = props.addToItinerary;
   const { trip, getTrip, itineraries, fetchItineraries } =
     useContext(TripsContext);
+  const [myItinerary, setMyItinerary] = useState(null); // JBR
 
-  //  let itineraryByDate = {
-  //   col1: [{ date: trip["itinerary"][i].date,
-  //   text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}` }]
-  //  }
+  // JBR
+  //   if a trip by id exists then set the itinerary, calling the make itinerary function
+  useEffect(() => {
+    if (trip) {
+      setMyItinerary(makeMyItinerary());
+    }
+  }, [trip]);
 
-  let InitColumns = {
-    //   col1: [{ id: "box1", text: "La Pedrera at 6" }],
-    //   col2: [{ id: "box2", text: "Dinner at 7" }],
-    //   col3: [{ id: "box3", text: "Lunch at 2" }],
-    // col1.push({id: trip["itinerary"][i].activityid,
-    // text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`})
-  };
-  //   console.log(trip["itinerary"]);
+  //   let InitColumns = {
+  //     //   col1: [{ id: "box1", text: "La Pedrera at 6" }],
+  //     //   col2: [{ id: "box2", text: "Dinner at 7" }],
+  //     //   col3: [{ id: "box3", text: "Lunch at 2" }],
+  //     // col1.push({id: trip["itinerary"][i].activityid,
+  //     // text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`})
+  //   };
 
-  for (let i = 0; i < trip["itinerary"].length; i++) {
-    InitColumns[`col${i}`] = [
-      {
-        //   change this to date
-        // id: trip["itinerary"][i].activityid,
-        id: trip["itinerary"][i].activityid,
-        text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`,
-      },
-    ];
+  // JBR
+  // Convert a UTC date to yyyy-mm-dd in local timezone
+  function makeLocaleDate(utcdate) {
+    //   ??????
+    return new Date(utcdate)
+      .toLocaleDateString("de-DE", { dateStyle: "medium" })
+      .replace(/(\d\d)\.(\d\d).(\d{4})/, "$3-$2-$1");
   }
 
-  let uniqueDates = {};
-  for (let i = 0; i < trip["itinerary"].length; i++) {
-    uniqueDates[trip["itinerary"][i].date] = true;
+  // JBR
+  // Return a "customized" version of the itinerary that's easy to render
+  function makeMyItinerary() {
+    // Add localeDate (not UTC) to all acts
+    let acts = [];
+    // for evert activity in itinerary
+    for (let act of trip.itinerary) {
+      // new activity is........
+      let newAct = { ...act };
+      // Add a localeDate which is the *correct* date
+      newAct.localeDate = makeLocaleDate(newAct.date);
+      acts.push(newAct);
+    }
+
+    // Sort all acts by date/time
+    function compareActs(a, b) {
+      if (`${a.localeDate} ${a.time}` < `${b.localeDate} ${b.time}`) {
+        return -1;
+      }
+      if (`${a.localeDate} ${a.time}` > `${b.localeDate} ${b.time}`) {
+        return 1;
+      }
+      return 0;
+    }
+    acts.sort(compareActs);
+
+    console.log(acts);
+
+    // Create obj with all dates in trip
+    // thanks: https://code-boxx.com/date-range-javascript/
+    let startDate = new Date(makeLocaleDate(trip.startDate));
+    let endDate = new Date(makeLocaleDate(trip.endDate));
+    let ustart = startDate.getTime();
+    let uend = endDate.getTime();
+    let actsByDate = {};
+    for (let unix = ustart; unix <= uend; unix += 86400000) {
+      let localeDate = new Date(unix).toISOString().substring(0, 10);
+      actsByDate[localeDate] = [];
+    }
+
+    // Assign activities to appropriate dates
+    for (let act of acts) {
+      actsByDate[act.localeDate].push(act);
+    }
+
+    return actsByDate;
   }
 
-  //   let uniqueDates = [];
-  //   while (trip.startDate <= trip.endDate) {
-  //     uniqueDates.push(new Date(trip.startDate));
+  // JBR
+  if (!myItinerary) {
+    return <h2>Loading...</h2>;
+  }
+
+  // JBR
+  let allDates = Object.keys(myItinerary);
+
+  //   for (let i = 0; i < trip["itinerary"].length; i++) {
+  //     InitColumns[`col${i}`] = [
+  //       {
+  //         //   change this to date
+  //         // id: trip["itinerary"][i].activityid,
+  //         id: trip["itinerary"][i].activityid,
+  //         text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`,
+  //       },
+  //     ];
   //   }
 
-  let dateColumns = Object.keys(uniqueDates).sort();
-  //   let dateColumns = uniqueDates.sort();
-
-  //   for (let itinerary in itineraries) {
-  //       if (itineraryByDate[itinerary[date]] === undefined) {
-  //         itineraryByDate[itinerary[date]] === itineraryByDate[itinerary[0].date]
-  //       }
+  //   let uniqueDates = {};
+  //   for (let i = 0; i < trip["itinerary"].length; i++) {
+  //     uniqueDates[trip["itinerary"][i].date] = true;
   //   }
 
-  //   console.log(InitColumns);
-  const [columns, setColumns] = useState(InitColumns);
+  //   let dateColumns = Object.keys(uniqueDates).sort();
 
-  //   useEffect(() => {
-  //     getTrip(id);
-  //   }, []);
+  //   const [columns, setColumns] = useState(InitColumns);
 
-  //   defining cards for pass on to children
-  //   let card = [`${trip.activity} ${trip.time}`];
+  //   function moveBox(item, toColId) {
+  //     let boxId = item.id;
+  //     let fromColId = item.fromColId;
 
-  function moveBox(item, toColId) {
-    let boxId = item.id;
-    let fromColId = item.fromColId;
+  //     let newColumns = { ...columns };
 
-    let newColumns = { ...columns };
-    //   find index of the box to be moved
-    // console.log("Hello", newColumns, "hEY", fromColId);
-    // let index = newColumns[fromColId].findIndex((b) => b.id === boxId);
-    // remove from old column by splicing
-    // let boxes = newColumns[fromColId].splice(index, 1);
-    // add it to the new column
-    // newColumns[toColId].push(boxes[0]);
-    // update state
-    setColumns((columns) => newColumns);
-  }
+  //     setColumns((columns) => newColumns);
+  //   }
 
   return (
     <div>
@@ -99,13 +140,13 @@ function ItineraryView(props) {
       except onclick would apply to the whole element instead of a button */}
 
           <DndProvider backend={HTML5Backend}>
-            {dateColumns.map((i) => (
+            {allDates.map((d) => (
               <ItineraryList
-                key={""}
-                id={i}
-                date={i}
-                itinerary={trip["itinerary"]}
-                dropCb={moveBox}
+                key={d}
+                id={d}
+                date={d}
+                itinerary={myItinerary[d]}
+                // dropCb={moveBox}
                 addToItineraryCb={addToItinerary}
               />
             ))}
