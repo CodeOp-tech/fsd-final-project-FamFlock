@@ -4,6 +4,7 @@ import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripsContext from "../context/TripsContext";
 import MembersVIewCSS from "./MembersView.css";
+import BudgetForm from "../components/BudgetForm";
 
 function MembersView(props) {
   const { trip } = useContext(TripsContext);
@@ -57,6 +58,12 @@ function MembersView(props) {
           <input type="text" name="email" required onChange={handleChange} />
           <button>ADD</button>
         </form>
+      </div>
+      <div>
+        <h2>Expenses</h2>
+        <div>
+          <BudgetForm></BudgetForm>
+        </div>
       </div>
     </div>
   );

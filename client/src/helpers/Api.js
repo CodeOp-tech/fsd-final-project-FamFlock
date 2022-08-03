@@ -182,6 +182,11 @@ class Api {
   static async removeMember(userId, tripId) {
     return await this._doFetch(`/users/member/${tripId}`, "DELETE", userId);
   }
+
+  // post a new expense to budget
+  static async addToBudget(expenses) {
+    return await this._doFetch("/budget", "POST", expenses);
+  }
 }
 
 export default Api;

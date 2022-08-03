@@ -23,7 +23,7 @@ import UserContext from "./context/UserContext";
 import AddTripPopUp from "./components/AddTripPopUp";
 import MembersView from "./views/MembersView";
 import YelpAnonyMousView from "./views/YelpAnonymousView";
-// import res from "express/lib/response";
+import BudgetForm from "./components/BudgetForm";
 
 function App() {
   const [user, setUser] = useState(null); // useState 1: sets logged in user
@@ -37,6 +37,7 @@ function App() {
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
   const [usersInTrip, setUsersInTrip] = useState([]); // useState 11
+  const [budget, setBudget] = useState([]); // useState 12
 
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -293,6 +294,17 @@ function App() {
       setError(myresponse.error);
     }
   }
+  // adds expenses to the trips budget
+  async function addToBudget(expense) {
+    expense.FK_trips_id = trip.id;
+    console.log(expense);
+    let myresponse = await Api.addToBudget(expense);
+    if (myresponse.ok) {
+      setBudget(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
 
   /*******Context Objects****** */
 
@@ -315,6 +327,7 @@ function App() {
     goToMembersView,
     goToYelpView,
     addToItinerary,
+    addToBudget,
   };
 
   const contextObjUser = {
