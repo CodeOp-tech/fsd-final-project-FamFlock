@@ -34,9 +34,9 @@ function MembersView(props) {
           <div className="members">
             {u.fullname ? (
               <div className="row">
-                <div className="col">Email: {u.email}</div>
-                <div className="col">Name: {u.fullname}</div>
-                <div className="col">Username: {u.username}</div>
+                <div className="col"> {u.email}</div>
+                <div className="col"> {u.fullname}</div>
+                <div className="col">{u.username}</div>
                 <button
                   className="col col-md-1 btn btn-primary"
                   onClick={() => handleClick(u.id)}
@@ -48,7 +48,7 @@ function MembersView(props) {
               <div className="row">
                 <div className="col">Email: {u.email}</div>
                 <button
-                  className="col col-md-1"
+                  className="col col-md-1 btn btn-primary"
                   onClick={() => handleClick(u.id)}
                 >
                   Remove
