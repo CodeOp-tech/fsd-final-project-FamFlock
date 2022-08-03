@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS messagesReactions;
 DROP TABLE IF EXISTS tripAddressess;
 DROP TABLE IF EXISTS lists;
 DROP TABLE IF EXISTS listItems;
-DROP TABLE IF EXISTS tripAddresses;
 DROP TABLE IF EXISTS budget;
+
 
 SET foreign_key_checks = 1;
  
@@ -92,6 +92,7 @@ CREATE TABLE tripAddresses (
 	formatted_address VARCHAR(250) NOT NULL,
 	FK_trips_id INT NOT NULL
 );
+
 
 CREATE TABLE budget (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
