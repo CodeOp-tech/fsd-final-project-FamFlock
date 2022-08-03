@@ -7,6 +7,7 @@ import Api from "../helpers/Api";
 import TripsContext from "../context/TripsContext.js";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripByIdNav from "../components/TripByIdNav";
+import "./ItineraryView.scss";
 
 // import the trip, getTrip, and getItineraries from context
 // set initcolumns as the date field in trip (filter?)
@@ -17,6 +18,7 @@ function ItineraryView(props) {
     trip,
     getTrip,
     editItineraryActivity,
+    goToYelpView,
     itineraries,
     fetchItineraries,
   } = useContext(TripsContext);
@@ -139,9 +141,9 @@ function ItineraryView(props) {
       <TripByIdNav />
       <div className="tripById">
         <h1>Your Itinerary for {trip.destination} 📅 </h1>
-        <Link to={"/yelp-search"}>
+        <h4 onClick={(e) => goToYelpView(trip.id)}>
           Looking for ideas? Search the city!
-        </Link> || <p onClick={(e) => getTrip(trip.id)}>Back to trip page</p>
+        </h4>
         <div className="itinerary-container">
           {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}

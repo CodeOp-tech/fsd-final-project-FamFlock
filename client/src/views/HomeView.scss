@@ -1,0 +1,13 @@
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 3px;
+  row-gap: 15px;
+  margin-bottom: 60px;
+}
+
+.home-grid-image {
+  width: 300px;
+  height: 300px;
+}

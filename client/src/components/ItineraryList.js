@@ -79,7 +79,7 @@ function ItineraryList(props) {
       id={props.id}
       key={props.id}
       ref={dropRef}
-      className={`itinerary-list-wrapper col ${canDropClass}`}
+      className={`itinerary-list-wrapper ${canDropClass}`}
     >
       {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
