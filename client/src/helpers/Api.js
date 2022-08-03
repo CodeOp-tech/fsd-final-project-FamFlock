@@ -138,6 +138,11 @@ class Api {
     return await this._doFetch(`/itinerary/${activityid}`, "PUT", body);
   }
 
+  // deletes activity from itinerary
+  static async deleteItineraryActivity(activityid) {
+    return await this._doFetch(`/itinerary/${activityid}`, "DELETE");
+  }
+
   // login a user
   static async loginUser(username, password) {
     let body = { username, password };
@@ -180,7 +185,22 @@ class Api {
   }
 
   static async removeMember(userId, tripId) {
-    return await this._doFetch(`/users/member/${tripId}`, "DELETE", userId);
+    return await this._doFetch(`/users/member/${userId}`, "DELETE", tripId);
+  }
+
+  // post a new expense to budget
+  static async addToBudget(expenses) {
+    return await this._doFetch("/budget", "POST", expenses);
+  }
+
+  static async getTripBudget(id) {
+    return await this._doFetch(`/budget/${id}`, "GET");
+  }
+
+  //deletes trip expense from trip budget
+  static async deleteExpenseFromBudget(id) {
+    console.log("this is the id to delete in API", id);
+    return await this._doFetch(`/budget/${id}`, "DELETE");
   }
 }
 

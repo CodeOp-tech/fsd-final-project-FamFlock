@@ -91,4 +91,22 @@ router.put("/:activityid", async (req, res) => {
   }
 });
 
+// delete an activity from the itinerary
+router.delete(":/activityid", async function (req, res, next) {
+  console.log(activityid);
+  try {
+    const { activityid } = req.params;
+
+    await db(`DELETE FROM itinerary WHERE id=${Number(activityid)}`);
+    const results = await db(
+      `SELECT itinerary.id AS activityid, trips.id AS tripid, itinerary.*, trips.* FROM itinerary 
+    LEFT JOIN trips ON trips.id = itinerary.FK_trips_id 
+    WHERE trips.id = ${FK_trips_id}`
+    );
+    res.status(200).send(results.data);
+  } catch (err) {
+    res.send({ message: error });
+  }
+});
+
 module.exports = router;

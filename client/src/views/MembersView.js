@@ -4,9 +4,11 @@ import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripsContext from "../context/TripsContext";
 import MembersVIewCSS from "./MembersView.css";
+import BudgetForm from "../components/BudgetForm";
+import BudgetTable from "../components/BudgetTable";
 
 function MembersView(props) {
-  const { trip } = useContext(TripsContext);
+  const { trip, budget } = useContext(TripsContext);
   const [email, setEmail] = useState("");
 
   function handleSubmit(event) {
@@ -19,8 +21,8 @@ function MembersView(props) {
     setEmail(value);
   }
 
-  function handleClick() {
-    props.removeMemberCb(props.user, trip.id);
+  function handleClick(userId) {
+    props.removeMemberCb(userId, trip.id);
   }
 
   return (
@@ -35,14 +37,20 @@ function MembersView(props) {
                 <div className="col">Email: {u.email}</div>
                 <div className="col">Name: {u.fullname}</div>
                 <div className="col">Username: {u.username}</div>
-                <button className="col col-md-1" onClick={handleClick}>
+                <button
+                  className="col col-md-1"
+                  onClick={() => handleClick(u.id)}
+                >
                   Remove
                 </button>
               </div>
             ) : (
               <div className="row">
                 <div className="col">Email: {u.email}</div>
-                <button className="col col-md-1" onClick={handleClick}>
+                <button
+                  className="col col-md-1"
+                  onClick={() => handleClick(u.id)}
+                >
                   Remove
                 </button>
               </div>
@@ -57,6 +65,12 @@ function MembersView(props) {
           <input type="text" name="email" required onChange={handleChange} />
           <button>ADD</button>
         </form>
+      </div>
+      <div>
+        <div>
+          <BudgetForm></BudgetForm>
+        </div>
+        <div>{budget.length > 0 ? <BudgetTable></BudgetTable> : null}</div>
       </div>
     </div>
   );

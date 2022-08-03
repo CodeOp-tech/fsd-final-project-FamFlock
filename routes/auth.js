@@ -11,12 +11,24 @@ router.post("/register", async (req, res) => {
   let hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
 
   try {
-    let sql = `INSERT INTO users (email, username, password, fullname, picture) VALUES 
-    ('${email}', '${username}', '${hashedPassword}', '${fullname}', '${picture}')`;
-    await db(sql);
+    const sqlcheck = `SELECT * FROM users WHERE email = '${email}'`;
 
-    // send the message
-    res.send({ message: "Registration succeeded" });
+    let result = await db(sqlcheck);
+
+    if (result.data.length === 0) {
+      let sql = `INSERT INTO users (email, username, password, fullname, picture) VALUES 
+    ('${email}', '${username}', '${hashedPassword}', '${fullname}', '${picture}')`;
+      await db(sql);
+
+      // send the message
+      res.send({ message: "Registration succeeded" });
+    } else {
+      let sql = `UPDATE users SET email='${email}', username='${username}', password='${hashedPassword}', fullname='${fullname}', picture='${picture}' WHERE email='${email}'`;
+      await db(sql);
+
+      // send the message
+      res.send({ message: "Registration succeeded" });
+    }
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

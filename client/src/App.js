@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
@@ -23,7 +23,7 @@ import UserContext from "./context/UserContext";
 import AddTripPopUp from "./components/AddTripPopUp";
 import MembersView from "./views/MembersView";
 import YelpAnonyMousView from "./views/YelpAnonymousView";
-// import res from "express/lib/response";
+import BudgetForm from "./components/BudgetForm";
 
 function App() {
   const [user, setUser] = useState(null); // useState 1: sets logged in user
@@ -37,6 +37,7 @@ function App() {
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
   const [usersInTrip, setUsersInTrip] = useState([]); // useState 11
+  const [budget, setBudget] = useState([]); // useState 12
 
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -175,7 +176,7 @@ function App() {
 
   // remove a trip member
   async function removeMember(userId, tripId) {
-    let myresponse = await Api.removeMember({ userId }, tripId);
+    let myresponse = await Api.removeMember(userId, { tripId });
     if (myresponse.ok) {
       fetchUsersInTrip(tripId);
       console.log(myresponse);
@@ -293,6 +294,51 @@ function App() {
       setError(myresponse.error);
     }
   }
+  // adds expenses to the trips budget
+  async function addToBudget(expense) {
+    expense.FK_trips_id = trip.id;
+    console.log(expense);
+    let myresponse = await Api.addToBudget(expense);
+    if (myresponse.ok) {
+      setBudget(myresponse.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  //it gets the additional addresses the user has saved to the trip
+  async function loadTripBudget(id) {
+    let myresponse = await Api.getTripBudget(id);
+    if (myresponse.ok) {
+      console.log(myresponse);
+      setBudget(myresponse.data.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  //deletes an added expense of the trip
+  async function deleteExpense(id) {
+    console.log("this is the expense to delete in APP", id);
+    let myresponse = await Api.deleteExpenseFromBudget(id);
+    if (myresponse.ok) {
+      loadTripBudget(trip.id);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  // deletes activity from itinerary
+  async function deleteItineraryActivity(activityid) {
+    let myresponse = await Api.deleteItineraryActivity(activityid);
+
+    if (myresponse.ok) {
+      let updated = await Api.getTrip(trip.id);
+      setTrip(updated.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
 
   /*******Context Objects****** */
 
@@ -305,6 +351,7 @@ function App() {
     goToMapsView,
     goToItineraryView,
     editItineraryActivity,
+    deleteItineraryActivity,
     fetchItineraries,
     addNewTripAddress,
     tripAddresses,
@@ -315,6 +362,11 @@ function App() {
     goToMembersView,
     goToYelpView,
     addToItinerary,
+    addToBudget,
+    budget,
+    loadTripBudget,
+    usersInTrip,
+    deleteExpense,
   };
 
   const contextObjUser = {
