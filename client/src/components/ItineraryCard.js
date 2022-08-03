@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import TripsContext from "../context/TripsContext.js";
 import { useDrag } from "react-dnd";
 
 // props here is gonna be itinerary time and activity
 function ItineraryCard(props) {
   let itinerary = props.itinerary;
+  const { trip, deleteItineraryActivity } = useContext(TripsContext);
+
+  // function to delete a card
+  function deleteItem(item) {
+    deleteItineraryActivity(props.itinerary.activityid);
+  }
+
   const [collected, dragRef] = useDrag(() => ({
     type: "box",
 
@@ -29,6 +37,7 @@ function ItineraryCard(props) {
       <div className="itinerary-list-card" id={props.activityid} ref={dragRef}>
         {" "}
         {props.children}
+        {/* <button onClick={deleteItem(props.itinerary.activityid)}>x</button> */}
       </div>
     </div>
   );
