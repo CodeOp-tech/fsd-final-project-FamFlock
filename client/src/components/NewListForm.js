@@ -30,7 +30,7 @@ function NewListForm(props) {
         </label>
 
         <label>
-          isComplete
+          Mark as Complete
           <input
             name="isComplete"
             type="checkbox"

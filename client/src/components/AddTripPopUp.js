@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import AddTripForm from "./AddTripForm.js";
 
-const AddTripPopUp = ({ addTrip, open, onClose }) => {
+const AddTripPopUp = ({ addTrip, open, onClose, setOpenPopUpCb }) => {
   if (!open) return null;
   else {
     return (
@@ -10,7 +10,10 @@ const AddTripPopUp = ({ addTrip, open, onClose }) => {
           <div className="modalRight">
             <div className="content"></div>
             {/* working on making this more efficient so you can customize */}
-            <AddTripForm addTrip={(trip) => addTrip(trip)} />
+            <AddTripForm
+              addTrip={(trip) => addTrip(trip)}
+              setOpenPopUpCb={setOpenPopUpCb}
+            />
           </div>
           <div className="btnContainer d-block">
             {/* Close PopUp */}

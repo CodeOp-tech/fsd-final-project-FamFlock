@@ -175,7 +175,7 @@ function App() {
 
   // add a trip
   const addTrip = async (trip) => {
-    let myresponse = await Api.addTrip();
+    let myresponse = await Api.addTrip(trip);
     if (myresponse.ok) {
       setTrips(myresponse.data);
     } else {
@@ -301,6 +301,7 @@ function App() {
     user,
     doLogout,
     editUser,
+    addTrip,
     goToRegister,
   };
 
@@ -385,12 +386,11 @@ function App() {
               path="/my-trips/:id/itinerary"
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
-
+            <Route path="/lists" element={<ListsView />} />
             <Route
               path="/my-trip/:id/members"
               element={<MembersView usersInTrip={usersInTrip} />}
             />
-
             <Route path="/list/:id" element={<ListItemsView />} />
           </Routes>
         </TripsContext.Provider>

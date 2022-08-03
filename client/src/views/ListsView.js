@@ -12,6 +12,8 @@ function ListsView() {
   const [error, setError] = useState([]);
   const { trip } = useContext(TripsContext);
 
+  console.log(trip);
+
   useEffect(() => {
     getLists();
   }, []);
@@ -86,16 +88,15 @@ function ListsView() {
     <div className="ListsView">
       <TripByIdNav />
       <div className="tripById">
-        <h1>Lists for Your Trip!</h1>
+        <h1>All your Lists for {trip.destination}</h1>
 
-        <h2>List for Trip</h2>
+        <h5>Click the List to see your tasks</h5>
         {/* make them links to item.id */}
-
         {/* <TripList lists={allLists} /> */}
         <div>
           <ul>
             {allLists.map((l /*index*/) => (
-              <li key={l.id}>
+              <div key={l.id}>
                 <Link to={`/list/${l.id}`}>{l.name}</Link>
                 <input
                   type="checkbox"
@@ -103,12 +104,12 @@ function ListsView() {
                   onChange={() => markComplete(l.id)}
                 />
                 {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
-              </li>
+              </div>
             ))}
           </ul>
         </div>
 
-        <h2>Add a List</h2>
+        <h5>Add a New List here</h5>
         <NewListForm addListCb={addList} />
       </div>
     </div>
