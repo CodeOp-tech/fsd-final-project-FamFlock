@@ -138,6 +138,11 @@ class Api {
     return await this._doFetch(`/itinerary/${activityid}`, "PUT", body);
   }
 
+  // deletes activity from itinerary
+  static async deleteItineraryActivity(activityid) {
+    return await this._doFetch(`/itinerary/${activityid}`, "DELETE");
+  }
+
   // login a user
   static async loginUser(username, password) {
     let body = { username, password };

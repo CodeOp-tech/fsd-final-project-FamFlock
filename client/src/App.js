@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 import NavBar from "./components/NavBar";
 import HomeView from "./views/HomeView";
@@ -281,6 +281,18 @@ function App() {
     }
   }
 
+  // deletes activity from itinerary
+  async function deleteItineraryActivity(activityid) {
+    let myresponse = await Api.deleteItineraryActivity(activityid);
+
+    if (myresponse.ok) {
+      let updated = await Api.getTrip(trip.id);
+      setTrip(updated.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
   /*******Context Objects****** */
 
   const contextObjTrips = {
@@ -292,6 +304,7 @@ function App() {
     goToMapsView,
     goToItineraryView,
     editItineraryActivity,
+    deleteItineraryActivity,
     fetchItineraries,
     addNewTripAddress,
     tripAddresses,
