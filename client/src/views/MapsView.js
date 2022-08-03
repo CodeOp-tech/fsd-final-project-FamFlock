@@ -13,8 +13,8 @@ function MapsView(props) {
   const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
     useContext(TripsContext);
   const [home, setHome] = useState(); //useState 1 -  center of map  (destination of trips table)
-  const [places, setPlaces] = useState([]); // useState 2 - should be passed by props from itinerary and addresses transformed with geocode
-  const [newPlaces, setNewPlaces] = useState([]); // useState 3
+  const [places, setPlaces] = useState([]); // useState 2 - these are the addresses saved in the itinerary and addresses transformed with geocode
+  // const [newPlaces, setNewPlaces] = useState([]); // useState 3
 
   const { user } = useContext(UserContext);
 
@@ -22,7 +22,6 @@ function MapsView(props) {
     getAndSetHome();
     return () => {
       setPlaces(null);
-      setNewPlaces([]);
     };
   }, []);
 
@@ -87,23 +86,14 @@ function MapsView(props) {
     <div>
       <TripByIdNav />
       <div className="tripById">
-        <h1>Your map for your trip to XYZ</h1>
-        <div>
-          {home && (
-            <MapMarker
-              places={places}
-              home={home}
-              zoom={13}
-              newPlaces={newPlaces}
-            />
-          )}
-        </div>
+        <h1>Your map for your trip to{" " + trip.destination}</h1>
+        <div>{home && <MapMarker places={places} home={home} zoom={13} />}</div>
         <h3 className="mt-4">Add important addressess to your itinerary</h3>
         <p>Enter an address to add a blue marker on the map</p>
         <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
 
         <div>
-          <MapMarkerTable places={places} newPlaces={newPlaces} />
+          <MapMarkerTable places={places} />
         </div>
       </div>
     </div>
