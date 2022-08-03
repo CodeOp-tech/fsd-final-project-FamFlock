@@ -209,10 +209,10 @@ router.post("/member/:id", async function (req, res, next) {
 
   /* DELETE memeber from a trip */
   router.delete("/member/:id", async function (req, res, next) {
-    let { userId } = req.body;
-
+    let { tripId } = req.body;
+    console.log(tripId, req.params.id);
     let results = await db(
-      `SELECT * FROM users_tripGroups WHERE FK_users_id = ${userId} AND FK_tripGroups_id = ${req.params.id}`
+      `SELECT * FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
     );
 
     try {
@@ -220,7 +220,7 @@ router.post("/member/:id", async function (req, res, next) {
         res.status(404).send({ error: "member not found" });
       } else {
         await db(
-          `DELETE FROM users_tripGroups WHERE FK_users_id = ${userId} AND FK_tripGroups_id = ${req.params.id}`
+          `DELETE FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
         );
         let results = await db(`SELECT * FROM users_tripGroups`);
         res.send(results.data);
