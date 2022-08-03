@@ -24,10 +24,10 @@
 
 .chatList .sender span {
   padding: 3px 5px;
-  background-color: lightblue;
+  background-color: var(--blue-color);
 }
 
 .chatList .receiver span {
   padding: 3px 5px;
-  background-color: lightgreen;
+  background-color: var(--green-color);
 }
