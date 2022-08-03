@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import MyProfileCss from "./MyProfileView.css";
 
 function MyProfileView(props) {
   const [buttonClick, setButtonClick] = useState(false); // useState 1
@@ -52,7 +53,7 @@ function MyProfileView(props) {
       <h2>My Profile</h2>
       {buttonClick ? (
         <div>
-          <img src={user.picture} />
+          <img className="propfilePic" src={user.picture} />
           <br />
           <form onSubmit={handleSubmit}>
             <label>Change Profile Picture</label>
@@ -98,12 +99,14 @@ function MyProfileView(props) {
               onChange={handleChange}
             />
             <br />
-            <button type="submit">SAVE</button>
+            <button className="btn btn-primary" type="submit">
+              SAVE
+            </button>
           </form>
         </div>
       ) : (
         <div>
-          <img src={user.picture} />
+          <img className="propfilePic" src={user.picture} />
           <br />
           {user.fullname}
           <br />
@@ -111,7 +114,9 @@ function MyProfileView(props) {
           <br />
           {user.username}
           <br />
-          <button onClick={handleClick}>EDIT</button>
+          <button className="btn btn-primary" onClick={handleClick}>
+            EDIT
+          </button>
         </div>
       )}
     </div>

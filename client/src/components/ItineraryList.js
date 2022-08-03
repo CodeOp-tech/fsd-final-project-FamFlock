@@ -136,7 +136,9 @@ function ItineraryList(props) {
           type="time"
           onChange={handleChange}
         />
-        <button type="submit">Add new activity!</button>
+        <button className="btn btn-primary" type="submit">
+          Add new activity!
+        </button>
       </form>
     </div>
   );

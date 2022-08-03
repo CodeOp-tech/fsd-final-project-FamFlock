@@ -64,7 +64,10 @@ function YelpAnonymousSearchResults(props) {
                   </td>
 
                   <td>
-                    <button onClick={() => goToRegister()}>
+                    <button
+                      onClick={() => goToRegister()}
+                      className="btn btn-primary"
+                    >
                       Add to itinerary
                     </button>
                   </td>

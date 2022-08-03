@@ -58,7 +58,7 @@ CREATE TABLE messages (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     senderId INT NOT NULL,
 	groupId INT NOT NULL,
-    text VARCHAR(250) NOT NULL,
+    text VARCHAR(1000) NOT NULL,
 	thumbsUpCount INT,
 	thumbsDownCount INT,
     dateTime DATETIME DEFAULT CURRENT_TIMESTAMP

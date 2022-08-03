@@ -176,6 +176,7 @@ function ChatView(props) {
               name="text"
               value={text}
               onChange={handleChange}
+              required
             />
             <button className="btn btn-primary">
               <svg
