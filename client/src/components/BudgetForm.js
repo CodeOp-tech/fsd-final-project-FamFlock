@@ -18,7 +18,7 @@ function BudgetForm(props) {
     setFormData(EMPTY_FORM);
   }
   return (
-    <div>
+    <div className="tripById">
       <h1>Keep track of your trip expenses </h1>
 
       <div>
@@ -34,7 +34,7 @@ function BudgetForm(props) {
           </label>
           <br></br>
           <label>
-            <button>Search</button>
+            <button>Add expense</button>
           </label>
         </form>
       </div>

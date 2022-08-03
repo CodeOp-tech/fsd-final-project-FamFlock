@@ -41,4 +41,18 @@ router.post("/", async function (req, res, next) {
   }
 });
 
+/* DELETE of budget expense */
+router.delete("/:id", async function (req, res, next) {
+  const { id } = req.params;
+  const sql = `DELETE FROM budget WHERE id=${Number(id)}`;
+
+  try {
+    await db(sql);
+    let results = await db("SELECT * FROM budget");
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
