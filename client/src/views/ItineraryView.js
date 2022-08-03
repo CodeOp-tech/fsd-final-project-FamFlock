@@ -13,8 +13,13 @@ import TripByIdNav from "../components/TripByIdNav";
 
 function ItineraryView(props) {
   let addToItinerary = props.addToItinerary;
-  const { trip, getTrip, itineraries, fetchItineraries } =
-    useContext(TripsContext);
+  const {
+    trip,
+    getTrip,
+    editItineraryActivity,
+    itineraries,
+    fetchItineraries,
+  } = useContext(TripsContext);
   const [myItinerary, setMyItinerary] = useState(null); // JBR
 
   // JBR
@@ -68,8 +73,6 @@ function ItineraryView(props) {
     }
     acts.sort(compareActs);
 
-    console.log(acts);
-
     // Create obj with all dates in trip
     // thanks: https://code-boxx.com/date-range-javascript/
     let startDate = new Date(makeLocaleDate(trip.startDate));
@@ -84,6 +87,7 @@ function ItineraryView(props) {
 
     // Assign activities to appropriate dates
     for (let act of acts) {
+      // add each activity based on the date defined in it
       actsByDate[act.localeDate].push(act);
     }
 
@@ -118,14 +122,17 @@ function ItineraryView(props) {
 
   //   const [columns, setColumns] = useState(InitColumns);
 
-  //   function moveBox(item, toColId) {
-  //     let boxId = item.id;
-  //     let fromColId = item.fromColId;
+  function moveBox(item, toColId) {
+    console.log(item, toColId);
+    //   call the put function to change the date here?
+    editItineraryActivity(toColId, item.activityid);
+    // let boxId = item.id;
+    // let fromColId = item.fromColId;
 
-  //     let newColumns = { ...columns };
+    // let newColumns = { ...columns };
 
-  //     setColumns((columns) => newColumns);
-  //   }
+    // setColumns((columns) => newColumns);
+  }
 
   return (
     <div>
@@ -146,7 +153,7 @@ function ItineraryView(props) {
                 id={d}
                 date={d}
                 itinerary={myItinerary[d]}
-                // dropCb={moveBox}
+                dropCb={moveBox}
                 addToItineraryCb={addToItinerary}
               />
             ))}

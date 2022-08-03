@@ -217,7 +217,10 @@ function App() {
 
   // edits itinerary item, currently only works on date - enables drag n drop
   async function editItineraryActivity(date, activityid) {
-    let myresponse = await Api.editItineraryActivity(date, activityid);
+    let body = { date, FK_trips_id: trip.id };
+    await Api.editItineraryActivity(body, activityid);
+    let myresponse = await Api.getTrip(trip.id);
+    setTrip(myresponse.data);
   }
 
   // navitates to the map of selected trip. Function is called from trip by id view.
@@ -289,6 +292,7 @@ function App() {
     itineraries,
     goToMapsView,
     goToItineraryView,
+    editItineraryActivity,
     fetchItineraries,
     addNewTripAddress,
     tripAddresses,
@@ -388,7 +392,6 @@ function App() {
               path="/my-trips/:id/itinerary"
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
-           
 
             <Route
               path="/my-trip/:id/members"
@@ -396,8 +399,6 @@ function App() {
             />
 
             <Route path="/list/:id" element={<ListItemsView />} />
-            
-
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>

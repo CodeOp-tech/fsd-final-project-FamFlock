@@ -13,8 +13,7 @@ function ItineraryList(props) {
     location: "",
     time: "",
   };
-  const { trip, getTrip, itineraries, fetchItineraries } =
-    useContext(TripsContext);
+  const { trip, editItineraryActivity } = useContext(TripsContext);
   const [formData, setFormData] = useState(EMPTY_FORM);
 
   let itinerary = props.itinerary;
@@ -55,7 +54,7 @@ function ItineraryList(props) {
     drop(item, monitor) {
       // pass up the box prop and column id
       props.dropCb(item, props.id);
-      //   call the put function to change the date here?
+
       // set item date to props.date
     },
 
@@ -93,7 +92,7 @@ function ItineraryList(props) {
         // create a card for each item
         .map((itinerary) => (
           <ItineraryCard
-            id={itinerary.date}
+            id={itinerary.localeDate}
             key={itinerary.activityid}
             itinerary={itinerary}
           >
