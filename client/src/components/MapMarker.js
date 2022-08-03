@@ -69,7 +69,7 @@ function MarkerMap(props) {
             <Marker
               key={p.latLng}
               position={p.latLng.split(",")}
-              // im splitting the position because the database is saving it as a string and the component its expecting an array.
+              // im splitting the position because the database is saving it as a string and the component git its expecting an array.
               icon={redMarker}
             >
               <Popup>{p.name}</Popup>
