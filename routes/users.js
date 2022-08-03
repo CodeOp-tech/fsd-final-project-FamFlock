@@ -166,9 +166,9 @@ router.get("/trip/:id", async function (req, res, next) {
 });
 
 /* POST new user for current trip */
-router.post("/addMember/:id", async function (req, res, next) {
+router.post("/member/:id", async function (req, res, next) {
   const { email } = req.body;
-  const sql = `SELECT * FROM users WHERE email = "${email}";`;
+  const sql = `SELECT * FROM users WHERE email = '${email}';`;
   let user = await db(sql);
   // console.log(" length of user!!!!!! ", user.data.length);
   // res.send(user);
@@ -199,12 +199,36 @@ router.post("/addMember/:id", async function (req, res, next) {
         const result = await db("SELECT * FROM users");
         res.send(result);
       } else {
-        res.send("SELECT * FROM users");
+        const result = await db("SELECT * FROM users");
+        res.send(result);
       }
     }
   } catch (err) {
     res.status(500).send(err);
   }
+
+  /* DELETE memeber from a trip */
+  router.delete("/member/:id", async function (req, res, next) {
+    let { userId } = req.body;
+
+    let results = await db(
+      `SELECT * FROM users_tripGroups WHERE FK_users_id = ${userId} AND FK_tripGroups_id = ${req.params.id}`
+    );
+
+    try {
+      if (results.data.length === 0) {
+        res.status(404).send({ error: "member not found" });
+      } else {
+        await db(
+          `DELETE FROM users_tripGroups WHERE FK_users_id = ${userId} AND FK_tripGroups_id = ${req.params.id}`
+        );
+        let results = await db(`SELECT * FROM users_tripGroups`);
+        res.send(results.data);
+      }
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
+  });
 });
 
 module.exports = router;
