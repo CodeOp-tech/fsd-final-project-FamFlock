@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 // import "../components/ListsView";
-import TripList from "../components/TripList";
+// import TripList from "../components/TripList";
 import NewListForm from "../components/NewListForm";
-// import Api from "../helpers/Api";
 import TripsContext from "../context/TripsContext";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 
 function ListsView() {
   const [allLists, setAllLists] = useState([]);
+  const [error, setError] = useState([]);
   const { trip } = useContext(TripsContext);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function ListsView() {
       .then((response) => response.json())
       .then((lists) => {
         setAllLists(lists);
-        // console.log(lists);
+        console.log(lists);
       })
       .catch((error) => {
         console.log(error);
@@ -49,6 +50,38 @@ function ListsView() {
     }
   }
 
+  const updateList = async (listId) => {
+    let idx = allLists.findIndex((list) => list.id === listId);
+    try {
+      let res = await fetch(`/lists/${listId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          isComplete: allLists[idx].isComplete,
+        }),
+      });
+      if (!res.ok) throw res.statusText;
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const markComplete = (id) => {
+    const updatedLists = allLists.map((list) => {
+      if (list.id === id) {
+        list.isComplete = !list.isComplete;
+      }
+      //   updateItems(item);
+      return list;
+    });
+
+    console.log(allLists);
+    setAllLists(updatedLists);
+    updateList(id);
+  };
+
   return (
     <div className="ListsView">
       <TripByIdNav />
@@ -56,7 +89,24 @@ function ListsView() {
         <h1>Lists for Your Trip!</h1>
 
         <h2>List for Trip</h2>
-        <TripList lists={allLists} />
+        {/* make them links to item.id */}
+
+        {/* <TripList lists={allLists} /> */}
+        <div>
+          <ul>
+            {allLists.map((l /*index*/) => (
+              <li key={l.id}>
+                <Link to={`/list/${l.id}`}>{l.name}</Link>
+                <input
+                  type="checkbox"
+                  checked={l.isComplete}
+                  onChange={() => markComplete(l.id)}
+                />
+                {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <h2>Add a List</h2>
         <NewListForm addListCb={addList} />

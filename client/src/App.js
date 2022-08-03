@@ -10,6 +10,7 @@ import RegisterView from "./views/RegisterView";
 import MyProfileView from "./views/MyProfileView";
 import TripByIdNav from "./components/TripByIdNav";
 import ListsView from "./views/ListsView";
+import ListItemsView from "./views/ListItemsView";
 import Local from "./helpers/Local";
 import ChatView from "./views/ChatView";
 import Api from "./helpers/Api";
@@ -379,7 +380,7 @@ function App() {
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
             <Route path="/lists" element={<ListsView />} />
-
+            <Route path="/list/:id" element={<ListItemsView />} />
             <Route path="/my-trip/:id/members" element={<MembersView />} />
           </Routes>
         </TripsContext.Provider>
