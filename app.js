@@ -16,6 +16,7 @@ const listsRouter = require("./routes/lists");
 const itemsRouter = require("./routes/items");
 const reactionsRouter = require("./routes/reactions");
 const addressesRouter = require("./routes/addresses");
+const budgetRouter = require("./routes/budget");
 
 var app = express();
 
@@ -38,5 +39,6 @@ app.use("/lists", listsRouter);
 app.use("/items", itemsRouter);
 app.use("/reactions", reactionsRouter);
 app.use("/addresses", addressesRouter);
+app.use("/budget", budgetRouter);
 
 module.exports = app;
