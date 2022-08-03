@@ -34,6 +34,7 @@ function App() {
   const [loginErrorMessage, setLoginErrorMessage] = useState(""); // useState 8
   const [error, setError] = useState(""); // useState9
   const [tripAddresses, setTripAddresses] = useState([]); // useState 10;
+  const [usersInTrips, setUsersInTrips] = useState([]); // useState 11
 
   // const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -127,10 +128,22 @@ function App() {
     if (myresponse.ok) {
       setTrip(myresponse.data);
       setGroupId(myresponse.data.id);
+      fetchUsersInTrip(myresponse.data.id);
       console.log(myresponse.data.id);
       //optional: navigate to trip/id page after
       navigate(`/my-trips/${id}`);
     } else {
+      setError(myresponse.error);
+    }
+  }
+
+  // get users in a trip
+  async function fetchUsersInTrip(id) {
+    let myresponse = await Api.getUsersInTrip(id);
+    if (myresponse.ok) {
+      setUsersInTrips(myresponse.data);
+    } else {
+      console.log("response not ok");
       setError(myresponse.error);
     }
   }
@@ -358,13 +371,7 @@ function App() {
 
             <Route
               path="/my-trips/:id"
-              element={
-                <TripByIdNav
-                  setGroupIdCb={setGroupId}
-                  user={user}
-                  groupId={groupId}
-                />
-              }
+              element={<TripByIdNav user={user} groupId={groupId} />}
             />
 
             <Route
