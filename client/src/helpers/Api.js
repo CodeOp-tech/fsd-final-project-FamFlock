@@ -133,11 +133,8 @@ class Api {
   }
 
   // edit itinerary activity (just date for now)
-  static async editItineraryActivity(date, activityid) {
-    let body = {
-      date,
-    };
-
+  static async editItineraryActivity(body, activityid) {
+    console.log("I am body", body, activityid);
     return await this._doFetch(`/itinerary/${activityid}`, "PUT", body);
   }
 
