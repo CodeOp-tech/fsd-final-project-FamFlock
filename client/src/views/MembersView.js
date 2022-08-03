@@ -19,8 +19,8 @@ function MembersView(props) {
     setEmail(value);
   }
 
-  function handleClick() {
-    props.removeMemberCb(props.user, trip.id);
+  function handleClick(userId) {
+    props.removeMemberCb(userId, trip.id);
   }
 
   return (
@@ -35,14 +35,20 @@ function MembersView(props) {
                 <div className="col">Email: {u.email}</div>
                 <div className="col">Name: {u.fullname}</div>
                 <div className="col">Username: {u.username}</div>
-                <button className="col col-md-1" onClick={handleClick}>
+                <button
+                  className="col col-md-1"
+                  onClick={() => handleClick(u.id)}
+                >
                   Remove
                 </button>
               </div>
             ) : (
               <div className="row">
                 <div className="col">Email: {u.email}</div>
-                <button className="col col-md-1" onClick={handleClick}>
+                <button
+                  className="col col-md-1"
+                  onClick={() => handleClick(u.id)}
+                >
                   Remove
                 </button>
               </div>

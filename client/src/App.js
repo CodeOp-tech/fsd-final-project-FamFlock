@@ -175,7 +175,7 @@ function App() {
 
   // remove a trip member
   async function removeMember(userId, tripId) {
-    let myresponse = await Api.removeMember({ userId }, tripId);
+    let myresponse = await Api.removeMember(userId, { tripId });
     if (myresponse.ok) {
       fetchUsersInTrip(tripId);
       console.log(myresponse);

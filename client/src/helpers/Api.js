@@ -180,7 +180,7 @@ class Api {
   }
 
   static async removeMember(userId, tripId) {
-    return await this._doFetch(`/users/member/${tripId}`, "DELETE", userId);
+    return await this._doFetch(`/users/member/${userId}`, "DELETE", tripId);
   }
 }
 
