@@ -161,6 +161,18 @@ function App() {
     }
   }
 
+  // add new trip member
+  async function addMember(email, id) {
+    let myresponse = await Api.addMember(email, id);
+
+    if (myresponse.ok) {
+      setUsersInTrip(myresponse.data);
+    } else {
+      console.log("response not ok");
+      setError(myresponse.error);
+    }
+  }
+
   // add a trip
   const addTrip = async (trip) => {
     let myresponse = await Api.addTrip();
