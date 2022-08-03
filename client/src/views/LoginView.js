@@ -25,28 +25,38 @@ function LoginView(props) {
   }
 
   return (
-    <div>
+    <div className="container ">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form
+        className="form-control  form-row align-items-center"
+        onSubmit={handleSubmit}
+      >
         <label>
-          Username:
           <input
+            placeholder="username"
+            className="form-control "
             type="text"
             name="usernameInput"
             value={username}
             onChange={handleChange}
           />
         </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="passwordInput"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">LOGIN</button>
+        <br></br>
+        <div>
+          <label>
+            <input
+              placeholder="password"
+              className="form-control "
+              type="password"
+              name="passwordInput"
+              value={password}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div>
+          <button type="submit">LOGIN</button>
+        </div>
       </form>
       <nav>
         <Link to="/register">Don't have an account yet? Register here</Link>
