@@ -8,7 +8,7 @@ import TripsContext from "../context/TripsContext";
 import { useEffect } from "react";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 
-function TripByIdView(props) {
+function TripByIdNav(props) {
   const {
     trip,
     goToMapsView,
@@ -48,4 +48,4 @@ function TripByIdView(props) {
   );
 }
 
-export default TripByIdView;
+export default TripByIdNav;
