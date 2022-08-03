@@ -177,7 +177,10 @@ function App() {
   const addTrip = async (trip) => {
     let myresponse = await Api.addTrip();
     if (myresponse.ok) {
-      setTrips(myresponse.data);
+      setUser((state) => ({
+        ...state, // gets replaced by all key-value pairs from obj
+        trips: myresponse.data, // sets updated trips from this user
+      }));
     } else {
       setError(myresponse.error);
     }

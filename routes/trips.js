@@ -33,6 +33,23 @@ function joinToJson(results) {
   return trip;
 }
 
+// /* Join to Json */
+function joinToJson2(results) {
+  // Create array of  objs
+
+  let row0 = results.data[0];
+
+  let trips = results.data.map((row) => ({
+    trip_id: row.id,
+    startDate: row.startDate,
+    endDate: row.endDate,
+    destination: row.destination,
+    group_id: row.FK_tripGroups_id,
+  }));
+
+  return trips;
+}
+
 /* GET trips */
 router.get("/", async function (req, res, next) {
   let results = await db("SELECT * FROM trips");
@@ -73,7 +90,9 @@ router.post("/", async function (req, res, next) {
     let result2 = await db(sql2);
 
     let results = await db("SELECT * FROM trips;");
-    res.send(results.data);
+    let trips = await joinToJson2(results);
+
+    res.send(trips);
   } catch (err) {
     res.status(500).send(err);
   }
