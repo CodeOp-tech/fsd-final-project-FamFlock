@@ -181,7 +181,26 @@ class Api {
   }
 
   static async addMember(email, id) {
-    return await this._doFetch(`/users/addMember/${id}`, "POST", email);
+    return await this._doFetch(`/users/member/${id}`, "POST", email);
+  }
+
+  static async removeMember(userId, tripId) {
+    return await this._doFetch(`/users/member/${tripId}`, "DELETE", userId);
+  }
+
+  // post a new expense to budget
+  static async addToBudget(expenses) {
+    return await this._doFetch("/budget", "POST", expenses);
+  }
+
+  static async getTripBudget(id) {
+    return await this._doFetch(`/budget/${id}`, "GET");
+  }
+
+  //deletes trip expense from trip budget
+  static async deleteExpenseFromBudget(id) {
+    console.log("this is the id to delete in API", id);
+    return await this._doFetch(`/budget/${id}`, "DELETE");
   }
 }
 
