@@ -161,6 +161,18 @@ function App() {
     }
   }
 
+  // add new trip member
+  async function addMember(email, id) {
+    let myresponse = await Api.addMember(email, id);
+
+    if (myresponse.ok) {
+      setUsersInTrip(myresponse.data);
+    } else {
+      console.log("response not ok");
+      setError(myresponse.error);
+    }
+  }
+
   // const addTrip = async (trip) => {
   //   let options = {
   //     method: "POST",
@@ -388,7 +400,6 @@ function App() {
               path="/my-trips/:id/itinerary"
               element={<ItineraryView addToItinerary={addToItinerary} />}
             />
-           
 
             <Route
               path="/my-trip/:id/members"
@@ -396,8 +407,6 @@ function App() {
             />
 
             <Route path="/list/:id" element={<ListItemsView />} />
-            
-
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>
