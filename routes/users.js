@@ -165,4 +165,70 @@ router.get("/trip/:id", async function (req, res, next) {
   res.send(results.data);
 });
 
+/* POST new user for current trip */
+router.post("/member/:id", async function (req, res, next) {
+  const { email } = req.body;
+  const sql = `SELECT * FROM users WHERE email = '${email}';`;
+  let user = await db(sql);
+  // console.log(" length of user!!!!!! ", user.data.length);
+  // res.send(user);
+
+  try {
+    if (user.data.length < 1) {
+      const sqlpost = `INSERT INTO users (email) VALUES ('${email}'); SELECT LAST_INSERT_ID()`;
+
+      const userResults = await db(sqlpost);
+      const userId = userResults.data[0].insertId;
+
+      const sqljunction = `INSERT INTO users_tripGroups (FK_users_id, FK_tripGroups_id) VALUES (${userId}, ${req.params.id})`;
+
+      await db(sqljunction);
+
+      const results = await db(`SELECT * FROM users`);
+      res.send(results);
+    } else {
+      const userId = user.data[0].id;
+
+      const sqlcheck = `SELECT * FROM users_tripGroups WHERE FK_users_id=${userId} AND FK_tripGroups_id=${req.params.id}`;
+      const checkresults = await db(sqlcheck);
+
+      if (checkresults.data.length < 1) {
+        const sqlupdate = `INSERT INTO users_tripGroups (FK_users_id, FK_tripGroups_id) VALUES (${userId}, ${req.params.id})`;
+        await db(sqlupdate);
+
+        const result = await db("SELECT * FROM users");
+        res.send(result);
+      } else {
+        const result = await db("SELECT * FROM users");
+        res.send(result);
+      }
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+
+  /* DELETE memeber from a trip */
+  router.delete("/member/:id", async function (req, res, next) {
+    let { userId } = req.body;
+
+    let results = await db(
+      `SELECT * FROM users_tripGroups WHERE FK_users_id = ${userId} AND FK_tripGroups_id = ${req.params.id}`
+    );
+
+    try {
+      if (results.data.length === 0) {
+        res.status(404).send({ error: "member not found" });
+      } else {
+        await db(
+          `DELETE FROM users_tripGroups WHERE FK_users_id = ${userId} AND FK_tripGroups_id = ${req.params.id}`
+        );
+        let results = await db(`SELECT * FROM users_tripGroups`);
+        res.send(results.data);
+      }
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
+  });
+});
+
 module.exports = router;

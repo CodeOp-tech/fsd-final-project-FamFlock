@@ -33,6 +33,23 @@ function joinToJson(results) {
   return trip;
 }
 
+// /* Join to Json */
+function joinToJson2(results) {
+  // Create array of  objs
+
+  let row0 = results.data[0];
+
+  let trips = results.data.map((row) => ({
+    trip_id: row.trip_id,
+    startDate: row.startDate,
+    endDate: row.endDate,
+    destination: row.destination,
+    group_id: row.group_id,
+  }));
+
+  return trips;
+}
+
 /* GET trips */
 router.get("/", async function (req, res, next) {
   let results = await db("SELECT * FROM trips");
@@ -61,7 +78,7 @@ router.get("/:id", async function (req, res, next) {
 
 /* POST to trips */
 router.post("/", async function (req, res, next) {
-  const { startDate, endDate, destination, name } = req.body;
+  const { startDate, endDate, destination, name, user_id } = req.body;
   const sql1 = `INSERT INTO tripGroups (name) VALUES ('${name}'); SELECT LAST_INSERT_ID();`;
 
   try {
@@ -72,8 +89,20 @@ router.post("/", async function (req, res, next) {
     const sql2 = `INSERT INTO trips (FK_tripGroups_id, startDate, endDate, destination) VALUES (${FK_tripGroups_id},'${startDate}','${endDate}','${destination}');`;
     let result2 = await db(sql2);
 
-    let results = await db("SELECT * FROM trips;");
-    res.send(results.data);
+    const sql3 = `INSERT INTO users_tripGroups(FK_users_id,FK_tripGroups_id) VALUES (${user_id},${FK_tripGroups_id})`;
+    let result3 = await db(sql3);
+
+    let sql4 = `SELECT DISTINCT trips.*, trips.id AS trip_id, tripGroups.id as group_id
+    FROM users_tripGroups 
+    INNER JOIN tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
+    INNER JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  
+    WHERE users_tripGroups.FK_users_id = ${user_id}`;
+
+    let results = await db(sql4);
+
+    let trips = await joinToJson2(results);
+
+    res.send(trips);
   } catch (err) {
     res.status(500).send(err);
   }

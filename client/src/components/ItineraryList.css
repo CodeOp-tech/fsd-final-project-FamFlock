@@ -3,7 +3,9 @@
   height: 500px;
   background-color: gainsboro;
   justify-content: auto;
-  margin: 30px;
+  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .can-drop {

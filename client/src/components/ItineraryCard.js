@@ -9,9 +9,17 @@ function ItineraryCard(props) {
 
     // this is called when a drag starts
     item: () => {
-      let col = document.getElementById(props.id).parentElement;
+      let col = document.getElementById(
+        props.itinerary.localeDate
+      ).parentElement;
+
       // return ids of box and column where drag started
-      return { id: props.id, fromColId: col.id };
+      console.log(props.itinerary);
+      return {
+        id: props.id,
+        activityid: props.itinerary.activityid,
+        fromColId: props.id,
+      };
     },
   }));
 

@@ -18,10 +18,10 @@ SET foreign_key_checks = 1;
 CREATE TABLE users (
 	id INT NOT NULL AUTO_INCREMENT,
 	email VARCHAR(100) NOT NULL UNIQUE,
-	username VARCHAR(20) NOT NULL UNIQUE,
-	password VARCHAR(200) NOT NULL,
-	fullname VARCHAR(30) NOT NULL,
-	picture VARCHAR(200) NOT NULL,
+	username VARCHAR(20) UNIQUE,
+	password VARCHAR(200),
+	fullname VARCHAR(30),
+	picture VARCHAR(200),
 	PRIMARY KEY (id)
 );
 
@@ -151,18 +151,27 @@ INSERT INTO trips (
 	(1, 20220725, 20220801, 'Barcelona'),
 	(2, 20220806, 20220809, 'London'),
 	(2, 20220901, 20220904, 'Paris'),
-	(3, 20220715, 20220724, 'Venice');
+	(3, 20220715, 20220720, 'Venice');
 
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
-	('Visit to La Pedrera', 20220725, 'La Pedrera', 200000, 1),
+	('Visit to La Pedrera', 20220727, 'La Pedrera', 200000, 1),
 	('Afternoon stroll', 20220728, 'Tibidabo', 110000, 1),
+	('Ballet Show', 20220725, 'Palau de la Musica', 190000, 1),
+	('Stargazing', 20220725, 'CRAM', 220000, 1),
+	('Football match', 20220726, 'Camp Nou', 210000, 1),
 	('Sightseeing', 20220808, 'Big Ben', 123000, 2),
 	('Football match', 20220807, 'Emirates Stadium', 140000, 2),
+	('Sunset boat trip', 20220807, 'River Thames', 190000, 2),
+	('High tea', 20220806, 'Covent Garden', 120000, 2),
 	('Lunch', 20220901, 'Chez du Fromage', 133000, 3),
 	('Dinner', 20220903, 'Lumiere', 210000, 3),
+	('Football match', 20220902, 'Parc des Princes', 210000, 3),
+	('Walking', 20220902, 'Champs-Elysees', 150000, 3),
 	('Boat Tour', 20220717, 'Canale di Venezia', 120000, 4),
+	('Museum Time', 20220719, 'Museo di Venezia', 140000, 4),
+	('Excursion to Napoli', 20220718, 'Porto di Venezia', 090000, 4),
 	('Pizza-making class', 20220720, 'Il Formaggi', 160000, 4);
 
 
