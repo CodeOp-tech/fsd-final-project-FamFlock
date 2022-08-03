@@ -8,6 +8,18 @@ function MembersView() {
       <TripByIdNav />
       <div className="tripById">
         <h2>Trip Members</h2>
+        <div>
+          <div>Name:</div>
+          <div>Email:</div>
+          <div>Username:</div>
+        </div>
+
+        <h4>Add new members</h4>
+        <form>
+          <label>Email</label>
+          <input />
+          <button>ADD</button>
+        </form>
       </div>
     </div>
   );

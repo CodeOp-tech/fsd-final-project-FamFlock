@@ -154,4 +154,15 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+/* GET users in current trip */
+router.get("/trip/:id", async function (req, res, next) {
+  const { id } = req.params;
+
+  let sql = `SELECT users.*, users_tripGroups.*
+  FROM users LEFT JOIN users_tripGroups ON users.id = users_tripGroups.FK_users_id WHERE users_tripGroups.FK_tripGroups_id = ${id}
+  `;
+  let results = await db(sql);
+  res.send(results.data);
+});
+
 module.exports = router;
