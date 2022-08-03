@@ -12,7 +12,7 @@ function ListsView() {
   const [error, setError] = useState([]);
   const { trip } = useContext(TripsContext);
 
-  console.log(trip);
+  console.log("this is trip from ListsView" + trip);
 
   useEffect(() => {
     getLists();
