@@ -187,6 +187,16 @@ class Api {
   static async addToBudget(expenses) {
     return await this._doFetch("/budget", "POST", expenses);
   }
+
+  static async getTripBudget(id) {
+    return await this._doFetch(`/budget/${id}`, "GET");
+  }
+
+  //deletes trip expense from trip budget
+  static async deleteExpenseFromBudget(id) {
+    console.log("this is the id to delete in API", id);
+    return await this._doFetch(`/budget/${id}`, "DELETE");
+  }
 }
 
 export default Api;

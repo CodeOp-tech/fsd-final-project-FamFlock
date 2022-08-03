@@ -306,6 +306,28 @@ function App() {
     }
   }
 
+  //it gets the additional addresses the user has saved to the trip
+  async function loadTripBudget(id) {
+    let myresponse = await Api.getTripBudget(id);
+    if (myresponse.ok) {
+      console.log(myresponse);
+      setBudget(myresponse.data.data);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
+  //deletes an added expense of the trip
+  async function deleteExpense(id) {
+    console.log("this is the expense to delete in APP", id);
+    let myresponse = await Api.deleteExpenseFromBudget(id);
+    if (myresponse.ok) {
+      loadTripBudget(trip.id);
+    } else {
+      setError(myresponse.error);
+    }
+  }
+
   /*******Context Objects****** */
 
   const contextObjTrips = {
@@ -328,6 +350,10 @@ function App() {
     goToYelpView,
     addToItinerary,
     addToBudget,
+    budget,
+    loadTripBudget,
+    usersInTrip,
+    deleteExpense,
   };
 
   const contextObjUser = {

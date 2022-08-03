@@ -5,9 +5,10 @@ import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripsContext from "../context/TripsContext";
 import MembersVIewCSS from "./MembersView.css";
 import BudgetForm from "../components/BudgetForm";
+import BudgetTable from "../components/BudgetTable";
 
 function MembersView(props) {
-  const { trip } = useContext(TripsContext);
+  const { trip, budget } = useContext(TripsContext);
   const [email, setEmail] = useState("");
 
   function handleSubmit(event) {
@@ -60,10 +61,10 @@ function MembersView(props) {
         </form>
       </div>
       <div>
-        <h2>Expenses</h2>
         <div>
           <BudgetForm></BudgetForm>
         </div>
+        <div>{budget.length > 0 ? <BudgetTable></BudgetTable> : null}</div>
       </div>
     </div>
   );
