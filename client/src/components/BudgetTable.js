@@ -25,14 +25,14 @@ function BudgetTable(props) {
   };
 
   return (
-    <div className="tripById">
+    <div className="tripById paddingbottom">
       <div>
         <table className="table table-bordered padding">
           <thead>
             <tr>
               <th>Name</th>
               <th>Amount</th>
-              <th>Delete Expense</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -46,7 +46,7 @@ function BudgetTable(props) {
                       onClick={() => deleteExpense(p.id)}
                       className="btn btn-primary"
                     >
-                      x
+                      X
                     </button>
                   </td>
                 </tr>
@@ -54,10 +54,12 @@ function BudgetTable(props) {
             <tr>
               <th>Total</th>
               <th>{total}€</th>
+              <th></th>
             </tr>
             <tr>
               <th>Total per member</th>
               <th>{(total / usersInTrip.length).toFixed(2)}€</th>
+              <th></th>
             </tr>
           </tbody>
         </table>

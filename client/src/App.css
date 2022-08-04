@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: var(--text-color);
 }
 
 :root {
@@ -44,6 +45,11 @@ h3 {
 }
 
 .heading {
+  padding-top: 20px;
   text-align: left;
   color: var(--text-color);
+}
+
+form {
+  text-align: start !important;
 }

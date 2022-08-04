@@ -142,7 +142,7 @@ function MyProfileView(props) {
           {user.username}
           <br />
           <button className="btn btn-primary" onClick={handleClick}>
-            EDIT
+            Edit
           </button>
         </div>
       )}
