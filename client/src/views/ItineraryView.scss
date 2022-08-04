@@ -1,11 +1,11 @@
 .itinerary-container {
   // width: 300px;
   // height: 600px;
-  // display: grid;
-  // grid-template-columns: repeat(4, 1fr);
-  // grid-template-rows: 300px;
-  // column-gap: 20px;
-  // background-color: gainsboro;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 20px;
+  row-gap: 250px;
   /* justify-content: auto; */
   /* margin: 30px; */
 
@@ -31,17 +31,31 @@
   .itinerary-card-activity {
     border-radius: 7px;
     border: 1.5px solid var(--grey-color) !important;
+    background-color: #f1f1f2;
+    width: 114.5px;
+  }
 
-    :active {
-      background-color: pink;
-    }
+  .itinerary-card-activity:focus {
+    background-color: white;
   }
   .itinerary-card-location {
     border-radius: 7px;
     border: 1.5px solid var(--grey-color) !important;
+    margin-left: 3px;
+    background-color: #f1f1f2;
+    width: 114.5px;
+  }
+  .itinerary-card-location:focus {
+    background-color: white;
   }
   .itinerary-card-time {
     border-radius: 7px;
     border: 1.5px solid var(--grey-color) !important;
+    padding: 7px;
+    background-color: #f1f1f2;
+    // width: 170px;
+  }
+  .itinerary-card-time:focus {
+    background-color: white;
   }
 }
