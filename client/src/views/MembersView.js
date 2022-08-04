@@ -10,7 +10,7 @@ import BasicInfo from "../components/BasicInfo";
 
 function MembersView(props) {
   const { trip, budget } = useContext(TripsContext);
-  const [email, setEmail] = useState("example@email.com");
+  const [email, setEmail] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -68,12 +68,12 @@ function MembersView(props) {
         <form onSubmit={handleSubmit} className="row">
           <h6 className="heading">Add new members</h6>
           <input
-            className="form-control col"
+            className="form-control col newMembers"
             type="text"
             name="email"
             required
             onChange={handleChange}
-            value={email}
+            placeholder="example@email.com"
           />
           <button className="btn btn-primary col col-md-1">Add</button>
         </form>
@@ -82,7 +82,9 @@ function MembersView(props) {
         <div>
           <BudgetForm />
         </div>
-        <div>{budget.length > 0 ? <BudgetTable /> : null}</div>
+        <div>
+          <BudgetTable />
+        </div>
       </div>
     </div>
   );
