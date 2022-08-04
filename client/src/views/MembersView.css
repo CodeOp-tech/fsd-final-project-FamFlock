@@ -3,9 +3,10 @@
 }
 
 .profilepicsmall {
+  object-fit: cover;
   border-radius: 50%;
-  width: 80px;
-  height: 50%;
+  width: 90px;
+  height: 70px;
 }
 
 .paddingbottom {
