@@ -55,7 +55,7 @@ function MyProfileView(props) {
           <div>
             <img className="propfilePic" src={user.picture} />
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="form">
             <div className="row">
               <h2 className="heading myprofile">My Profile</h2>
               <div className="col">
@@ -125,12 +125,10 @@ function MyProfileView(props) {
                   className="form-control"
                 />
               </div>
-              <div className="row">
-                <button className="btn btn-primary col col-1" type="submit">
-                  Save
-                </button>
-              </div>
             </div>
+            <button className="btn btn-primary col col-1" type="submit">
+              Save
+            </button>
           </form>
         </div>
       ) : (
