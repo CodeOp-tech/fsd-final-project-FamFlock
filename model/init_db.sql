@@ -121,14 +121,14 @@ ALTER TABLE budget ADD FOREIGN KEY (FK_trips_id) REFERENCES trips(id);
 INSERT INTO users (
     email, username, password, fullname, picture
 ) VALUES
-    ('ronals.clark@hotmail.co.uk ', 'ronark', '$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a', 'Ronald Clark', 'https://www.random-name-generator.com/images/faces/male-white/01.jpg?ezimgfmt=rs:148x143/rscb1/ng:webp/ngcb1'),
+    ('ronald.clark@hotmail.co.uk ', 'ronark', '$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a', 'Ronald Clark', 'https://www.random-name-generator.com/images/faces/male-white/01.jpg?ezimgfmt=rs:148x143/rscb1/ng:webp/ngcb1'),
     ('maya@fournier.biz', 'mayalanc', '$2b$12$lDWcKS5v96t60Y1PvfE0SuGfhN67QoFHQT60ZdQyhPED38LVZdgQS', 'Maya Leblanc', 'https://www.random-name-generator.com/images/faces/female-white/44.jpg?ezimgfmt=rs:148x143/rscb1/ng:webp/ngcb1'),
     ('sebb@abeyta.es', 'sebaez', '$2b$12$NDASPNSQuwalJol78l0Zn.7cIPXlpsaiSZyZbXPlRGWfmR2ctTpn6', 'Sebastian Mendez', 'https://www.random-name-generator.com/images/faces/male-latino/16.jpg?ezimgfmt=rs:148x148/rscb1/ng:webp/ngcb1'),
 	('nera.green@gmail.com','nereagreen','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Nerea Green','https://randompicturegenerator.com/img/people-generator/g8ce2dca76287a17421911ed8a95a299d9759f854d35faeb700ac8e7e51d7bcffecc118f2ca569dbd6188d24faba1ef4b_640.jpg'),
 	('fernandesmarisa@hotmail.com','marfernandes','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Marisa Fernandes','https://randompicturegenerator.com/img/people-generator/gf3ed673c00ace4496f33e8533d0af6f2ee479f3c5c7869e7bf9c99fce726b1c69f7e1a24a13c834e6a7456695f67ac50_640.jpg'),
 	('derekjames@gmail.com','derek123','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Derek James','https://randomwordgenerator.com/img/picture-generator/5fe3d74b4e54b10ff3d8992cc12c30771037dbf85254794e73287ad1944f_640.jpg'),
 	('andreu.fons@gmail.com','andreufons','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Andreu Fons','https://randompicturegenerator.com/img/people-generator/g6cc4205deb6d91103062f27547db42c077e5d2e656577f7f55bff5f0b3400e8d6da800567006d7f567cb143afedbc5a5_640.jpg'),
-	('ilorabobson@gmail.com','ilora','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Ilora Dobson','https://randompicturegenerator.com/img/people-generator/g5b697ab469f8775e5f7b506c021049dc9642d3e99bbc3cc7642b1d3c2382287f24cbcc37a4f00e521933c07c09e73216_640.jpg');
+	('iloradobson@gmail.com','ilora','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Ilora Dobson','https://randompicturegenerator.com/img/people-generator/g5b697ab469f8775e5f7b506c021049dc9642d3e99bbc3cc7642b1d3c2382287f24cbcc37a4f00e521933c07c09e73216_640.jpg');
 											
 
 INSERT INTO  tripGroups  (
