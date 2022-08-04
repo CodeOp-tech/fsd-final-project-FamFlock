@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../context/UserContext";
 import TripsContext from "../context/TripsContext";
 import "./BasicInfo.css";
@@ -6,18 +6,23 @@ import "./BasicInfo.css";
 const BasicInfo = () => {
   const { user } = useContext(UserContext);
   const { trip } = useContext(TripsContext);
+  const [diffInDays, setDiffInDays] = useState();
   //   const [data, setData] = useState();
   //   console.log("this is trips from Basic Info component " + trip);
 
-  // const diffInMs = new Date(endDate) - newDate(startDate);
-  // const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
-  // return diffInDays;
+  useEffect(() => {
+    daysLeft();
+  }, [trip]);
 
-  const daysLeft = (startDate, today) => {
-    // let today = new Date().toISOString().slice(0, 10);
-    // const startDate = today;
-    // const endDate = trip.startDate;
+  const daysLeft = () => {
+    const startDate = new Date().toISOString().slice(0, 10);
+    const endDate = trip.startDate;
+    const diffInMs = new Date(endDate) - new Date(startDate);
+    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+    setDiffInDays(Math.floor(diffInDays));
   };
+
+  // console.log(today);
 
   const d = new Date();
   const weekDay = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
@@ -40,6 +45,12 @@ const BasicInfo = () => {
   const date = d.getDate();
   const year = d.getFullYear();
 
+  // const current = new Date();
+  // const date = `${current.getDate()}/${
+  //   current.getMonth() + 1
+  // }/${current.getFullYear()}`;
+  // console.log(date);
+
   //   alert(diffInDays);
 
   return (
@@ -57,7 +68,7 @@ const BasicInfo = () => {
                 <h3>{month}</h3>
                 <h3>{date} </h3>
                 <h3>{year}</h3>
-                <h2>You have [diffInDays] days are before your Trip starts!</h2>
+                <h2>You have {diffInDays} days are before your Trip starts!</h2>
               </div>
             </div>
           </div>
