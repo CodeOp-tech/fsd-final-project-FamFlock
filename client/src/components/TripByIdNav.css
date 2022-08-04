@@ -8,6 +8,7 @@
   position: fixed;
   overflow: auto;
   text-align: left;
+  color: var(--text-color);
 }
 
 .vertNavLi {
@@ -19,7 +20,7 @@
 
 .vertNavLi:hover:not(.active) {
   background-color: var(--blue-color);
-  color: var(--text-color);
+  color: white;
   cursor: pointer;
 }
 
