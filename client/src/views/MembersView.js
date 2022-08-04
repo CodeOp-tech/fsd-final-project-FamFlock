@@ -6,6 +6,7 @@ import TripsContext from "../context/TripsContext";
 import "./MembersView.css";
 import BudgetForm from "../components/BudgetForm";
 import BudgetTable from "../components/BudgetTable";
+import BasicInfo from "../components/BasicInfo";
 
 function MembersView(props) {
   const { trip, budget } = useContext(TripsContext);
@@ -29,14 +30,15 @@ function MembersView(props) {
     <div>
       <TripByIdNav />
       <div className="tripById">
+        <BasicInfo />
         <h2>Trip Members</h2>
         {props.usersInTrip.map((u) => (
           <div className="members">
             {u.fullname ? (
               <div className="row">
-                <div className="col">Email: {u.email}</div>
-                <div className="col">Name: {u.fullname}</div>
-                <div className="col">Username: {u.username}</div>
+                <div className="col"> {u.email}</div>
+                <div className="col"> {u.fullname}</div>
+                <div className="col">{u.username}</div>
                 <button
                   className="col col-md-1 btn btn-primary"
                   onClick={() => handleClick(u.id)}
@@ -48,7 +50,7 @@ function MembersView(props) {
               <div className="row">
                 <div className="col">Email: {u.email}</div>
                 <button
-                  className="col col-md-1"
+                  className="col col-md-1 btn btn-primary"
                   onClick={() => handleClick(u.id)}
                 >
                   Remove
