@@ -3,9 +3,8 @@
   height: 500px;
   background-color: var(--blue-color);
   justify-content: auto;
-  margin: 20px;
+  /* margin: 20px; */
   margin-top: 20px;
-  margin-bottom: 20px;
   border-radius: 10px;
 }
 
@@ -19,8 +18,10 @@
   padding: 5px;
   justify-content: auto;
   cursor: move;
-  border: 3px solid var(--green-color) !important;
+  border: 2px solid var(--grey-color) !important;
   border-radius: 10px;
+  /* box-shadow: 20px, 20px black; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .itinerary-card-activity {
@@ -59,6 +60,7 @@
   background-color: var(--grey-color);
   color: white;
 }
-/* .can-drop {
-  background-color: var(--grey-color);
-} */
+
+.itinerary-col-date {
+  padding-top: 10px;
+}

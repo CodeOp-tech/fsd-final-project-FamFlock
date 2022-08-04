@@ -83,7 +83,7 @@ function ItineraryList(props) {
     >
       {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
       except onclick would apply to the whole element instead of a button */}
-      <h2>{convertDbDateToHuman(props.date)}</h2>
+      <h2 className="itinerary-col-date">{convertDbDateToHuman(props.date)}</h2>
       {itinerary
         // //   filter to only show certain dates in certain columns
         // .filter((itinerary) => itinerary.date === props.date)
