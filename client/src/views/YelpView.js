@@ -47,16 +47,19 @@ function YelpView() {
   return (
     <div>
       <TripByIdNav />
-
-      <div className="container tripById">
-        <YelpForm searchYelpCb={searchYelp}>Yelp form component</YelpForm>
-      </div>
-
-      {searchResults && searchResults.length > 0 ? (
-        <div className="container">
-          <YelpSearchResults searchResults={searchResults}></YelpSearchResults>
+      <div className="tripById">
+        <div>
+          <YelpForm searchYelpCb={searchYelp}>Yelp form component</YelpForm>
         </div>
-      ) : null}
+
+        {searchResults && searchResults.length > 0 ? (
+          <div>
+            <YelpSearchResults
+              searchResults={searchResults}
+            ></YelpSearchResults>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

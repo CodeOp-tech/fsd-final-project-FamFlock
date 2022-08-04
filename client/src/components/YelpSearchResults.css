@@ -1,0 +1,9 @@
+.YelpSearchResults .container {
+  width: 1500px;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.table td {
+  text-align: center;
+}
