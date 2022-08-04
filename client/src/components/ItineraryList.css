@@ -1,7 +1,8 @@
 .itinerary-list-wrapper {
   width: 272px;
   height: 500px;
-  background-color: gainsboro;
+  /* either this or white bg with purple/gr/bl border */
+  background-color: var(--green-color);
   justify-content: auto;
   margin: 20px;
   margin-top: 20px;
@@ -9,5 +10,5 @@
 }
 
 .can-drop {
-  background-color: pink;
+  background-color: var(--blue-color);
 }

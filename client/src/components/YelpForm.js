@@ -131,6 +131,7 @@ function YelpForm(props) {
                   onChange={handleChange}
                 />
               </label>
+
             </div>
           </div>
           <div className="row align-items-center">

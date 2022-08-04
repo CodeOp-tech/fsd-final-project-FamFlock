@@ -1,4 +1,25 @@
 .propfilePic {
+  object-fit: cover;
   border-radius: 50%;
-  width: 200px;
+  width: 210px;
+  height: 210px;
+  padding: 10px;
+  /* float: left; */
+}
+
+label {
+  text-align: left;
+  color: var(--text-color);
+}
+
+.alig {
+  float: left;
+}
+
+.form-control {
+  margin: 0%;
+}
+
+.form {
+  padding: 30px;
 }

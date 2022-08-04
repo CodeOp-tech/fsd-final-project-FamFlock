@@ -1,26 +1,31 @@
 .itinerary-container {
-  width: 300px;
-  height: 600px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 300px;
-  column-gap: 20px;
-  background-color: gainsboro;
+  // width: 300px;
+  // height: 600px;
+  // display: grid;
+  // grid-template-columns: repeat(4, 1fr);
+  // grid-template-rows: 300px;
+  // column-gap: 20px;
+  // background-color: gainsboro;
   /* justify-content: auto; */
   /* margin: 30px; */
 
-  .itinerary-list-wrapper {
-    width: 300px;
-    height: 600px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 300px;
-    column-gap: 20px;
-    background-color: var(--blue-color);
-    justify-content: auto;
-    /* margin: 30px; */
-  }
-  .can-drop {
-    background-color: var(--blue-color);
-  }
+
+  // commenting this out because its currently ovverriding itinerarylist.css
+
+  // .itinerary-list-wrapper {
+  //   width: 272px;
+  //   height: 500px;
+  //   display: grid;
+  //   grid-template-columns: repeat(4, 1fr);
+  //   // grid-template-rows: 300px;
+  //   // column-gap: 20px;
+  //   background-color: gainsboro;
+  //   justify-content: auto;
+  //   /* margin: 30px; */
+  // }
+
+  // .can-drop {
+  //   background-color: var(--blue-color);
+  // }
+
 }
