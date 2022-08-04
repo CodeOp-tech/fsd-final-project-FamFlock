@@ -13,7 +13,7 @@
 .btn-primary {
   background-color: var(--grey-color) !important;
   border: var(--grey-color);
-   color: var(--text-color);
+  color: var(--text-color);
   margin: 10px;
 }
 
@@ -31,4 +31,9 @@ h2 {
 
 h3 {
   color: #36393b;
+}
+
+.heading {
+  text-align: left;
+  color: var(--text-color);
 }

@@ -1,4 +1,24 @@
 .propfilePic {
+  object-fit: cover;
   border-radius: 50%;
   width: 200px;
+  height: 200px;
+  float: left;
+}
+
+label {
+  text-align: left;
+  color: var(--text-color);
+}
+
+.alig {
+  float: left;
+}
+
+.form-control {
+  margin: 0%;
+}
+
+button {
+  text-align: center;
 }
