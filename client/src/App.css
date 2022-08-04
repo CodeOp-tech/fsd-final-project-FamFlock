@@ -49,7 +49,3 @@ h3 {
   text-align: left;
   color: var(--text-color);
 }
-
-form {
-  text-align: start !important;
-}
