@@ -18,10 +18,11 @@ function AddressForm(props) {
   }
 
   return (
-    <div className="AddressForm">
+    <div className="AddressForm container">
+      <h2 className="text-start">Add new addresses</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="w-100">
+          <label className="w-100 col-form-label-lg">
             Address
             <input
               type="text"
@@ -31,7 +32,7 @@ function AddressForm(props) {
               required
             />
           </label>
-          <label className="w-100">
+          <label className="w-100 col-form-label-lg">
             Address Name
             <input
               type="text"
