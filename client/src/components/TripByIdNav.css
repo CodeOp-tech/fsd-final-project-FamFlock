@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.vertNavLi:active {
+  background-color: var(--blue-color);
+}
+
 .tripById {
   float: right;
   padding-left: 40px;
