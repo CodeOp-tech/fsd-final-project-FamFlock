@@ -59,54 +59,56 @@ function YelpForm(props) {
             </label>
           </div>
           <div className="form-check form-check-inline">
-            <p>Desired price range?</p>
-            <div>
-              <label className="form-check-label">
-                $
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="price"
-                  value="1"
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label className="form-check-label">
-                $$
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="price"
-                  value="2"
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label className="form-check-label">
-                $$$
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="price"
-                  value="3"
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div>
-              <label className="form-check-label">
-                $$$$
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="price"
-                  value="4"
-                  onChange={handleChange}
-                />
-              </label>
+            <div className="price-inputs">
+              <p>Desired price range?</p>
+              <div>
+                <label className="form-check-label">
+                  $
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="price"
+                    value="1"
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="form-check-label">
+                  $$
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="price"
+                    value="2"
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="form-check-label">
+                  $$$
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="price"
+                    value="3"
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+              <div>
+                <label className="form-check-label">
+                  $$$$
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="price"
+                    value="4"
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
             </div>
           </div>
 

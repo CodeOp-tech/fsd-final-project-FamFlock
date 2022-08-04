@@ -125,7 +125,7 @@ function ItineraryList(props) {
           name="date"
           //   it would be trip.date but for the specific column
           value={formData.date}
-          type="date"
+          type="hidden"
           onChange={handleChange}
         />
         <input
@@ -137,7 +137,7 @@ function ItineraryList(props) {
           onChange={handleChange}
         />
         <button className="btn btn-primary" type="submit">
-          Add new activity!
+          Add
         </button>
       </form>
     </div>
