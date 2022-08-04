@@ -8,6 +8,7 @@ import TripsContext from "../context/TripsContext.js";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripByIdNav from "../components/TripByIdNav";
 import "./ItineraryView.scss";
+import "../Common.scss";
 
 // import the trip, getTrip, and getItineraries from context
 // set initcolumns as the date field in trip (filter?)

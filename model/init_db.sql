@@ -155,22 +155,32 @@ INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id
 ) VALUES 
 	('Visit to La Pedrera', 20220727, 'La Pedrera', 200000, 1),
-	('Afternoon stroll', 20220728, 'Tibidabo', 110000, 1),
+	('Afternoon stroll', 20220728, 'Tibidabo', 130000, 1),
 	('Ballet Show', 20220725, 'Palau de la Musica', 190000, 1),
 	('Stargazing', 20220725, 'CRAM', 220000, 1),
-	('Football match', 20220726, 'Camp Nou', 210000, 1),
+	('Football match', 20220726, 'Camp Nou FCB', 210000, 1),
+	('Relax', 20220726, 'Parc de la Ciutadella', 150000, 1),
+	('Lunch', 20220728, 'Honest Greens', 140000, 1),
 	('Sightseeing', 20220808, 'Big Ben', 123000, 2),
 	('Football match', 20220807, 'Emirates Stadium', 140000, 2),
 	('Sunset boat trip', 20220807, 'River Thames', 190000, 2),
-	('High tea', 20220806, 'Covent Garden', 120000, 2),
+	('High Tea', 20220806, 'Covent Garden', 120000, 2),
+	('Nerea and Marisa fly home', 20220809, 'London Heathrow Airport (LHR)', 110000, 2),
+	('Derek, Andreu, and Ilora fly home', 20220809, 'London Gatwick Airport (LGW)', 140000, 2),
 	('Lunch', 20220901, 'Chez du Fromage', 133000, 3),
-	('Dinner', 20220903, 'Lumiere', 210000, 3),
+	('Dinner', 20220903, 'Le Petit Fromage', 210000, 3),
 	('Football match', 20220902, 'Parc des Princes', 210000, 3),
 	('Walking', 20220902, 'Champs-Elysees', 150000, 3),
+	('Sightseeing', 20220903, 'Le Tour Eiffel', 150000, 3),
+	('Beret Shopping', 20220901, 'Courtois Paris', 160000, 3),
+	('Maccaron Tasting', 20220902, 'Le Macaron', 130000, 3),
+	('Catch our flight home!', 20220904, 'Aeroport Charles de Gaulle Paris (CDG)', 190000, 3),
 	('Boat Tour', 20220717, 'Canale di Venezia', 120000, 4),
-	('Museum Time', 20220719, 'Museo di Venezia', 140000, 4),
-	('Excursion to Napoli', 20220718, 'Porto di Venezia', 090000, 4),
-	('Pizza-making class', 20220720, 'Il Formaggi', 160000, 4);
+	('Museum Visit', 20220719, 'Museo di Venezia', 140000, 4),
+	('Excursion to Napoli', 20220718, 'Porta di Venezia', 090000, 4),
+	('Pizza-making class', 20220720, 'Il Formaggi', 160000, 4),
+	('Check in and relax', 20220715, 'Hotel Giorgione', 230000, 4);
+
 
 
 INSERT INTO messages (

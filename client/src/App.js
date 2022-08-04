@@ -253,7 +253,7 @@ function App() {
   }
 
   function goToMembersView(id) {
-    navigate(`/my-trip/${id}/members`);
+    navigate(`/my-trip/${id}/info`);
   }
 
   function goToYelpView(id) {
