@@ -35,7 +35,10 @@ function ItineraryCard(props) {
     <div>
       {/* javascript insert time, activity, and location */}
       <div className="itinerary-list-card" id={props.activityid} ref={dragRef}>
-        <button onClick={(e) => deleteItem(props.itinerary.activityid)}>
+        <button
+          onClick={(e) => deleteItem(props.itinerary.activityid)}
+          className="itinerary-card-x"
+        >
           x
         </button>{" "}
         {props.children}
