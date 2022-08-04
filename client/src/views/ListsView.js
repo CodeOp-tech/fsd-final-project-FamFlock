@@ -88,21 +88,26 @@ function ListsView() {
     <div className="ListsView">
       <TripByIdNav />
       <div className="tripById">
-        <h1>All your Lists for {trip.destination}</h1>
-
-        <h5>Click the List to see your tasks</h5>
+        <h2>Click the List to see your tasks</h2>
         {/* make them links to item.id */}
         {/* <TripList lists={allLists} /> */}
-        <div>
-          <ul>
+        <div className="card">
+          <div className="card-header">
+            <h4>All your Lists for {trip.destination}</h4>
+          </div>
+          <ul className="list-group list-group-flush">
             {allLists.map((l /*index*/) => (
-              <div key={l.id}>
-                <Link to={`/list/${l.id}`}>{l.name}</Link>
-                <input
-                  type="checkbox"
-                  checked={l.isComplete}
-                  onChange={() => markComplete(l.id)}
-                />
+              <div className="" key={l.id}>
+                <button>
+                  <Link to={`/list/${l.id}`}>{l.name}</Link>
+                  <input
+                    value=""
+                    aria-label="Checkbox following text input"
+                    type="checkbox"
+                    checked={l.isComplete}
+                    onChange={() => markComplete(l.id)}
+                  />
+                </button>
                 {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
               </div>
             ))}

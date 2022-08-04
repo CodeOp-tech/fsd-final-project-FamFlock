@@ -17,20 +17,21 @@ function NewListForm(props) {
   }
 
   return (
-    <div className="NewListForm" onSubmit={handleSubmit}>
-      <form>
-        <label>
-          Name
+    <div className="NewListForm " onSubmit={handleSubmit}>
+      <form className="form-row align-items-center">
+        <div className="input-style">
           <input
             name="name"
             type="text"
             value={formData.name}
             onChange={handleChange}
+            placeholder="Add a New List"
           />
-        </label>
-
+        </div>
+        <br />
         <label>
           Mark as Complete
+          <br />
           <input
             name="isComplete"
             type="checkbox"
@@ -38,6 +39,7 @@ function NewListForm(props) {
             onChange={handleChange}
           />
         </label>
+        <br />
         <button className="btn btn-primary" type="submit">
           Add List
         </button>
