@@ -1,9 +1,10 @@
 .propfilePic {
   object-fit: cover;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  float: left;
+  width: 210px;
+  height: 210px;
+  padding: 10px;
+  /* float: left; */
 }
 
 label {
@@ -19,6 +20,6 @@ label {
   margin: 0%;
 }
 
-button {
-  text-align: center;
+.form {
+  padding: 30px;
 }
