@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
 import TripsContext from "../context/TripsContext.js";
 import UserContext from "../context/UserContext";
+import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
 
 // source: Jim's MapsAndGeo Demo
 
@@ -54,7 +55,7 @@ function MarkerMap(props) {
         {/* Draw the green "YOU ARE HERE" marker */}
         {props.home && (
           <Marker position={props.home} icon={greenMarker}>
-            <Popup>YOU ARE HERE</Popup>
+            <Popup>Welcome to {trip.destination}</Popup>
           </Marker>
         )}
         {props.places &&
