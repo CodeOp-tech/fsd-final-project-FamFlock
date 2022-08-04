@@ -84,34 +84,36 @@ function ListsView() {
     updateList(id);
   };
 
+  const deleteList = () => {};
+
   return (
-    <div className="ListsView">
+    <div className="lists-view">
       <TripByIdNav />
-      <div className="tripById">
-        <h2>Click the List to see your tasks</h2>
-        {/* make them links to item.id */}
-        {/* <TripList lists={allLists} /> */}
-        <div className="card">
+      <div className="lists-container">
+        <h2>ALL LISTS</h2>
+        <div className="lists-card border-light mb-3">
           <div className="card-header">
-            <h4>All your Lists for {trip.destination}</h4>
+            <h4>{trip.destination}</h4>
           </div>
-          <ul className="list-group list-group-flush">
-            {allLists.map((l /*index*/) => (
-              <div className="" key={l.id}>
-                <button>
-                  <Link to={`/list/${l.id}`}>{l.name}</Link>
-                  <input
-                    value=""
-                    aria-label="Checkbox following text input"
-                    type="checkbox"
-                    checked={l.isComplete}
-                    onChange={() => markComplete(l.id)}
-                  />
-                </button>
-                {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
-              </div>
-            ))}
-          </ul>
+          <h5>
+            <ul className="list-group list-group-flush">
+              {allLists.map((l /*index*/) => (
+                <Link to={`/list/${l.id}`}>
+                  <div className="list-group-item" key={l.id}>
+                    {l.name}
+                    <input
+                      value=""
+                      aria-label="Checkbox following text input"
+                      type="checkbox"
+                      checked={l.isComplete}
+                      onChange={() => markComplete(l.id)}
+                    />
+                    {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
+                  </div>
+                </Link>
+              ))}
+            </ul>
+          </h5>
         </div>
 
         <h5>Add a New List here</h5>

@@ -56,22 +56,22 @@ const BasicInfo = () => {
   return (
     <div>
       <div className="basic-info">
-        <div className="top">
-          <h4>Hello {user.fullname}, take a look at your trip info</h4>
-          {/* <img src={birdsPic} /> */}
-          <div className="trip-info-display">
-            <h3>This is Your Trip to {trip.destination}</h3>
-            <div className="main">
-              <div className="date">
+        <div className="basic-info-info">
+          <h2>Hello, {user.fullname}</h2>
+          <h4>This is your trip to: {trip.destination}</h4>
+          <center>
+            <div class="today-card border-light mb-3">
+              <div class="card-header">
                 <h4>Today is</h4>
-                <h3>{day}</h3>
-                <h3>{month}</h3>
-                <h3>{date} </h3>
-                <h3>{year}</h3>
-                <h2>You have {diffInDays} days are before your Trip starts!</h2>
               </div>
+
+              <h6>{day}</h6>
+              <h6>{month}</h6>
+              <h6>{date} </h6>
+              <h6>{year}</h6>
             </div>
-          </div>
+          </center>
+          <h4>You have {diffInDays} days are before your Trip starts!</h4>
         </div>
       </div>
       {/* Description about ??? */}

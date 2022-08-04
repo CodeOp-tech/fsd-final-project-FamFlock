@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 // import "../components/ListsView";
-// import ListItemsView from "../views/ListItemsView";
 import { useParams } from "react-router-dom";
 
 function ListItemsView() {
