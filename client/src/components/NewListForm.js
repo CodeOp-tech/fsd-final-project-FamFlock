@@ -17,9 +17,9 @@ function NewListForm(props) {
   }
 
   return (
-    <div className="NewListForm " onSubmit={handleSubmit}>
+    <div className="new-list-form" onSubmit={handleSubmit}>
       <form className="form-row align-items-center">
-        <div className="input-style">
+        <div>
           <input
             name="name"
             type="text"

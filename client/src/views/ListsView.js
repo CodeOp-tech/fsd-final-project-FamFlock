@@ -87,13 +87,11 @@ function ListsView() {
   const deleteList = () => {};
 
   return (
-    <div className="ListsView">
+    <div className="lists-view">
       <TripByIdNav />
-      <div className="tripById">
+      <div className="lists-container">
         <h2>ALL LISTS</h2>
-        {/* make them links to item.id */}
-        {/* <TripList lists={allLists} /> */}
-        <div className="card">
+        <div className="lists-card border-light mb-3">
           <div className="card-header">
             <h4>{trip.destination}</h4>
           </div>
