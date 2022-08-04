@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./Components.css";
 import TripsContext from "../context/TripsContext.js";
 
@@ -11,7 +13,9 @@ let emptyForm = {
 };
 const YelpAddToItineraryForm = ({ selected }) => {
   const [activity, setActivity] = useState(emptyForm);
-  const { trip, tripAddresses, addToItinerary } = useContext(TripsContext);
+  const { trip, tripAddresses, addToItinerary, goToItineraryView } =
+    useContext(TripsContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -34,6 +38,7 @@ const YelpAddToItineraryForm = ({ selected }) => {
       location: selected.location.address1,
     };
     addToItinerary(itineraryActivity);
+    goToItineraryView(trip.id);
   };
 
   return (

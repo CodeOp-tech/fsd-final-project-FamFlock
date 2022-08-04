@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import TripsContext from "../context/TripsContext.js";
+import "./YelpForm.css";
 
 const EMPTY_FORM = {};
 
@@ -20,100 +21,123 @@ function YelpForm(props) {
   }
   return (
     <div>
-      <div>
-        <div className="container">
+      <h2 className="text-start">Yelp Search</h2>
+
+      <div className="container border">
+        <div className="col ">
           <h4>Find a restaurant for your group or a place to visit </h4>
         </div>
         <form className="form-group" onSubmit={handleSubmit}>
-          <div>
-            <label>
-              What are you searching for?
+          <div className="row align-items-center">
+            <div className="col-6 ">
+              <label for="searchBar" className="col-form-label-lg">
+                What are you searching for?
+              </label>
+            </div>
+            <div className="col ">
               <input
+                id="searchBar"
                 type="text"
                 name="term"
-                className="form-control"
+                className="form-control "
                 placeholder="Restaurants, museums, activities, bars, services"
                 onChange={handleChange}
               />
-            </label>
-          </div>
-          <div>
-            <p> Accessibility requirements(wheelchair accesible): </p>
-            <label className="form-check-label">
-              Yes
-              <input
-                className="form-check-input"
-                type="radio"
-                name="attributes"
-                value="wheelchair_accessible"
-                onChange={handleChange}
-              />
-            </label>
-            <label className="form-check-label">
-              No
-              <input
-                className="form-check-input"
-                type="radio"
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="form-check form-check-inline">
-            <div className="price-inputs">
-              <p>Desired price range?</p>
-              <div>
-                <label className="form-check-label">
-                  $
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="price"
-                    value="1"
-                    onChange={handleChange}
-                  />
-                </label>
-              </div>
-              <div>
-                <label className="form-check-label">
-                  $$
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="price"
-                    value="2"
-                    onChange={handleChange}
-                  />
-                </label>
-              </div>
-              <div>
-                <label className="form-check-label">
-                  $$$
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="price"
-                    value="3"
-                    onChange={handleChange}
-                  />
-                </label>
-              </div>
-              <div>
-                <label className="form-check-label">
-                  $$$$
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="price"
-                    value="4"
-                    onChange={handleChange}
-                  />
-                </label>
-              </div>
             </div>
           </div>
+          <div className=" row align-items-center">
+            <div className="col-6 ">
+              <label for="accessibility" className="col-form-label-lg">
+                Accessibility requirements:{" "}
+              </label>
+            </div>
+            <div className="col">
+              <label className="form-check-label">
+                Yes
+                <input
+                  id="accessibility"
+                  className="form-check-input"
+                  type="radio"
+                  name="attributes"
+                  value="wheelchair_accessible"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
 
-          <div>
-            <button className="btn btn-primary">Search</button>
+            <div className="col">
+              <label className="form-check-label">
+                No
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+          </div>
+          <div className="row align-items-center">
+            <label className="col-5 col-form-label-lg">
+              Desired price range?
+            </label>
+            <div className="col">
+              <label for="check1" className="form-check-label">
+                $
+                <input
+                  id="check1"
+                  className="form-check-input"
+                  type="radio"
+                  name="price"
+                  value="1"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="col">
+              <label for="check2" className="form-check-label">
+                $$
+                <input
+                  id="check2"
+                  className="form-check-input"
+                  type="radio"
+                  name="price"
+                  value="2"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="col">
+              <label for="check3" className="form-check-label">
+                $$$
+                <input
+                  id="check3"
+                  className="form-check-input"
+                  type="radio"
+                  name="price"
+                  value="3"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="col">
+              <label for="check4" className="form-check-label">
+                $$$$
+                <input
+                  id="check4"
+                  className="form-check-input"
+                  type="radio"
+                  name="price"
+                  value="4"
+                  onChange={handleChange}
+                />
+              </label>
+
+            </div>
+          </div>
+          <div className="row align-items-center">
+            <div className="col align-self-center">
+              <button className="btn btn-primary">Search</button>
+            </div>
           </div>
         </form>
       </div>

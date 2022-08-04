@@ -18,24 +18,31 @@ function BudgetForm(props) {
     setFormData(EMPTY_FORM);
   }
   return (
-    <div className="tripById">
-      <h1>Keep track of your trip expenses </h1>
+    <div className="tripById padding">
+      <h2 className="heading">Keep track of your trip expenses </h2>
 
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name of the expense:
-            <input type="text" name="name" onChange={handleChange} />
-          </label>
-          <br></br>
-          <label>
-            Amount:
-            <input type="text" name="amount" onChange={handleChange} />
-          </label>
-          <br></br>
-          <label>
-            <button className="btn btn-primary">Add expense</button>
-          </label>
+        <form onSubmit={handleSubmit} className="row">
+          <div className="col">
+            <label>Name of the expense: </label>
+            <input
+              className="form-control"
+              type="text"
+              name="name"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col">
+            <label>Amount:</label>
+            <input
+              className="form-control"
+              type="text"
+              name="amount"
+              onChange={handleChange}
+              placeholder="€"
+            />
+          </div>
+          <button className="btn btn-primary col col-md-1">Add</button>
         </form>
       </div>
     </div>
