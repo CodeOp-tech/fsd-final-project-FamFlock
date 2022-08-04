@@ -9,9 +9,6 @@
   /* justify-content: auto; */
   /* margin: 30px; */
 
-
-  // commenting this out because its currently ovverriding itinerarylist.css
-
   // .itinerary-list-wrapper {
   //   width: 272px;
   //   height: 500px;
@@ -19,13 +16,32 @@
   //   grid-template-columns: repeat(4, 1fr);
   //   // grid-template-rows: 300px;
   //   // column-gap: 20px;
-  //   background-color: gainsboro;
+  //   background-color: var(--green-color);
   //   justify-content: auto;
+  //   margin: 20px;
+  //   margin-top: 20px;
+  //   margin-bottom: 20px;
   //   /* margin: 30px; */
   // }
 
-  // .can-drop {
-  //   background-color: var(--blue-color);
-  // }
+  .can-drop {
+    background-color: var(--grey-color);
+  }
 
+  .itinerary-card-activity {
+    border-radius: 7px;
+    border: 1.5px solid var(--grey-color) !important;
+
+    :active {
+      background-color: pink;
+    }
+  }
+  .itinerary-card-location {
+    border-radius: 7px;
+    border: 1.5px solid var(--grey-color) !important;
+  }
+  .itinerary-card-time {
+    border-radius: 7px;
+    border: 1.5px solid var(--grey-color) !important;
+  }
 }

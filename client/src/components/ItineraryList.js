@@ -100,7 +100,7 @@ function ItineraryList(props) {
             {itinerary.activity} at {itinerary.location}
           </ItineraryCard>
         ))}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-row">
         <input
           className="itinerary-card-activity"
           id="activity"
