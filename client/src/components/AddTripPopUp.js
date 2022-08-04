@@ -8,7 +8,6 @@ const AddTripPopUp = ({ addTrip, open, onClose, setOpenPopUpCb }) => {
       <div className="overlay">
         <div className="modalContainer">
           <div className="modalRight">
-            <div className="content"></div>
             {/* working on making this more efficient so you can customize */}
             <AddTripForm
               addTrip={(trip) => addTrip(trip)}

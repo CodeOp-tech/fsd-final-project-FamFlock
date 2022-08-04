@@ -6,10 +6,11 @@ import TripsContext from "../context/TripsContext";
 import "./MembersView.css";
 import BudgetForm from "../components/BudgetForm";
 import BudgetTable from "../components/BudgetTable";
+import BasicInfo from "../components/BasicInfo";
 
 function MembersView(props) {
   const { trip, budget } = useContext(TripsContext);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("example@email.com");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -29,11 +30,16 @@ function MembersView(props) {
     <div>
       <TripByIdNav />
       <div className="tripById">
-        <h2>Trip Members</h2>
+        <BasicInfo />
+
+        <br />
+        <h2 className="heading">Trip Members</h2>
+        <br />
         {props.usersInTrip.map((u) => (
           <div className="members">
             {u.fullname ? (
               <div className="row">
+                <img className="profilepicsmall" src={u.picture} />
                 <div className="col"> {u.email}</div>
                 <div className="col"> {u.fullname}</div>
                 <div className="col">{u.username}</div>
@@ -59,18 +65,24 @@ function MembersView(props) {
           </div>
         ))}
 
-        <h4>Add new members</h4>
-        <form onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" required onChange={handleChange} />
-          <button className="btn btn-primary">ADD</button>
+        <form onSubmit={handleSubmit} className="row">
+          <h6 className="heading">Add new members</h6>
+          <input
+            className="form-control col"
+            type="text"
+            name="email"
+            required
+            onChange={handleChange}
+            value={email}
+          />
+          <button className="btn btn-primary col col-md-1">Add</button>
         </form>
       </div>
       <div>
         <div>
-          <BudgetForm></BudgetForm>
+          <BudgetForm />
         </div>
-        <div>{budget.length > 0 ? <BudgetTable></BudgetTable> : null}</div>
+        <div>{budget.length > 0 ? <BudgetTable /> : null}</div>
       </div>
     </div>
   );

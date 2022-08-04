@@ -41,3 +41,8 @@ h2 {
 h3 {
   color: #36393b;
 }
+
+.heading {
+  text-align: left;
+  color: var(--text-color);
+}

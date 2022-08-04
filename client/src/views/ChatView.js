@@ -159,7 +159,7 @@ function ChatView(props) {
       <TripByIdNav />
 
       <div className="tripById">
-        <h1>chat</h1>
+        <h1 className="heading">Chat</h1>
         <ChatList
           messages={messages}
           user={props.user}
@@ -169,8 +169,9 @@ function ChatView(props) {
           reactions={reactions}
         />
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="row">
             <input
+              className="col form-control"
               type="text"
               // className="form-control"
               name="text"
@@ -178,7 +179,7 @@ function ChatView(props) {
               onChange={handleChange}
               required
             />
-            <button className="btn btn-primary">
+            <button className="btn btn-primary col col-md-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

@@ -1,0 +1,6 @@
+.basic-info {
+  background-image: url("../images/birds.jpeg");
+  background-position: center;
+  background-image: no-repeat;
+  background-size: cover;
+}

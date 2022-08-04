@@ -134,7 +134,7 @@ function App() {
       fetchUsersInTrip(myresponse.data.id);
       console.log(myresponse.data.id);
       //optional: navigate to trip/id page after
-      navigate(`/my-trips/${id}`);
+      navigate(`/my-trip/${id}/info`);
     } else {
       setError(myresponse.error);
     }
@@ -253,7 +253,7 @@ function App() {
   }
 
   function goToMembersView(id) {
-    navigate(`/my-trip/${id}/members`);
+    navigate(`/my-trip/${id}/info`);
   }
 
   function goToYelpView(id) {
@@ -462,7 +462,7 @@ function App() {
             <Route path="/lists" element={<ListsView />} />
 
             <Route
-              path="/my-trip/:id/members"
+              path="/my-trip/:id/info"
               element={
                 <MembersView
                   usersInTrip={usersInTrip}
