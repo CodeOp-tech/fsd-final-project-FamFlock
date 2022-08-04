@@ -146,10 +146,10 @@ INSERT INTO users_tripGroups (
 INSERT INTO trips (
 	FK_tripGroups_id, startDate, endDate, destination
 ) VALUES
-	(1, 20220725, 20220730, 'Barcelona'),
-	(2, 20220806, 20220809, 'London'),
-	(2, 20220901, 20220904, 'Paris'),
-	(3, 20220715, 20220720, 'Venice');
+	(1, 20221025, 20221101, 'Barcelona'),
+	(2, 20221106, 20221209, 'London'),
+	(2, 20221201, 20221204, 'Paris'),
+	(3, 20221215, 20221220, 'Venice');
 
 INSERT INTO itinerary (
 	activity, date, location, time, FK_trips_id

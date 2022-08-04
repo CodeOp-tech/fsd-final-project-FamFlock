@@ -84,12 +84,15 @@ function MapsView(props) {
     <div>
       <TripByIdNav />
       <div className="tripById">
-        <h1>Your map for your trip to{" " + trip.destination}</h1>
+        <h2 className="text-start">
+          Map of your trip to{" " + trip.destination}
+        </h2>
         <div>{home && <MapMarker places={places} home={home} zoom={13} />}</div>
-        <h3 className="mt-4">Add important addressess to your itinerary</h3>
-        <p>Enter an address to add a blue marker on the map</p>
-        <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
+        <p>
+          Blue markers: itinerary addresses. Red markers: newly added addresses.
+        </p>
 
+        <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
         <div>
           <MapMarkerTable places={places} />
         </div>

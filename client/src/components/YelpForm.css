@@ -1,0 +1,21 @@
+.container {
+  width: 1000px;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.row {
+  padding: 10px;
+  text-align: start;
+}
+
+.col {
+  padding: 10px;
+  text-align: center;
+}
+.form-check-label {
+  font-size: larger;
+}
+h4 {
+  font-weight: bolder;
+}
