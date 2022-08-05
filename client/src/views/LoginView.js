@@ -26,7 +26,7 @@ function LoginView(props) {
 
   return (
     <div className="container ">
-      <h2>Login</h2>
+      <h1>Login</h1>
       <form
         className="form-control  form-row align-items-center"
         onSubmit={handleSubmit}

@@ -47,7 +47,7 @@ function TripByIdNav(props) {
       <div>
         <ul className="verticalNav">
           <li className="vertNavLi" onClick={(e) => goToMembersView(trip.id)}>
-            Trip Summary
+            Trip Overview
           </li>
           <li className="vertNavLi" onClick={(e) => goToChatView(trip.id)}>
             Chat

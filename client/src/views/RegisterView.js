@@ -33,12 +33,16 @@ function RegisterView(props) {
 
   return (
     <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+      <h1>Register</h1>
+      <form
+        className="form-control  form-row align-items-center"
+        onSubmit={handleSubmit}
+      >
         <label>
           Email:
           <input
             name="email"
+            className="form-control"
             value={formData.email}
             type="text"
             onChange={handleChange}
@@ -49,6 +53,7 @@ function RegisterView(props) {
           Username:
           <input
             name="username"
+            className="form-control"
             value={formData.username}
             type="text"
             required
@@ -60,6 +65,7 @@ function RegisterView(props) {
           Password:
           <input
             name="password"
+            className="form-control"
             value={formData.password}
             type="password"
             required
@@ -71,6 +77,7 @@ function RegisterView(props) {
           Full Name:
           <input
             name="fullname"
+            className="form-control"
             value={formData.fullname}
             type="text"
             required
@@ -82,6 +89,7 @@ function RegisterView(props) {
           Profile Picture:
           <input
             name="picture"
+            className="form-control"
             value={formData.picture}
             type="text"
             onChange={handleChange}
