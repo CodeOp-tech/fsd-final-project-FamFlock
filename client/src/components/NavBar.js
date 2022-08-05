@@ -8,6 +8,12 @@ function NavBar(props) {
   return (
     <nav className="NavBar">
       <ul>
+        <div class="logo-image">
+          <img
+            src="https://trello.com/1/cards/62ebcd218b83fe414176cb79/attachments/62ecd99b03e5753e968e0261/previews/62ecd99c03e5753e968e0299/download/FamFlock-white.png"
+            class="img-fluid"
+          />
+        </div>
         {user ? (
           <>
             {/* only if user exists */}

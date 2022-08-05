@@ -4,14 +4,17 @@ import "./HomeView.scss";
 function HomeView() {
   return (
     <div className="home-view">
-      <img
-        src="https://64.media.tumblr.com/50b3e1f6dfa32c5f704592cddea46e05/d95c29482615fc08-fb/s1280x1920/b78dc0cef2003278aabae6f6337216e8d0ddcb4e.pnj"
-        width="400"
-        height="400"
-      />
-      <h2>Plan a trip with us!</h2>
+      <div className="home-header">
+        <img
+          src="https://trello.com/1/cards/62ebcd218b83fe414176cb79/attachments/62ecd99b03e5753e968e0261/previews/62ecd99c03e5753e968e0299/download/FamFlock-white.png"
+          width="400"
+          height="400"
+        />
+        <h2>All plan, No stress!</h2>
+      </div>
+
       <div className="home-feature-1">
-        <h2>Plan trips for your group, to any destination</h2>
+        <h2>Plan trips for your group, to any destination!</h2>
         <img
           src="https://64.media.tumblr.com/440ff63800e420b8b67912ee6b7a8c52/d95c29482615fc08-3a/s2048x3072/8a175252e7a47a1b3c7b064ac37389546823920d.pnj"
           width="500"
@@ -24,10 +27,10 @@ function HomeView() {
           width="500"
           height="400"
         />
-        <h2>Use a personalized map to track your group's itinerary</h2>
+        <h2>Use a personalized map to track your group's itinerary.</h2>
       </div>
       <div className="home-feature-3">
-        <h2>Chat with group members and vote, to make important decisions</h2>
+        <h2>Chat with group members and vote, to make important decisions!</h2>
         <img
           src="https://64.media.tumblr.com/887016a28eb65719268bc44bc8685166/d95c29482615fc08-4e/s1280x1920/267e403abd9cf8776cf5961a5b7a37813b840d97.pnj"
           width="500"
@@ -42,42 +45,45 @@ function HomeView() {
         />
         <h2>Search over 200 destinations for group-friendly activities! </h2>
       </div>
-      <h2>Log in or Register to continue!</h2>
+      <a className="home-login-text" href="/login">
+        Log in or Register to continue!
+      </a>
+      <div className="home-grid-plus-text">
+        <h2>Our users have planned trips to:</h2>
+        <div className="home-grid">
+          <p>
+            Barcelona <br />{" "}
+            <img
+              className="home-grid-image"
+              src="https://cdn.theculturetrip.com/wp-content/uploads/2019/08/gettyimages-1025370110crop-1024x576.jpg"
+            />{" "}
+          </p>
 
-      <h2>Our users have planned trips to:</h2>
-      <div className="home-grid">
-        <p>
-          Barcelona <br />{" "}
-          <img
-            className="home-grid-image"
-            src="https://cdn.theculturetrip.com/wp-content/uploads/2019/08/gettyimages-1025370110crop-1024x576.jpg"
-          />{" "}
-        </p>
+          <p>
+            Venice <br />{" "}
+            <img
+              className="home-grid-image"
+              src="https://www.travelandleisure.com/thmb/ZGAXTExb0i7pJw3Mjm4wPnd7Iyo=/1800x1012/smart/filters:no_upscale()/venice-italy-VENICETG0521-cddab02114ae44f08ba49c8c3fc9158c.jpg"
+            />{" "}
+          </p>
 
-        <p>
-          Venice <br />{" "}
-          <img
-            className="home-grid-image"
-            src="https://www.travelandleisure.com/thmb/ZGAXTExb0i7pJw3Mjm4wPnd7Iyo=/1800x1012/smart/filters:no_upscale()/venice-italy-VENICETG0521-cddab02114ae44f08ba49c8c3fc9158c.jpg"
-          />{" "}
-        </p>
+          <p>
+            London <br />
+            <img
+              src="https://www.sbs.ox.ac.uk/sites/default/files/London_0.jpg"
+              width="300"
+              height="300"
+            />{" "}
+          </p>
 
-        <p>
-          London <br />
-          <img
-            src="https://www.sbs.ox.ac.uk/sites/default/files/London_0.jpg"
-            width="300"
-            height="300"
-          />{" "}
-        </p>
-
-        <p>
-          Paris <br />{" "}
-          <img
-            className="home-grid-image"
-            src="https://viajes.nationalgeographic.com.es/medio/2022/07/13/paris_37bc088a_1280x720.jpg"
-          />
-        </p>
+          <p>
+            Paris <br />{" "}
+            <img
+              className="home-grid-image"
+              src="https://viajes.nationalgeographic.com.es/medio/2022/07/13/paris_37bc088a_1280x720.jpg"
+            />
+          </p>
+        </div>
       </div>
     </div>
   );

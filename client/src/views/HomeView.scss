@@ -7,9 +7,14 @@
   margin-bottom: 60px;
 }
 
+.home-grid-plus-text {
+  margin-top: 70px;
+}
+
 .home-grid-image {
   width: 300px;
   height: 300px;
+  object-fit: cover;
 }
 
 .home-feature-1 {
@@ -19,12 +24,13 @@
   column-gap: 5px;
   // row-gap: 15px;
   margin-bottom: 60px;
-  border: 2px solid var(--grey-color);
+  border-top: 2px solid var(--grey-color);
   padding-bottom: 100px;
-  padding-top: 10px;
+  padding-top: 20px;
   h2 {
     margin-top: 150px;
     justify-content: left;
+    color: var(--blue-color);
   }
 }
 
@@ -35,12 +41,16 @@
   column-gap: 5px;
   // row-gap: 15px;
   margin-bottom: 100px;
-  border: 2px solid var(--grey-color);
+  border-top: 2px solid var(--grey-color);
   padding-bottom: 100px;
-  padding-top: 10px;
+  padding-top: 20px;
   h2 {
     margin-top: 150px;
     justify-content: right;
+    color: var(--blue-color);
+  }
+  img {
+    margin-top: 30px;
   }
 }
 
@@ -53,10 +63,14 @@
   margin-bottom: 100px;
   border: 2px solid var(--grey-color);
   padding-bottom: 100px;
-  padding-top: 10px;
+  padding-top: 20px;
   h2 {
     margin-top: 150px;
     justify-content: left;
+    color: var(--blue-color);
+  }
+  img {
+    padding-bottom: 40px;
   }
 }
 
@@ -68,16 +82,43 @@
   // width: 1400px;
   // row-gap: 15px;
   margin-bottom: 100px;
-  border: 2px solid var(--grey-color);
+  border-bottom: 2px solid var(--grey-color);
   padding-bottom: 100px;
-  // padding-top: 10px;
+  padding-top: -10px;
   h2 {
     margin-top: 150px;
     justify-content: right;
+    color: var(--blue-color);
   }
   img {
     margin-left: 10px;
+    padding-bottom: 40px;
   }
+}
+
+.home-header {
+  padding-top: 100px;
+  background-color: var(--blue-color);
+  padding-bottom: 50px;
+
+  h2 {
+    color: white;
+  }
+}
+
+.home-login-text {
+  text-decoration: underline;
+
+  color: var(--green-color);
+  font-size: 4ch;
+  padding: 30px;
+  border: 1.5px solid var(--grey-color) !important;
+  margin-bottom: 30px;
+  border-radius: 7px;
+}
+
+.home-login-text:hover {
+  color: var(--grey-color);
 }
 // .home-view {
 //   background-image: url(https://64.media.tumblr.com/50b3e1f6dfa32c5f704592cddea46e05/d95c29482615fc08-fb/s1280x1920/b78dc0cef2003278aabae6f6337216e8d0ddcb4e.pnj);
