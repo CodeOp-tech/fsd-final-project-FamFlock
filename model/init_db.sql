@@ -128,7 +128,8 @@ INSERT INTO users (
 	('fernandesmarisa@hotmail.com','marfernandes','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Marisa Fernandes','https://randompicturegenerator.com/img/people-generator/gf3ed673c00ace4496f33e8533d0af6f2ee479f3c5c7869e7bf9c99fce726b1c69f7e1a24a13c834e6a7456695f67ac50_640.jpg'),
 	('derekjames@gmail.com','derek123','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Derek James','https://randomwordgenerator.com/img/picture-generator/5fe3d74b4e54b10ff3d8992cc12c30771037dbf85254794e73287ad1944f_640.jpg'),
 	('andreu.fons@gmail.com','andreufons','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Andreu Fons','https://randompicturegenerator.com/img/people-generator/g6cc4205deb6d91103062f27547db42c077e5d2e656577f7f55bff5f0b3400e8d6da800567006d7f567cb143afedbc5a5_640.jpg'),
-	('iloradobson@gmail.com','ilora','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Ilora Dobson','https://randompicturegenerator.com/img/people-generator/g5b697ab469f8775e5f7b506c021049dc9642d3e99bbc3cc7642b1d3c2382287f24cbcc37a4f00e521933c07c09e73216_640.jpg');
+	('iloradobson@gmail.com','ilora','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Ilora Dobson','https://randompicturegenerator.com/img/people-generator/g5b697ab469f8775e5f7b506c021049dc9642d3e99bbc3cc7642b1d3c2382287f24cbcc37a4f00e521933c07c09e73216_640.jpg'),
+	('test@test.com','','','','')
 											
 
 INSERT INTO  tripGroups  (
@@ -155,7 +156,8 @@ INSERT INTO users_tripGroups (
 	(5,2),
 	(6,2),
 	(7,2),
-	(8,2);
+	(8,2),
+	(2,2);
 
 INSERT INTO trips (
 	FK_tripGroups_id, startDate, endDate, destination
