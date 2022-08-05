@@ -26,6 +26,7 @@ function NewListForm(props) {
             value={formData.name}
             onChange={handleChange}
             placeholder="ex ... Hotel reservations "
+            className="form-control"
           />
         </div>
         <button className="btn btn-primary" type="submit">
