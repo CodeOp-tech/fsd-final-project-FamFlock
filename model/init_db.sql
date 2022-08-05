@@ -157,7 +157,8 @@ INSERT INTO users_tripGroups (
 	(6,2),
 	(7,2),
 	(8,2),
-	(2,2);
+	(2,2),
+	(9,2);
 
 INSERT INTO trips (
 	FK_tripGroups_id, startDate, endDate, destination
