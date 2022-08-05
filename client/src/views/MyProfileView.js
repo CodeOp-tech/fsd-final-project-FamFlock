@@ -67,6 +67,7 @@ function MyProfileView(props) {
                   onChange={handleChange}
                   className="form-control col"
                   id="pic"
+                  type="text"
                 />
               </div>
               <div className="col">
@@ -77,6 +78,7 @@ function MyProfileView(props) {
                   onChange={handleChange}
                   className="form-control col"
                   id="fullname"
+                  type="text"
                 />
               </div>
             </div>
@@ -89,6 +91,7 @@ function MyProfileView(props) {
                   onChange={handleChange}
                   className="form-control"
                   id="email"
+                  type="text"
                 />
               </div>
               <div className="col">
@@ -99,6 +102,7 @@ function MyProfileView(props) {
                   onChange={handleChange}
                   className="form-control"
                   id="username"
+                  type="text"
                 />
               </div>
             </div>
@@ -113,12 +117,14 @@ function MyProfileView(props) {
                   onChange={handleChange}
                   className="form-control"
                   id="curpass"
+                  type="text"
                 />
               </div>
               <div className="col">
                 <label for="newpass">New password</label>
                 <input
                   id="newpass"
+                  type="text"
                   value={formData.newPassword}
                   name="newPassword"
                   onChange={handleChange}
