@@ -32,6 +32,7 @@
     margin-top: 150px;
     justify-content: left;
     color: var(--blue-color);
+    cursor: pointer;
   }
 }
 
@@ -49,6 +50,7 @@
     margin-top: 150px;
     justify-content: right;
     color: var(--blue-color);
+    cursor: pointer;
   }
   img {
     margin-top: 30px;
@@ -69,6 +71,7 @@
     margin-top: 150px;
     justify-content: left;
     color: var(--blue-color);
+    cursor: pointer;
   }
   img {
     padding-bottom: 40px;
@@ -90,6 +93,7 @@
     margin-top: 150px;
     justify-content: right;
     color: var(--blue-color);
+    cursor: pointer;
   }
   img {
     margin-left: 10px;
@@ -119,6 +123,16 @@
 }
 
 .home-login-text:hover {
+  color: var(--grey-color);
+}
+
+.login-view-register-text {
+  color: var(--green-color);
+  margin-top: 30px;
+  text-decoration: underline;
+}
+
+.login-view-register-text:hover {
   color: var(--grey-color);
 }
 // .home-view {
