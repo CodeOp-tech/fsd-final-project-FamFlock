@@ -32,12 +32,15 @@
 
 .form-control {
   margin: 10px;
-  /* max-width: 35rem; */
 }
 
-.form-control {
+.form-control-yelp {
   margin: 10px;
-  /* max-width: 38rem; */
+}
+
+.form-control-addtrip {
+  margin: 10px;
+  max-width: 50rem;
 }
 
 h1 {
