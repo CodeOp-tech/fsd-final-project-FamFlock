@@ -32,12 +32,12 @@
 
 .form-control {
   margin: 10px;
-  max-width: 35rem;
+  /* max-width: 35rem; */
 }
 
 .form-control {
   margin: 10px;
-  max-width: 38rem;
+  /* max-width: 38rem; */
 }
 
 h1 {
@@ -61,6 +61,11 @@ h3 {
 
 .map-header-text {
   padding-top: 80px;
+  text-align: left !important;
+  height: 40px !important;
+}
+
+input[type="text"] {
   text-align: left !important;
   height: 40px !important;
 }

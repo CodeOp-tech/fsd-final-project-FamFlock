@@ -172,8 +172,7 @@ function ChatView(props) {
         <div>
           <form onSubmit={handleSubmit} className="row chatform">
             <input
-              className="col form-control"
-              height="40"
+              className="col form-control my-3"
               type="text"
               // className="form-control"
               name="text"
