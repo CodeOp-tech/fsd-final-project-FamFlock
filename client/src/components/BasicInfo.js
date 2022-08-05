@@ -53,14 +53,35 @@ const BasicInfo = () => {
 
   //   alert(diffInDays);
 
+  // Courtesy of Jim!
+  //    converts sql date to human
+  function convertDbDateToHuman(dbDateTime) {
+    // Create a date obj
+    let dateObj = new Date(dbDateTime);
+
+    // Convert it to a (long) human readable format
+    let humanReadable = dateObj.toString(); // 'Fri Jul 08 2022 00:00:00 GMT+0200'
+
+    // I only want to keep the date part of it
+    let humanDate = humanReadable.substring(4, 15); // 'Jul 08 2022'
+
+    return humanDate;
+  }
+
   return (
     <div>
       <div className="basic-info">
         <div className="basic-info-info">
-          <h2>Hello, {user.fullname.split(" ").slice(0, 1)}!</h2>
-          <h4>This is your trip to: {trip.destination}</h4>
+          <h2 className="text-center ">
+            Hello, {user.fullname.split(" ").slice(0, 1)}!
+          </h2>
+          <h4 className="text-center">
+            Your trip to {trip.destination} starts on{" "}
+            {convertDbDateToHuman(trip.startDate)}
+          </h4>
+
           <center>
-            <div class="today-card border-light mb-3">
+            {/* <div class="today-card border-light mb-3">
               <div class="card-header">
                 <h4>Today is:</h4>
               </div>
@@ -69,9 +90,9 @@ const BasicInfo = () => {
               <h6>{month}</h6>
               <h6>{date} </h6>
               <h6>{year}</h6>
-            </div>
+            </div> */}
           </center>
-          <h4>You have {diffInDays} days before your trip starts!</h4>
+          <h4 className="text-center">{diffInDays} days before your trip!</h4>
         </div>
       </div>
       {/* Description about ??? */}

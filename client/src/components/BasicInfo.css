@@ -1,12 +1,13 @@
 .basic-info {
   /* background-color: #afd0d6; */
   margin-top: 100px;
-  border: 3px solid var(--green-color) !important;
+  border: 3px solid var(--blue-color) !important;
+  border-radius: 10px;
   padding: 10px;
 }
 
 .basic-info-info {
-  text-align: left;
+  line-height: 10px;
 }
 
 .today-card {
