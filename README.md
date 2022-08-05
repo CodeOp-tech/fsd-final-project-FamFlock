@@ -16,7 +16,7 @@
   DB_USER=root
   DB_NAME=mvp
   DB_PASS=YOURPASSWORD
-  SECRET_KEY=CHOOSE A SECRET KEY
+  SECRET_KEY=
   YELP_API_KEY=
   OCD_API_KEY=
   PUSHER_KEY=
@@ -39,6 +39,27 @@ OCD_API_KEY=
 
 ## Database Design
 
+https://dbdesigner.page.link/MxyD23HGVUDv1LDd9
+
 ## Future Features
 
 ## Technologies Used
+
+- Express.js
+- MySQL
+- Postman
+- Node.js
+- Yelp API
+- Pusher API
+- Opencage API
+- React Dnd
+- Json web token
+- Bcrypt
+- Javascript
+- React
+- React router
+- Leaflet
+- HTML 5
+- CSS
+- Sass
+- Bootstrap
