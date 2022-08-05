@@ -52,7 +52,7 @@ function MembersView(props) {
               </div>
             ) : (
               <div className="row">
-                <div className="col">Email: {u.email}</div>
+                <div className="col">{u.email}</div>
                 <div className="col"></div>
                 <div className="col"></div>
                 <button

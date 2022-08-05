@@ -263,6 +263,10 @@ function App() {
   function goToRegister() {
     navigate(`/register`);
   }
+
+  function goToLogin() {
+    navigate(`/login`);
+  }
   //it gets the additional addresses the user has saved to the trip
   async function loadTripAddresses(id) {
     let myresponse = await Api.getTripAddress(id);
@@ -375,6 +379,7 @@ function App() {
     editUser,
     addTrip,
     goToRegister,
+    goToLogin,
   };
 
   if (trips.length === 0 || itineraries.length === 0 || users.length === 0) {

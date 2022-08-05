@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import UserContext from "../context/UserContext";
 
 function YelpAnonymousSearchResults(props) {
-  const { goToRegister } = useContext(UserContext);
+  const { goToLogin } = useContext(UserContext);
 
   return (
     <div>
@@ -65,7 +65,7 @@ function YelpAnonymousSearchResults(props) {
 
                   <td>
                     <button
-                      onClick={() => goToRegister()}
+                      onClick={(e) => goToLogin(e)}
                       className="btn btn-primary"
                     >
                       Add to Itinerary
