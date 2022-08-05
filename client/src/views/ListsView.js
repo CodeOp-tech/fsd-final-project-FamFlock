@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import NewListForm from "../components/NewListForm";
 import TripsContext from "../context/TripsContext";
 import TripByIdNav from "../components/TripByIdNav";
-import TripByIdNavCss from "../components/TripByIdNav.css";
+import "../components/TripByIdNav.css";
 
 function ListsView() {
   const [allLists, setAllLists] = useState([]);
@@ -84,40 +84,64 @@ function ListsView() {
     updateList(id);
   };
 
-  const deleteList = () => {};
+  const deleteList = async (listId) => {
+    try {
+      let res = await fetch(`/lists/${listId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw res.statusText;
+      const data = await res.json();
+      setAllLists(data);
+      console.log(data);
+    } catch (err) {
+      setError(err);
+    }
+  };
 
   return (
     <div className="lists-view">
       <TripByIdNav />
-      <div className="lists-container tripById">
-        <h2>ALL LISTS</h2>
-        <div className="lists-card border-light mb-3">
-          <div className="card-header">
-            <h4>{trip.destination}</h4>
-          </div>
-          <h5>
-            <ul className="list-group list-group-flush">
-              {allLists.map((l /*index*/) => (
-                <Link to={`/list/${l.id}`}>
-                  <div className="list-group-item" key={l.id}>
-                    {l.name}
-                    <input
-                      value=""
-                      aria-label="Checkbox following text input"
-                      type="checkbox"
-                      checked={l.isComplete}
-                      onChange={() => markComplete(l.id)}
-                    />
-                    {/* <button onClick={() => deleteList(l.id)}>Delete</button> */}
-                  </div>
-                </Link>
-              ))}
-            </ul>
-          </h5>
-        </div>
+      <div className="tripById">
+        <div className="lists-container">
+          <h2>ALL LISTS</h2>
+          <div className="border-light mb-3">
+            <div className="">
+              <h4>{trip.destination}</h4>
+            </div>
+            <div className="grid grid-cols-2">
+              <div className="mt-4 divide-y bg-white shadow rounded p-4">
+                {allLists.map((l /*index*/) => (
+                  <div>
+                    <div key={l.id} className="flex justify-between">
+                      <input
+                        type="checkbox"
+                        checked={l.isComplete}
+                        onChange={() => markComplete(l.id)}
+                      />
+                      <h5> {l.name}</h5>
 
-        <h5>Add a New List here</h5>
-        <NewListForm addListCb={addList} />
+                      <button className="btn btn-primary">
+                        <Link className="text-white" to={`/list/${l.id}`}>
+                          open
+                        </Link>
+                      </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => deleteList(l.id)}
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <br />
+              <h5>Add a New List</h5>
+              <NewListForm addListCb={addList} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
