@@ -43,7 +43,7 @@ const YelpAddToItineraryForm = ({ selected }) => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form className="yelp-itinerary-popup" onSubmit={handleSubmit}>
         <div className="mb-3">
           You are adding to your itinerary:
           <h2>{selected.name}</h2>

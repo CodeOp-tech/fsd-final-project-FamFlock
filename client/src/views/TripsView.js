@@ -29,7 +29,8 @@ function TripsView(props) {
         onClose={() => setOpenPopUp(false)}
         setOpenPopUpCb={setOpenPopUp}
       />
-      <div className="container ">
+      <div className="container trips-view-container">
+        <h2>My Trips</h2>
         {/* map through trip cards */}
         {user &&
           // user.trips.destination &&

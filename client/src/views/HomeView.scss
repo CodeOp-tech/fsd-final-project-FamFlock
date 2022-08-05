@@ -11,3 +11,75 @@
   width: 300px;
   height: 300px;
 }
+
+.home-feature-1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 5px;
+  // row-gap: 15px;
+  margin-bottom: 60px;
+  border: 2px solid var(--grey-color);
+  padding-bottom: 100px;
+  padding-top: 10px;
+  h2 {
+    margin-top: 150px;
+    justify-content: left;
+  }
+}
+
+.home-feature-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 5px;
+  // row-gap: 15px;
+  margin-bottom: 100px;
+  border: 2px solid var(--grey-color);
+  padding-bottom: 100px;
+  padding-top: 10px;
+  h2 {
+    margin-top: 150px;
+    justify-content: right;
+  }
+}
+
+.home-feature-3 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 5px;
+  // row-gap: 15px;
+  margin-bottom: 100px;
+  border: 2px solid var(--grey-color);
+  padding-bottom: 100px;
+  padding-top: 10px;
+  h2 {
+    margin-top: 150px;
+    justify-content: left;
+  }
+}
+
+.home-feature-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 5px;
+  // width: 1400px;
+  // row-gap: 15px;
+  margin-bottom: 100px;
+  border: 2px solid var(--grey-color);
+  padding-bottom: 100px;
+  // padding-top: 10px;
+  h2 {
+    margin-top: 150px;
+    justify-content: right;
+  }
+  img {
+    margin-left: 10px;
+  }
+}
+// .home-view {
+//   background-image: url(https://64.media.tumblr.com/50b3e1f6dfa32c5f704592cddea46e05/d95c29482615fc08-fb/s1280x1920/b78dc0cef2003278aabae6f6337216e8d0ddcb4e.pnj);
+//   background-size: 200px 200px;
+// }

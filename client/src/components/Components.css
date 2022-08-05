@@ -27,6 +27,43 @@
   border-radius: 8px;
 }
 
+.anon-yelp-input {
+  margin-bottom: 20px;
+}
+
+.anon-yelp-yes {
+  margin-right: 10px;
+}
+
+.anon-yelp-no {
+  margin-left: 10px;
+}
+
+.anon-dollar-input {
+  margin-right: 10px;
+}
+
+.anon-2dollar-input {
+  margin-right: 10px;
+}
+
+.anon-3dollar-input {
+  margin-right: 10px;
+}
+
+.anon-4dollar-input {
+  margin-right: 10px;
+}
+
+.yelp-itinerary-popup {
+  justify-content: auto;
+  margin-right: 50px;
+}
+
+.table-responsive-sm {
+  width: 1000px;
+  margin-top: 0px;
+}
 /* 
 .form-check {
   display: flex;

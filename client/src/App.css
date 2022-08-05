@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   color: var(--text-color);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 :root {
@@ -34,6 +36,7 @@
 
 h1 {
   color: #36393b;
+  padding-top: 80px;
 }
 
 h2 {
@@ -45,7 +48,11 @@ h3 {
 }
 
 .heading {
-  padding-top: 20px;
+  padding-top: 80px;
   text-align: left;
   color: var(--text-color);
+}
+
+.map-header-text {
+  padding-top: 80px;
 }

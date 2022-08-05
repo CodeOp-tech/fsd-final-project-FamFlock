@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import "./Components.css";
 
 const EMPTY_FORM = {};
 
@@ -19,23 +20,34 @@ function YelpFormAnonymousSearch(props) {
     <div>
       <h1>Find inspiration for your next trip! </h1>
       {/* <h2>Find a restaurant for your group or a place to visit </h2> */}
-
+      <img src="https://media.istockphoto.com/vectors/airplane-path-line-vector-graphic-vector-illustration-in-a-flat-style-vector-id1188615054?k=20&m=1188615054&s=170667a&w=0&h=6ITuiC73aqUyI1HQQ9RfS0LxJS3pX2Iec_1GiwbZ65s=" />
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-control">
           <label>
-            <h3> Where are you planning to go?</h3>
-            <input type="text" name="location" onChange={handleChange} />
+            <h4> Your Destination:</h4>
+            <input
+              type="text"
+              className="form-control anon-yelp-input"
+              name="location"
+              onChange={handleChange}
+            />
           </label>
           <br></br>
           <label>
-            <h3>What would you like to do during your trip??</h3>
-            Find museaums, activities and even restaurants for your trip meals
-            <input type="text" name="term" onChange={handleChange} />
+            <h4>What would you like to search for?</h4>
+            <input
+              type="text"
+              name="term"
+              className="form-control anon-yelp-input"
+              placeholder="ex. restaurant, museum, excursion"
+              onChange={handleChange}
+            />
           </label>
           <br></br>
-          <h4> Any accessibility requirements? (e.g. wheelchair accesible)</h4>
-          <label>
-            Yes
+          <h4> Any accessibility requirements?</h4>
+          <p>Ex. wheelchair accessible</p>
+          <label className="anon-yelp-yes">
+            Yes{" "}
             <input
               type="radio"
               name="attributes"
@@ -43,9 +55,8 @@ function YelpFormAnonymousSearch(props) {
               onChange={handleChange}
             />
           </label>
-          <label>
-            No
-            <input type="radio" onChange={handleChange} />
+          <label className="anon-yelp=no">
+            No <input type="radio" onChange={handleChange} />
           </label>
           <h4>Desired price range?</h4>
           <label>
@@ -54,6 +65,7 @@ function YelpFormAnonymousSearch(props) {
               type="radio"
               name="price"
               value="1"
+              className="anon-dollar-input"
               onChange={handleChange}
             />
           </label>
@@ -63,6 +75,7 @@ function YelpFormAnonymousSearch(props) {
               type="radio"
               name="price"
               value="2"
+              className="anon-2dollar-input"
               onChange={handleChange}
             />
           </label>
@@ -72,6 +85,7 @@ function YelpFormAnonymousSearch(props) {
               type="radio"
               name="price"
               value="3"
+              className="anon-3dollar-input"
               onChange={handleChange}
             />
           </label>
@@ -81,6 +95,7 @@ function YelpFormAnonymousSearch(props) {
               type="radio"
               name="price"
               value="4"
+              className="anon-4dollar-input"
               onChange={handleChange}
             />
           </label>

@@ -161,7 +161,7 @@ INSERT INTO trips (
 	FK_tripGroups_id, startDate, endDate, destination
 ) VALUES
 	(1, 20221025, 20221101, 'Barcelona'),
-	(2, 20221106, 20221209, 'London'),
+	(2, 20221106, 20221109, 'London'),
 	(3, 20221201, 20221204, 'Paris'),
 	(4, 20221215, 20221220, 'Venice');
 

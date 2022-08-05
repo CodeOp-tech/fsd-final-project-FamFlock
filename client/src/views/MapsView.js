@@ -84,7 +84,7 @@ function MapsView(props) {
     <div>
       <TripByIdNav />
       <div className="tripById">
-        <h2 className="text-start">
+        <h2 className="text-start map-header-text ">
           Map of your trip to{" " + trip.destination}
         </h2>
         <div>{home && <MapMarker places={places} home={home} zoom={13} />}</div>
