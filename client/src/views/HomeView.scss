@@ -5,10 +5,12 @@
   column-gap: 3px;
   row-gap: 15px;
   margin-bottom: 60px;
+  margin-top: 30px;
 }
 
 .home-grid-plus-text {
   margin-top: 70px;
+  color: var(--blue-color);
 }
 
 .home-grid-image {
@@ -61,7 +63,7 @@
   column-gap: 5px;
   // row-gap: 15px;
   margin-bottom: 100px;
-  border: 2px solid var(--grey-color);
+  border-top: 2px solid var(--grey-color);
   padding-bottom: 100px;
   padding-top: 20px;
   h2 {
@@ -82,6 +84,7 @@
   // width: 1400px;
   // row-gap: 15px;
   margin-bottom: 100px;
+  border-top: 2px solid var(--grey-color);
   border-bottom: 2px solid var(--grey-color);
   padding-bottom: 100px;
   padding-top: -10px;

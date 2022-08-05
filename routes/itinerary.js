@@ -31,7 +31,7 @@ router.get("/:id", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   const { activity, date, location, time, FK_trips_id } = req.body;
   const sql = `INSERT INTO itinerary (activity, date, location, time, FK_trips_id) 
-  VALUES ('${activity}','${date}','${location}','${time}', ${FK_trips_id});`;
+  VALUES ("${activity}",'${date}',"${location}",'${time}', ${FK_trips_id});`;
   // select last insert id?
 
   // then reinsert fk_trips_id as last insert somehow but in relation to trips

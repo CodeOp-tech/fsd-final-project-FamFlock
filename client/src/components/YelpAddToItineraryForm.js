@@ -41,6 +41,21 @@ const YelpAddToItineraryForm = ({ selected }) => {
     goToItineraryView(trip.id);
   };
 
+  // Courtesy of Jim!
+  //    converts sql date to human
+  function convertDbDateToHuman(dbDateTime) {
+    // Create a date obj
+    let dateObj = new Date(dbDateTime);
+
+    // Convert it to a (long) human readable format
+    let humanReadable = dateObj.toString(); // 'Fri Jul 08 2022 00:00:00 GMT+0200'
+
+    // I only want to keep the date part of it
+    let humanDate = humanReadable.substring(4, 15); // 'Jul 08 2022'
+
+    return humanDate;
+  }
+
   return (
     <div className="form-control-yelp  form-row align-items-center">
       <form
