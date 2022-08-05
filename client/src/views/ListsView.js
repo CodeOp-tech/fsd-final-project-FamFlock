@@ -89,7 +89,7 @@ function ListsView() {
   return (
     <div className="lists-view">
       <TripByIdNav />
-      <div className="lists-container">
+      <div className="lists-container tripById">
         <h2>ALL LISTS</h2>
         <div className="lists-card border-light mb-3">
           <div className="card-header">
