@@ -42,14 +42,20 @@ const YelpAddToItineraryForm = ({ selected }) => {
   };
 
   return (
-    <div className="container">
-      <form className="yelp-itinerary-popup" onSubmit={handleSubmit}>
-        <div className="mb-3">
+    <div className="form-control-yelp  form-row align-items-center">
+      <form
+        className="form-control-yelp  form-row align-items-center"
+        onSubmit={handleSubmit}
+      >
+        <div className="mb-3 form-control-yelp">
           You are adding to your itinerary:
+          <br />
           <h2>{selected.name}</h2>
+          <br />
           <h3>Located in:{" " + selected.location.address1}</h3>
         </div>
-        <div>
+        <br />
+        <div className="mb-3 form-control-yelp">
           When would you like to go?
           <input
             type="date"
@@ -60,7 +66,8 @@ const YelpAddToItineraryForm = ({ selected }) => {
           />
           <input type="time" name="time" onChange={handleChange} />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <br />
+        <button type="submit" className="btn btn-primary form-control-yelp">
           Add To Itinerary
         </button>
       </form>

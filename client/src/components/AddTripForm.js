@@ -36,11 +36,16 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
   return (
     <div className="container">
       <div className="form-group">
-        <form onSubmit={handleSubmit}>
-          <div className="container">
-            <label className="col-sm-2 col-form-label">Destination</label>
+        <form
+          onSubmit={handleSubmit}
+          className="form-control  form-row align-items-center"
+        >
+          <div className="form-control  form-row align-items-center">
+            <label className="form-control  form-row align-items-center">
+              Destination
+            </label>
             <input
-              className="form-control"
+              className="form-control  form-row align-items-center"
               name="destination"
               value={trip.destination}
               onChange={handleInputChange}
@@ -50,10 +55,12 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
             />
           </div>
 
-          <div className="container">
-            <label className="col-sm-2 col-form-label">Name</label>
+          <div className="form-control  form-row align-items-center">
+            <label className="form-control  form-row align-items-center">
+              Name
+            </label>
             <input
-              className="form-control"
+              className="form-control  form-row align-items-center"
               name="name"
               value={trip.name}
               onChange={handleInputChange}
@@ -63,11 +70,11 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
             />
           </div>
 
-          <div>
-            <label className="col-mb-2 col-form-label">
+          <div className="form-control  form-row align-items-center">
+            <label className="form-control  form-row align-items-center">
               Start date
               <input
-                className="form-control"
+                className="form-control  form-row align-items-center"
                 type="date"
                 value={trip.startDate}
                 onChange={handleInputChange}
@@ -75,11 +82,11 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
               />
             </label>
           </div>
-          <div className="container">
-            <label className="col-mb-2 col-form-label">
+          <div className="form-control  form-row align-items-center">
+            <label className="form-control  form-row align-items-center">
               End date
               <input
-                className="form-control"
+                className="form-control  form-row align-items-center"
                 type="date"
                 value={trip.endDate}
                 onChange={handleInputChange}
@@ -87,8 +94,8 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
               />
             </label>
           </div>
-          <div>
-            <button type="submit" className="btn btn-primary">
+          <div className="form-control  form-row align-items-center">
+            <button type="submit" className="btn btn-primary form-control">
               Submit
             </button>
           </div>
