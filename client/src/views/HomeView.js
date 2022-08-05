@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./HomeView.scss";
+import UserContext from "../context/UserContext";
 
 function HomeView() {
+  const { goToLogin } = useContext(UserContext);
   return (
     <div className="home-view">
       <div className="home-header">
-        <img
-          src="https://trello.com/1/cards/62ebcd218b83fe414176cb79/attachments/62ecd99b03e5753e968e0261/previews/62ecd99c03e5753e968e0299/download/FamFlock-white.png"
-          width="400"
-          height="400"
-        />
+        <img src="/famflock-white.png" width="400" height="400" />
         <h2>All plan, No stress!</h2>
       </div>
 
-      <div className="home-feature-1">
+      <div className="home-feature-1" onClick={(e) => goToLogin(e)}>
         <h2>Plan trips for your group, to any destination!</h2>
         <img
           src="https://64.media.tumblr.com/440ff63800e420b8b67912ee6b7a8c52/d95c29482615fc08-3a/s2048x3072/8a175252e7a47a1b3c7b064ac37389546823920d.pnj"
@@ -21,7 +19,7 @@ function HomeView() {
           height="400"
         />
       </div>
-      <div className="home-feature-2">
+      <div className="home-feature-2" onClick={(e) => goToLogin(e)}>
         <img
           src="https://64.media.tumblr.com/471d35189c25fac33facd2bab6c82a31/dae72e0549a3185c-48/s2048x3072/8f69b4cd16dff518e8844a3b167042926b3aa63a.pnj"
           width="500"
@@ -29,7 +27,7 @@ function HomeView() {
         />
         <h2>Use a personalized map to track your group's itinerary.</h2>
       </div>
-      <div className="home-feature-3">
+      <div className="home-feature-3" onClick={(e) => goToLogin(e)}>
         <h2>Chat with group members and vote, to make important decisions!</h2>
         <img
           src="https://64.media.tumblr.com/887016a28eb65719268bc44bc8685166/d95c29482615fc08-4e/s1280x1920/267e403abd9cf8776cf5961a5b7a37813b840d97.pnj"
@@ -37,7 +35,7 @@ function HomeView() {
           height="400"
         />
       </div>
-      <div className="home-feature-4">
+      <div className="home-feature-4" onClick={(e) => goToLogin(e)}>
         <img
           src="https://64.media.tumblr.com/8e24c0b9ebc283dd074449ba8849bb9e/d95c29482615fc08-b1/s2048x3072/097e973216ef34fedf38b8a1ec44af74064217ab.pnj"
           width="500"

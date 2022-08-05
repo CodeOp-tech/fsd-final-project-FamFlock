@@ -61,7 +61,9 @@ function LoginView(props) {
         </div>
       </form>
       <nav>
-        <Link to="/register">Don't have an account yet? Register here</Link>
+        <Link className="login-view-register-text" to="/register">
+          Don't have an account yet? Register here
+        </Link>
       </nav>
     </div>
   );
