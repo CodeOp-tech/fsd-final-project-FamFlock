@@ -4,6 +4,7 @@ import ChatList from "../components/ChatList";
 import Api from "../helpers/Api";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
+import ChatCss from "./ChatView.css";
 
 function ChatView(props) {
   const [messages, setMessages] = useState([]); // useState 1
@@ -169,7 +170,7 @@ function ChatView(props) {
           reactions={reactions}
         />
         <div>
-          <form onSubmit={handleSubmit} className="row">
+          <form onSubmit={handleSubmit} className="row chatform">
             <input
               className="col form-control"
               type="text"
