@@ -14,11 +14,11 @@ router.get("/:id", async function (req, res, next) {
   try {
     let results = await db(`SELECT * FROM budget WHERE FK_trips_id=${id}`);
 
-    if (results.data.length === 0) {
-      res.status(404).send({ error: "we cannot find what you requested" });
-    } else {
-      res.status(200).send(results);
-    }
+    // if (results.data.length === 0) {
+    //   res.status(404).send({ error: "we cannot find what you requested" });
+    // } else {
+    res.status(200).send(results);
+    // }
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
