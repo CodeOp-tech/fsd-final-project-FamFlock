@@ -55,4 +55,7 @@ h3 {
 
 .map-header-text {
   padding-top: 80px;
+input {
+  text-align: left !important;
+  height: 40px !important;
 }
