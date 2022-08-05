@@ -122,8 +122,8 @@ INSERT INTO users (
     email, username, password, fullname, picture
 ) VALUES
     ('ronald.clark@hotmail.co.uk ', 'ronark', '$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a', 'Ronald Clark', 'https://www.random-name-generator.com/images/faces/male-white/01.jpg?ezimgfmt=rs:148x143/rscb1/ng:webp/ngcb1'),
-    ('maya@fournier.biz', 'mayalanc', '$2b$12$lDWcKS5v96t60Y1PvfE0SuGfhN67QoFHQT60ZdQyhPED38LVZdgQS', 'Maya Leblanc', 'https://www.random-name-generator.com/images/faces/female-white/44.jpg?ezimgfmt=rs:148x143/rscb1/ng:webp/ngcb1'),
-    ('sebb@abeyta.es', 'sebaez', '$2b$12$NDASPNSQuwalJol78l0Zn.7cIPXlpsaiSZyZbXPlRGWfmR2ctTpn6', 'Sebastian Mendez', 'https://www.random-name-generator.com/images/faces/male-latino/16.jpg?ezimgfmt=rs:148x148/rscb1/ng:webp/ngcb1'),
+    ('maya@fournier.biz', 'mayalanc', '$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a', 'Maya Leblanc', 'https://www.random-name-generator.com/images/faces/female-white/44.jpg?ezimgfmt=rs:148x143/rscb1/ng:webp/ngcb1'),
+    ('sebb@abeyta.es', 'sebaez', '$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a', 'Sebastian Mendez', 'https://www.random-name-generator.com/images/faces/male-latino/16.jpg?ezimgfmt=rs:148x148/rscb1/ng:webp/ngcb1'),
 	('nera.green@gmail.com','nereagreen','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Nerea Green','https://randompicturegenerator.com/img/people-generator/g8ce2dca76287a17421911ed8a95a299d9759f854d35faeb700ac8e7e51d7bcffecc118f2ca569dbd6188d24faba1ef4b_640.jpg'),
 	('fernandesmarisa@hotmail.com','marfernandes','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Marisa Fernandes','https://randompicturegenerator.com/img/people-generator/gf3ed673c00ace4496f33e8533d0af6f2ee479f3c5c7869e7bf9c99fce726b1c69f7e1a24a13c834e6a7456695f67ac50_640.jpg'),
 	('derekjames@gmail.com','derek123','$2b$12$Gbei9VYe/mM1DGo4yQkmau0UbpFMPWJ0WV4WZrFNuJ1HZH9//kY9a','Derek James','https://randomwordgenerator.com/img/picture-generator/5fe3d74b4e54b10ff3d8992cc12c30771037dbf85254794e73287ad1944f_640.jpg'),
