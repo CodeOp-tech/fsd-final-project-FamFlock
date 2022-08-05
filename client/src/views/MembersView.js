@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripsContext from "../context/TripsContext";
-import "./MembersView.css";
 import BudgetForm from "../components/BudgetForm";
 import BudgetTable from "../components/BudgetTable";
 import BasicInfo from "../components/BasicInfo";
+import MembersCss from "./MembersView.css";
 
 function MembersView(props) {
   const { trip, budget } = useContext(TripsContext);
@@ -70,7 +70,7 @@ function MembersView(props) {
         <form onSubmit={handleSubmit} className="row">
           <h6 className="heading">Add new members</h6>
           <input
-            className="form-control col newMembers"
+            className="form-control col newMembers my-3"
             type="text"
             name="email"
             required

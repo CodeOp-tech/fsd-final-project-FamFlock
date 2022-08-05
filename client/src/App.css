@@ -36,7 +36,6 @@
 
 .form-control-yelp {
   margin: 10px;
-  max-width: 38rem;
 }
 
 .form-control-addtrip {
@@ -65,6 +64,11 @@ h3 {
 
 .map-header-text {
   padding-top: 80px;
+  text-align: left !important;
+  height: 40px !important;
+}
+
+input[type="text"] {
   text-align: left !important;
   height: 40px !important;
 }
