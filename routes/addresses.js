@@ -51,7 +51,7 @@ router.delete("/:id", async function (req, res, next) {
   try {
     await db(sql);
     let results = await db("SELECT * FROM tripAddresses");
-    res.send(results.data);
+    res.send(results);
   } catch (err) {
     res.status(500).send(err);
   }
