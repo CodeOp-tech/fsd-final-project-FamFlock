@@ -34,18 +34,18 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
   };
 
   return (
-    <div className="container">
+    <div className="form-control-addtrip  form-row align-items-center">
       <div className="form-group">
         <form
           onSubmit={handleSubmit}
-          className="form-control  form-row align-items-center"
+          className="form-control-addtrip  form-row align-items-center"
         >
-          <div className="form-control  form-row align-items-center">
-            <label className="form-control  form-row align-items-center">
+          <div className="form-control-addtrip  form-row align-items-center">
+            <label className="form-control-addtrip  form-row align-items-center">
               Destination
             </label>
             <input
-              className="form-control  form-row align-items-center"
+              className="form-control-addtrip  form-row align-items-center"
               name="destination"
               value={trip.destination}
               onChange={handleInputChange}
@@ -55,12 +55,12 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
             />
           </div>
 
-          <div className="form-control  form-row align-items-center">
-            <label className="form-control  form-row align-items-center">
+          <div className="form-control-addtrip  form-row align-items-center">
+            <label className="form-control-addtrip  form-row align-items-center">
               Name
             </label>
             <input
-              className="form-control  form-row align-items-center"
+              className="form-control-addtrip  form-row align-items-center"
               name="name"
               value={trip.name}
               onChange={handleInputChange}
@@ -70,11 +70,11 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
             />
           </div>
 
-          <div className="form-control  form-row align-items-center">
-            <label className="form-control  form-row align-items-center">
+          <div className="form-control-addtrip  form-row align-items-center">
+            <label className="form-control-addtrip  form-row align-items-center">
               Start date
               <input
-                className="form-control  form-row align-items-center"
+                className="form-control-addtrip  form-row align-items-center"
                 type="date"
                 value={trip.startDate}
                 onChange={handleInputChange}
@@ -82,11 +82,11 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
               />
             </label>
           </div>
-          <div className="form-control  form-row align-items-center">
-            <label className="form-control  form-row align-items-center">
+          <div className="form-control-addtrip  form-row align-items-center">
+            <label className="form-control-addtrip  form-row align-items-center">
               End date
               <input
-                className="form-control  form-row align-items-center"
+                className="form-control-addtrip  form-row align-items-center"
                 type="date"
                 value={trip.endDate}
                 onChange={handleInputChange}
@@ -94,7 +94,7 @@ const AddTripForm = ({ setOpenPopUpCb }) => {
               />
             </label>
           </div>
-          <div className="form-control  form-row align-items-center">
+          <div className="form-control-addtrip  form-row align-items-center">
             <button type="submit" className="btn btn-primary form-control">
               Submit
             </button>
