@@ -57,12 +57,12 @@ const BasicInfo = () => {
     <div>
       <div className="basic-info">
         <div className="basic-info-info">
-          <h2>Hello, {user.fullname.split(" ").slice(0, 1)}</h2>
+          <h2>Hello, {user.fullname.split(" ").slice(0, 1)}!</h2>
           <h4>This is your trip to: {trip.destination}</h4>
           <center>
             <div class="today-card border-light mb-3">
               <div class="card-header">
-                <h4>Today is</h4>
+                <h4>Today is:</h4>
               </div>
 
               <h6>{day}</h6>

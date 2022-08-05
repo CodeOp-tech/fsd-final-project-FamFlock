@@ -6,6 +6,7 @@ import NewListForm from "../components/NewListForm";
 import TripsContext from "../context/TripsContext";
 import TripByIdNav from "../components/TripByIdNav";
 import "../components/TripByIdNav.css";
+import "./ListsView.css";
 
 function ListsView() {
   const [allLists, setAllLists] = useState([]);
@@ -104,7 +105,7 @@ function ListsView() {
       <TripByIdNav />
       <div className="tripById">
         <div className="lists-container">
-          <h2>ALL LISTS</h2>
+          <h2 className="lists-container-header">Your lists</h2>
           <div className="border-light mb-3">
             <div className="">
               <h4>{trip.destination}</h4>
