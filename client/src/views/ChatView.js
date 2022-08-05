@@ -180,7 +180,7 @@ function ChatView(props) {
               onChange={handleChange}
               required
             />
-            <button className="btn btn-primary col col-md-1">
+            <button className="btn btn-primary col col-md-1 sendbtn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

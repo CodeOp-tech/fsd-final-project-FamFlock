@@ -2,6 +2,10 @@
   color: white;
 }
 
+button:hover .bi-send {
+  color: var(--grey-color);
+}
+
 .chatform {
   text-align: left;
 }
