@@ -19,7 +19,7 @@ function BudgetForm(props) {
   }
   return (
     <div className="tripById padding">
-      <h2 className="heading">Keep track of your trip expenses </h2>
+      <h2 className="heading">Expense Calculator</h2>
 
       <div>
         <form onSubmit={handleSubmit} className="row">

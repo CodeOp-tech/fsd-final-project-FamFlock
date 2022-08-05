@@ -51,7 +51,7 @@ function MyProfileView(props) {
   return (
     <div className="container">
       {buttonClick ? (
-        <div>
+        <div className="profileContainer">
           <div>
             <img className="propfilePic" src={user.picture} />
           </div>
@@ -132,7 +132,7 @@ function MyProfileView(props) {
           </form>
         </div>
       ) : (
-        <div>
+        <div className="profileContainer">
           <img className="propfilePic" src={user.picture} />
           <br />
           {user.fullname}

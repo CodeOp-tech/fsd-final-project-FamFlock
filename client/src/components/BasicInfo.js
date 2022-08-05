@@ -57,7 +57,7 @@ const BasicInfo = () => {
     <div>
       <div className="basic-info">
         <div className="basic-info-info">
-          <h2>Hello, {user.fullname}</h2>
+          <h2>Hello, {user.fullname.split(" ").slice(0, 1)}</h2>
           <h4>This is your trip to: {trip.destination}</h4>
           <center>
             <div class="today-card border-light mb-3">
@@ -71,7 +71,7 @@ const BasicInfo = () => {
               <h6>{year}</h6>
             </div>
           </center>
-          <h4>You have {diffInDays} days are before your Trip starts!</h4>
+          <h4>You have {diffInDays} days before your trip starts!</h4>
         </div>
       </div>
       {/* Description about ??? */}

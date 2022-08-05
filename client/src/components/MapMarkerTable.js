@@ -17,10 +17,25 @@ function MarkerTable(props) {
     }
   }, [trip]);
 
+  // Courtesy of Jim!
+  //    converts sql date to human
+  function convertDbDateToHuman(dbDateTime) {
+    // Create a date obj
+    let dateObj = new Date(dbDateTime);
+
+    // Convert it to a (long) human readable format
+    let humanReadable = dateObj.toString(); // 'Fri Jul 08 2022 00:00:00 GMT+0200'
+
+    // I only want to keep the date part of it
+    let humanDate = humanReadable.substring(4, 15); // 'Jul 08 2022'
+
+    return humanDate;
+  }
+
   return (
     <div>
       <div className="container table-responsive-sm">
-        <h2 className="text-start"> Itinerary addresses</h2>
+        <h2 className="text-start"> Addresses in your itinerary</h2>
 
         <table className="MarkerTable table table-hover">
           <thead>
@@ -34,7 +49,7 @@ function MarkerTable(props) {
             {props.places &&
               props.places.map((p) => (
                 <tr key={p.activityid}>
-                  <td>{p.date}</td>
+                  <td>{convertDbDateToHuman(p.date)}</td>
                   <td>{p.activity}</td>
                   <td>{p.location}</td>
                 </tr>
@@ -44,7 +59,7 @@ function MarkerTable(props) {
       </div>
 
       <div className="container">
-        <h2 className="text-start"> Other important addresses of your trip</h2>
+        <h2 className="text-start"> Other important addresses for your trip</h2>
         <div className="table-responsive-sm">
           <table className="MarkerTable table table-hover">
             <thead>

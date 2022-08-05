@@ -21,7 +21,7 @@ function YelpAnonymousSearchResults(props) {
                 <h3>Details</h3>
               </th>
               <th>
-                <h3>Add to itinerary</h3>
+                <h3>Add to Itinerary</h3>
               </th>
             </tr>
           </thead>
@@ -56,10 +56,10 @@ function YelpAnonymousSearchResults(props) {
                     />
                   </td>
                   <td>
-                    <b>Address:</b>
-                    {r.location.address1},{r.location.city},
-                    {r.location.zip_code}
-                    <b>Phone:</b>
+                    <b>Address: </b>
+                    {r.location.address1}, <br /> {r.location.city},{" "}
+                    {r.location.zip_code} <br />
+                    <b>Phone: </b>
                     {r.phone}
                   </td>
 
@@ -68,7 +68,7 @@ function YelpAnonymousSearchResults(props) {
                       onClick={() => goToRegister()}
                       className="btn btn-primary"
                     >
-                      Add to itinerary
+                      Add to Itinerary
                     </button>
                   </td>
                 </tr>

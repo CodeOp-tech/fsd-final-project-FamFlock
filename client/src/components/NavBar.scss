@@ -1,11 +1,14 @@
 .NavBar {
-  // border: 1px solid grey;
+  border: 2px solid var(--grey-color);
+
   ul {
     list-style-type: none;
+    padding-top: 8px;
   }
   li {
     display: inline-block;
     padding: 6px 12px;
+    font-size: 2ch;
   }
   a {
     text-decoration: none;
@@ -16,4 +19,7 @@
     color: white;
   }
   background-color: var(--blue-color);
+  position: fixed;
+  width: 100%;
+  z-index: 1100;
 }

@@ -64,3 +64,13 @@
 .itinerary-col-date {
   padding-top: 10px;
 }
+
+.itinerary-yelp-redirect {
+  color: var(--grey-color);
+}
+
+.itinerary-yelp-redirect:hover {
+  color: var(--green-color);
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -47,7 +47,7 @@ function YelpSearchResults(props) {
                   <h4>Details</h4>
                 </th>
                 <th>
-                  <h4>Add to itinerary</h4>
+                  <h4>Add to Itinerary</h4>
                 </th>
               </tr>
             </thead>
@@ -82,10 +82,10 @@ function YelpSearchResults(props) {
                       />
                     </td>
                     <td>
-                      <b>Address:</b>
-                      {r.location.address1},{r.location.city},
-                      {r.location.zip_code}
-                      <b>Phone:</b>
+                      <b>Address: </b>
+                      {r.location.address1}, <br /> {r.location.city},{" "}
+                      {r.location.zip_code} <br />
+                      <b>Phone: </b>
                       {r.phone}
                     </td>
 

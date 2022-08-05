@@ -21,11 +21,11 @@ function YelpForm(props) {
   }
   return (
     <div>
-      <h2 className="text-start">Yelp Search</h2>
+      {/* <h2 className="text-start">Yelp Search</h2> */}
 
-      <div className="container border">
+      <div className="container border yelp-form-container">
         <div className="col ">
-          <h4>Find a restaurant for your group or a place to visit </h4>
+          <h4 className="yelp-form-title">Search the city!</h4>
         </div>
         <form className="form-group" onSubmit={handleSubmit}>
           <div className="row align-items-center">
@@ -48,7 +48,7 @@ function YelpForm(props) {
           <div className=" row align-items-center">
             <div className="col-6 ">
               <label for="accessibility" className="col-form-label-lg">
-                Accessibility requirements:{" "}
+                Accessibility requirements?{" "}
               </label>
             </div>
             <div className="col">
@@ -131,7 +131,6 @@ function YelpForm(props) {
                   onChange={handleChange}
                 />
               </label>
-
             </div>
           </div>
           <div className="row align-items-center">

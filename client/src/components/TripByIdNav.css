@@ -9,6 +9,7 @@
   overflow: auto;
   text-align: left;
   color: var(--text-color);
+  padding-top: 80px;
 }
 
 .vertNavLi {
@@ -18,10 +19,14 @@
   text-decoration: none;
 }
 
-.vertNavLi:hover:not(.active) {
+.vertNavLi:hover {
   background-color: var(--blue-color);
   color: white;
   cursor: pointer;
+}
+
+.vertNavLi:active {
+  background-color: var(--blue-color);
 }
 
 .tripById {
