@@ -25,20 +25,9 @@ function NewListForm(props) {
             type="text"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Add a New List"
+            placeholder="ex ... Hotel reservations "
           />
         </div>
-        <br />
-        <label>
-          Mark as Complete
-          <input
-            name="isComplete"
-            type="checkbox"
-            value={formData.isComplete}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
         <button className="btn btn-primary" type="submit">
           Add List
         </button>

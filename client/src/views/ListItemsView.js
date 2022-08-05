@@ -134,34 +134,42 @@ function ListItemsView() {
   return (
     <div className="ItemsView">
       <h1>{listName} </h1>
+      {error}
+      <div className="mt-4 divide-y bg-white shadow rounded p-4">
+        {items &&
+          items.map((item) => (
+            <div key={item.id} className="flex justify-between">
+              {item.name}
+              <input
+                type="checkbox"
+                checked={item.isComplete}
+                onChange={() => markComplete(item.id)}
+              />
+              <button
+                className="btn btn-primary"
+                onClick={() => deleteItem(item.id)}
+              >
+                delete
+              </button>
+            </div>
+          ))}
+      </div>
+      <br />
       <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           New Task:
-          <input value={input} onChange={(e) => handleChange(e)} />
+          <br />
+          <input
+            value={input}
+            placeholder="ex ... hygiene supplies"
+            onChange={(e) => handleChange(e)}
+          />
         </label>
+        <br />
         <button className="btn btn-primary" type="submit">
           Add New
         </button>
       </form>
-      {error}
-
-      {items &&
-        items.map((item) => (
-          <div key={item.id}>
-            {item.name}
-            <input
-              type="checkbox"
-              checked={item.isComplete}
-              onChange={() => markComplete(item.id)}
-            />
-            <button
-              className="btn btn-primary"
-              onClick={() => deleteItem(item.id)}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
     </div>
   );
 }
