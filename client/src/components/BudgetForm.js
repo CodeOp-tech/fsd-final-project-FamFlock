@@ -19,31 +19,35 @@ function BudgetForm(props) {
   }
   return (
     <div className="tripById padding">
-      <h2 className="heading">Expense Calculator</h2>
+      <div className="container">
+        <h2 className="heading">Expense Calculator</h2>
 
-      <div>
-        <form onSubmit={handleSubmit} className="row">
-          <div className="col">
-            <label>Name of the expense: </label>
-            <input
-              className="form-control"
-              type="text"
-              name="name"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col">
-            <label>Amount:</label>
-            <input
-              className="form-control"
-              type="text"
-              name="amount"
-              onChange={handleChange}
-              placeholder="€"
-            />
-          </div>
-          <button className="btn btn-primary col col-md-1">Add</button>
-        </form>
+        <div>
+          <form onSubmit={handleSubmit} className="row">
+            <div className="col">
+              <label>Name of the expense: </label>
+              <input
+                className="form-control"
+                type="text"
+                name="name"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col">
+              <label>Amount:</label>
+              <input
+                className="form-control"
+                type="text"
+                name="amount"
+                onChange={handleChange}
+                placeholder="€"
+              />
+            </div>
+            <button className="add btn btn-primary col col-md-1 shadow">
+              Add
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

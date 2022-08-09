@@ -8,6 +8,7 @@ import TripsContext from "../context/TripsContext.js";
 import UserContext from "../context/UserContext";
 import TripByIdNavCss from "../components/TripByIdNav.css";
 import TripByIdNav from "../components/TripByIdNav";
+import "./MapsView.css";
 
 function MapsView(props) {
   const { trip, addNewTripAddress, tripAddresses, loadTripAddresses } =
@@ -83,18 +84,22 @@ function MapsView(props) {
   return (
     <div>
       <TripByIdNav />
-      <div className="tripById">
-        <h2 className="text-start map-header-text ">
-          Map of your trip to{" " + trip.destination}
-        </h2>
-        <div>{home && <MapMarker places={places} home={home} zoom={13} />}</div>
-        <p>
-          Blue markers: itinerary addresses. Red markers: newly added addresses.
-        </p>
-
-        <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
-        <div>
-          <MapMarkerTable places={places} />
+      <div className="tripById ">
+        <div className="container">
+          <h2 className="text-start map-header-text ">
+            Map of your trip to{" " + trip.destination}
+          </h2>
+          <div>
+            {home && <MapMarker places={places} home={home} zoom={13} />}
+          </div>
+          <p>
+            Blue markers: itinerary addresses. Red markers: newly added
+            addresses.
+          </p>
+          <MapAddressForm addMarkerCb={(addr) => addMarkerForAddress(addr)} />
+          <div>
+            <MapMarkerTable places={places} />
+          </div>
         </div>
       </div>
     </div>

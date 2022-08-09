@@ -42,6 +42,7 @@ function joinToJson(results) {
   // let trips = groups.map((e) =>
   //   allTrips.filter((t) => e.group_id === t.group_id)
   // );
+
   let user = {
     id: row0.user_id,
     email: row0.email,
@@ -71,12 +72,7 @@ router.get("/:id", async function (req, res, next) {
     LEFT JOIN tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
     LEFT JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  
     WHERE users.id= ${id}`;
-    //let results = await db(`SELECT * FROM users WHERE id = ${id}`);
-    /* full sql statement with joins - question for Jim: why it wasnt working with inner joins and it works with left joins??: SELECT DISTINCT users.*, users.id AS user_id, trips.id AS trip_id, tripGroups.id AS group_id, tripGroups.name, trips.startDate, trips.endDate, trips.destination
-    FROM users LEFT JOIN users_tripGroups ON users.id = users_tripGroups.FK_users_id
-    INNER JOIN tripGroups ON tripGroups.id = users_tripGroups.FK_tripGroups_id
-    INNER JOIN trips ON trips.FK_tripGroups_id = tripGroups.id  
-    WHERE users.id= ${id}*/
+
     let results = await db(sql);
     // let user = results.data;
     if (results.data.length === 0) {

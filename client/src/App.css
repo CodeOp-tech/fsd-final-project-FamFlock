@@ -1,16 +1,20 @@
 .App {
   text-align: center;
   color: var(--text-color);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+} */
 }
 
 :root {
   --text-color: #36393b;
   --blue-color: #a5d8ff;
-  --green-color: #afd0d6;
+  --green-color: #45cb85;
+  --grey-color: #e3879e;
+  /* --green-color: #afd0d6; */
+
   /* button color */
-  --grey-color: #bfacba;
+  /* --grey-color: #bfacba;*/
 }
 
 .btn-primary {
@@ -31,10 +35,6 @@
 }
 
 .form-control {
-  margin: 10px;
-}
-
-.form-control-yelp {
   margin: 10px;
 }
 
@@ -62,17 +62,11 @@ h3 {
   color: var(--text-color);
 }
 
-.map-header-text {
-  padding-top: 80px;
-  text-align: left !important;
-  height: 40px !important;
-}
-
 input[type="text"] {
   text-align: left !important;
   height: 40px !important;
 }
 
-img {
-  border-radius: 5%;
+.trips-view {
+  margin-top: 70px;
 }

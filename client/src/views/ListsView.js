@@ -104,8 +104,8 @@ function ListsView() {
     <div className="lists-view">
       <TripByIdNav />
       <div className="tripById">
-        <div className="lists-container">
-          <h2 className="lists-container-header">Your lists</h2>
+        <div className="lists-container container">
+          <h2 className="lists-container-header text-start">Your lists</h2>
           <div className="border-light mb-3">
             <div className="">
               <h4>{trip.destination}</h4>
@@ -137,9 +137,10 @@ function ListsView() {
                   </div>
                 ))}
               </div>
-              <br />
-              <h5>Add a New List</h5>
-              <NewListForm addListCb={addList} />
+              <div className="container">
+                <h2 className="text-start">Add a New List</h2>
+                <NewListForm addListCb={addList} />
+              </div>
             </div>
           </div>
         </div>

@@ -20,13 +20,11 @@ function YelpForm(props) {
     setSearch(EMPTY_FORM);
   }
   return (
-    <div>
+    <div className="container">
       {/* <h2 className="text-start">Yelp Search</h2> */}
+      <h2 className="yelp-form-title">Search city</h2>
 
-      <div className="container border yelp-form-container">
-        <div className="col ">
-          <h4 className="yelp-form-title">Search the city!</h4>
-        </div>
+      <div className="container border yelp-form-container shadow-sm">
         <form className="form-group" onSubmit={handleSubmit}>
           <div className="row align-items-center">
             <div className="col-6 ">
@@ -135,7 +133,7 @@ function YelpForm(props) {
           </div>
           <div className="row align-items-center">
             <div className="col align-self-center">
-              <button className="btn btn-primary">Search</button>
+              <button className="btn btn-primary shadow">Search</button>
             </div>
           </div>
         </form>
