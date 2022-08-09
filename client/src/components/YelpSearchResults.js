@@ -23,12 +23,15 @@ function YelpSearchResults(props) {
     setOpenPopUp(true);
   }
   return (
-    <div className="YelpSearchResults">
-      <YelpPopUpAddItinerary
-        selected={selected}
-        open={openPopUp}
-        onClose={() => setOpenPopUp(false)}
-      />
+    <div className="YelpSearchResults container">
+      <div>
+        <YelpPopUpAddItinerary
+          selected={selected}
+          open={openPopUp}
+          onClose={() => setOpenPopUp(false)}
+        />
+      </div>
+
       <div>
         <h2 className="text-start">Search Results</h2>
       </div>
@@ -36,7 +39,7 @@ function YelpSearchResults(props) {
         <div className="table-responsive-sm">
           <table className="table table-hover ">
             <thead>
-              <tr>
+              <tr className="first-row">
                 <th>
                   <h4>Name</h4>
                 </th>
@@ -91,7 +94,7 @@ function YelpSearchResults(props) {
 
                     <td>
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-primary shadow"
                         onClick={() => handleClick(r.id)}
                       >
                         Add to itinerary

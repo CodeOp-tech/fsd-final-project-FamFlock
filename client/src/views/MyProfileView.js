@@ -139,17 +139,21 @@ function MyProfileView(props) {
         </div>
       ) : (
         <div className="profileContainer">
-          <img className="propfilePic" src={user.picture} />
-          <br />
-          {user.fullname}
-          <br />
-          {user.email}
-          <br />
-          {user.username}
-          <br />
-          <button className="btn btn-primary" onClick={handleClick}>
-            Edit
-          </button>
+          <div>
+            <h2 className="heading">My Profile</h2>
+            <img className="propfilePic" src={user.picture} />
+            <br />
+            {user.fullname}
+            <br />
+            {user.email}
+            <br />
+            {user.username}
+            <br />
+            <button className="btn btn-primary shadow" onClick={handleClick}>
+              Edit
+            </button>
+          </div>
+          <div></div>
         </div>
       )}
     </div>

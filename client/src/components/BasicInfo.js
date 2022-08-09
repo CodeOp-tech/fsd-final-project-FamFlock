@@ -70,8 +70,8 @@ const BasicInfo = () => {
 
   return (
     <div>
-      <div className="basic-info">
-        <div className="basic-info-info">
+      <div className="basic-info container">
+        <div className="container">
           <h2 className="text-center ">
             Hello, {user.fullname.split(" ").slice(0, 1)}!
           </h2>
@@ -79,28 +79,8 @@ const BasicInfo = () => {
             Your trip to {trip.destination} starts on{" "}
             {convertDbDateToHuman(trip.startDate)}
           </h4>
-
-          <center>
-            {/* <div class="today-card border-light mb-3">
-              <div class="card-header">
-                <h4>Today is:</h4>
-              </div>
-
-              <h6>{day}</h6>
-              <h6>{month}</h6>
-              <h6>{date} </h6>
-              <h6>{year}</h6>
-            </div> */}
-          </center>
           <h4 className="text-center">{diffInDays} days before your trip!</h4>
         </div>
-      </div>
-      {/* Description about ??? */}
-      {/* Remember to visit TripByIdNav PopUp */}
-      {/* <h2>This are the members joining this journey with you</h2> */}
-      <div className="members-display">
-        {/* <strong>[groups].map cards here</strong> */}
-        {/* Info from MyProfile */}
       </div>
     </div>
   );

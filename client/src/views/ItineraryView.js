@@ -141,7 +141,16 @@ function ItineraryView(props) {
     <div>
       <TripByIdNav />
       <div className="tripById">
-        <h1>Your Itinerary for {trip.destination} 📅 </h1>
+        <div className="container">
+          <h1>
+            Your itinerary for {trip.destination}{" "}
+            <img
+              src="/calendar-custom.png"
+              width="50px"
+              alt="calendar icon created by Freepik - Flaticon.com"
+            />
+          </h1>
+        </div>
         <h4
           className="itinerary-yelp-redirect"
           onClick={(e) => goToYelpView(trip.id)}

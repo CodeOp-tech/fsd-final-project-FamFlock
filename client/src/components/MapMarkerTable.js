@@ -34,7 +34,7 @@ function MarkerTable(props) {
 
   return (
     <div>
-      <div className="container table-responsive-sm">
+      <div className=" table-responsive-sm">
         <h2 className="text-start"> Addresses in your itinerary</h2>
 
         <table className="MarkerTable table table-hover">
@@ -58,7 +58,7 @@ function MarkerTable(props) {
         </table>
       </div>
 
-      <div className="container">
+      <div className="">
         <h2 className="text-start"> Other important addresses for your trip</h2>
         <div className="table-responsive-sm">
           <table className="MarkerTable table table-hover">
@@ -77,7 +77,7 @@ function MarkerTable(props) {
                     <td>
                       <button
                         onClick={() => deleteTripAddress(a.id)}
-                        className="btn btn-primary"
+                        className="btn btn-primary shadow"
                       >
                         x
                       </button>

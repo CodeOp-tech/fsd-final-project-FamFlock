@@ -39,7 +39,7 @@ function MarkerMap(props) {
   });
 
   return (
-    <div>
+    <div className="">
       <MapContainer
         className="MarkerMap"
         center={props.home}

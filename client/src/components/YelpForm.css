@@ -19,15 +19,13 @@
 .form-check-label {
   font-size: larger;
 }
-h4 {
-  font-weight: bolder;
-}
 
 .yelp-form-container {
-  margin-top: 90px;
+  margin-top: 20px;
   margin-bottom: 40px;
 }
 
 .yelp-form-title {
-  text-align: left;
+  text-align: start;
+  padding-top: 70px;
 }

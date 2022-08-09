@@ -26,7 +26,7 @@ function BudgetTable(props) {
 
   return (
     <div className="tripById paddingbottom">
-      <div>
+      <div className="container">
         <table className="table table-bordered padding">
           <thead>
             <tr>
@@ -44,7 +44,7 @@ function BudgetTable(props) {
                   <td>
                     <button
                       onClick={() => deleteExpense(p.id)}
-                      className="btn btn-primary"
+                      className="btn btn-primary shadow"
                     >
                       X
                     </button>

@@ -5,22 +5,20 @@ function YelpPopUpAddItinerary({ open, onClose, addToItinerary, selected }) {
   if (!open) return null;
   else {
     return (
-      <div className="overlay">
-        <div className="modalContainer">
-          <div className="modalRight">
-            {/* working on making this more efficient so you can customize */}
-            {/* <AddTripForm addTrip={(trip) => addTrip(trip)} /> */}
-            <YelpAddToItineraryForm
-              selected={selected}
-              addToItinerary={addToItinerary}
-            />
-          </div>
-          <br />
-          <div className="btnContainer d-block">
-            {/* Close PopUp */}
-            <button onClick={onClose} className="btn btn-primary">
-              <span className="bold">CANCEL</span>
-            </button>
+      <div className="">
+        <div className="overlay ">
+          <div className="modalContainer">
+            <div className="modalRight">
+              <YelpAddToItineraryForm
+                selected={selected}
+                addToItinerary={addToItinerary}
+              />
+            </div>
+            <div className="">
+              <button onClick={onClose} className="btn btn-primary shadow">
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       </div>

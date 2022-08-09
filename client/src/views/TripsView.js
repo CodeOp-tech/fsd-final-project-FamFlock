@@ -29,8 +29,10 @@ function TripsView(props) {
         onClose={() => setOpenPopUp(false)}
         setOpenPopUpCb={setOpenPopUp}
       />
-      <div className="container trips-view-container">
-        <h2>My Trips</h2>
+      <div className="container trips-view-container ">
+        <div className="trips-view">
+          <h2 className="text-center">My Trips</h2>
+        </div>
         {/* map through trip cards */}
         {user &&
           // user.trips.destination &&
@@ -47,7 +49,6 @@ function TripsView(props) {
                   {trip.endDate.substring(0, 10)}
                 </h6>
               </div>
-              {/* button for editing trip info ///// !!NOT FUNCTION YET!! ///// */}
               <div className="">
                 <button
                   className="btn btn-primary"

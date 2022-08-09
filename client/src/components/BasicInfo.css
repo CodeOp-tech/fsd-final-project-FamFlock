@@ -1,16 +1,9 @@
 .basic-info {
   /* background-color: #afd0d6; */
   margin-top: 100px;
-  border: 3px solid var(--blue-color) !important;
+  border: 3px solid var(--grey-color) !important;
   border-radius: 10px;
   padding: 10px;
-}
-
-.basic-info-info {
   line-height: 10px;
-}
-
-.today-card {
-  max-width: 18rem;
-  background-color: #a5d8ff;
+  word-spacing: 5px;
 }
