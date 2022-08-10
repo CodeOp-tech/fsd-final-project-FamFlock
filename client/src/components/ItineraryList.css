@@ -1,6 +1,7 @@
 .itinerary-list-wrapper {
   width: 272px;
-  height: 575px;
+  /* height: 575px; */
+  height: fit-content;
   background-color: var(--blue-color);
   justify-content: auto;
   /* margin: 20px; */
@@ -48,6 +49,7 @@
   grid-template-rows: 300px;
   column-gap: 3px;
   row-gap: 150px;
+  margin-bottom: 30px;
 }
 .itinerary-card-x {
   background-color: white;
