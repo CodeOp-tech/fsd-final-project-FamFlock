@@ -132,8 +132,7 @@ function App() {
       setTrip(myresponse.data);
       setGroupId(myresponse.data.id);
       fetchUsersInTrip(myresponse.data.id);
-      console.log(myresponse.data.id);
-      //optional: navigate to trip/id page after
+      //navigate to trip/id page after
       navigate(`/my-trip/${id}/info`);
     } else {
       setError(myresponse.error);
@@ -167,7 +166,6 @@ function App() {
     let myresponse = await Api.addMember({ email }, id);
     if (myresponse.ok) {
       fetchUsersInTrip(id);
-      console.log(myresponse);
     } else {
       console.log("response not ok");
       setError(myresponse.error);
@@ -179,7 +177,6 @@ function App() {
     let myresponse = await Api.removeMember(userId, { tripId });
     if (myresponse.ok) {
       fetchUsersInTrip(tripId);
-      console.log(myresponse);
     } else {
       console.log("response not ok");
       setError(myresponse.error);
@@ -318,7 +315,6 @@ function App() {
   async function loadTripBudget(id) {
     let myresponse = await Api.getTripBudget(id);
     if (myresponse.ok) {
-      console.log(myresponse);
       setBudget(myresponse.data.data);
     } else {
       setError(myresponse.error);
@@ -482,7 +478,7 @@ function App() {
                 />
               }
             />
-            <Route path="/list/:id" element={<ListItemsView />} />
+            <Route path="/my-trip/:id/lists" element={<ListItemsView />} />
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>

@@ -11,6 +11,8 @@
 - Create a new database called travel: `create database travel`
 - Add a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
+- Go to https://dashboard.pusher.com/accounts/sign_up and create a free Pusher account got to channels, then click on manage, create app then create a channels app. From the left side navigation click App keys and copy these keys into your `.env` file
+
 ```bash
   DB_HOST=localhost
   DB_USER=root
@@ -19,14 +21,15 @@
   SECRET_KEY=
   YELP_API_KEY=
   OCD_API_KEY=
-  PUSHER_KEY=
-  PUSHER_SECRET=
+  PUSHER_KEY=YOURPUSHERKEY
+  PUSHER_SECRET=YOURPUSHERSECRETKEY
 ```
 
 - Add a second `.env` file in the client folder with the following keys
+- Add pusher key to client `.env`
 
 ```bash
-REACT_APP_PUSHER_KEY=
+REACT_APP_PUSHER_KEY=YOURPUSHERKEY
 OCD_API_KEY=
 ```
 
@@ -71,3 +74,4 @@ https://dbdesigner.page.link/MxyD23HGVUDv1LDd9
 - CSS
 - Sass
 - Bootstrap
+- Tailwind

@@ -8,7 +8,7 @@ function ItineraryList(props) {
   // define empty form
   const EMPTY_FORM = {
     activity: "",
-    //   date is column date
+    //   date is automatically column date
     date: props.date,
     location: "",
     time: "",
@@ -81,25 +81,17 @@ function ItineraryList(props) {
       ref={dropRef}
       className={`itinerary-list-wrapper ${canDropClass}`}
     >
-      {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
-      except onclick would apply to the whole element instead of a button */}
       <h2 className="itinerary-col-date">{convertDbDateToHuman(props.date)}</h2>
-      {itinerary
-        // //   filter to only show certain dates in certain columns
-        // .filter((itinerary) => itinerary.date === props.date)
-        // // sort by time, ascending
-        // .sort((a, b) => a.time.localeCompare(b.time))
-        // create a card for each item
-        .map((itinerary) => (
-          <ItineraryCard
-            id={itinerary.localeDate}
-            key={itinerary.activityid}
-            itinerary={itinerary}
-          >
-            <strong>{itinerary.time.slice(0, 5)}</strong> <br />{" "}
-            {itinerary.activity} at {itinerary.location}
-          </ItineraryCard>
-        ))}
+      {itinerary.map((itinerary) => (
+        <ItineraryCard
+          id={itinerary.localeDate}
+          key={itinerary.activityid}
+          itinerary={itinerary}
+        >
+          <strong>{itinerary.time.slice(0, 5)}</strong> <br />{" "}
+          {itinerary.activity} at {itinerary.location}
+        </ItineraryCard>
+      ))}
       <form onSubmit={handleSubmit} className="form-row">
         <input
           className="itinerary-card-activity"
@@ -123,7 +115,7 @@ function ItineraryList(props) {
           className="itinerary-card-date"
           id="date"
           name="date"
-          //   it would be trip.date but for the specific column
+          //   it would be formData.date but for the specific column
           value={formData.date}
           type="hidden"
           onChange={handleChange}

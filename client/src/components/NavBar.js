@@ -15,11 +15,12 @@ function NavBar(props) {
     <nav className="NavBar">
       <div>
         <ul>
-          <div class="logo-image">
+          <div className="logo-image">
             <img
               src="/famflock-white.png"
-              class="img-fluid"
+              className="img-fluid"
               onClick={goToMytrips}
+              alt="Navigation bar logo"
             />
           </div>
           {user ? (
@@ -29,7 +30,6 @@ function NavBar(props) {
                 <NavLink to="/my-trips">My Trips</NavLink>
               </li>
               <li>
-                {/* placeholder for ${id} once its actually defined */}
                 <p onClick={() => goToMyProfile(user.id)}>My Profile</p>
               </li>
 

@@ -39,7 +39,11 @@ function MembersView(props) {
             <div className="members">
               {u.fullname ? (
                 <div className="row">
-                  <img className="profilepicsmall" src={u.picture} />
+                  <img
+                    className="profilepicsmall"
+                    src={u.picture}
+                    alt="Profile Picutre"
+                  />
                   <div className="col"> {u.email}</div>
                   <div className="col"> {u.fullname}</div>
                   <div className="col">{u.username}</div>
