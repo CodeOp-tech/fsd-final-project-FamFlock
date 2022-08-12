@@ -156,6 +156,7 @@ function ListItemsView() {
             New Task:
             <br />
             <input
+              className="form-control"
               value={input}
               placeholder="ex ... hygiene supplies"
               onChange={(e) => handleChange(e)}

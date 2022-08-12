@@ -34,6 +34,7 @@ const TripList = (props) => {
           <li key={l.id}>
             <Link to={`/list/${l.id}`}>{l.name}</Link>
             <input
+              className=""
               type="checkbox"
               checked={l.isComplete}
               onChange={() => markComplete(l.id)}
