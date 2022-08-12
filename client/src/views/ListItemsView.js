@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import "../components/ListsView";
 import { useParams } from "react-router-dom";
 import TripByIdNav from "../components/TripByIdNav";
 import TripByIdNavCss from "../components/TripByIdNav.css";
@@ -10,7 +9,6 @@ function ListItemsView() {
   const [items, setItems] = useState([]); // 2
   const [error, setError] = useState([]); // 3
   const [listName, setListName] = useState([]); // 4
-  //   const [updatedItems, setUpdatedItems] = useState([]);
 
   useEffect(() => {
     getItems(id);
@@ -72,8 +70,6 @@ function ListItemsView() {
       if (!res.ok) throw res.statusText;
       const data = await res.json();
       console.log(data);
-      //   setItems(data);
-      //   updateItems(data);
     } catch (err) {
       setError(err);
     }
@@ -93,12 +89,10 @@ function ListItemsView() {
       if (item.id === id) {
         item.isComplete = !item.isComplete;
       }
-      //   updateItems(item);
       return item;
     });
     setItems(updatedItems);
     console.log(items);
-    // setUpdatedItems(updatedItems);
     updateItems(id);
   };
 
@@ -130,8 +124,6 @@ function ListItemsView() {
       setError(err);
     }
   };
-
-  // ADD BUTTON FOR SAVING CHANGES???
 
   return (
     <div className="ItemsView">
