@@ -11,7 +11,7 @@
 - Create a new database called travel: `create database travel`
 - Add a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
-- Go to https://dashboard.pusher.com/accounts/sign_up and create a free Pusher account click on channels, then manage, create app then create a channels app. From the left side navigation click App keys and copy these keys into your .env file
+- Go to https://dashboard.pusher.com/accounts/sign_up and create a free Pusher account got to channels, then click on manage, create app then create a channels app. From the left side navigation click App keys and copy these keys into your .env file
 
 ```bash
   DB_HOST=localhost
