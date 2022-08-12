@@ -132,8 +132,7 @@ function App() {
       setTrip(myresponse.data);
       setGroupId(myresponse.data.id);
       fetchUsersInTrip(myresponse.data.id);
-      console.log(myresponse.data.id);
-      //optional: navigate to trip/id page after
+      //navigate to trip/id page after
       navigate(`/my-trip/${id}/info`);
     } else {
       setError(myresponse.error);

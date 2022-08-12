@@ -132,9 +132,8 @@ class Api {
     return await this._doFetch(`/lists/${id}`, "PUT", body);
   }
 
-  // edit itinerary activity (just date for now)
+  // edit itinerary activity (just date for now) - changes info after drag and drop
   static async editItineraryActivity(body, activityid) {
-    console.log("I am body", body, activityid);
     return await this._doFetch(`/itinerary/${activityid}`, "PUT", body);
   }
 
