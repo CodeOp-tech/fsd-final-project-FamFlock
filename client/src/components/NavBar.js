@@ -30,7 +30,6 @@ function NavBar(props) {
                 <NavLink to="/my-trips">My Trips</NavLink>
               </li>
               <li>
-                {/* placeholder for ${id} once its actually defined */}
                 <p onClick={() => goToMyProfile(user.id)}>My Profile</p>
               </li>
 
