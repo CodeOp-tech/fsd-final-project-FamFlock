@@ -122,8 +122,11 @@ function ListsView() {
                       />
                       <h5> {l.name}</h5>
 
-                      <button className="btn btn-primary">
-                        <Link className="text-white" to={`/list/${l.id}`}>
+                      <button className="btn btn-primary ">
+                        <Link
+                          className="openListBtn"
+                          to={`/my-trip/${l.id}/lists`}
+                        >
                           open
                         </Link>
                       </button>

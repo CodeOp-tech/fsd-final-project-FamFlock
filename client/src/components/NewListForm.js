@@ -22,7 +22,7 @@ function NewListForm(props) {
         <div className="row">
           {/* <div className="col"> </div> */}
           <input
-            className="col form-control mt-3"
+            className="col form-control my-3"
             name="name"
             type="text"
             value={formData.name}
