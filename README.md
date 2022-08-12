@@ -60,12 +60,12 @@ https://dbdesigner.page.link/MxyD23HGVUDv1LDd9
 - Yelp API
 - Pusher API
 - Opencage API
-- React Dnd
+- React DnD
 - Json web token
 - Bcrypt
 - Javascript
 - React
-- React router
+- React Router
 - Leaflet
 - HTML 5
 - CSS
