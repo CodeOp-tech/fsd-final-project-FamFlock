@@ -4,6 +4,8 @@ require("dotenv").config();
 const db = require("../model/helper");
 const Pusher = require("pusher");
 
+// source: Jim's WebSockets Demo
+
 // Number of prior messages to GET
 const GET_MESSAGE_COUNT = 10;
 

@@ -15,7 +15,6 @@ router.post("/post", async function (req, res, next) {
   let response = await db(
     `SELECT * FROM messagesReactions WHERE FK_user_id = ${FK_user_id} AND FK_message_id = ${FK_message_id}`
   );
-  //   console.log(response);
 
   // check to see if current user has already reacted to this message
   if (response.data.length > 0) {

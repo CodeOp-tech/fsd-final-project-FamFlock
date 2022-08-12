@@ -5,6 +5,8 @@ import ThumbDownFilled from "./reactions/ThumbDownFilled";
 import ThumbUpFilled from "./reactions/ThumbUpFilled";
 
 function ChatList(props) {
+  // source: Jim's WebSockets Demo
+
   let listDiv = useRef(null);
 
   // When new msg is added, scroll if necessary so it's visible

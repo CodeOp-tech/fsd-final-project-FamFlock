@@ -482,7 +482,7 @@ function App() {
                 />
               }
             />
-            <Route path="/list/:id" element={<ListItemsView />} />
+            <Route path="/my-trip/:id/lists" element={<ListItemsView />} />
           </Routes>
         </TripsContext.Provider>
       </UserContext.Provider>
