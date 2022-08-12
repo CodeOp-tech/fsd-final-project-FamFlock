@@ -6,3 +6,12 @@
 .lists-container-header {
   margin-top: 70px !important;
 }
+
+.openListBtn {
+  color: white;
+  text-decoration: none;
+}
+
+button:hover .openListBtn {
+  color: var(--grey-color);
+}
