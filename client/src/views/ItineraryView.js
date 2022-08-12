@@ -10,8 +10,6 @@ import TripByIdNav from "../components/TripByIdNav";
 import "./ItineraryView.scss";
 import "../Common.scss";
 
-// import the trip, getTrip, and getItineraries from context
-// set initcolumns as the date field in trip (filter?)
 
 function ItineraryView(props) {
   let addToItinerary = props.addToItinerary;
@@ -33,20 +31,13 @@ function ItineraryView(props) {
     }
   }, [trip]);
 
-  //   let InitColumns = {
-  //     //   col1: [{ id: "box1", text: "La Pedrera at 6" }],
-  //     //   col2: [{ id: "box2", text: "Dinner at 7" }],
-  //     //   col3: [{ id: "box3", text: "Lunch at 2" }],
-  //     // col1.push({id: trip["itinerary"][i].activityid,
-  //     // text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`})
-  //   };
-
   // JBR
   // Convert a UTC date to yyyy-mm-dd in local timezone
   function makeLocaleDate(utcdate) {
-    //   ??????
     return new Date(utcdate)
+    // Set date to German because it shows the first three letters of the month
       .toLocaleDateString("de-DE", { dateStyle: "medium" })
+    // reverse the order that they appear
       .replace(/(\d\d)\.(\d\d).(\d{4})/, "$3-$2-$1");
   }
 
@@ -105,36 +96,11 @@ function ItineraryView(props) {
   // JBR
   let allDates = Object.keys(myItinerary);
 
-  //   for (let i = 0; i < trip["itinerary"].length; i++) {
-  //     InitColumns[`col${i}`] = [
-  //       {
-  //         //   change this to date
-  //         // id: trip["itinerary"][i].activityid,
-  //         id: trip["itinerary"][i].activityid,
-  //         text: `${trip["itinerary"][i].activity} at ${trip["itinerary"][i].location}`,
-  //       },
-  //     ];
-  //   }
 
-  //   let uniqueDates = {};
-  //   for (let i = 0; i < trip["itinerary"].length; i++) {
-  //     uniqueDates[trip["itinerary"][i].date] = true;
-  //   }
-
-  //   let dateColumns = Object.keys(uniqueDates).sort();
-
-  //   const [columns, setColumns] = useState(InitColumns);
-
+//   function called when box is dropped
   function moveBox(item, toColId) {
-    console.log(item, toColId);
-    //   call the put function to change the date here?
+    //   call the put function to change the date here
     editItineraryActivity(toColId, item.activityid);
-    // let boxId = item.id;
-    // let fromColId = item.fromColId;
-
-    // let newColumns = { ...columns };
-
-    // setColumns((columns) => newColumns);
   }
 
   return (
@@ -158,8 +124,6 @@ function ItineraryView(props) {
           Looking for ideas? Search the city!
         </h4>
         <div className="itinerary-container">
-          {/* i think that this as well as sample card could be potentially editable with a similar thing as edit profile
-      except onclick would apply to the whole element instead of a button */}
 
           <DndProvider backend={HTML5Backend}>
             {allDates.map((d) => (
@@ -173,13 +137,7 @@ function ItineraryView(props) {
               />
             ))}
           </DndProvider>
-          {/* javascript insert time, activity, and location */}
-          {/* {itineraryCards.map((card, index) => (
-          <div key={index} className="itinerary-list-card" draggable>
-            {card.Time}: {card.Activity}
-          </div>
-        ))} */}
-          {/* <p>Time: Activity at Location</p> */}
+       
         </div>
       </div>
     </div>
