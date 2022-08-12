@@ -43,6 +43,14 @@ https://dbdesigner.page.link/MxyD23HGVUDv1LDd9
 
 ## Future Features
 
+- Getting directions to and from addresses saved on the map
+- Adding each traveller's location of origin to the map
+- Integrate a more in-depth expense tracking feature with a third-party API (like Splitwise/Tricount)
+- Document storage (ex. travel documents, activity tickets)
+- Save and share itineraries for other families to enjoy
+- Web scraping city pages for useful information (ex. how to access public transit, recommended events or activities)
+- Different user accreditations & abilities (ex. trip admin, trip viewer, etc)
+
 ## Technologies Used
 
 - Express.js
