@@ -49,7 +49,7 @@ https://dbdesigner.page.link/MxyD23HGVUDv1LDd9
 - Document storage (ex. travel documents, activity tickets)
 - Save and share itineraries for other families to enjoy
 - Web scraping city pages for useful information (ex. how to access public transit, recommended events or activities)
-- Different user accreditations & abilities (ex. trip admin, trip viewer, etc)
+- Different user accreditations & abilities (ex. trip admin, trip viewer)
 
 ## Technologies Used
 
