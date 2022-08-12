@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-// import "../components/ListsView";
-// import TripList from "../components/TripList";
 import NewListForm from "../components/NewListForm";
 import TripsContext from "../context/TripsContext";
 import TripByIdNav from "../components/TripByIdNav";
@@ -19,7 +17,6 @@ function ListsView() {
     getLists();
   }, []);
 
-  // fetch from database
   const getLists = () => {
     fetch("/lists")
       .then((response) => response.json())
@@ -76,7 +73,6 @@ function ListsView() {
       if (list.id === id) {
         list.isComplete = !list.isComplete;
       }
-      //   updateItems(item);
       return list;
     });
 
@@ -112,7 +108,7 @@ function ListsView() {
             </div>
             <div className="grid grid-cols-2">
               <div className="mt-4 divide-y bg-white shadow rounded p-4">
-                {allLists.map((l /*index*/) => (
+                {allLists.map((l) => (
                   <div>
                     <div key={l.id} className="flex justify-between">
                       <input

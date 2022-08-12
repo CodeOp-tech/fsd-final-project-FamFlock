@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, useParams } from "react";
-import { Link } from "react-router-dom";
 import AddTripPopUp from "../components/AddTripPopUp.js";
 import TripsContext from "../context/TripsContext.js";
 import MapsView from "./MapsView.js";
@@ -35,7 +34,6 @@ function TripsView(props) {
         </div>
         {/* map through trip cards */}
         {user &&
-          // user.trips.destination &&
           user.trips.map((trip) => (
             <div
               className="container"
