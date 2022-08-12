@@ -20,19 +20,22 @@ function NewListForm(props) {
     <div className="new-list-form" onSubmit={handleSubmit}>
       <form className="form-group">
         <div className="row">
-          <div className="col"> </div>
+          {/* <div className="col"> </div> */}
           <input
-            className="col form-control"
+            className="col form-control mt-3"
             name="name"
             type="text"
             value={formData.name}
             onChange={handleChange}
             placeholder="ex ... Hotel reservations "
           />
-          <button className="col btn btn-primary shadow" type="submit">
+          <button
+            className="col col-md-2 btn btn-primary shadow "
+            type="submit"
+          >
             Add List
           </button>
-          <div className="col "> </div>
+          {/* <div className="col "> </div> */}
         </div>
       </form>
     </div>
