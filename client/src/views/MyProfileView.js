@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import MyProfileCss from "./MyProfileView.css";
 
-function MyProfileView(props) {
+function MyProfileView() {
   const [buttonClick, setButtonClick] = useState(false); // useState 1
   const { user, editUser } = useContext(UserContext);
 
@@ -53,7 +53,11 @@ function MyProfileView(props) {
       {buttonClick ? (
         <div className="profileContainer">
           <div>
-            <img className="propfilePic" src={user.picture} />
+            <img
+              className="propfilePic"
+              src={user.picture}
+              alt="Profile Picutre"
+            />
           </div>
           <form onSubmit={handleSubmit} className="form">
             <div className="row">
@@ -141,7 +145,11 @@ function MyProfileView(props) {
         <div className="profileContainer">
           <div>
             <h2 className="heading">My Profile</h2>
-            <img className="propfilePic" src={user.picture} />
+            <img
+              className="propfilePic"
+              src={user.picture}
+              alt="Profile Picture"
+            />
             <br />
             {user.fullname}
             <br />

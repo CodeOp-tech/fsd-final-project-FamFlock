@@ -15,11 +15,12 @@ function NavBar(props) {
     <nav className="NavBar">
       <div>
         <ul>
-          <div class="logo-image">
+          <div className="logo-image">
             <img
               src="/famflock-white.png"
-              class="img-fluid"
+              className="img-fluid"
               onClick={goToMytrips}
+              alt="Navigation bar logo"
             />
           </div>
           {user ? (

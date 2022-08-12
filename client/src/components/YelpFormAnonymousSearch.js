@@ -20,7 +20,10 @@ function YelpFormAnonymousSearch(props) {
     <div>
       <h1>Find inspiration for your next trip! </h1>
       {/* <h2>Find a restaurant for your group or a place to visit </h2> */}
-      <img src="https://media.istockphoto.com/vectors/airplane-path-line-vector-graphic-vector-illustration-in-a-flat-style-vector-id1188615054?k=20&m=1188615054&s=170667a&w=0&h=6ITuiC73aqUyI1HQQ9RfS0LxJS3pX2Iec_1GiwbZ65s=" />
+      <img
+        src="https://media.istockphoto.com/vectors/airplane-path-line-vector-graphic-vector-illustration-in-a-flat-style-vector-id1188615054?k=20&m=1188615054&s=170667a&w=0&h=6ITuiC73aqUyI1HQQ9RfS0LxJS3pX2Iec_1GiwbZ65s="
+        alt="ariplane"
+      />
       <div>
         <form onSubmit={handleSubmit} className="form-control">
           <label>

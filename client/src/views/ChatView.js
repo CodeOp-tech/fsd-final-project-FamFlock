@@ -7,6 +7,8 @@ import TripByIdNavCss from "../components/TripByIdNav.css";
 import ChatCss from "./ChatView.css";
 
 function ChatView(props) {
+  // source: Jim's WebSockets Demo
+
   const [messages, setMessages] = useState([]); // useState 1
   const [text, setText] = useState(""); // useState 2
   const [reactions, setReactions] = useState([]); // useState 3

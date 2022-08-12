@@ -136,8 +136,6 @@ router.put("/:id", async (req, res) => {
             BCRYPT_WORK_FACTOR
           );
 
-          console.log(hashedPassword);
-
           let sql = `
               UPDATE users SET password ='${hashedPassword}' WHERE id = ${id}`;
           await db(sql);
@@ -166,8 +164,6 @@ router.post("/member/:id", async function (req, res, next) {
   const { email } = req.body;
   const sql = `SELECT * FROM users WHERE email = '${email}';`;
   let user = await db(sql);
-  // console.log(" length of user!!!!!! ", user.data.length);
-  // res.send(user);
 
   try {
     if (user.data.length < 1) {
@@ -207,7 +203,6 @@ router.post("/member/:id", async function (req, res, next) {
 /* DELETE memeber from a trip */
 router.delete("/member/:id", async function (req, res, next) {
   let { tripId } = req.body;
-  console.log(tripId, req.params.id);
   let results = await db(
     `SELECT * FROM users_tripGroups WHERE FK_users_id = ${req.params.id} AND FK_tripGroups_id = ${tripId}`
   );
