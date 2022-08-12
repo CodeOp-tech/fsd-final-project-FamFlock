@@ -8,13 +8,13 @@
 ### Database Prep
 
 - Access the MySQL interface in your terminal by running `mysql -u root -p`
-- Create a new database called mvp: `create database travel`
+- Create a new database called travel: `create database travel`
 - Add a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
 ```bash
   DB_HOST=localhost
   DB_USER=root
-  DB_NAME=mvp
+  DB_NAME=travel
   DB_PASS=YOURPASSWORD
   SECRET_KEY=
   YELP_API_KEY=
@@ -30,7 +30,7 @@ REACT_APP_PUSHER_KEY=
 OCD_API_KEY=
 ```
 
-- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create a table called 'applicants', 'posts' and a junction table called 'posts_applicants' in your database.
+- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This will create tables 'budget', 'itinerary', 'listItems', 'lists', 'messages', 'messagesReactions', 'tripAddresses', 'tripGroups', 'trips', 'users' and a junction table called 'users_tripGroups' in your database.
 
 ### Development
 
