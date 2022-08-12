@@ -22,7 +22,7 @@
   YELP_API_KEY=
   OCD_API_KEY=
   PUSHER_KEY=YOURPUSHERKEY
-  PUSHER_SECRET=YOURSECRETKEYFROMPUSHER
+  PUSHER_SECRET=YOURPUSHERSECRETKEY
 ```
 
 - Add a second `.env` file in the client folder with the following keys
