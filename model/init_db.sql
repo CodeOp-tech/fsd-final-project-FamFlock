@@ -174,8 +174,6 @@ INSERT INTO itinerary (
 	('Visit to La Pedrera', 20221027, 'La Pedrera', 200000, 1),
 	('Afternoon stroll', 20221028, 'Tibidabo', 130000, 1),
 	('Ballet Show', 20221025, 'Palau de la Musica', 190000, 1),
-	('Stargazing', 20221025, 'CRAM', 220000, 1),
-	('Football match', 20221026, 'Camp Nou FCB', 210000, 1),
 	('Relax', 20221026, 'Parc de la Ciutadella', 150000, 1),
 	('Lunch', 20221028, 'Honest Greens', 140000, 1),
 	('Sightseeing', 20221108, 'Big Ben', 123000, 2),
