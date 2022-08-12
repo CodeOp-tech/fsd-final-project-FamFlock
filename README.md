@@ -74,3 +74,4 @@ https://dbdesigner.page.link/MxyD23HGVUDv1LDd9
 - CSS
 - Sass
 - Bootstrap
+- Tailwind
