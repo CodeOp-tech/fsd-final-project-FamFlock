@@ -11,7 +11,7 @@
 - Create a new database called travel: `create database travel`
 - Add a `.env` file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
-- Go to https://dashboard.pusher.com/accounts/sign_up and create a free Pusher account got to channels, then click on manage, create app then create a channels app. From the left side navigation click App keys and copy these keys into your `.env` file
+- This app uses Puaher API. Go to https://dashboard.pusher.com/accounts/sign_up and create a free Pusher account got to channels, then click on manage, create app then create a channels app. From the left side navigation click App keys and copy these keys into your `.env` file
 - This app uses Yelp Fusion API. Go to https://www.yelp.com/login?return_url=%2Fdevelopers%2Fv3%2Fmanage_app and create an account/login. Then create an app, go to "Manage App", copy your API key and paste it in your `.env` file.
 - This app uses Open Cage API. Go https://opencagedata.com/ and create account/login. Then go to geocoding API and copy your API key in your `.env` file.
 
@@ -81,3 +81,6 @@ https://drive.google.com/file/d/19zGUrjMNTJZ33VV4Svowy6uglP0bejZQ/view?usp=shari
 - Sass
 - Bootstrap
 - Tailwind
+
+
+_This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
