@@ -1,3 +1,7 @@
+## About
+
+The app, known as FamFlock, is built to centralize information, logistics, and operations relating to group travel planning with a focus on families. 
+
 ## Setup
 
 ### Dependencies
